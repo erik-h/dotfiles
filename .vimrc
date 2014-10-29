@@ -1,6 +1,7 @@
 set tabstop=4		
 set shiftwidth=4
-colorscheme evening
+" colorscheme evening
+colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
 set smartindent
 syntax on
 
