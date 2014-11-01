@@ -5,3 +5,4 @@ alias cpi="cp -i"
 alias mvi="mv -i"
 alias ls="ls -F --color=auto"
 alias open="xdg-open"
+alias tmux="tmux -2" # Force tmux to 256 colors
