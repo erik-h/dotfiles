@@ -1,8 +1,10 @@
-#fortune | cowthink | lolcat
-#PS1="${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[01;37m\] \w \$\[\033[00m\] "
+#if [ "$TMUX" = "" ]; then tmux; fi
+#cat /home/mint/.ascii
+alias la="ls -a"
 alias rmi="rm -i"
 alias cpi="cp -i"
 alias mvi="mv -i"
-alias ls="ls -F --color=auto"
 alias open="xdg-open"
 alias tmux="tmux -2" # Force tmux to 256 colors
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us" # e.g cat file.dat | sprunge
+#fortune | cowthink | lolcat
