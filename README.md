@@ -1,2 +1,2 @@
-Some of my dotfiles and directories.
+Some of my dotfiles.
 ======================================
