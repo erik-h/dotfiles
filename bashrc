@@ -11,4 +11,6 @@ alias sl="sl -e"
 alias lock="xscreensaver-command -l"
 alias nemo="nemo --no-desktop"
 alias mupdf="mupdf-x11"
+
+export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;32m\]@\[\e[0m\]\[\e[00;37m\]\H:\[\e[0m\]\[\e[00;32m\]\w\[\e[0m\]\[\e[00;37m\]\n\[\e[0m\]\[\e[00;33m\]\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 #fortune | cowthink | lolcat
