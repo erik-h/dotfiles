@@ -6,5 +6,9 @@ alias cpi="cp -i"
 alias mvi="mv -i"
 alias open="xdg-open"
 alias tmux="tmux -2" # Force tmux to 256 colors
-alias sprunge="curl -F 'sprunge=<-' http://sprunge.us" # e.g cat file.dat | sprunge
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias sl="sl -e"
+alias lock="xscreensaver-command -l"
+alias nemo="nemo --no-desktop"
+alias mupdf="mupdf-x11"
 #fortune | cowthink | lolcat
