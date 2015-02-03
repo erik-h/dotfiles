@@ -48,7 +48,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git)
 
 # User configuration
-
+export EDITOR="vim"
 export PATH="/home/mint/Programming/github/bash-scripts/:/usr/local/go/bin:/home/mint/Downloads/warsow_15:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -90,3 +90,5 @@ function sprungef() {
 	echo $result
 }
 alias steam-wine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
+alias sl="sl -e"
+alias mupdf="mupdf-x11"
