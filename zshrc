@@ -78,17 +78,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lock="xscreensaver-command -l"
-alias tmux="tmux -2"
-alias open="xdg-open"
-alias nemo="nemo --no-desktop"
-alias sprunge="curl -sF 'sprunge=<-' http://sprunge.us"
-function sprungef() {
-	file="$1"
-	curloutput=$(cat "$1" | curl -sF "sprunge=<-" http://sprunge.us)
-	result=$curloutput"?"${file##*.} # Append the file extension to the url to get syntax highlighting.
-	echo $result
-}
-alias steam-wine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
-alias sl="sl -e"
-alias mupdf="mupdf-x11"
+
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
+fi

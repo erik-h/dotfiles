@@ -1,8 +1,8 @@
 # Always run tmux
 #if [ "$TMUX" = "" ]; then tmux; fi
 
-if [ -f ~/.bash_aliases ]; then                                                                                                                                                           
-	. ~/.bash_aliases                                                                                                                                                                     
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
 fi
 
 export EDITOR="vim"

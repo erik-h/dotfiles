@@ -11,7 +11,7 @@ function remove_files() {
 	rm "$HOME/.vimrc" || true
 	rm "$HOME/.bashrc" || true
 	rm "$HOME/.tmux.conf" || true
-	rm "$HOME/.bash_aliases" || true
+	rm "$HOME/.aliases" || true
 	rm "$HOME/.zshrc" || true
 }
 
@@ -25,7 +25,7 @@ function link_files() {
 	ln -s "$DOTFILES_DIR/vimrc" "$HOME/.vimrc"
 	ln -s "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
 	ln -s "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
-	ln -s "$DOTFILES_DIR/bash_aliases" "$HOME/.bash_aliases"
+	ln -s "$DOTFILES_DIR/aliases" "$HOME/.aliases"
 	ln -s "$DOTFILES_DIR/zshrc" "$HOME/.zshrc"
 }
 

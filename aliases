@@ -19,3 +19,10 @@ alias lock="xscreensaver-command -l"
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
 
 alias mupdf="mupdf-x11"
+
+function sprungef() {
+	file="$1"
+	curloutput=$(cat "$1" | curl -sF "sprunge=<-" http://sprunge.us)
+	result=$curloutput"?"${file##*.} # Append the file extension to the url to get syntax highlighting.
+	echo $result
+}
