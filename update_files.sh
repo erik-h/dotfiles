@@ -2,6 +2,12 @@
 
 DOTFILES_DIR="$HOME/Programming/github/dotfiles"
 
+if [ -d $HOME/.i3/ ]; then
+	hasi3=true
+else
+	hasi3=false
+fi
+
 function remove_files() {
 	# Directories
 	rm "$HOME/.vim/" || true
@@ -13,6 +19,10 @@ function remove_files() {
 	rm "$HOME/.tmux.conf" || true
 	rm "$HOME/.aliases" || true
 	rm "$HOME/.zshrc" || true
+
+	if [ $hasi3 ]; then
+		rm $HOME/.i3/config || true
+	fi
 }
 
 function link_files() {
@@ -20,6 +30,9 @@ function link_files() {
 	if [ ! -d $HOME/.vim/ ]; then ln -s "$DOTFILES_DIR/vim/" "$HOME/.vim"; fi
 	if [ ! -d $HOME/.fonts/ ]; then ln -s "$DOTFILES_DIR/fonts/" "$HOME/.fonts"; fi
 	
+	if [ $hasi3 ]; then
+		ln -s "$DOTFILES_DIR/i3_config" "$HOME/.i3/config"
+	fi
 
 	# Files
 	ln -s "$DOTFILES_DIR/vimrc" "$HOME/.vimrc"
