@@ -15,8 +15,8 @@ endsnippet
 snippet cl "class .. (class)"
 class ${1:`!p snip.rv = snip.basename or "name"`} {
 public:
-	${1/(\w+).*/$1/} (${2:arguments});
-	virtual ~${1/(\w+).*/$1/} ();
+	${1/(\w+).*/$1/}(${2:arguments});
+	~${1/(\w+).*/$1/}();
 
 private:
 	${0:/* data */}
@@ -31,7 +31,7 @@ endsnippet
 
 snippet readfile "read file (readF)"
 std::vector<char> v;
-if (FILE *fp = fopen(${1:"filename"}, "r")) {
+if(FILE *fp = fopen(${1:"filename"}, "r")) {
 	char buf[1024];
 	while(size_t len = fread(buf, 1, sizeof(buf), fp))
 		v.insert(v.end(), buf, buf + len);
@@ -77,5 +77,9 @@ snippet comment "Author, Class, Lab comment"
  * Due date: ${3:Jan} ${4:1} ${5:2015}
  */
 $0
+endsnippet
+
+snippet using "using namespace {std}"
+using namespace ${1:std};$0
 endsnippet
 # vim:ft=snippets:
