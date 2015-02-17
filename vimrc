@@ -52,7 +52,7 @@ filetype plugin on
 filetype on
 
 " For when you want to edit a file as root without reopening it
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w !sudo tee % > /dev/null
 
 map <F6> :tabp<CR>
 map <F7> :tabn<CR>
