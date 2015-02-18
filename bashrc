@@ -1,8 +1,12 @@
 # Always run tmux
 #if [ "$TMUX" = "" ]; then tmux; fi
 
-if [ -f ~/.aliases ]; then
-	. ~/.aliases
+if [ -f "$HOME/.aliases" ]; then
+	. $HOME/.aliases
+fi
+
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 export EDITOR="vim"
