@@ -14,7 +14,7 @@ alias tmux="tmux -2" # Force tmux to 256 colors
 
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
-alias lock="xscreensaver-command -l"
+#alias lock="xscreensaver-command -l"
 
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
 
@@ -26,3 +26,11 @@ function sprungef() {
 	result=$curloutput"?"${file##*.} # Append the file extension to the url to get syntax highlighting.
 	echo $result
 }
+
+#function lock() {
+#	xscreensaver-command -l > /dev/null 2>&1
+#	if [ $? -eq 255 ]; then
+#		xscreensaver &
+#		xscreensaver-command -l
+#	fi
+#}
