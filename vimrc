@@ -60,3 +60,7 @@ map <F7> :tabn<CR>
 nnoremap ; :
 nnoremap <C-n> :tabn<CR>
 nnoremap <C-p> :tabp<CR>
+
+" Auto inserts a newline and closing } after an opening { and enter is
+" pressed.
+inoremap {<CR> {<CR>}<C-o>O
