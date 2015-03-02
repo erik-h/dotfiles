@@ -82,4 +82,25 @@ endsnippet
 snippet using "using namespace {std}"
 using namespace ${1:std};$0
 endsnippet
+
+# Currently _mostly_ works. The only time it won't find a function is if it is an
+# operator overload I haven't added yet.
+snippet funcomments "Searches for all functions in the file and sets up comments." b
+`!p
+import os
+os.environ["CURRENT_FILE"] = snip.fn
+os.environ["CURRENT_FILE_BASENAME"] = snip.basename
+`
+`
+egrep "(bool|int|void|char|short|unsigned|long|float|double|${CURRENT_FILE_BASENAME})(\*|\&)?[[:space:]]*(operator)?[[:space:]]*[[:alnum:]|_|+|=|\(\)]*[[:space:]]*\(.*\)" ${CURRENT_FILE} | while read -r line ; do
+    echo -n "// "
+	echo "$line"
+	echo "// Precondition:"
+	echo "// Postcondition:"
+	echo
+    # your code goes here
+done
+`
+endsnippet
+
 # vim:ft=snippets:
