@@ -26,6 +26,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" delimitMate
+Plugin 'Raimondi/delimitMate'
+
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 
