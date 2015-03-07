@@ -162,4 +162,29 @@ clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)
 endsnippet
 
+snippet makejava "A default Java Makefile template" b
+JFLAGS = -g
+JC = javac
+.SUFFIXES: .java .class
+.SILENT: run
+.java.class:
+	$(JC) $(JFLAGS) $*.java
+
+CLASSES = \
+	${2:Foo}.java \
+	${3:Blah}.java \
+	${4:Library}.java \
+	${1:Main}.java 
+
+all: classes
+
+classes: $(CLASSES:.java=.class)
+
+run: all
+	java $1
+
+clean:
+	rm *.class
+endsnippet
+
 # vim:ft=snippets:
