@@ -1,8 +1,8 @@
 " make 
-nnoremap <leader>r :make<CR>
+nnoremap <leader>m :make!<CR>
 
 " make [r]un
-nnoremap <leader>r :make run<CR>
+nnoremap <leader>r :make! run<CR>
 
 " show [e]rrors
 nnoremap <leader>e :cw 8<CR>
