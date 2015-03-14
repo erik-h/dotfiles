@@ -5,6 +5,12 @@ set shiftwidth=4
 set smartindent
 syntax on
 
+" Code folding
+set foldmethod=indent " fold based on indentation
+set foldnestmax=10 " deepest fold is 10 levels
+set nofoldenable " disable fold by default
+set foldlevel=1
+
 " LaTeX
 
 " Compile with rubber 
