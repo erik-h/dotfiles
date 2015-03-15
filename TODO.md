@@ -1,1 +1,1 @@
-- [ ] Compile YCM.
+- [x] Compile YCM.
