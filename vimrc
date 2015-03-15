@@ -5,6 +5,9 @@ set shiftwidth=4
 set smartindent
 syntax on
 
+" Auto close the scratch window when an autocompletion is found (YouCompleteMe)
+autocmd CompleteDone * pclose
+
 " Code folding
 set foldmethod=indent " fold based on indentation
 set foldnestmax=10 " deepest fold is 10 levels
