@@ -5,6 +5,9 @@ set shiftwidth=4
 set smartindent
 syntax on
 
+set ignorecase
+set smartcase
+
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
 
@@ -37,6 +40,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " delimitMate
 Plugin 'Raimondi/delimitMate'
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+" Toggle NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -76,8 +84,6 @@ map <F6> :tabp<CR>
 map <F7> :tabn<CR>
 
 nnoremap ; :
-nnoremap <C-n> :tabn<CR>
-nnoremap <C-p> :tabp<CR>
 
 " Auto inserts a newline and closing } after an opening { and enter is
 " pressed.
