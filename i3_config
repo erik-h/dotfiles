@@ -151,3 +151,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# open certain windows in floating mode
+#e.g: for_window [class="(?i)sfml-app"] floating enable 
