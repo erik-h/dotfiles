@@ -42,6 +42,9 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive
 Plugin 'tpope/vim-fugitive'
 
+" syntastic                                                                        
+Plugin 'scrooloose/syntastic'
+
 " vim-airline
 Plugin 'bling/vim-airline'
 set laststatus=2
