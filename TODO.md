@@ -1,1 +1,2 @@
 - [x] Compile YCM.
+- [ ] Add ~/.i3status.conf
