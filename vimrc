@@ -1,6 +1,7 @@
 set number
+set cursorline
 set colorcolumn=80
-set tabstop=4		
+set tabstop=4
 set shiftwidth=4
 set smartindent
 syntax on
@@ -19,7 +20,7 @@ set foldlevel=1
 
 " LaTeX
 
-" Compile with rubber 
+" Compile with rubber
 nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
 " View pdf with mupdf
 nnoremap <leader>v :!mupdf-x11 %:r.pdf &<CR><CR>
@@ -37,6 +38,17 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" fugitive
+Plugin 'tpope/vim-fugitive'
+
+" vim-airline
+Plugin 'bling/vim-airline'
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'raven'
+let g:airline#extensions#branch#enabled = 1
+" let g:airline_powerline_fonts = 1
 
 " delimitMate
 Plugin 'Raimondi/delimitMate'
