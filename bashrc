@@ -1,6 +1,8 @@
 # Always run tmux
 #if [ "$TMUX" = "" ]; then tmux; fi
 
+shopt -s extglob # extends regexes
+
 if [ -f "$HOME/.aliases" ]; then
 	. $HOME/.aliases
 fi
