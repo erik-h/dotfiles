@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 set number
 set cursorline
 set colorcolumn=80
