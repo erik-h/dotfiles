@@ -158,3 +158,5 @@ bar {
 
 # open certain windows in floating mode
 #e.g: for_window [class="(?i)sfml-app"] floating enable 
+for_window [class="(?i)cssh"] floating enable
+for_window [class="(?i)xterm"] floating enable
