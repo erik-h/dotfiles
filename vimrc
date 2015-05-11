@@ -20,8 +20,19 @@ set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " disable fold by default
 set foldlevel=1
 
-" LaTeX
+" Switch buffers with leader mappings
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>d :bd<CR>
 
+" Switch between splits with leader mappings
+nnoremap <leader>h <C-W><C-H>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
+
+
+" LaTeX
 " Compile with rubber
 nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
 " View pdf with mupdf
