@@ -25,20 +25,6 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
 #alias lock="xscreensaver-command -l"
 
-# ranger - change to last viewed directory on exit                              
-function ranger-cd {                                                            
-	tempfile="$(mktemp)"                                                        
-	/usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"                      
-	test -f "$tempfile" &&                                                      
-	if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then                  
-		cd -- "$(cat "$tempfile")"                                              
-	fi                                                                          
-	rm -f -- "$tempfile"                                                        
-}                                                                               
-																																  
-# This binds Ctrl-O to ranger-cd:                                               
-bind '"\C-o":"ranger-cd\C-m"'
-
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
 
 alias mupdf="mupdf-x11"
@@ -49,6 +35,20 @@ function sprungef() {
 	result=$curloutput"?"${file##*.} # Append the file extension to the url to get syntax highlighting.
 	echo $result
 }
+
+# ranger - change to last viewed directory on exit                                 
+function ranger-cd {                                                               
+    tempfile="$(mktemp)"                                                           
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"                         
+    test -f "$tempfile" &&                                                         
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then                     
+        cd -- "$(cat "$tempfile")"                                                 
+    fi                                                                             
+    rm -f -- "$tempfile"                                                           
+}                                                                                  
+                                                                                   
+# This binds Ctrl-O to ranger-cd:                                                  
+bind '"\C-o":"ranger-cd\C-m"'
 
 #function lock() {
 #	xscreensaver-command -l > /dev/null 2>&1
