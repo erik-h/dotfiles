@@ -19,6 +19,7 @@ function remove_files() {
 	rm "$HOME/.tmux.conf" || true
 	rm "$HOME/.aliases" || true
 	rm "$HOME/.zshrc" || true
+	rm "$HOME/.i3status.conf" || true
 
 	if [ $hasi3 ]; then
 		rm $HOME/.i3/config || true
