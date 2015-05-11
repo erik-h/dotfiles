@@ -159,8 +159,7 @@ bar {
 }
 
 # Set desktop background
-# TODO: Change the image to something in ~/.wallpapers/
-exec --no-startup-id feh --bg-scale /users/ugrad/ehaugrud/Pictures/Wallpapers/LSLMbf5.jpg
+exec --no-startup-id bash ~/.fehbg # Executes the last run feh command to change the desktop wallpaper
 
 # open certain windows in floating mode
 #e.g: for_window [class="(?i)sfml-app"] floating enable 
