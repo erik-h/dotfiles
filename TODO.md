@@ -1,3 +1,4 @@
 - [x] Compile YCM.
 - [x] Add ~/.i3status.conf
 - [ ] Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
+- [ ] Add ~/.pentadactylrc (N221 is most up to date)
