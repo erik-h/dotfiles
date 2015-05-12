@@ -26,6 +26,7 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 #alias lock="xscreensaver-command -l"
 
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
+alias nautilus="nautilus --no-desktop" # See: above
 
 alias mupdf="mupdf-x11"
 
