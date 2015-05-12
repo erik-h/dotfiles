@@ -55,6 +55,20 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive
 Plugin 'tpope/vim-fugitive'
 
+" vim-misc
+Plugin 'xolox/vim-misc'
+
+" vim-notes (dependency: vim-misc)
+Plugin 'xolox/vim-notes'
+let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_suffix = '.md'
+
+" Change the todo foreground color to red
+hi notesTodo ctermfg=197
+
+" Change the bullet point foreground color to purple
+hi notesListBullet term=bold ctermfg=141
+
 " syntastic
 Plugin 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
