@@ -1,3 +1,3 @@
 - [x] Compile YCM.
-- [ ] Add ~/.i3status.conf
-- [ ] Create ~/.wallpapers/ that I use across machines
+- [x] Add ~/.i3status.conf
+- [ ] Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
