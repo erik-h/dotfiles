@@ -58,6 +58,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " Ctrl-P
 Plugin 'kien/ctrlp.vim'
+nnoremap <leader>o :CtrlPMixed<CR>
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
