@@ -4,3 +4,4 @@
 	- [ ] Then update i3_config i3lock command.
 - [ ] Add ~/.pentadactylrc (N221 is most up to date)
 - [ ] Setup eclim on all machines
+- [ ] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
