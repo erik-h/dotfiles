@@ -7,6 +7,10 @@ if [ -f "$HOME/.aliases" ]; then
 	. $HOME/.aliases
 fi
 
+if [ -f "$HOME/.local_aliases" ]; then
+	. $HOME/.local_aliases
+fi
+
 if [ -d "$HOME/bin" ]; then
 	PATH="$HOME/bin:$PATH"
 fi
