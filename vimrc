@@ -52,6 +52,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" tagbar
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" Ctrl-P
+Plugin 'kien/ctrlp.vim'
+
 " fugitive
 Plugin 'tpope/vim-fugitive'
 
@@ -91,6 +98,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 " Toggle NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+" Close NERDTree window if it's the only buffer left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
