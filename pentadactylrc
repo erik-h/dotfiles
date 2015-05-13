@@ -1,0 +1,18 @@
+set guioptions+=mTB
+set defsearch=duckduckgo
+
+set scrollsteps=1
+set scrolltime=0
+set editor="vim"
+
+set incfind
+set findcase=smart
+set hintkeys=asdfg;lkjh
+highlight -a Hint text-transform: uppercase
+
+map -b j 8j
+map -b k 8k
+map -b h 8h
+map -b l 8l
+
+map -b ; :
