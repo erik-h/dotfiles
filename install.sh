@@ -28,7 +28,7 @@ function link_files() {
 	ln -s --backup=numbered "$DOTFILES_DIR/fonts" "$HOME/.fonts";
 	
 	# Files
-	if [ $hasi3 ]; then
+	if [ "$hasi3" == true ]; then
 		ln -s --backup=numbered "$DOTFILES_DIR/i3_config" "$HOME/.i3/config"
 		ln -s --backup=numbered "$DOTFILES_DIR/i3status.conf" "$HOME/.i3status.conf"
 	fi
