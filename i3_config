@@ -118,9 +118,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+Control+l exec "lock"
-# At school (for now; TODO: the image path will change soon):
-# bindsym $mod+Control+l exec "i3lock -t -i /users/ugrad/ehaugrud/Pictures/Wallpapers/LSLMbf5.png"
+bindsym $mod+Control+l exec "~/bin/lock" # Different across various machines
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +10% && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
