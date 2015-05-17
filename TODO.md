@@ -1,7 +1,7 @@
 - [x] Compile YCM.
 - [x] Add ~/.i3status.conf
-- [ ] Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
+- [x] NOTE: (Current implementation: ~/Dropbox/wallpapers/) Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
 	- [ ] Then update i3_config i3lock command.
-- [ ] Add ~/.pentadactylrc (N221 is most up to date)
+- [x] Add ~/.pentadactylrc (N221 is most up to date)
 - [ ] Setup eclim on all machines
 - [ ] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
