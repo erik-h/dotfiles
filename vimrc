@@ -71,13 +71,19 @@ Plugin 'tpope/vim-surround'
 " eunuch
 Plugin 'tpope/vim-eunuch'
 
+" unimpaired
+Plugin 'tpope/vim-unimpaired'
+
+" repeat
+Plugin 'tpope/vim-repeat'
+
 " vim-misc
 Plugin 'xolox/vim-misc'
 
 " vim-notes (dependency: vim-misc)
 Plugin 'xolox/vim-notes'
 let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_suffix = '.md'
+let g:notes_suffix = '.txt'
 
 " Change the todo foreground color to red
 hi notesTodo ctermfg=197
