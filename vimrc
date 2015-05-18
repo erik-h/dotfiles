@@ -62,6 +62,15 @@ nnoremap <leader>o :CtrlPMixed<CR>
 " fugitive
 Plugin 'tpope/vim-fugitive'
 
+" commentary
+Plugin 'tpope/vim-commentary'
+
+" surround
+Plugin 'tpope/vim-surround'
+
+" eunuch
+Plugin 'tpope/vim-eunuch'
+
 " vim-misc
 Plugin 'xolox/vim-misc'
 
@@ -128,9 +137,6 @@ let g:UltiSnipsEditSplit="vertical"
 call vundle#end()            " required
 filetype plugin indent on
 " Vundle END
-
-" For when you want to edit a file as root without reopening it
-cmap w!! w !sudo tee % > /dev/null
 
 map <F6> :tabp<CR>
 map <F7> :tabn<CR>
