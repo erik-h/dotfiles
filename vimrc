@@ -31,12 +31,11 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
-
-" LaTeX
-" Compile with rubber
-nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
-" View pdf with mupdf
-nnoremap <leader>v :!mupdf-x11 %:r.pdf &<CR><CR>
+" Quickfix  mappings
+" show [e]rrors
+nnoremap <leader>e :cw 8<CR>
+" [q]uit the error window
+nnoremap <leader>q :ccl<CR>
 
 " colorscheme evening
 colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
@@ -127,11 +126,8 @@ let g:UltiSnipsEditSplit="vertical"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on
 " Vundle END
-
-filetype plugin on
-filetype on
 
 " For when you want to edit a file as root without reopening it
 cmap w!! w !sudo tee % > /dev/null
