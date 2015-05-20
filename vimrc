@@ -1,4 +1,7 @@
 let mapleader = "\<Space>"
+imap jk <Esc>
+autocmd InsertEnter * set timeoutlen=100
+autocmd InsertLeave * set timeoutlen=1000
 
 set number
 set cursorline
@@ -37,8 +40,11 @@ nnoremap <leader>e :cw 8<CR>
 " [q]uit the error window
 nnoremap <leader>q :ccl<CR>
 
-" colorscheme evening
 colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
+" let g:solarized_termcolors=256
+" set background=dark
+" colorscheme solarized
+
 
 " Vundle BEGIN
 set nocompatible              " be iMproved, required
@@ -50,6 +56,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" solarized
+Plugin 'altercation/vim-colors-solarized'
 
 " tagbar
 Plugin 'majutsushi/tagbar'
