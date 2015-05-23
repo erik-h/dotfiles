@@ -3,7 +3,7 @@ set defsearch=duckduckgo
 
 set scrollsteps=1
 set scrolltime=0
-set editor="vim"
+set editor='xterm -e "vim -f +<line> +\"sil! call cursor(0, <column>)\" <file>"'
 
 set incfind
 set findcase=smart
