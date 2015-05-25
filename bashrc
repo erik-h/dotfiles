@@ -16,7 +16,11 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 if [ -d "$HOME/node_modules" ]; then
-	PATH="$HOME/node_modules:$PATH"
+	PATH="$HOME/node_modules/.bin:$PATH"
+fi
+
+if [ -d "$HOME/Downloads/gradle-2.4-bin/bin" ]; then
+	PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
 fi
 
 export HISTCONTROL="ignorespace"
