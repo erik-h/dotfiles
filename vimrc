@@ -6,8 +6,13 @@ autocmd InsertLeave * set timeoutlen=1000
 set number
 set cursorline
 set colorcolumn=80
+
+" Tab stuff
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
+set noexpandtab
+
 set smartindent
 syntax on
 
