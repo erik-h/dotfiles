@@ -14,6 +14,9 @@ syntax on
 set ignorecase
 set smartcase
 
+" Set the default browser
+let g:netrw_browsex_viewer = "firefox"
+
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
 
@@ -57,6 +60,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" Markdown plugins
+" tabular must come BEFORE vim-markdown
+Plugin 'godlygeek/tabular'
+" Plugin 'gabrielelana/vim-markdown'
+Plugin 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github flavoured syntax
+Plugin 'JamshedVesuna/vim-markdown-preview'
+map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
+
 " solarized
 Plugin 'altercation/vim-colors-solarized'
 
@@ -73,6 +84,7 @@ nmap <F8> :TagbarToggle<CR>
 " Ctrl-P
 Plugin 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
+let g:ctrlp_map = ''
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
