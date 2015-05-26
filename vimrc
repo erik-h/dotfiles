@@ -65,6 +65,12 @@ Plugin 'gmarik/Vundle.vim'
 " solarized
 Plugin 'altercation/vim-colors-solarized'
 
+" vim-dispatch
+Plugin 'tpope/vim-dispatch'
+
+" vim-gradle
+Plugin 'tfnico/vim-gradle'
+
 " tagbar
 Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
@@ -111,6 +117,7 @@ let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_java_javac_config_file_enabled = 1
 
 " vim-airline
 Plugin 'bling/vim-airline'
