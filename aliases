@@ -19,6 +19,8 @@ alias mvi="mv -i"
 
 alias open="xdg-open"
 
+alias cb="xclip -selection clipboard"
+
 alias tmux="tmux -2" # Force tmux to 256 colors
 
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
