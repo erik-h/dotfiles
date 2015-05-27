@@ -1,11 +1,8 @@
-" make 
-nnoremap <leader>m :make!<CR>
+compiler gradle
 
-" make [r]un
-nnoremap <leader>r :make! run<CR>
+set makeprg=gradle\ --console=plain
 
-" show [e]rrors
-nnoremap <leader>e :cw 8<CR>
-
-" [q]uit the error window
-nnoremap <leader>q :ccl<CR>
+" Make (using gradle)
+" NOTE: This depends on the vim-dispatch plugin
+nnoremap <leader>m :Make build<CR>
+nnoremap <leader>r :Make run<CR>

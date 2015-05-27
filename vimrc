@@ -6,13 +6,22 @@ autocmd InsertLeave * set timeoutlen=1000
 set number
 set cursorline
 set colorcolumn=80
+set wildmode=longest,list
+
+" Tab stuff
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
+set noexpandtab
+
 set smartindent
 syntax on
 
 set ignorecase
 set smartcase
+
+" Set the default browser
+let g:netrw_browsex_viewer = "firefox"
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
@@ -34,12 +43,6 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
-" Quickfix  mappings
-" show [e]rrors
-nnoremap <leader>e :cw 8<CR>
-" [q]uit the error window
-nnoremap <leader>q :ccl<CR>
-
 colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
 " let g:solarized_termcolors=256
 " set background=dark
@@ -57,8 +60,27 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" Markdown plugins
+" tabular must come BEFORE vim-markdown
+Plugin 'godlygeek/tabular'
+" Plugin 'gabrielelana/vim-markdown'
+Plugin 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github flavoured syntax
+Plugin 'JamshedVesuna/vim-markdown-preview'
+map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
+
 " solarized
 Plugin 'altercation/vim-colors-solarized'
+
+" vim-togglelist - toggle the quickfix and location list windows
+Plugin 'milkypostman/vim-togglelist'
+" Use Copen (from tpope/vim-dispatch)
+let g:toggle_list_copen_command = "Copen"
+
+" vim-dispatch
+Plugin 'tpope/vim-dispatch'
+
+" vim-gradle
+Plugin 'tfnico/vim-gradle'
 
 " tagbar
 Plugin 'majutsushi/tagbar'
@@ -67,6 +89,7 @@ nmap <F8> :TagbarToggle<CR>
 " Ctrl-P
 Plugin 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
+let g:ctrlp_map = ''
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
@@ -102,10 +125,12 @@ hi notesListBullet term=bold ctermfg=141
 
 " syntastic
 Plugin 'scrooloose/syntastic'
+let g:syntastic_mode_map = {"mode": "passive"}
 let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" Preserve CLASS_PATH settings in a file
+let g:syntastic_java_javac_config_file_enabled = 1
 
 " vim-airline
 Plugin 'bling/vim-airline'
@@ -158,6 +183,6 @@ map <F7> :tabn<CR>
 
 nnoremap ; :
 
-" Auto inserts a newline and closing } after an opening { and enter is
+" Auto inserts a newline and closing } after an opening { and enter are
 " pressed.
 inoremap {<CR> {<CR>}<C-o>O
