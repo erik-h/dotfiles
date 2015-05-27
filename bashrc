@@ -99,6 +99,10 @@ if [ -d "$HOME/Downloads/gradle-2.4-bin/bin" ]; then
 	PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
 fi
 
+if [ -d "$HOME/eclipse" ]; then
+	PATH="$HOME/eclipse:$PATH"
+fi
+
 export HISTCONTROL="ignorespace"
 export EDITOR="vim"
 # export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;32m\]@\[\e[0m\]\[\e[00;37m\]\H:\[\e[0m\]\[\e[00;32m\]\w\[\e[0m\]\[\e[00;37m\] $(__git_ps1)\n\[\e[0m\]\[\e[00;33m\]\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
