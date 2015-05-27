@@ -7,6 +7,7 @@ set number
 set cursorline
 set colorcolumn=80
 set wildmode=longest,list
+set lazyredraw
 
 " Tab stuff
 set tabstop=4
@@ -25,6 +26,10 @@ let g:netrw_browsex_viewer = "firefox"
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
+
+" Hack to stop Eclim from changing the compiler to ant
+let current_compiler = "gradle"
+autocmd FileType java echo "Setting makeprg..." | setlocal makeprg=gradle\ --console=plain
 
 " Code folding
 set foldmethod=indent " fold based on indentation
@@ -71,10 +76,29 @@ map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 " solarized
 Plugin 'altercation/vim-colors-solarized'
 
+" eclim
+let g:EclimFileTypeValidate = 0
+" Stop the screen from flashing when choosing completions
+set completeopt-=preview
+
 " vim-togglelist - toggle the quickfix and location list windows
 Plugin 'milkypostman/vim-togglelist'
 " Use Copen (from tpope/vim-dispatch)
+let g:toggle_list_no_mappings = 1
 let g:toggle_list_copen_command = "Copen"
+" My ugly hack to get location list toggling working
+let g:location_list_is_toggled = 0
+nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
+nmap <script> <silent> <leader>, :call ToggleLocationListFixed()<CR>
+function! ToggleLocationListFixed()
+	if !g:location_list_is_toggled
+		lopen
+		let g:location_list_is_toggled = 1
+	else
+		lclose
+		let g:location_list_is_toggled = 0
+	endif
+endfunction
 
 " vim-dispatch
 Plugin 'tpope/vim-dispatch'
@@ -186,3 +210,21 @@ nnoremap ; :
 " Auto inserts a newline and closing } after an opening { and enter are
 " pressed.
 inoremap {<CR> {<CR>}<C-o>O
+
+if has('autocmd')
+	augroup vimrc_linenumbering
+		autocmd!
+		autocmd WinLeave *
+					\ if &number |
+					\   set norelativenumber |
+					\ endif
+		autocmd BufWinEnter *
+					\ if &number |
+					\   set relativenumber |
+					\ endif
+		autocmd VimEnter *
+					\ if &number |
+					\   set relativenumber |
+					\ endif
+	augroup END
+endif
