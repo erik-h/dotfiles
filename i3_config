@@ -116,7 +116,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Custom version (includes logout, suspend, reboot, and poweroff)
+bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
 bindsym $mod+Control+l exec "~/bin/lock"
 
@@ -169,3 +171,4 @@ exec --no-startup-id bash ~/.scripts/randomWallpaper.sh # Depends on: ~/Dropbox/
 for_window [class="(?i)cssh"] floating enable
 for_window [class="(?i)xterm"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
+for_window [class="I3-exit" instance="i3-exit"] floating enable
