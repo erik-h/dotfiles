@@ -27,10 +27,6 @@ let g:netrw_browsex_viewer = "firefox"
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
 
-" Hack to stop Eclim from changing the compiler to ant
-let current_compiler = "gradle"
-autocmd FileType java echo "Setting makeprg..." | setlocal makeprg=gradle\ --console=plain
-
 " Code folding
 set foldmethod=indent " fold based on indentation
 set foldnestmax=10 " deepest fold is 10 levels
@@ -73,11 +69,15 @@ Plugin 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 
+" vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
+Plugin 'mhinz/vim-hugefile'
+" let g:hugefile_trigger_size = some size in MiB
+
 " solarized
 Plugin 'altercation/vim-colors-solarized'
 
 " eclim
-let g:EclimFileTypeValidate = 0
+" let g:EclimFileTypeValidate = 0
 " Stop the screen from flashing when choosing completions
 set completeopt-=preview
 
