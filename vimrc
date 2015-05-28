@@ -106,6 +106,10 @@ Plugin 'tpope/vim-dispatch'
 " vim-gradle
 Plugin 'tfnico/vim-gradle'
 
+" vim-go
+Plugin 'fatih/vim-go'
+" TODO: Add mappings for go run, go test, etc from the repo's README
+
 " tagbar
 Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
@@ -228,3 +232,5 @@ if has('autocmd')
 					\ endif
 	augroup END
 endif
+
+autocmd FileType go setlocal commentstring=#\ %s
