@@ -67,6 +67,9 @@ Plugin 'gmarik/Vundle.vim'
 " Vimball
 Plugin 'vim-scripts/Vimball'
 
+" vim-sparkup - html templating
+Plugin 'rstacruz/sparkup'
+
 " Markdown plugins
 " tabular must come BEFORE vim-markdown
 Plugin 'godlygeek/tabular'
