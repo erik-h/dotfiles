@@ -37,7 +37,8 @@ endglobal
 snippet sleep "try sleep catch" b
 try {
 	Thread.sleep(${1:1000});
-} catch (InterruptedException e){
+}
+catch (InterruptedException e){
 	e.printStackTrace();
 }
 endsnippet
@@ -304,7 +305,8 @@ endsnippet
 snippet try "try/catch" b
 try {
 	$1${VISUAL}
-} catch(${2:Exception} ${3:e}){
+}
+catch(${2:Exception} ${3:e}){
 	${4:e.printStackTrace();}
 }
 endsnippet
