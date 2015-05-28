@@ -20,3 +20,5 @@ endfunction
 
 nnoremap <leader>b :call JavaMakeBuild()<CR>
 nnoremap <leader>r :call JavaMakeRun()<CR>
+
+nnoremap <leader>gd :JavaDocSearch<CR>
