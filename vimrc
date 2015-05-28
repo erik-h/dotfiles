@@ -108,6 +108,7 @@ Plugin 'tfnico/vim-gradle'
 
 " vim-go
 Plugin 'fatih/vim-go'
+" TODO: Add mappings for go run, go test, etc from the repo's README
 
 " tagbar
 Plugin 'majutsushi/tagbar'
