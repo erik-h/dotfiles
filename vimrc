@@ -9,6 +9,10 @@ set colorcolumn=80
 set wildmode=longest,list
 set lazyredraw
 
+" Make splits open to the right/below (more natural to most people)
+set splitbelow
+set splitright
+
 " Tab stuff
 set tabstop=4
 set softtabstop=4
@@ -26,10 +30,6 @@ let g:netrw_browsex_viewer = "firefox"
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 autocmd CompleteDone * pclose
-
-" Hack to stop Eclim from changing the compiler to ant
-let current_compiler = "gradle"
-autocmd FileType java echo "Setting makeprg..." | setlocal makeprg=gradle\ --console=plain
 
 " Code folding
 set foldmethod=indent " fold based on indentation
@@ -53,7 +53,6 @@ colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
 " set background=dark
 " colorscheme solarized
 
-
 " Vundle BEGIN
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -65,6 +64,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" Vimball
+Plugin 'vim-scripts/Vimball'
+
+" vim-sparkup - html templating
+Plugin 'rstacruz/sparkup'
+
 " Markdown plugins
 " tabular must come BEFORE vim-markdown
 Plugin 'godlygeek/tabular'
@@ -73,11 +78,16 @@ Plugin 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 
+" vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
+Plugin 'mhinz/vim-hugefile'
+" let g:hugefile_trigger_size = some size in MiB
+
 " solarized
 Plugin 'altercation/vim-colors-solarized'
 
 " eclim
-let g:EclimFileTypeValidate = 0
+let g:EclimBrowser = 'firefox'
+" let g:EclimFileTypeValidate = 0
 " Stop the screen from flashing when choosing completions
 set completeopt-=preview
 
@@ -92,7 +102,12 @@ nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nmap <script> <silent> <leader>, :call ToggleLocationListFixed()<CR>
 function! ToggleLocationListFixed()
 	if !g:location_list_is_toggled
-		lopen
+		try
+			lopen
+		catch /E776/
+			echo "Location List is empty."
+			return
+		endtry
 		let g:location_list_is_toggled = 1
 	else
 		lclose
@@ -105,6 +120,10 @@ Plugin 'tpope/vim-dispatch'
 
 " vim-gradle
 Plugin 'tfnico/vim-gradle'
+
+" vim-go
+Plugin 'fatih/vim-go'
+" TODO: Add mappings for go run, go test, etc from the repo's README
 
 " tagbar
 Plugin 'majutsushi/tagbar'
@@ -211,20 +230,35 @@ nnoremap ; :
 " pressed.
 inoremap {<CR> {<CR>}<C-o>O
 
-if has('autocmd')
-	augroup vimrc_linenumbering
-		autocmd!
-		autocmd WinLeave *
-					\ if &number |
-					\   set norelativenumber |
-					\ endif
-		autocmd BufWinEnter *
-					\ if &number |
-					\   set relativenumber |
-					\ endif
-		autocmd VimEnter *
-					\ if &number |
-					\   set relativenumber |
-					\ endif
-	augroup END
-endif
+" The below autocmds are supposed to toggle relativenumber on/off when
+" entering/leaving a buffer. It doesn't work very well in i3.
+" if has('autocmd')
+" 	augroup vimrc_linenumbering
+" 		autocmd!
+" 		autocmd WinLeave *
+" 					\ if &number |
+" 					\   set norelativenumber |
+" 					\ endif
+" 		autocmd BufWinEnter *
+" 					\ if &number |
+" 					\   set relativenumber |
+" 					\ endif
+" 		autocmd VimEnter *
+" 					\ if &number |
+" 					\   set relativenumber |
+" 					\ endif
+" 	augroup END
+" endif
+
+autocmd FileType go setlocal commentstring=#\ %s
+
+" TODO: Use this to close empty buffers that appear after running :Make run
+" and closing the quickfix window with <leader>q AFTER maximizing the quickfix
+" window with ZoomWin (Ctrl-w o)
+function! BufferIsEmpty()
+	if line('$') == 1 && getline(1) == ''
+		return 1
+	else
+		return 0
+	endif
+endfunction
