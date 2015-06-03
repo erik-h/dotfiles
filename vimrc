@@ -1,5 +1,6 @@
 let mapleader = "\<Space>"
 imap jk <Esc>
+command! Ve e ~/.vimrc
 autocmd InsertEnter * set timeoutlen=100
 autocmd InsertLeave * set timeoutlen=1000
 
@@ -8,6 +9,33 @@ set cursorline
 set colorcolumn=80
 set wildmode=longest,list
 set lazyredraw
+
+" Undo dir settings
+if !isdirectory(expand("~/.vim/undodir"))
+	echom "undodir not found. Creating now..."
+	silent call system("mkdir " . expand("~/.vim/undodir"))
+endif
+
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+
+" " Undo dir settings
+" " Put plugins and dictionaries in this dir (also on Windows)
+" let vimDir = '$HOME/.vim'
+" let &runtimepath.=','.vimDir
+
+" " Keep undo history across sessions by storing it in a file
+" if has('persistent_undo')
+"     let myUndoDir = expand(vimDir . '/undodir')
+"     " Create dirs
+"     call system('mkdir ' . vimDir)
+"     call system('mkdir ' . myUndoDir)
+"     let &undodir = myUndoDir
+"     set undofile
+" endif
 
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
@@ -63,6 +91,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" ag.vim - a front for ag A.K.A. the_silver_searcher
+Plugin 'rking/ag.vim'
+
+" tern_for_vim - javascript omni-completion
+Plugin 'marijnh/tern_for_vim'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 " Vimball
 Plugin 'vim-scripts/Vimball'
@@ -133,6 +168,7 @@ nmap <F8> :TagbarToggle<CR>
 Plugin 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
 let g:ctrlp_map = ''
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
