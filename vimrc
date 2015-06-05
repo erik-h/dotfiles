@@ -4,11 +4,19 @@ command! Ve e ~/.vimrc
 autocmd InsertEnter * set timeoutlen=100
 autocmd InsertLeave * set timeoutlen=1000
 
+set pastetoggle=<F2>
 set number
+set relativenumber
 set cursorline
 set colorcolumn=80
 set wildmode=longest,list
 set lazyredraw
+" Highlight search terms
+set hlsearch
+" Show search matches as you type
+set incsearch
+" Control-l to unhighlight a search
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Undo dir settings
 if !isdirectory(expand("~/.vim/undodir"))
@@ -68,7 +76,7 @@ set foldlevel=1
 " Switch buffers with leader mappings
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :call Bclose()<CR>
 
 " Switch between splits with leader mappings
 nnoremap <leader>h <C-W><C-H>
@@ -297,4 +305,25 @@ function! BufferIsEmpty()
 	else
 		return 0
 	endif
+endfunction
+
+" Bclose()
+" delete buffer without closing window
+function! Bclose()
+    let curbufnr = bufnr("%")
+    let altbufnr = bufnr("#")
+
+    if buflisted(altbufnr)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == curbufnr
+        new
+    endif
+
+    if buflisted(curbufnr)
+        execute("bdelete! " . curbufnr)
+    endif
 endfunction
