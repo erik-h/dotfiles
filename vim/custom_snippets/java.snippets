@@ -38,7 +38,7 @@ snippet sleep "try sleep catch" b
 try {
 	Thread.sleep(${1:1000});
 }
-catch (InterruptedException e){
+catch (InterruptedException e) {
 	e.printStackTrace();
 }
 endsnippet
@@ -306,7 +306,7 @@ snippet try "try/catch" b
 try {
 	$1${VISUAL}
 }
-catch(${2:Exception} ${3:e}){
+catch(${2:Exception} ${3:e}) {
 	${4:e.printStackTrace();}
 }
 endsnippet
@@ -434,5 +434,21 @@ while ($1)`!p nl(snip)`{
 	$0
 }
 endsnippet
+
+###########################
+#  BEGIN CUSTOM SNIPPETS  #
+###########################
+
+snippet todo "Create a todo"
+// TODO(`whoami`): $0
+endsnippet
+
+snippet todom "Create a todo marker (a todo with no message)"
+// TODO(`whoami`)$0
+endsnippet
+
+#########################
+#  END CUSTOM SNIPPETS  #
+#########################
 
 # vim:ft=snippets:

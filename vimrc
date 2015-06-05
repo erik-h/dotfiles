@@ -1,13 +1,49 @@
 let mapleader = "\<Space>"
 imap jk <Esc>
+command! Ve e ~/.vimrc
 autocmd InsertEnter * set timeoutlen=100
 autocmd InsertLeave * set timeoutlen=1000
 
+set pastetoggle=<F2>
 set number
+set relativenumber
 set cursorline
 set colorcolumn=80
 set wildmode=longest,list
 set lazyredraw
+" Highlight search terms
+set hlsearch
+" Show search matches as you type
+set incsearch
+" Control-l to unhighlight a search
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Undo dir settings
+if !isdirectory(expand("~/.vim/undodir"))
+	echom "undodir not found. Creating now..."
+	silent call system("mkdir " . expand("~/.vim/undodir"))
+endif
+
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+
+" " Undo dir settings
+" " Put plugins and dictionaries in this dir (also on Windows)
+" let vimDir = '$HOME/.vim'
+" let &runtimepath.=','.vimDir
+
+" " Keep undo history across sessions by storing it in a file
+" if has('persistent_undo')
+"     let myUndoDir = expand(vimDir . '/undodir')
+"     " Create dirs
+"     call system('mkdir ' . vimDir)
+"     call system('mkdir ' . myUndoDir)
+"     let &undodir = myUndoDir
+"     set undofile
+" endif
 
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
@@ -40,7 +76,7 @@ set foldlevel=1
 " Switch buffers with leader mappings
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :call Bclose()<CR>
 
 " Switch between splits with leader mappings
 nnoremap <leader>h <C-W><C-H>
@@ -63,6 +99,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" ag.vim - a front for ag A.K.A. the_silver_searcher
+Plugin 'rking/ag.vim'
+
+" tern_for_vim - javascript omni-completion
+Plugin 'marijnh/tern_for_vim'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 " Vimball
 Plugin 'vim-scripts/Vimball'
@@ -133,6 +176,7 @@ nmap <F8> :TagbarToggle<CR>
 Plugin 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
 let g:ctrlp_map = ''
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
@@ -261,4 +305,25 @@ function! BufferIsEmpty()
 	else
 		return 0
 	endif
+endfunction
+
+" Bclose()
+" delete buffer without closing window
+function! Bclose()
+    let curbufnr = bufnr("%")
+    let altbufnr = bufnr("#")
+
+    if buflisted(altbufnr)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == curbufnr
+        new
+    endif
+
+    if buflisted(curbufnr)
+        execute("bdelete! " . curbufnr)
+    endif
 endfunction
