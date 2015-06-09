@@ -138,4 +138,9 @@ export NVM_DIR="/home/erik/.nvm"
 # This is the git prompt method from github.com/git/git/
 # source ~/.dotfiles/git-prompt.sh
 
-################################################################################
+# Environment variables for golang
+export GOROOT="$HOME/Programming/lang/go"
+export PATH="$PATH:$GOROOT/bin"
+
+export GOPATH="$HOME/Programming/go"
+export PATH="$PATH:$GOPATH/bin"
