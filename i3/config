@@ -168,6 +168,9 @@ bar {
 # exec --no-startup-id bash ~/.fehbg # Executes the last run feh command to change the desktop wallpaper
 exec --no-startup-id bash ~/.scripts/randomWallpaper.sh # Depends on: ~/Dropbox/wallpapers/
 
+# Start dropbox
+exec --no-startup-id dropbox start
+
 # open certain windows in floating mode
 #e.g: for_window [class="(?i)sfml-app"] floating enable 
 for_window [class="(?i)cssh"] floating enable

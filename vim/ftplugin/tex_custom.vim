@@ -1,6 +1,7 @@
 " Compile with rubber
 if executable("rubber")
-	nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+	" nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+	nnoremap <leader>c :call CompileAndCleanLatex()<CR>
 else
 	nnoremap <leader>c :echo "Cannot compile with rubber: it is not installed!"<CR>
 endif
@@ -13,3 +14,10 @@ elseif executable("mupdf-x11")
 else
 	nnoremap <leader>v :echo "Cannot open pdf: mupdf is not installed!"<CR>
 endif
+
+" Compiles a LaTex document using rubber, and removes <document name>.{aux,log}
+function! CompileAndCleanLatex()
+	exec "w"
+	exec "!rubber --pdf --warn all %"
+	silent !rm -f %:r.aux %:r.log
+endfunction
