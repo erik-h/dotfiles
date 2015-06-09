@@ -8,6 +8,7 @@ set cursorline
 set colorcolumn=80
 set wildmode=longest,list
 set lazyredraw
+set pastetoggle=<F10>
 
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
@@ -123,7 +124,27 @@ Plugin 'tfnico/vim-gradle'
 
 " vim-go
 Plugin 'fatih/vim-go'
+let g:go_bin_path = expand("~/Programming/lang/go/bin")
 " TODO: Add mappings for go run, go test, etc from the repo's README
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " tagbar
 Plugin 'majutsushi/tagbar'
@@ -250,7 +271,7 @@ inoremap {<CR> {<CR>}<C-o>O
 " 	augroup END
 " endif
 
-autocmd FileType go setlocal commentstring=#\ %s
+" autocmd FileType go setlocal commentstring=/*\ %s\ */
 
 " TODO: Use this to close empty buffers that appear after running :Make run
 " and closing the quickfix window with <leader>q AFTER maximizing the quickfix
