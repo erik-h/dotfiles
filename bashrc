@@ -95,6 +95,10 @@ if [ -d "$HOME/local/bin" ]; then
 	PATH="$HOME/local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [ -d "$HOME/node_modules" ]; then
 	PATH="$HOME/node_modules/.bin:$PATH"
 fi
@@ -109,28 +113,46 @@ fi
 
 export HISTCONTROL="ignorespace"
 export EDITOR="vim"
-# export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;32m\]@\[\e[0m\]\[\e[00;37m\]\H:\[\e[0m\]\[\e[00;32m\]\w\[\e[0m\]\[\e[00;37m\] $(__git_ps1)\n\[\e[0m\]\[\e[00;33m\]\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 
-# "${White}erik${Green}@${White}mint-laptop:${Green}~\n${Yellow}\$\n"
+###############
+#  START PS1  #
+###############
 
-PS1="${White}"
-PS1+="\u"
-PS1+="${Green}"
-PS1+="@"
-PS1+="${White}"
-PS1+="\H"
-PS1+="${Green}"
-PS1+="\w"
-PS1+="${White}"
-# PS1+='$(__git_ps1)\n'
+PS1="\u"
+PS1+="\[$(tput setaf 2)\]@"
+PS1+="\[$(tput sgr0)\]\H"
+PS1+="\[$(tput setaf 2)\]\w"
+PS1+="\[$(tput sgr0)\]"
 PS1+=' $(parse_git_branch)\n'
-PS1+="${Yellow}"
-PS1+="\$ "
-PS1+="${Color_Off}"
+PS1+="\[$(tput setaf 3)\]\$"
+PS1+="\[$(tput sgr0)\] "
 
-export PS1
+# Below is the old broken version
+# PS1="\[${White}\]"
+# PS1="$PS1\u"
+# PS1="$PS1\[${Green}\]"
+# PS1="$PS1@"
+# PS1="$PS1\[${White}\]"
+# PS1="$PS1\H"
+# PS1="$PS1\[${Green}\]"
+# PS1="$PS1\w"
+# PS1="$PS1\[${White}\]"
+# # PS1='$(__git_ps1)\n'
+# PS1=' $(parse_git_branch)\n'
+# PS1="$PS1\[${Yellow}\]"
+# PS1="$PS1\$"
+# PS1="$PS1\[${Color_Off}\]"
+# PS1="$PS1 "
+
+
 # export PS1="${White}\u${Green}@${White}\H:${Green}\w${White} $(__git_ps1)\n${Yellow}\$ ${Color_Off}"
 # export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
+export PS1
+
+#############
+#  END PS1  #
+#############
 
 export NVM_DIR="/home/erik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
