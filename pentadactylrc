@@ -1,3 +1,4 @@
+map <Space> <Leader>
 set guioptions+=mTB
 set defsearch=duckduckgo
 
@@ -10,9 +11,21 @@ set findcase=smart
 set hintkeys=asdfg;lkjh
 highlight -a Hint text-transform: uppercase
 
-map -b j 8j
-map -b k 8k
-map -b h 8h
-map -b l 8l
+nmap -b j 8j
+nmap -b k 8k
+nmap -b h 8h
+nmap -b l 8l
 
-map -b ; :
+" Ugly way to undo the remapped movement commands while in visual mode
+vmap -b j j
+vmap -b k k
+vmap -b h h
+vmap -b l l
+
+nmap -b ; :
+
+" Leader mappings
+map -b <Leader>y ;y
+
+nmap hacker :tabopen https://news.ycombinator.com/<CR>
+nmap yahoo :tabopen https://mail.yahoo.com/<CR>

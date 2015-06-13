@@ -5,3 +5,4 @@
 - [x] Add ~/.pentadactylrc (N221 is most up to date)
 - [ ] Setup eclim on all machines
 - [ ] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
+- [ ] Change <leader>c for LaTex documents so that it compiles and then cleans out the {aux,log} files.

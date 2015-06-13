@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# FIXME: WARNING: Currently backing up directories doesn't work (.vim, .i3,
+# .fonts)
+
 DOTFILES_DIR="$HOME/.dotfiles"
 
 function link_all() {
