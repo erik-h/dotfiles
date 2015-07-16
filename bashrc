@@ -79,12 +79,15 @@ On_IWhite='\e[0;107m'   # White
 
 shopt -s extglob # extends regexes
 
-if [ -f "$HOME/.aliases" ]; then
-	. $HOME/.aliases
-fi
+# Only set aliases if I'm in an interactive session
+if [[ $- == *i* ]]; then
+	if [ -f "$HOME/.aliases" ]; then
+		. $HOME/.aliases
+	fi
 
-if [ -f "$HOME/.local_aliases" ]; then
-	. $HOME/.local_aliases
+	if [ -f "$HOME/.local_aliases" ]; then
+		. $HOME/.local_aliases
+	fi
 fi
 
 if [ -d "$HOME/bin" ]; then
@@ -114,45 +117,50 @@ fi
 export HISTCONTROL="ignorespace"
 export EDITOR="vim"
 
-###############
-#  START PS1  #
-###############
+# Change the default man pager to vim
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-PS1="\u"
-PS1+="\[$(tput setaf 2)\]@"
-PS1+="\[$(tput sgr0)\]\H"
-PS1+="\[$(tput setaf 2)\]\w"
-PS1+="\[$(tput sgr0)\]"
-PS1+=' $(parse_git_branch)\n'
-PS1+="\[$(tput setaf 3)\]\$"
-PS1+="\[$(tput sgr0)\] "
+# Only set my PS1 if I'm in an interactive session
+if [[ $- == *i* ]]; then
+	###############
+	#  START PS1  #
+	###############
 
-# Below is the old broken version
-# PS1="\[${White}\]"
-# PS1="$PS1\u"
-# PS1="$PS1\[${Green}\]"
-# PS1="$PS1@"
-# PS1="$PS1\[${White}\]"
-# PS1="$PS1\H"
-# PS1="$PS1\[${Green}\]"
-# PS1="$PS1\w"
-# PS1="$PS1\[${White}\]"
-# # PS1='$(__git_ps1)\n'
-# PS1=' $(parse_git_branch)\n'
-# PS1="$PS1\[${Yellow}\]"
-# PS1="$PS1\$"
-# PS1="$PS1\[${Color_Off}\]"
-# PS1="$PS1 "
+	PS1="\u"
+	PS1+="\[$(tput setaf 2)\]@"
+	PS1+="\[$(tput sgr0)\]\H"
+	PS1+="\[$(tput setaf 2)\]\w"
+	PS1+="\[$(tput sgr0)\]"
+	PS1+=' $(parse_git_branch)\n'
+	PS1+="\[$(tput setaf 3)\]\$"
+	PS1+="\[$(tput sgr0)\] "
+
+	# Below is the old broken version
+	# PS1="\[${White}\]"
+	# PS1="$PS1\u"
+	# PS1="$PS1\[${Green}\]"
+	# PS1="$PS1@"
+	# PS1="$PS1\[${White}\]"
+	# PS1="$PS1\H"
+	# PS1="$PS1\[${Green}\]"
+	# PS1="$PS1\w"
+	# PS1="$PS1\[${White}\]"
+	# # PS1='$(__git_ps1)\n'
+	# PS1=' $(parse_git_branch)\n'
+	# PS1="$PS1\[${Yellow}\]"
+	# PS1="$PS1\$"
+	# PS1="$PS1\[${Color_Off}\]"
+	# PS1="$PS1 "
 
 
-# export PS1="${White}\u${Green}@${White}\H:${Green}\w${White} $(__git_ps1)\n${Yellow}\$ ${Color_Off}"
-# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+	# export PS1="${White}\u${Green}@${White}\H:${Green}\w${White} $(__git_ps1)\n${Yellow}\$ ${Color_Off}"
+	# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
-export PS1
-
-#############
-#  END PS1  #
-#############
+	export PS1
+	#############
+	#  END PS1  #
+	#############
+fi
 
 export NVM_DIR="/home/erik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
