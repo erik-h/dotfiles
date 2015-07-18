@@ -34,6 +34,9 @@ alias nautilus="nautilus --no-desktop" # See: above
 
 alias mupdf="mupdf-x11"
 
+# Beautify piped in XML and print it to stdout
+alias xb="python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print xml.dom.minidom.parseString(s).toprettyxml()'"
+
 function sprungef() {
 	file="$1"
 	curloutput=$(cat "$1" | curl -sF "sprunge=<-" http://sprunge.us)
