@@ -79,6 +79,10 @@ On_IWhite='\e[0;107m'   # White
 
 shopt -s extglob # extends regexes
 
+if [ -f "$HOME/.local_bashrc" ]; then
+	. $HOME/.local_bashrc
+fi
+
 if [ -f "$HOME/.aliases" ]; then
 	. $HOME/.aliases
 fi
