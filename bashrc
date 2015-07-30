@@ -79,6 +79,10 @@ On_IWhite='\e[0;107m'   # White
 
 shopt -s extglob # extends regexes
 
+if [ -f "$HOME/.local_bashrc" ]; then
+	. $HOME/.local_bashrc
+fi
+
 # Only set aliases if I'm in an interactive session
 if [[ $- == *i* ]]; then
 	if [ -f "$HOME/.aliases" ]; then
@@ -174,3 +178,5 @@ export PATH="$PATH:$GOROOT/bin"
 
 export GOPATH="$HOME/Programming/go"
 export PATH="$PATH:$GOPATH/bin"
+
+export RANGER_LOAD_DEFAULT_RC="FALSE"
