@@ -121,7 +121,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
 bindsym $mod+Control+l exec "~/bin/lock"
-exec --no-startup-id xautolock -time 1 -locker '~/bin/lock'
+exec --no-startup-id xautolock -time 25 -locker '~/bin/lock'
 
 
 # Calculate quick math equations with bc via dmenu.
