@@ -174,7 +174,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# new window default border
+# new window default border (overriden if using gaps)
 new_window 1pixel
 new_float 1pixel
 
