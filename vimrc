@@ -4,6 +4,9 @@ command! Ve e ~/.vimrc
 autocmd InsertEnter * set timeoutlen=100
 autocmd InsertLeave * set timeoutlen=1000
 
+set t_Co=256
+set background=dark " Dark colorschemes always!
+
 set pastetoggle=<F2>
 set number
 set relativenumber
@@ -88,9 +91,10 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
-colorscheme monokai " Requires monokai.vim to be present in ~/.vim/colors
+" colorscheme monokai
+colorscheme gruvbox
+" colorscheme hybrid
 " let g:solarized_termcolors=256
-" set background=dark
 " colorscheme solarized
 
 " Vundle BEGIN
@@ -103,6 +107,22 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" Sublime style multi-cursors
+Plugin 'terryma/vim-multiple-cursors'
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_key='g<C-y>'
+let g:multi_cursor_start_word_key='<C-y>'
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<C-[>'
+
+" gruvbox colorscheme
+Plugin 'morhetz/gruvbox'
+
+" vim-hybrid colorscheme
+Plugin 'w0ng/vim-hybrid'
 
 " ag.vim - a front for ag A.K.A. the_silver_searcher
 Plugin 'rking/ag.vim'
@@ -289,14 +309,17 @@ call vundle#end()            " required
 filetype plugin indent on
 " Vundle END
 
-map <F6> :tabp<CR>
-map <F7> :tabn<CR>
+" map <F6> :tabp<CR>
+" map <F7> :tabn<CR>
 
 nnoremap ; :
 
 " Auto inserts a newline and closing } after an opening { and enter are
 " pressed.
 inoremap {<CR> {<CR>}<C-o>O
+
+" For WS research
+au BufRead,BufNewFile *.suite set filetype=xml
 
 " The below autocmds are supposed to toggle relativenumber on/off when
 " entering/leaving a buffer. It doesn't work very well in i3.
