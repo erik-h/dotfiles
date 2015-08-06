@@ -29,6 +29,10 @@ set undofile
 set undolevels=1000
 set undoreload=10000
 
+set viewdir=$HOME/.vim_view/
+au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
+au BufWinEnter ?* silent loadview
+
 
 " " Undo dir settings
 " " Put plugins and dictionaries in this dir (also on Windows)
@@ -264,10 +268,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Auto completion
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
-nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Plugin 'Valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
+" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
