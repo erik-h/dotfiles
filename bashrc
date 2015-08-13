@@ -180,3 +180,5 @@ export GOPATH="$HOME/Programming/go"
 export PATH="$PATH:$GOPATH/bin"
 
 export PATH="$PATH:$HOME/.config/bspwm/panel"
+
+export RANGER_LOAD_DEFAULT_RC=false
