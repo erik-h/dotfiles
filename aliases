@@ -21,7 +21,12 @@ alias mvi="mv -i"
 
 alias c="tail -n +1"
 
+alias vvim="vim -n -u NONE" # 'Vanilla' vim - useful for editing VERY large files
+
 alias open="xdg-open"
+
+mkdir -p ~/Pictures/Screenshots
+alias mscrot="scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png"
 
 alias cb="xclip -selection clipboard"
 
@@ -49,7 +54,7 @@ function sprungef() {
 # ranger - change to last viewed directory on exit                                 
 function ranger-cd {                                                               
     tempfile="$(mktemp)"                                                           
-    ranger --clean --choosedir="$tempfile" "${@:-$(pwd)}"                         
+    /usr/local/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"                         
     test -f "$tempfile" &&                                                         
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then                     
         cd -- "$(cat "$tempfile")"                                                 
