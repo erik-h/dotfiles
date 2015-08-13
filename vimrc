@@ -108,6 +108,25 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" Fancy start screen
+Plugin 'mhinz/vim-startify'
+" let g:startify_custom_header = [
+" 			\ '   ┏━┓╻ ╻┏━╸   ┏━┓╻ ╻┏━╸',
+" 			\ '   ┃ ┃┗┳┛┣╸    ┃ ┃┗┳┛┣╸ ',
+" 			\ '   ┗━┛ ╹ ┗━╸   ┗━┛ ╹ ┗━╸',
+" 			\ ]
+let g:startify_custom_header = [
+			\ ' ██╗   ██╗██╗███╗   ███╗',
+ 			\ ' ██║   ██║██║████╗ ████║',
+ 			\ ' ██║   ██║██║██╔████╔██║',
+ 			\ ' ╚██╗ ██╔╝██║██║╚██╔╝██║',
+ 			\ '  ╚████╔╝ ██║██║ ╚═╝ ██║',
+ 			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
+			\ ]
+
+" vim-tmux-navigator
+" Plugin 'christoomey/vim-tmux-navigator'
+
 " Sublime style multi-cursors
 Plugin 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=0
