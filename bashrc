@@ -182,3 +182,6 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.config/bspwm/panel"
 
 export RANGER_LOAD_DEFAULT_RC=false
+
+# fzf: https://github.com/junegunn/fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
