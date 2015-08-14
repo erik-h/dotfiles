@@ -82,3 +82,5 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
