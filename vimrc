@@ -239,7 +239,7 @@ nmap <F8> :TagbarToggle<CR>
 Plugin 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
 let g:ctrlp_map = ''
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
