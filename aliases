@@ -77,3 +77,49 @@ function parse_git_branch {
 	ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
 	echo "($ref) "
 }
+
+## Space checking
+# Check how much space dotfiles are taking up
+function dotspace() {
+	for f in .*; do
+		if ! [[ "$f" =~ \.\.?$ ]]; then
+			du -hs "$f" | sort -h
+		fi
+	done
+}
+
+# Check how much space non-hidden files are taking up
+function space() {
+	for f in *; do
+		du -hs "$f" | sort -h
+	done
+}
+
+# If fzf is installed, use these fzf helper functions
+if [ -f ~/.fzf.bash ]; then
+	# fe [FUZZY PATTERN] - Open the selected file with the default editor
+	#   - Bypass fuzzy finder if there's only one match (--select-1)
+	#   - Exit if there's no match (--exit-0)
+	function fe() {
+	  local file
+	  file=$(fzf --query="$1" --select-1 --exit-0)
+	  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+	}
+
+	# Modified version where you can press
+	#   - CTRL-O to open with `open` command,
+	#   - CTRL-E or Enter key to open with the $EDITOR
+	function fo() {
+	  local out file key
+	  out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+	  key=$(head -1 <<< "$out")
+	  file=$(head -2 <<< "$out" | tail -1)
+	  if [ -n "$file" ]; then
+		[ "$key" = ctrl-e ] && ${EDITOR:-vim} "$file" || open "$file"
+	  fi
+	}
+
+	function f() { # fzf / includes hidden directories
+		find . -name .git -prune -o $1 -print 2> /dev/null | sed 's@^..\(.*\)$@\1@' | fzf -x
+	}
+fi
