@@ -393,3 +393,16 @@ function! Bclose()
         execute("bdelete! " . curbufnr)
     endif
 endfunction
+
+function! <SID>StripTrailingWhitespace()
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+
+	%s/\s\+$//e
+
+	let @/=_s " Restore the search history
+	call cursor(l, c)
+endfunction
+
+autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
