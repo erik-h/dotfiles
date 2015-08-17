@@ -185,3 +185,8 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 # fzf: https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Neovim
+if [ -f "$HOME/neovim/bin" ]; then
+	export PATH="$PATH:$HOME/neovim/bin"
+fi
