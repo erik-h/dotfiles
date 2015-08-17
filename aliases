@@ -102,7 +102,7 @@ if [ -f ~/.fzf.bash ]; then
 	#   - Exit if there's no match (--exit-0)
 	function fe() {
 	  local file
-	  file=$(fzf --query="$1" --select-1 --exit-0)
+	  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
 	  [ -n "$file" ] && ${EDITOR:-vim} "$file"
 	}
 
@@ -120,13 +120,13 @@ if [ -f ~/.fzf.bash ]; then
 	}
 
 	function f() { # fzf / includes hidden directories
-		find . -name .git -prune -o $1 -print 2> /dev/null | sed 's@^..\(.*\)$@\1@' | fzf -x
+		find . -name .git -prune -o $1 -print 2> /dev/null | sed 's@^..\(.*\)$@\1@' | fzf-tmux -x
 	}
 
 	function fd() {
 		local dir
 		dir=$(find ${1:-*} -path '*/\.*' -prune \
-		-o -type d -print 2> /dev/null | fzf +m) &&
+		-o -type d -print 2> /dev/null | fzf-tmux +m) &&
 		cd "$dir"
 }
 
