@@ -1,3 +1,10 @@
+" vim:fdm=marker
+if has('nvim')
+	let g:python_host_skip_check=1
+	let g:loaded_python3_provider=1
+endif
+
+
 let mapleader = "\<Space>"
 imap jk <Esc>
 command! Ve e ~/.vimrc
@@ -7,6 +14,8 @@ autocmd InsertLeave * set timeoutlen=1000
 set t_Co=256
 set background=dark " Dark colorschemes always!
 
+set textwidth=0
+set wrapmargin=0
 set pastetoggle=<F2>
 set number
 set relativenumber
@@ -21,6 +30,10 @@ set incsearch
 " Control-l to unhighlight a search
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+if has('nvim')
+	tnoremap <C-[> <C-\><C-n>
+endif
+
 " Undo dir settings
 if !isdirectory(expand("~/.vim/undodir"))
 	echom "undodir not found. Creating now..."
@@ -33,8 +46,16 @@ set undolevels=1000
 set undoreload=10000
 
 set viewdir=$HOME/.vim_view/
-au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
-au BufWinEnter ?* silent loadview
+
+" Save views for everything
+" au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
+" au BufWinEnter ?* silent loadview
+" Save views for txt files
+au BufWritePost,BufLeave,WinLeave *.txt mkview
+au BufWinEnter *.txt silent loadview
+" Save views for vimrc
+au BufWritePost,BufLeave,WinLeave .vimrc mkview
+au BufWinEnter .vimrc silent loadview
 
 
 " " Undo dir settings
@@ -160,8 +181,8 @@ Plug 'rstacruz/sparkup'
 " tabular must come BEFORE vim-markdown
 Plug 'godlygeek/tabular'
 " Plug 'gabrielelana/vim-markdown'
-Plug 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github flavoured syntax
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'} " TODO: Switch back to this once it has github flavoured syntax
+Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'mkd.markdown'}
 map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 
 " vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
@@ -208,7 +229,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tfnico/vim-gradle'
 
 " vim-go
-Plug 'fatih/vim-go'
+set rtp+=$GOROOT/misc/vim
+Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
 " TODO: Add mappings for go run, go test, etc from the repo's README
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -300,7 +322,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " Close NERDTree window if it's the only buffer left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Track the engine.
+" Ultisnips
 Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
