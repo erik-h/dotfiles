@@ -1,1 +1,1 @@
-../bundle/gruvbox/colors/gruvbox.vim
+../plugged/gruvbox/colors/gruvbox.vim
