@@ -129,11 +129,15 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-# Custom version (includes logout, suspend, reboot, and poweroff)
+## Custom version (includes logout, suspend, reboot, and poweroff)
 bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
-bindsym $mod+Control+l exec "~/bin/lock"
-exec --no-startup-id xautolock -time 25 -locker '~/bin/lock'
+#### Screen locking
+## Using a locking script:
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
+# bindsym $mod+Control+l exec xautolock -locknow
+bindsym $mod+Control+l exec ~/bin/lock
+# exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 
 # Calculate quick math equations with bc via dmenu.
@@ -185,8 +189,8 @@ bar {
 }
 
 # Set desktop background
-# exec --no-startup-id bash ~/.fehbg # Executes the last run feh command to change the desktop wallpaper
-exec --no-startup-id bash ~/.scripts/randomWallpaper.sh # Depends on: ~/Dropbox/wallpapers/
+# exec_always = I can spam reload to keep changing my background
+exec_always --no-startup-id bash ~/.scripts/randomWallpaper.sh
 
 # Start dropbox
 exec --no-startup-id dropbox start
@@ -207,6 +211,6 @@ for_window [class="I3-exit" instance="i3-exit"] floating enable
 # exec --no-startup-id i3-msg "rename workspace 3:code to code"
 
 # i3-gaps
-for_window [class="^.*"] border pixel 0
-gaps inner 40
-gaps outer 60
+for_window [class="^.*"] border pixel 1
+# gaps inner 40
+# gaps outer 60

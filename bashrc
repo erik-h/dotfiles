@@ -186,3 +186,12 @@ eval $(dircolors ~/.dircolors)
 
 # bspwm
 export PATH="$PATH:$HOME/.config/bspwm/panel:$HOME/.config/bspwm/scripts"
+export RANGER_LOAD_DEFAULT_RC=false
+
+# fzf: https://github.com/junegunn/fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Neovim
+if [ -d "$HOME/neovim/bin" ]; then
+	export PATH="$PATH:$HOME/neovim/bin"
+fi

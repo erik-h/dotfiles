@@ -1,3 +1,10 @@
+" vim:fdm=marker
+if has('nvim')
+	let g:python_host_skip_check=1
+	let g:loaded_python3_provider=1
+endif
+
+
 let mapleader = "\<Space>"
 imap jk <Esc>
 command! Ve e ~/.vimrc
@@ -7,6 +14,8 @@ autocmd InsertLeave * set timeoutlen=1000
 set t_Co=256
 set background=dark " Dark colorschemes always!
 
+set textwidth=0
+set wrapmargin=0
 set pastetoggle=<F2>
 set number
 set relativenumber
@@ -21,6 +30,10 @@ set incsearch
 " Control-l to unhighlight a search
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+if has('nvim')
+	tnoremap <C-[> <C-\><C-n>
+endif
+
 " Undo dir settings
 if !isdirectory(expand("~/.vim/undodir"))
 	echom "undodir not found. Creating now..."
@@ -33,8 +46,16 @@ set undolevels=1000
 set undoreload=10000
 
 set viewdir=$HOME/.vim_view/
-au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
-au BufWinEnter ?* silent loadview
+
+" Save views for everything
+" au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
+" au BufWinEnter ?* silent loadview
+" Save views for txt files
+au BufWritePost,BufLeave,WinLeave *.txt mkview
+au BufWinEnter *.txt silent loadview
+" Save views for vimrc
+au BufWritePost,BufLeave,WinLeave .vimrc mkview
+au BufWinEnter .vimrc silent loadview
 
 
 " " Undo dir settings
@@ -72,7 +93,7 @@ set smartcase
 let g:netrw_browsex_viewer = "firefox"
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
-autocmd CompleteDone * pclose
+" autocmd CompleteDone * pclose
 
 " Code folding
 set foldmethod=indent " fold based on indentation
@@ -101,15 +122,34 @@ colorscheme gruvbox
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" START - vim-plug
+" vim-plug - plugin manager
+if empty(glob("~/.vim/autoload/plug.vim"))
+	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+call plug#begin("~/.vim/plugged")
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Fancy start screen
+Plug 'mhinz/vim-startify'
+" let g:startify_custom_header = [
+" 			\ '   ┏━┓╻ ╻┏━╸   ┏━┓╻ ╻┏━╸',
+" 			\ '   ┃ ┃┗┳┛┣╸    ┃ ┃┗┳┛┣╸ ',
+" 			\ '   ┗━┛ ╹ ┗━╸   ┗━┛ ╹ ┗━╸',
+" 			\ ]
+let g:startify_custom_header = [
+			\ ' ██╗   ██╗██╗███╗   ███╗',
+ 			\ ' ██║   ██║██║████╗ ████║',
+ 			\ ' ██║   ██║██║██╔████╔██║',
+ 			\ ' ╚██╗ ██╔╝██║██║╚██╔╝██║',
+ 			\ '  ╚████╔╝ ██║██║ ╚═╝ ██║',
+ 			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
+			\ ]
+
+" vim-tmux-navigator
+" Plug 'christoomey/vim-tmux-navigator'
 
 " Sublime style multi-cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_key='g<C-y>'
 let g:multi_cursor_start_word_key='<C-y>'
@@ -119,38 +159,38 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<C-[>'
 
 " gruvbox colorscheme
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " vim-hybrid colorscheme
-Plugin 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid'
 
 " ag.vim - a front for ag A.K.A. the_silver_searcher
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 
 " tern_for_vim - javascript omni-completion
-Plugin 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim'
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 " Vimball
-Plugin 'vim-scripts/Vimball'
+Plug 'vim-scripts/Vimball'
 
 " vim-sparkup - html templating
-Plugin 'rstacruz/sparkup'
+Plug 'rstacruz/sparkup'
 
 " Markdown plugins
 " tabular must come BEFORE vim-markdown
-Plugin 'godlygeek/tabular'
-" Plugin 'gabrielelana/vim-markdown'
-Plugin 'plasticboy/vim-markdown' " TODO: Switch back to this once it has github flavoured syntax
-Plugin 'JamshedVesuna/vim-markdown-preview'
+Plug 'godlygeek/tabular'
+" Plug 'gabrielelana/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'} " TODO: Switch back to this once it has github flavoured syntax
+Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'mkd.markdown'}
 map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 
 " vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
-Plugin 'mhinz/vim-hugefile'
+Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = some size in MiB
 
 " solarized
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " eclim
 let g:EclimBrowser = 'firefox'
@@ -159,7 +199,7 @@ let g:EclimBrowser = 'firefox'
 set completeopt-=preview
 
 " vim-togglelist - toggle the quickfix and location list windows
-Plugin 'milkypostman/vim-togglelist'
+Plug 'milkypostman/vim-togglelist'
 " Use Copen (from tpope/vim-dispatch)
 let g:toggle_list_no_mappings = 1
 let g:toggle_list_copen_command = "Copen"
@@ -183,13 +223,14 @@ function! ToggleLocationListFixed()
 endfunction
 
 " vim-dispatch
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " vim-gradle
-Plugin 'tfnico/vim-gradle'
+Plug 'tfnico/vim-gradle'
 
 " vim-go
-Plugin 'fatih/vim-go'
+set rtp+=$GOROOT/misc/vim
+Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
 " TODO: Add mappings for go run, go test, etc from the repo's README
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -213,38 +254,38 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " tagbar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 
 " Ctrl-P
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
 let g:ctrlp_map = ''
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
 
 " fugitive
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " commentary
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " eunuch
-Plugin 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 
 " unimpaired
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " repeat
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
 " vim-misc
-Plugin 'xolox/vim-misc'
+Plug 'xolox/vim-misc'
 
 " vim-notes (dependency: vim-misc)
-Plugin 'xolox/vim-notes'
+Plug 'xolox/vim-notes'
 let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 
@@ -255,7 +296,7 @@ hi notesTodo ctermfg=197
 hi notesListBullet term=bold ctermfg=141
 
 " syntastic
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_mode_map = {"mode": "passive"}
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -264,7 +305,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_config_file_enabled = 1
 
 " vim-airline
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'raven'
@@ -272,23 +313,23 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 
 " delimitMate
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " NERDTree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Toggle NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 " Close NERDTree window if it's the only buffer left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Track the engine.
-Plugin 'SirVer/ultisnips'
+" Ultisnips
+Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Auto completion
-" Plugin 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
 " nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -305,9 +346,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on
-" Vundle END
+" END - vim-plug
 
 " map <F6> :tabp<CR>
 " map <F7> :tabn<CR>
@@ -374,3 +415,16 @@ function! Bclose()
         execute("bdelete! " . curbufnr)
     endif
 endfunction
+
+function! <SID>StripTrailingWhitespace()
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+
+	%s/\s\+$//e
+
+	let @/=_s " Restore the search history
+	call cursor(l, c)
+endfunction
+
+autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
