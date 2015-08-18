@@ -180,3 +180,9 @@ export GOPATH="$HOME/Programming/go"
 export PATH="$PATH:$GOPATH/bin"
 
 export PATH="$PATH:$HOME/.config/bspwm/panel"
+
+# termite
+eval $(dircolors ~/.dircolors)
+
+# bspwm
+export PATH="$PATH:$HOME/.config/bspwm/panel:$HOME/.config/bspwm/scripts"
