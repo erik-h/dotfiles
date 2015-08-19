@@ -56,7 +56,7 @@ function sprungef() {
 # ranger - change to last viewed directory on exit                                 
 function ranger-cd {                                                               
     tempfile="$(mktemp)"                                                           
-    /usr/local/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"                         
+    ranger --choosedir="$tempfile" "${@:-$(pwd)}"                         
     test -f "$tempfile" &&                                                         
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then                     
         cd -- "$(cat "$tempfile")"                                                 
