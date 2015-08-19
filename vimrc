@@ -2,14 +2,19 @@
 if has('nvim')
 	let g:python_host_skip_check=1
 	let g:loaded_python3_provider=1
+	set ttimeout
+	set ttimeoutlen=0
 endif
 
 
 let mapleader = "\<Space>"
 imap jk <Esc>
 command! Ve e ~/.vimrc
-autocmd InsertEnter * set timeoutlen=100
-autocmd InsertLeave * set timeoutlen=1000
+augroup InsertModeTimeout
+	autocmd!
+	autocmd InsertEnter * set timeoutlen=100
+	autocmd InsertLeave * set timeoutlen=1000
+augroup END
 
 set t_Co=256
 set background=dark " Dark colorschemes always!
@@ -51,11 +56,14 @@ set viewdir=$HOME/.vim_view/
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview
 " Save views for txt files
-au BufWritePost,BufLeave,WinLeave *.txt mkview
-au BufWinEnter *.txt silent loadview
-" Save views for vimrc
-au BufWritePost,BufLeave,WinLeave .vimrc mkview
-au BufWinEnter .vimrc silent loadview
+augroup VimViewsGroup
+	autocmd!
+	autocmd BufWritePost,BufLeave,WinLeave *.txt mkview
+	autocmd BufWinEnter *.txt silent loadview
+	" Save views for vimrc
+	autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
+	autocmd BufWinEnter .vimrc silent loadview
+augroup END
 
 
 " " Undo dir settings
@@ -93,7 +101,10 @@ set smartcase
 let g:netrw_browsex_viewer = "firefox"
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
-" autocmd CompleteDone * pclose
+" augroup YCMGroup
+"	autocmd!
+"	autocmd CompleteDone * pclose
+" augroup END
 
 " Code folding
 set foldmethod=indent " fold based on indentation
@@ -118,9 +129,13 @@ colorscheme gruvbox
 " let g:solarized_termcolors=256
 " colorscheme solarized
 
+
 " Vundle BEGIN
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if !has('nvim')
+	set nocompatible " be iMproved, required
+	" Set by default in nvim
+endif
+filetype off " required (Vundle)
 
 " START - vim-plug
 " vim-plug - plugin manager
@@ -131,6 +146,11 @@ call plug#begin("~/.vim/plugged")
 
 " Fancy start screen
 Plug 'mhinz/vim-startify'
+augroup StartifyGroup
+	autocmd!
+	" Startify colors
+	autocmd FileType startify hi StartifyHeader ctermfg=39
+augroup END
 " let g:startify_custom_header = [
 " 			\ '   ┏━┓╻ ╻┏━╸   ┏━┓╻ ╻┏━╸',
 " 			\ '   ┃ ┃┗┳┛┣╸    ┃ ┃┗┳┛┣╸ ',
@@ -147,6 +167,9 @@ let g:startify_custom_header = [
 
 " vim-tmux-navigator
 " Plug 'christoomey/vim-tmux-navigator'
+
+" vim-evanesco - better / searching
+Plug 'pgdouyon/vim-evanesco'
 
 " Sublime style multi-cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -169,7 +192,10 @@ Plug 'rking/ag.vim'
 
 " tern_for_vim - javascript omni-completion
 Plug 'marijnh/tern_for_vim'
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+augroup TernGroup
+	autocmd!
+	autocmd FileType javascript setlocal omnifunc=tern#Complete
+augroup END
 
 " Vimball
 Plug 'vim-scripts/Vimball'
@@ -233,25 +259,28 @@ set rtp+=$GOROOT/misc/vim
 Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
 " TODO: Add mappings for go run, go test, etc from the repo's README
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+augroup VimGoGroup
+	autocmd!
+	autocmd FileType go nmap <leader>r <Plug>(go-run)
+	autocmd FileType go nmap <leader>b <Plug>(go-build)
+	autocmd FileType go nmap <leader>t <Plug>(go-test)
+	autocmd FileType go nmap <leader>c <Plug>(go-coverage)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+	autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+	autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+	autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+	autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
+	autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+	autocmd FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 
-au FileType go nmap <Leader>s <Plug>(go-implements)
+	autocmd FileType go nmap <Leader>s <Plug>(go-implements)
 
-au FileType go nmap <Leader>i <Plug>(go-info)
+	autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
-au FileType go nmap <Leader>e <Plug>(go-rename)
+	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
+augroup END
 
 " tagbar
 Plug 'majutsushi/tagbar'
@@ -320,7 +349,10 @@ Plug 'scrooloose/nerdtree'
 " Toggle NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 " Close NERDTree window if it's the only buffer left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+augroup NERDTreeGroup
+	autocmd!
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+augroup END
 
 " Ultisnips
 Plug 'SirVer/ultisnips'
@@ -360,7 +392,10 @@ nnoremap ; :
 inoremap {<CR> {<CR>}<C-o>O
 
 " For WS research
-au BufRead,BufNewFile *.suite set filetype=xml
+augroup SuiteFileGroup
+	autocmd!
+	autocmd BufRead,BufNewFile *.suite set filetype=xml
+augroup END
 
 " The below autocmds are supposed to toggle relativenumber on/off when
 " entering/leaving a buffer. It doesn't work very well in i3.
@@ -427,4 +462,7 @@ function! <SID>StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+augroup WhitespaceStrip
+	autocmd!
+	autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+augroup END
