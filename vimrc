@@ -167,6 +167,8 @@ Plugin 'tfnico/vim-gradle'
 " vim-go
 Plugin 'fatih/vim-go'
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "goimports"
 " TODO: Add mappings for go run, go test, etc from the repo's README
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
