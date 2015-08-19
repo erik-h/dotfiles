@@ -191,7 +191,9 @@ export RANGER_LOAD_DEFAULT_RC=false
 # fzf: https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Neovim
-if [ -d "$HOME/neovim/bin" ]; then
-	export PATH="$PATH:$HOME/neovim/bin"
-fi
+## Neovim
+# Fix colors (default $TERM is xterm)
+[[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+# if [ -d "$HOME/neovim/bin" ]; then
+# 	export PATH="$PATH:$HOME/neovim/bin"
+# fi
