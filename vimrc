@@ -35,6 +35,9 @@ set incsearch
 " Control-l to unhighlight a search
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+" Copies what was just pasted (so you can paste the same text repeatedly)
+xnoremap p pgvy
+
 if has('nvim')
 	tnoremap <C-[> <C-\><C-n>
 endif
@@ -191,7 +194,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'rking/ag.vim'
 
 " tern_for_vim - javascript omni-completion
-Plug 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 augroup TernGroup
 	autocmd!
 	autocmd FileType javascript setlocal omnifunc=tern#Complete
