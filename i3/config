@@ -141,8 +141,7 @@ bindsym $mod+Control+l exec ~/bin/lock
 
 
 # Calculate quick math equations with bc via dmenu.
-# This depends on my scripts repo.
-bindsym $mod+c exec "~/.scripts/dmenu-calc"
+bindsym $mod+c exec ~/.scripts/dmenu-calc
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +5% && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -5% && killall -SIGUSR1 i3status
