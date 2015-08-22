@@ -1,9 +1,9 @@
 " vim:fdm=marker
+
 if has('nvim')
 	let g:python_host_skip_check=1
 	let g:loaded_python3_provider=1
 endif
-
 
 let mapleader = "\<Space>"
 imap jk <Esc>
@@ -145,6 +145,9 @@ let g:startify_custom_header = [
  			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
 			\ ]
 
+" Jade syntax highlighting
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+
 " vim-tmux-navigator
 " Plug 'christoomey/vim-tmux-navigator'
 
@@ -232,6 +235,7 @@ Plug 'tfnico/vim-gradle'
 set rtp+=$GOROOT/misc/vim
 Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
+let g:go_fmt_command="goimports"
 " TODO: Add mappings for go run, go test, etc from the repo's README
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -427,4 +431,4 @@ function! <SID>StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
