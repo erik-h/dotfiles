@@ -197,3 +197,6 @@ export RANGER_LOAD_DEFAULT_RC=false
 # if [ -d "$HOME/neovim/bin" ]; then
 # 	export PATH="$PATH:$HOME/neovim/bin"
 # fi
+
+# Ruby gem binaries
+[ -d ~/.gem/ruby/2.2.0/bin ] && export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
