@@ -200,3 +200,4 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 # Ruby gem binaries
 [ -d ~/.gem/ruby/2.2.0/bin ] && export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
+[ -d ~/.gem/ruby/1.9.1/bin ] && export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
