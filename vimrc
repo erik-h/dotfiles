@@ -475,3 +475,12 @@ augroup WhitespaceStrip
 	autocmd!
 	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
+
+function! InsertCommand(command)
+	redir => output
+	silent execute a:command
+	redir END
+	call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
+endfunction
+
+command -nargs=+ I call InsertCommand(<q-args>)
