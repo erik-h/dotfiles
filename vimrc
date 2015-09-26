@@ -1,11 +1,11 @@
 " vim:fdm=marker
+
 if has('nvim')
 	let g:python_host_skip_check=1
 	let g:loaded_python3_provider=1
 	set ttimeout
 	set ttimeoutlen=0
 endif
-
 
 let mapleader = "\<Space>"
 imap jk <Esc>
@@ -167,6 +167,9 @@ let g:startify_custom_header = [
  			\ '  ╚████╔╝ ██║██║ ╚═╝ ██║',
  			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
 			\ ]
+
+" Jade syntax highlighting
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 
 " vim-tmux-navigator
 " Plug 'christoomey/vim-tmux-navigator'
@@ -467,7 +470,17 @@ function! <SID>StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
+autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup WhitespaceStrip
 	autocmd!
-	autocmd FileType c,cpp,java,php,ruby,python,javascript,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
+
+function! InsertCommand(command)
+	redir => output
+	silent execute a:command
+	redir END
+	call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
+endfunction
+
+command -nargs=+ I call InsertCommand(<q-args>)
