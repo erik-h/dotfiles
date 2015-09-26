@@ -197,3 +197,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 # if [ -d "$HOME/neovim/bin" ]; then
 # 	export PATH="$PATH:$HOME/neovim/bin"
 # fi
+
+export XDG_CONFIG_HOME="$HOME/.config/"
+
+export PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
