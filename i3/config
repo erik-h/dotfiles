@@ -184,7 +184,13 @@ new_float 1pixel
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+	colors {
+		background #27566B
+		statusline #9DA8AD
+		separator #58798B
+	}
+	status_command i3status
+	position top
 }
 
 # Set desktop background
