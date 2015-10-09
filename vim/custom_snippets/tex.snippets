@@ -131,4 +131,29 @@ endsnippet
 snippet hs "Horizontal space"
 \hspace*{${1:1cm}}$0
 endsnippet
+
+## BEGIN CUSTOM SNIPPETS
+snippet todo "Create a todo"
+% TODO(`whoami`): $0
+endsnippet
+snippet essay "A template for an essay"
+\documentclass[12pt,letterpaper]{article}
+\usepackage{ifpdf}
+\usepackage{setspace} 
+\usepackage{mla} 
+\usepackage[utf8]{inputenc} 
+\usepackage[english]{babel} 
+
+\doublespacing
+
+\begin{document}
+\begin{mla}{$1}{$2}{$3}{$4}{\today}{${5:Temporary Title}}
+	$0
+\begin{workscited}
+	\bibent TODO
+\end{workscited}
+\end{mla}
+\end{document}
+endsnippet
+## END CUSTOM SNIPPETS
 # vim:ft=snippets:
