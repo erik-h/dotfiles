@@ -19,6 +19,7 @@ augroup END
 set t_Co=256
 set background=dark " Dark colorschemes always!
 
+set complete+=kspell
 set textwidth=0
 set wrapmargin=0
 set pastetoggle=<F2>
