@@ -127,7 +127,9 @@ nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
 " colorscheme monokai
-colorscheme gruvbox
+" colorscheme gruvbox
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-eighties
 " colorscheme hybrid
 " let g:solarized_termcolors=256
 " colorscheme solarized
@@ -189,6 +191,9 @@ let g:multi_cursor_quit_key='<C-[>'
 
 " gruvbox colorscheme
 Plug 'morhetz/gruvbox'
+
+" base16 colorscheme
+Plug 'chriskempson/base16-vim'
 
 " vim-hybrid colorscheme
 Plug 'w0ng/vim-hybrid'

@@ -1,3 +1,6 @@
+BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # Reset
 Color_Off='\e[0m'       # Text Reset
 
@@ -201,3 +204,5 @@ export RANGER_LOAD_DEFAULT_RC=false
 # Ruby gem binaries
 [ -d ~/.gem/ruby/2.2.0/bin ] && export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 [ -d ~/.gem/ruby/1.9.1/bin ] && export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
+
+export _JAVA_AWT_WM_NONREPARENTING=1
