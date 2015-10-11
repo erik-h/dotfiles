@@ -34,7 +34,21 @@ function! R(...)
 	" endif
 endfunction
 
-nnoremap <leader>b :call JavaMakeBuild()<CR>
-nnoremap <leader>r :call JavaMakeRun()<CR>
+" NOTE: These only used when using gradle
+" nnoremap <leader>b :call JavaMakeBuild()<CR>
+" nnoremap <leader>r :call JavaMakeRun()<CR>
 
-nnoremap gd :JavaDocSearch<CR>
+" nnoremap gd :JavaDocSearch<CR>
+"
+nnoremap <leader>r :call CallMakeRun()<CR>
+nnoremap <leader>m :call CallMake()<CR>
+
+function! CallMake()
+	setl errorformat=""
+	:Make
+endf
+
+function! CallMakeRun()
+	setl errorformat+=%+G%.%# " Always show the quickfix window
+	:Make run
+endf

@@ -201,6 +201,9 @@ export RANGER_LOAD_DEFAULT_RC=false
 # 	export PATH="$PATH:$HOME/neovim/bin"
 # fi
 
+[ -d ~/bin/jdk1.8.0_60/bin ] && export PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
+[ -d ~/.config ] && export XDG_CONFIG_HOME="$HOME/.config/"
+
 # Ruby gem binaries
 [ -d ~/.gem/ruby/2.2.0/bin ] && export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 [ -d ~/.gem/ruby/1.9.1/bin ] && export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
