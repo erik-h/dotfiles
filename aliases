@@ -1,3 +1,5 @@
+alias qb="qutebrowser"
+
 alias vim="nvim"
 
 alias gst="git status"
