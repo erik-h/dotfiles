@@ -74,56 +74,30 @@ On_IPurple='\e[0;105m'  # Purple
 On_ICyan='\e[0;106m'    # Cyan
 On_IWhite='\e[0;107m'   # White
 
+# extends regexes
+shopt -s extglob
 
-
-
-# Always run tmux
-#if [ "$TMUX" = "" ]; then tmux; fi
-
-shopt -s extglob # extends regexes
-
-if [ -f "$HOME/.local_bashrc" ]; then
-	. $HOME/.local_bashrc
-fi
 
 # Only set aliases if I'm in an interactive session
 if [[ $- == *i* ]]; then
-	if [ -f "$HOME/.aliases" ]; then
-		. $HOME/.aliases
-	fi
-
-	if [ -f "$HOME/.local_aliases" ]; then
-		. $HOME/.local_aliases
-	fi
+	[ -f "$HOME/.aliases" ] && . $HOME/.aliases
+	[ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
 fi
 
-if [ -d "$HOME/bin" ]; then
-	PATH="$HOME/bin:$PATH"
-fi
+# Add a bunch of directories to my PATH if they exist
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/local/bin" ] && PATH="$HOME/local/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
+[ -d "$HOME/Downloads/gradle-2.4-bin/bin" ] && PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
+[ -d "$HOME/eclipse" ] && PATH="$HOME/eclipse:$PATH"
 
-if [ -d "$HOME/local/bin" ]; then
-	PATH="$HOME/local/bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ]; then
-	PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/node_modules" ]; then
-	PATH="$HOME/node_modules/.bin:$PATH"
-fi
-
-if [ -d "$HOME/Downloads/gradle-2.4-bin/bin" ]; then
-	PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
-fi
-
-if [ -d "$HOME/eclipse" ]; then
-	PATH="$HOME/eclipse:$PATH"
-fi
-
+# Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
-export EDITOR="vim"
 
+# Set some default programs
+export EDITOR="vim"
+export BROWSER=/usr/bin/qutebrowser
 # Change the default man pager to vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
@@ -142,70 +116,57 @@ if [[ $- == *i* ]]; then
 	PS1+="\[$(tput setaf 3)\]\$"
 	PS1+="\[$(tput sgr0)\] "
 
-	# Below is the old broken version
-	# PS1="\[${White}\]"
-	# PS1="$PS1\u"
-	# PS1="$PS1\[${Green}\]"
-	# PS1="$PS1@"
-	# PS1="$PS1\[${White}\]"
-	# PS1="$PS1\H"
-	# PS1="$PS1\[${Green}\]"
-	# PS1="$PS1\w"
-	# PS1="$PS1\[${White}\]"
-	# # PS1='$(__git_ps1)\n'
-	# PS1=' $(parse_git_branch)\n'
-	# PS1="$PS1\[${Yellow}\]"
-	# PS1="$PS1\$"
-	# PS1="$PS1\[${Color_Off}\]"
-	# PS1="$PS1 "
-
-
-	# export PS1="${White}\u${Green}@${White}\H:${Green}\w${White} $(__git_ps1)\n${Yellow}\$ ${Color_Off}"
-	# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-
 	export PS1
 	#############
 	#  END PS1  #
 	#############
 fi
 
-export NVM_DIR="/home/erik/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # This is the git prompt method from github.com/git/git/
 # source ~/.dotfiles/git-prompt.sh
 
 # Environment variables for golang
 export GOROOT="$HOME/Programming/lang/go"
-export PATH="$PATH:$GOROOT/bin"
-
+PATH="$PATH:$GOROOT/bin"
 export GOPATH="$HOME/Programming/go"
-export PATH="$PATH:$GOPATH/bin"
+PATH="$PATH:$GOPATH/bin"
 
-export PATH="$PATH:$HOME/.config/bspwm/panel"
 
-# termite
+# termite color setup
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
-# bspwm
-export PATH="$PATH:$HOME/.config/bspwm/panel:$HOME/.config/bspwm/scripts"
+## bspwm
+# Add my bspwm directories to my PATH
+[ -d "$HOME/.config/bspwm/panel" ] && PATH="$HOME/.config/bspwm/panel:$PATH"
+[ -d "$HOME/.config/bspwm/scripts" ] && PATH="$HOME/.config/bspwm/panel/scripts:$PATH"
+
+## ranger
+# load custom config file, not the default
 export RANGER_LOAD_DEFAULT_RC=false
 
-# fzf: https://github.com/junegunn/fzf
+## fzf: https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 ## Neovim
 # Fix colors (default $TERM is xterm)
 [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
-# if [ -d "$HOME/neovim/bin" ]; then
-# 	export PATH="$PATH:$HOME/neovim/bin"
-# fi
+# Use locally installed neovim if exists
+[ -d "$HOME/neovim/bin" ] && PATH="$PATH:$HOME/neovim/bin"
 
-[ -d ~/bin/jdk1.8.0_60/bin ] && export PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
+# Add local install of jdk 8 to my PATH
+[ -d ~/bin/jdk1.8.0_60/bin ] && PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
+
+# Make sure default config folder is set
 [ -d ~/.config ] && export XDG_CONFIG_HOME="$HOME/.config/"
 
 # Ruby gem binaries
-[ -d ~/.gem/ruby/2.2.0/bin ] && export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
-[ -d ~/.gem/ruby/1.9.1/bin ] && export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
+[ -d ~/.gem/ruby/2.2.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
+[ -d ~/.gem/ruby/1.9.1/bin ] && PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
 
+# Sort-of-not-really working fix for weird javax.swing issues in bspwm
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+export PATH
+
+# Source a local bashrc to add or overwrite things
+[ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
