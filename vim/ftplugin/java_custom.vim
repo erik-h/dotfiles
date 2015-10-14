@@ -45,10 +45,12 @@ nnoremap <leader>m :call CallMake()<CR>
 
 function! CallMake()
 	setl errorformat=""
+	set makeprg=make
 	:Make
 endf
 
 function! CallMakeRun()
 	setl errorformat+=%+G%.%# " Always show the quickfix window
+	set makeprg=make
 	:Make run
 endf
