@@ -1,1 +1,1 @@
-/home/erik/.vim/plugged/base16-vim/colors/base16-harmonic16.vim
+../plugged/base16-vim/colors/base16-harmonic16.vim

@@ -1,1 +1,1 @@
-/home/erik/.vim/plugged/base16-vim/colors/base16-bespin.vim
+../plugged/base16-vim/colors/base16-bespin.vim

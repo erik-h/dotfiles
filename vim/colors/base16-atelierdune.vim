@@ -1,1 +1,1 @@
-/home/erik/.vim/plugged/base16-vim/colors/base16-atelierdune.vim
+../plugged/base16-vim/colors/base16-atelierdune.vim
