@@ -50,6 +50,10 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# scroll between workspaces
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
+
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
