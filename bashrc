@@ -151,7 +151,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 # Fix colors (default $TERM is xterm)
 [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
 # Use locally installed neovim if exists
-[ -d "$HOME/neovim/bin" ] && PATH="$PATH:$HOME/neovim/bin"
+[ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
 
 # Add local install of jdk 8 to my PATH
 [ -d ~/bin/jdk1.8.0_60/bin ] && PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
