@@ -272,7 +272,6 @@ Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("~/Programming/lang/go/bin")
 let g:go_fmt_autosave = 0
 let g:go_fmt_command = "goimports"
-" TODO: Add mappings for go run, go test, etc from the repo's README
 augroup VimGoGroup
 	autocmd!
 	autocmd FileType go nmap <leader>r <Plug>(go-run)
