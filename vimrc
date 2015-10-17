@@ -1,8 +1,8 @@
 " vim:fdm=marker
 
 if has('nvim')
-	let g:python_host_skip_check=1
-	let g:loaded_python3_provider=1
+	" let g:python_host_skip_check=1
+	" let g:loaded_python3_provider=1
 	set ttimeout
 	set ttimeoutlen=0
 endif
