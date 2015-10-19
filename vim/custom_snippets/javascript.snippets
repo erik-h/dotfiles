@@ -34,8 +34,14 @@ ${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 
 endsnippet
 
+# snippet for "for (...) {...} (counting up)" b
+# for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
+# 	${VISUAL}$0
+# }
+# endsnippet
+
 snippet for "for (...) {...} (counting up)" b
-for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
+for (var ${1:i} = 0; $1 < $2; $1++) {
 	${VISUAL}$0
 }
 endsnippet
@@ -165,4 +171,15 @@ snippet req "require an AMD module"
 require("$0");
 endsnippet
 
+# START CUSTOM SNIPPETS
+snippet else "else block" b
+else {
+	$1
+}$0
+endsnippet
+
+snippet todo "Create a todo"
+// TODO(`whoami`): $0
+endsnippet
+# END CUSTOM SNIPPETS
 # vim:ft=snippets:
