@@ -224,3 +224,5 @@ for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 for_window [class="^.*"] border pixel 1
 # gaps inner 40
 # gaps outer 60
+
+exec --no-startup-id i3-msg workspace number 1 www
