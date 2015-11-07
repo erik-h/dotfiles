@@ -149,7 +149,8 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 ## Neovim
 # Fix colors (default $TERM is xterm)
-[[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+# [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+[[ -n $SSH_CONNECTION ]] && export TERM=xterm-256color
 # Use locally installed neovim if exists
 [ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
 
