@@ -25,7 +25,7 @@ function link_all() {
 	ln -s --backup=numbered "$DOTFILES_DIR/aliases" "$HOME/.aliases"
 
 	ln -s --backup=numbered "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
-	j
+
 	ln -s --backup=numbered "$DOTFILES_DIR/i3status.conf" "$HOME/.i3status.conf"
 
 }
