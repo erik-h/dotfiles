@@ -6,3 +6,4 @@ vim/autoload
 vim/doc
 vim/spell
 vim/.netrwhist
+vim/init.vim
