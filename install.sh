@@ -6,13 +6,18 @@
 DOTFILES_DIR="$HOME/.dotfiles"
 
 function link_all() {
+	mkdir -p $HOME/.config
+
 	# Directories
 	ln -s --backup=numbered "$DOTFILES_DIR/vim" "$HOME/.vim";
+	ln -s --backup=numbered "$DOTFILES_DIR/vim" "$HOME/.config/nvim"
 	ln -s --backup=numbered "$DOTFILES_DIR/fonts" "$HOME/.fonts";
 	ln -s --backup=numbered "$DOTFILES_DIR/i3" "$HOME/.i3"
 
 	# Files
 	ln -s --backup=numbered "$DOTFILES_DIR/vimrc" "$HOME/.vimrc"
+	ln -s --backup=numbered "$DOTFILES_DIR/vimrc" "$HOME/.config/nvim/init.vim"
+
 	ln -s --backup=numbered "$DOTFILES_DIR/pentadactylrc" "$HOME/.pentadactylrc"
 
 	ln -s --backup=numbered "$DOTFILES_DIR/zshrc" "$HOME/.zshrc"
@@ -20,6 +25,7 @@ function link_all() {
 	ln -s --backup=numbered "$DOTFILES_DIR/aliases" "$HOME/.aliases"
 
 	ln -s --backup=numbered "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
+	j
 	ln -s --backup=numbered "$DOTFILES_DIR/i3status.conf" "$HOME/.i3status.conf"
 
 }
