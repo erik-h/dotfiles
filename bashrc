@@ -1,3 +1,6 @@
+# If not running interactively then do nothing
+[[ $- != *i* ]] && return
+
 BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
@@ -78,11 +81,8 @@ On_IWhite='\e[0;107m'   # White
 shopt -s extglob
 
 
-# Only set aliases if I'm in an interactive session
-if [[ $- == *i* ]]; then
-	[ -f "$HOME/.aliases" ] && . $HOME/.aliases
-	[ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
-fi
+[ -f "$HOME/.aliases" ] && . $HOME/.aliases
+[ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
 
 # Add a bunch of directories to my PATH if they exist
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
@@ -149,7 +149,8 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 ## Neovim
 # Fix colors (default $TERM is xterm)
-[[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+# [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+[ -n "$SSH_CONNECTION" ] && export TERM=xterm-256color
 # Use locally installed neovim if exists
 [ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
 

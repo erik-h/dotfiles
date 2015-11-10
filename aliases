@@ -82,6 +82,10 @@ function parse_git_branch {
 	echo "($ref) "
 }
 
+function mkcd() {
+	mkdir -p "$@" && cd $_
+}
+
 ## Space checking
 # Check how much space dotfiles are taking up
 function dotspace() {
