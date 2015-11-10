@@ -149,7 +149,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 ## command correction
 if command -v thefuck > /dev/null 2>&1; then
-	eval "$(thefuck --alias oops)"
+	eval "$(thefuck --alias f)"
 fi
 
 ## Neovim
