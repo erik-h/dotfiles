@@ -83,4 +83,5 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
