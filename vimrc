@@ -182,14 +182,14 @@ Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'pgdouyon/vim-evanesco'
 
 " Sublime style multi-cursors
-Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_key='g<C-y>'
-let g:multi_cursor_start_word_key='<C-y>'
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<C-[>'
+" Plug 'terryma/vim-multiple-cursors'
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_start_key='g<C-y>'
+" let g:multi_cursor_start_word_key='<C-y>'
+" let g:multi_cursor_next_key='<C-n>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<C-[>'
 
 " gruvbox colorscheme
 Plug 'morhetz/gruvbox'
@@ -226,7 +226,7 @@ map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
 
 " vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
 Plug 'mhinz/vim-hugefile'
-" let g:hugefile_trigger_size = some size in MiB
+" let g:hugefile_trigger_size = 500 " some size in MiB
 
 " solarized
 Plug 'altercation/vim-colors-solarized'
@@ -298,7 +298,7 @@ augroup END
 
 " tagbar
 Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+nmap <silent> <F8> :TagbarToggle<CR>
 
 " Ctrl-P
 Plug 'kien/ctrlp.vim'
@@ -306,6 +306,53 @@ nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>f :CtrlPBuffer<CR>
 let g:ctrlp_map = ''
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
+
+" Rainbow Parentheses
+Plug 'junegunn/rainbow_parentheses.vim'
+augroup RainbowParentheses
+	autocmd!
+	autocmd FileType java,cpp,javascript,python RainbowParentheses
+augroup END
+
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" {{{
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>. :Lines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>: :Commands<CR>
+nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> K :call SearchWordWithAg()<CR>
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
+
+function! SearchWordWithAg()
+	execute 'Ag' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithAg() range
+	let old_reg = getreg('"')
+	let old_regtype = getregtype('"')
+	let old_clipboard = &clipboard
+	set clipboard&
+	normal! ""gvy
+	let selection = getreg('"')
+	call setreg('"', old_reg, old_regtype)
+	let &clipboard = old_clipboard
+	execute 'Ag' selection
+endfunction
+" }}}
 
 " fugitive
 Plug 'tpope/vim-fugitive'
