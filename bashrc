@@ -147,6 +147,11 @@ export RANGER_LOAD_DEFAULT_RC=false
 ## fzf: https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+## command correction
+if command -v thefuck > /dev/null 2>&1; then
+	eval "$(thefuck --alias oops)"
+fi
+
 ## Neovim
 # Fix colors (default $TERM is xterm)
 # [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
