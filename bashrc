@@ -131,8 +131,10 @@ PATH="$PATH:$GOROOT/bin"
 export GOPATH="$HOME/Programming/go"
 PATH="$PATH:$GOPATH/bin"
 
+## Java classpath
+[ -d /usr/share/java ] && CLASSPATH="/usr/share/java/:$CLASSPATH"
 
-# termite color setup
+## termite color setup
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
 ## bspwm
@@ -173,6 +175,7 @@ fi
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export PATH
+export CLASSPATH
 
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
