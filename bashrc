@@ -131,8 +131,8 @@ PATH="$PATH:$GOROOT/bin"
 export GOPATH="$HOME/Programming/go"
 PATH="$PATH:$GOPATH/bin"
 
-## Java classpath
-[ -d /usr/share/java ] && CLASSPATH="/usr/share/java/:$CLASSPATH"
+## Add Tomcat servlet api to CLASSPATH
+[ -d /usr/share/java ] && CLASSPATH="/usr/share/java/tomcat-servlet-api-3.0.jar:$CLASSPATH"
 
 ## termite color setup
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
