@@ -91,6 +91,7 @@ shopt -s extglob
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 [ -d "$HOME/Downloads/gradle-2.4-bin/bin" ] && PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
 [ -d "$HOME/eclipse" ] && PATH="$HOME/eclipse:$PATH"
+[ -d "$HOME/usr/bin" ] && PATH="$HOME/usr/bin:$PATH"
 
 # Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
