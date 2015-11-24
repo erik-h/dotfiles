@@ -41,6 +41,7 @@ endfunction
 " nnoremap gd :JavaDocSearch<CR>
 "
 nnoremap <leader>r :call CallMakeRun()<CR>
+nnoremap <leader>t :call CallMakeTest()<CR>
 nnoremap <leader>m :call CallMake()<CR>
 
 function! CallMake()
@@ -53,4 +54,10 @@ function! CallMakeRun()
 	setl errorformat+=%+G%.%# " Always show the quickfix window
 	set makeprg=make
 	:Make run
+endf
+
+function! CallMakeTest()
+	setl errorformat+=%+G%.%# " Always show the quickfix window
+	set makeprg=make
+	:Make test
 endf
