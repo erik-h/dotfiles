@@ -324,7 +324,7 @@ nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>o :BTags<CR>
+" nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
@@ -537,4 +537,6 @@ function! InsertCommand(command)
 	call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
 endfunction
 
-command -nargs=+ I call InsertCommand(<q-args>)
+if !exists(":I")
+	command -nargs=+ I call InsertCommand(<q-args>)
+endif
