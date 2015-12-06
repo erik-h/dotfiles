@@ -135,6 +135,9 @@ PATH="$PATH:$GOPATH/bin"
 ## Add Tomcat servlet api to CLASSPATH
 [ -d /usr/share/java ] && CLASSPATH="/usr/share/java/tomcat-servlet-api-3.0.jar:$CLASSPATH"
 
+## Use alternatively installed java8
+[ -d /opt/jdk/jdk1.8.0_65/bin/ ] && PATH="/opt/jdk/jdk1.8.0_65/bin/:$PATH"
+
 ## termite color setup
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
