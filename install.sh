@@ -13,6 +13,8 @@ function link_all() {
 	ln -s --backup=numbered "$DOTFILES_DIR/vim" "$HOME/.config/nvim"
 	ln -s --backup=numbered "$DOTFILES_DIR/fonts" "$HOME/.fonts";
 	ln -s --backup=numbered "$DOTFILES_DIR/i3" "$HOME/.i3"
+	ln -s --backup=numbered "$DOTFILES_DIR/config/bspwm" "$HOME/.config/bspwm"
+	ln -s --backup=numbered "$DOTFILES_DIR/config/sxhkd" "$HOME/.config/sxhkd"
 
 	# Files
 	ln -s --backup=numbered "$DOTFILES_DIR/vimrc" "$HOME/.vimrc"
