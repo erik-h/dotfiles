@@ -27,6 +27,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
+     erc
      python
      latex
      ;; markdown
@@ -241,6 +242,8 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  ;; (evil-define-key 'normal key-translation-map (kbd ";") (kbd ":"))
+  (define-key evil-normal-state-map ";" ":")
   )
 
 (defun dotspacemacs/user-config ()
@@ -252,7 +255,6 @@ layers configuration. You are free to put any user code."
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
 
-  (define-key key-translation-map (kbd ";") (kbd ":"))
 
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
