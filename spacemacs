@@ -23,13 +23,14 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
      git
      python
+     latex
      ;; markdown
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -96,7 +97,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(base16-eighties-dark
+                         spacemacs-dark
                          spacemacs-light
                          solarized-light
                          solarized-dark
@@ -239,15 +241,30 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  (setq-default evil-escape-key-sequence "jk")
-  (global-linum-mode nil)
-  (linum-relative-toggle)
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (setq-default evil-escape-key-sequence "jk")
+
+  ;; Use python3
+  (setq python-python-command "/usr/bin/python3")
+
+  (define-key key-translation-map (kbd ";") (kbd ":"))
+
+  ;; (yas-global-mode 1)
+  ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  ;; Remove Yasnippet's default tab key binding
+  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+  ;; Alternatively use Control-c + tab
+  ;; (global-unset-key "\C-j")
+  ;; (define-key yas-minor-mode-map (kbd "\C-j") 'hippie-expand)
+
+  (global-linum-mode nil)
+  (linum-relative-toggle)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
