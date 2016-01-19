@@ -13,6 +13,8 @@ alias gl="git pull"
 alias glog="git log"
 alias glogp='git log --pretty=format:"%h %s" --graph'
 
+alias ec="emacsclient -n"
+
 alias ls="ls -F --color=auto"
 alias la="ls -A"
 alias ll="ls -l"
