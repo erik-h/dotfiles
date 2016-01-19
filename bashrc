@@ -180,3 +180,6 @@ export CLASSPATH
 
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
+
+export NVM_DIR="/home/erik/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
