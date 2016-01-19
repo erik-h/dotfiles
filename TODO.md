@@ -1,3 +1,4 @@
+- [ ] Add spacemacs to install.sh
 - [x] Compile YCM.
 - [x] Add ~/.i3status.conf
 - [x] NOTE: (Current implementation: ~/Dropbox/wallpapers/) Create ~/.wallpapers/ that I use across machines (USE DROPBOX)

@@ -1,0 +1,41 @@
+#! /bin/sh
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+PANEL_HEIGHT="22"
+PANEL_FONT_FAMILY="-xos4-terminus-medium-r-normal--0-0-72-72-c-0-iso10646-1"
+# PANEL_FONT_FAMILY="-urw-nimbus sans narrow-medium-i-normal--0-0-0-0-p-0-iso10646-1"
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc config top_padding $PANEL_HEIGHT
+bspc control --subscribe > "$PANEL_FIFO" &
+xtitle -sf 'T%s' > "$PANEL_FIFO" &
+clock -sf 'S%a %I:%M' > "$PANEL_FIFO" &
+
+function battery_percent() {
+	while true; do
+		PERCENT=$(cat /sys/class/power_supply/BAT1/capacity)
+		STATUS=$(cat /sys/class/power_supply/BAT1/status)
+		TIME_LEFT=$(acpi --battery | cut -d, -f3 | sed 's/^ *//')
+
+		echo "B${STATUS}, ${PERCENT}%% ${TIME_LEFT}"
+		sleep 30
+	done
+}
+
+
+. panel_colors
+
+cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+
+
+battery_percent > "$PANEL_FIFO" &
+
+wait
