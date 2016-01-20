@@ -666,9 +666,18 @@ endsnippet
 
 # BEGIN CUSTOM SNIPPETS
 snippet todo "TODO(date, username)"
-'''
+"""
 TODO(`date`, `whoami`)
 $0
-'''
+"""
+endsnippet
+snippet infocomment "Lab information comment" b
+"""
+Author: Erik H
+Student ID: $1
+Class: CMPT$2
+Lab $3
+"""
+$0
 endsnippet
 # vim:ft=snippets:
