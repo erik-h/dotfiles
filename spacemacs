@@ -28,7 +28,7 @@ values."
      emacs-lisp
      git
      erc
-     python
+     (python :variables python-test-runner 'pytest)
      latex
      ;; markdown
      org
@@ -243,7 +243,8 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   ;; (evil-define-key 'normal key-translation-map (kbd ";") (kbd ":"))
-  (define-key evil-normal-state-map ";" ":")
+  ;; (define-key evil-normal-state-map ";" ":")
+        ;; (python :variables python-test-runner 'pytest))
   )
 
 (defun dotspacemacs/user-config ()
