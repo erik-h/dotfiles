@@ -3,6 +3,7 @@
 	- [ ] Make writeroom layer toggle line numbers off
 	- [ ] Use Seoul256 emacs theme
 	- [ ] Add spacemacs to install.sh
+	- [ ] Add ~/.emacs.d/private/ to this repo (snippets, custom layers, packages)
     
 ### Misc ###
 	- [x] Compile YCM.
