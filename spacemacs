@@ -13,7 +13,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.emacs.d/private/")
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -30,8 +30,9 @@ values."
      erc
      (python :variables python-test-runner 'pytest)
      latex
-     ;; markdown
+     markdown
      org
+     writeroom
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -256,15 +257,8 @@ layers configuration. You are free to put any user code."
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
 
-
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  ;; Remove Yasnippet's default tab key binding
-  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
-  ;; Alternatively use Control-c + tab
-  ;; (global-unset-key "\C-j")
-  ;; (define-key yas-minor-mode-map (kbd "\C-j") 'hippie-expand)
 
   (global-linum-mode nil)
   (linum-relative-toggle)
