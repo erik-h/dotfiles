@@ -29,6 +29,7 @@ values."
      git
      erc
      (python :variables python-test-runner 'pytest)
+     php
      shell-scripts
      latex
      markdown
