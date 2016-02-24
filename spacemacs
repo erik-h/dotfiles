@@ -30,6 +30,8 @@ values."
      erc
      (python :variables python-test-runner 'pytest)
      php
+     html
+     javascript
      shell-scripts
      latex
      markdown
