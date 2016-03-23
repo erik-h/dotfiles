@@ -155,7 +155,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 ## command correction
 if command -v thefuck > /dev/null 2>&1; then
-	eval "$(thefuck --alias f)"
+	eval "$(thefuck --alias f > /dev/null 2>&1)"
 fi
 
 ## Neovim
