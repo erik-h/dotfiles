@@ -6,5 +6,8 @@ vim/.vim/autoload
 vim/.vim/doc
 vim/.vim/spell
 vim/.vim/.netrwhist
+vim/.vim/init.vim
+vim/.vim/nvim
+
 qutebrowser/.config/qutebrowser/bookmarks/
 qutebrowser/.config/qutebrowser/quickmarks
