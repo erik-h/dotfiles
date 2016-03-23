@@ -18,3 +18,4 @@
 
 ### qutebrowser ###
 	- [ ] Update keys.conf with stuff from my laptop
+	- [ ] Add its files to the install script
