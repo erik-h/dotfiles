@@ -4,7 +4,7 @@
 	- [ ] Use Seoul256 emacs theme
 	- [ ] Add spacemacs to install.sh
 	- [x] Add ~/.emacs.d/private/ to this repo (snippets, custom layers, packages)
-		- Add it to the install script
+		- [ ] Add it to the install script
     
 ### Misc ###
 	- [x] Compile YCM.
