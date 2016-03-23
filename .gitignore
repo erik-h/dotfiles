@@ -7,3 +7,5 @@ vim/doc
 vim/spell
 vim/.netrwhist
 vim/init.vim
+qutebrowser/bookmarks/
+qutebrowser/quickmarks
