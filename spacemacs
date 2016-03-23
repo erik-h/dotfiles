@@ -37,6 +37,7 @@ values."
      latex
      markdown
      org
+     org-minted
      writeroom
      spell-checking
      ranger
