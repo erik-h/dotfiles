@@ -15,3 +15,6 @@
 	- [ ] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
 	- [x] Change <leader>c for LaTex documents so that it compiles and then cleans out the {aux,log} files.
 	- [x] Fix base16 color symlinks
+
+### qutebrowser ###
+	- [ ] Update keys.conf with stuff from my laptop
