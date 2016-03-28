@@ -145,6 +145,8 @@ exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify
 bindsym $mod+Control+l exec ~/bin/lock
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
+## Screen compositor
+exec --no-startup-id compton -b --backend glx --paint-on-overlay --vsync opengl-swc
 
 # Calculate quick math equations with bc via dmenu.
 bindsym $mod+c exec ~/.scripts/dmenu-calc
