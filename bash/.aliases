@@ -41,8 +41,7 @@ alias vvim="vim -n -u NONE" # 'Vanilla' vim - useful for editing VERY large file
 
 alias open="xdg-open"
 
-mkdir -p ~/Pictures/Screenshots
-alias mscrot="scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png"
+alias mscrot="mkdir -p ~/Pictures/Screenshots && scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png"
 
 alias cb="xclip -selection clipboard"
 
