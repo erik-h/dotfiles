@@ -33,7 +33,6 @@ values."
      sql
      html
      javascript
-	 jade
      shell-scripts
      latex
      markdown
