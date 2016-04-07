@@ -173,7 +173,7 @@ let g:startify_custom_header = [
 			\ ]
 
 " Jade syntax highlighting
-Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'digitaltoad/vim-pug', {'for': 'pug'}
 
 " vim-tmux-navigator
 " Plug 'christoomey/vim-tmux-navigator'
