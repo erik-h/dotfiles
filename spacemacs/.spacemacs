@@ -33,6 +33,7 @@ values."
      sql
      html
      javascript
+	 jade
      shell-scripts
      latex
      markdown
@@ -263,6 +264,11 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq-default evil-escape-key-sequence "jk")
+
+  ;; Use tabs with width 4
+  (setq-default indent-tabs-mode t)
+  (setq-default tab-width 4)
+  (setq-default evil-shift-width 4)
 
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
