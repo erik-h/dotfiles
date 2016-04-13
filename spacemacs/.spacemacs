@@ -279,8 +279,11 @@ layers configuration. You are free to put any user code."
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 
-  (global-linum-mode nil)
-  (linum-relative-toggle)
+  ;; (global-linum-mode nil)
+  ;; (linum-relative-toggle)
+  (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+  (add-hook 'prog-mode-hook 'linum-mode)
+  (add-hook 'prog-mode-hook 'linum-relative-toggle)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
