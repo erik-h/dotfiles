@@ -27,6 +27,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
+	 go
      erc
      (python :variables python-test-runner 'pytest)
      php
@@ -272,6 +273,11 @@ layers configuration. You are free to put any user code."
 
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
+
+  ;; golang setup
+  (setq home (expand-file-name (getenv "HOME")))
+  (setenv "GOPATH" (concat home "/Programming/go"))
+  (setenv "GOROOT" (concat home "/Programming/lang/go"))
 
   ;; Allow nested ordered lists in org-mode
   (setq org-list-allow-alphabetical t)
