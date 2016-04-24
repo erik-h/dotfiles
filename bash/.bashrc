@@ -80,18 +80,12 @@ On_IWhite='\e[0;107m'   # White
 # extends regexes
 shopt -s extglob
 
-
 [ -f "$HOME/.aliases" ] && . $HOME/.aliases
 [ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
 
-# Add a bunch of directories to my PATH if they exist
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
-[ -d "$HOME/local/bin" ] && PATH="$HOME/local/bin:$PATH"
+# Add some directories with binaries to my PATH if they exist
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
-[ -d "$HOME/Downloads/gradle-2.4-bin/bin" ] && PATH="$HOME/Downloads/gradle-2.4-bin/bin:$PATH"
-[ -d "$HOME/eclipse" ] && PATH="$HOME/eclipse:$PATH"
-[ -d "$HOME/usr/bin" ] && PATH="$HOME/usr/bin:$PATH"
 
 # Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
@@ -153,7 +147,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 ## fzf: https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-## command correction
+## Command correction
 if command -v thefuck > /dev/null 2>&1; then
 	eval "$(thefuck --alias f > /dev/null 2>&1)"
 fi
@@ -181,8 +175,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH
 export CLASSPATH
 
-# Source a local bashrc to add or overwrite things
-[ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
-
+## Node version manager setup
 export NVM_DIR="/home/erik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Source a local bashrc to add or overwrite things
+[ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
