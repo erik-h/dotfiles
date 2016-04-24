@@ -1,6 +1,8 @@
 " vim:fdm=marker
 
-set term=screen-256color
+if !has('nvim')
+	set term=screen-256color
+endif
 
 if has('nvim')
 	" let g:python_host_skip_check=1
