@@ -279,8 +279,13 @@ layers configuration. You are free to put any user code."
   (setenv "GOPATH" (concat home "/Programming/go"))
   (setenv "GOROOT" (concat home "/Programming/lang/go"))
 
-  ;; Allow nested ordered lists in org-mode
+  ;; Org-mode
+  ;; Allow nested ordered lists
   (setq org-list-allow-alphabetical t)
+  (setq org-directory "~/.org/")
+  (setq org-agenda-files (list "~/.org/work.org"
+							   "~/.org/school.org"
+							   "~/.org/hobby.org"))
 
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
