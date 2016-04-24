@@ -1,5 +1,7 @@
 " vim:fdm=marker
 
+set term=screen-256color
+
 if has('nvim')
 	" let g:python_host_skip_check=1
 	" let g:loaded_python3_provider=1
