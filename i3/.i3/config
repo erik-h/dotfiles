@@ -145,6 +145,9 @@ exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify
 bindsym $mod+Control+l exec ~/bin/lock
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
+## Hacky way to setup dual monitors
+exec --no-startup-id ~/.scripts/dual 2
+
 ## Screen compositor
 exec --no-startup-id compton -b --backend glx --paint-on-overlay --vsync opengl-swc
 

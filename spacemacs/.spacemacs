@@ -27,6 +27,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
+	 go
      erc
      (python :variables python-test-runner 'pytest)
      php
@@ -273,14 +274,27 @@ layers configuration. You are free to put any user code."
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
 
-  ;; Allow nested ordered lists in org-mode
+  ;; golang setup
+  (setq home (expand-file-name (getenv "HOME")))
+  (setenv "GOPATH" (concat home "/Programming/go"))
+  (setenv "GOROOT" (concat home "/Programming/lang/go"))
+
+  ;; Org-mode
+  ;; Allow nested ordered lists
   (setq org-list-allow-alphabetical t)
+  (setq org-directory "~/.org/")
+  (setq org-agenda-files (list "~/.org/work.org"
+							   "~/.org/school.org"
+							   "~/.org/hobby.org"))
 
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 
-  (global-linum-mode nil)
-  (linum-relative-toggle)
+  ;; (global-linum-mode nil)
+  ;; (linum-relative-toggle)
+  (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+  (add-hook 'prog-mode-hook 'linum-mode)
+  (add-hook 'prog-mode-hook 'linum-relative-toggle)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
