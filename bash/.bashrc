@@ -85,6 +85,7 @@ shopt -s extglob
 
 # Add some directories with binaries to my PATH if they exist
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 
 # Hide commands prefixed with spaces
