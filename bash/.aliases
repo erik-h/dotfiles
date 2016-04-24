@@ -8,6 +8,8 @@ function numframes() {
 
 alias vim="nvim"
 
+alias treeless="tree -C | less -r"
+
 alias gst="git status"
 alias gdt="git dt"
 alias ga="git add"
