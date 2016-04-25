@@ -88,6 +88,10 @@ shopt -s extglob
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 
+## Include library paths for locally installed stuff
+export LD_LIBRARY_PATH="/users/ugrad/ehaugrud/.local/lib/:$LD_LIBRARY_PATH"
+export LIBRARY_PATH="/users/ugrad/ehaugrud/.local/lib/:$LIBRARY_PATH"
+
 # Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
 
@@ -179,6 +183,7 @@ export CLASSPATH
 ## Node version manager setup
 export NVM_DIR="/home/erik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . $HOME/.local_bashrc
