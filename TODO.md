@@ -7,6 +7,7 @@
 		- [ ] Add it to the install script
     
 ### Misc ###
+	- [ ] !!! Change references to ~/bin in all my dotfiles to ~/.local/bin
 	- [x] Compile YCM.
 	- [x] Add ~/.i3status.conf
 	- [x] NOTE: (Current implementation: ~/Dropbox/wallpapers/) Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
