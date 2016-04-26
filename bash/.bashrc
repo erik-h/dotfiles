@@ -79,6 +79,8 @@ On_IWhite='\e[0;107m'   # White
 
 # extends regexes
 shopt -s extglob
+# allows aliases over ssh
+shopt -s expand_aliases
 
 [ -f "$HOME/.aliases" ] && . $HOME/.aliases
 [ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
