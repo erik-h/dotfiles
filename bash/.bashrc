@@ -165,7 +165,7 @@ fi
 [ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
 
 # Add local install of jdk 8 to my PATH
-[ -d ~/bin/jdk1.8.0_60/bin ] && PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
+[ -d ~/.local/bin/jdk1.8.0_60/bin ] && PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
 
 # Make sure default config folder is set
 [ -d ~/.config ] && export XDG_CONFIG_HOME="$HOME/.config/"
