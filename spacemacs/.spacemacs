@@ -28,6 +28,7 @@ values."
      emacs-lisp
      git
 	 go
+	 java
      erc
      (python :variables python-test-runner 'pytest)
      php
@@ -266,6 +267,9 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq-default evil-escape-key-sequence "jk")
+
+  ;; Custom snippets
+  (setq-default auto-completion-private-snippets-directory t)
 
   ;; Use tabs with width 4
   (setq-default indent-tabs-mode t)
