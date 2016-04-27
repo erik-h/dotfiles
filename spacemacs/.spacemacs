@@ -33,6 +33,7 @@ values."
      php
      sql
      html
+	 yaml
      javascript
      shell-scripts
      latex
