@@ -155,6 +155,9 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 call plug#begin("~/.vim/plugged")
 
+" Minimal file explorer
+Plug 'justinmk/vim-dirvish'
+
 " Fancy start screen
 Plug 'mhinz/vim-startify'
 augroup StartifyGroup
@@ -412,7 +415,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 
 " NERDTree
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Toggle NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 " Close NERDTree window if it's the only buffer left open
