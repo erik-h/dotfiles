@@ -155,6 +155,11 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 call plug#begin("~/.vim/plugged")
 
+" Align stuff!
+Plug 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 " Minimal file explorer
 Plug 'justinmk/vim-dirvish'
 
