@@ -89,6 +89,7 @@ shopt -s expand_aliases
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
+[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
 
 ## Include library paths for locally installed stuff
 export LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
