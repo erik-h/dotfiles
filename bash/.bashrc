@@ -91,8 +91,8 @@ shopt -s expand_aliases
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 
 ## Include library paths for locally installed stuff
-export LD_LIBRARY_PATH="/users/ugrad/ehaugrud/.local/lib/:$LD_LIBRARY_PATH"
-export LIBRARY_PATH="/users/ugrad/ehaugrud/.local/lib/:$LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
+export LIBRARY_PATH="$HOME/.local/lib/:$LIBRARY_PATH"
 
 # Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
