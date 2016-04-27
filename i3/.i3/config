@@ -236,3 +236,6 @@ for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 # smart_gaps on
 
 exec --no-startup-id i3-msg workspace number 1 www
+
+# Start syncthing in a tmux session (using tmuxp)
+exec --no-startup-id tmuxp load syncthing.yaml
