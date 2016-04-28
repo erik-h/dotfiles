@@ -237,5 +237,7 @@ for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
 exec --no-startup-id i3-msg workspace number 1 www
 
-# Start syncthing in a tmux session (using tmuxp)
-exec --no-startup-id tmuxp load syncthing.yaml
+## Start syncthing in a tmux session (using tmuxp)
+# The echo is for not having tmuxp hang if the syncthing session
+# was already started.
+exec --no-startup-id echo "n" | tmuxp load syncthing.yaml
