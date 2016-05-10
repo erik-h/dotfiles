@@ -292,6 +292,10 @@ layers configuration. You are free to put any user code."
 							   "~/.org/school.org"
 							   "~/.org/hobby.org"))
 
+  ;; Eclim
+  (setq eclim-eclipse-dirs "~/Downloads/eclipse"
+		eclim-executable "~/Downloads/eclipse/eclim")
+
   ;; (yas-global-mode 1)
   ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 

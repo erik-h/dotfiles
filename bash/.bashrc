@@ -84,6 +84,7 @@ shopt -s expand_aliases
 
 [ -f "$HOME/.aliases" ] && . $HOME/.aliases
 [ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
+[ -f "$HOME/.scripts/upto.sh" ] && . $HOME/.scripts/upto.sh
 
 # Add some directories with binaries to my PATH if they exist
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"

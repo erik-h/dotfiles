@@ -8,9 +8,13 @@ function numframes() {
 
 alias vim="nvim"
 
+
+alias tree="tree -C"
 function treeless() {
 	tree -C $@ | less -r
 }
+
+alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 
 alias gst="git status"
 alias gdt="git dt"
