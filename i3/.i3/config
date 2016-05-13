@@ -211,4 +211,5 @@ exec --no-startup-id i3-msg workspace number 1 www
 # start syncthing in a tmux session (using tmuxp)
 # The echo is for not having tmuxp hang if the syncthing session
 # was already started.
-exec --no-startup-id echo "n" | tmuxp load syncthing.yaml
+# NOTE: Commented out for now until I start using Syncthing again
+# exec --no-startup-id echo "n" | tmuxp load syncthing.yaml
