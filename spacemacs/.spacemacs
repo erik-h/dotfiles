@@ -111,15 +111,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(material
-                         base16-eighties-dark
-                         spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+   dotspacemacs-themes '(base16-eighties-dark
+						 apropospriate-dark
+						 apropospriate-light
+						 badwolf
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -281,8 +277,8 @@ layers configuration. You are free to put any user code."
 
   ;; golang setup
   (setq home (expand-file-name (getenv "HOME")))
-  (setenv "GOPATH" (concat home "/Programming/go"))
-  (setenv "GOROOT" (concat home "/Programming/lang/go"))
+  (setenv "GOPATH" (concat home "/dev/go"))
+  (setenv "GOROOT" (concat home "/dev/lang/go"))
 
   ;; Org-mode
   ;; Allow nested ordered lists
