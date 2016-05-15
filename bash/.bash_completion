@@ -1,2 +1,5 @@
 # Filename completion for emacs_edit.py
 complete -f ee
+
+# Binary completion for exececute-in-background function
+complete -o filenames -F _command ebg

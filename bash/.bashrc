@@ -82,8 +82,10 @@ shopt -s extglob
 # allows aliases over ssh
 shopt -s expand_aliases
 
-[ -f "$HOME/.aliases" ] && . $HOME/.aliases
-[ -f "$HOME/.local_aliases" ] && . $HOME/.local_aliases
+# Source bash aliases and functions
+[ -f "$HOME/.bash_aliases" ] && . $HOME/.bash_aliases
+[ -f "$HOME/.bash_functions" ] && . $HOME/.bash_functions
+[ -f "$HOME/.local_bash_aliases" ] && . $HOME/.local_bash_aliases
 [ -f "$HOME/.scripts/upto.sh" ] && . $HOME/.scripts/upto.sh
 
 # Add some directories with binaries to my PATH if they exist
