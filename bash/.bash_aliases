@@ -16,7 +16,8 @@ function treeless() {
 
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 
-function execbg() {
+# Execute a command in the background then immediately exit the shell
+function ebg() {
 	($@ &> /dev/null &)
 	exit 0
 }
