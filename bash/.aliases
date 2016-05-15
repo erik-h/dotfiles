@@ -6,7 +6,7 @@ function numframes() {
 	ffprobe -select_streams v -show_streams "$1" 2>/dev/null | grep nb_frames | sed -e 's/nb_frames=//'
 }
 
-alias vim="nvim"
+alias vim="vim"
 
 
 alias tree="tree -C"
@@ -14,7 +14,10 @@ function treeless() {
 	tree -C $@ | less -r
 }
 
+# Useful aliases for summer research
+alias daydir="mkdir $(date +'%b_%d_%Y')"
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
+alias filecount="find ./* -maxdepth 0 -type f | wc -l"
 
 alias gst="git status"
 alias gdt="git dt"
