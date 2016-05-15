@@ -164,9 +164,12 @@ fi
 ## Neovim
 # Fix colors (default $TERM is xterm)
 # [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
-[ -n "$SSH_CONNECTION" ] && export TERM=xterm-256color
+# [ -n "$SSH_CONNECTION" ] && export TERM=xterm-256color
 # Use locally installed neovim if exists
 [ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
+
+# Set TERM so we don't get weird stuff happening in tmux
+export TERM=screen-256color
 
 # Add local install of jdk 8 to my PATH
 [ -d ~/.local/bin/jdk1.8.0_60/bin ] && PATH="$HOME/bin/jdk1.8.0_60/bin:$PATH"
