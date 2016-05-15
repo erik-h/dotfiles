@@ -7,7 +7,8 @@
 		- [ ] Add it to the install script
     
 ### Misc ###
-	- [ ] !!! Change references to ~/bin in all my dotfiles to ~/.local/bin
+	- [ ] Add `st`'s config.h
+	- [x] !!! Change references to ~/bin in all my dotfiles to ~/.local/bin
 	- [x] Compile YCM.
 	- [x] Add ~/.i3status.conf
 	- [x] NOTE: (Current implementation: ~/Dropbox/wallpapers/) Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
@@ -18,8 +19,9 @@
 	- [x] Fix base16 color symlinks
 
 ### qutebrowser ###
-	- [ ] Update keys.conf with stuff from my laptop
+	- [x] Update keys.conf with stuff from my laptop
 	- [x] Add its files to the install script
 
 ### git ###
 	- [ ] track ~/.gitconfig
+
