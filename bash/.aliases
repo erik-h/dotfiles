@@ -19,6 +19,11 @@ alias daydir="mkdir $(date +'%b_%d_%Y')"
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 alias filecount="find ./* -maxdepth 0 -type f | wc -l"
 
+function execbg() {
+	($@ &> /dev/null &)
+	exit 0
+}
+
 alias gst="git status"
 alias gdt="git dt"
 alias ga="git add"
