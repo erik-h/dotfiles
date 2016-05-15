@@ -16,6 +16,11 @@ function treeless() {
 
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 
+function execbg() {
+	($@ &> /dev/null &)
+	exit 0
+}
+
 alias gst="git status"
 alias gdt="git dt"
 alias ga="git add"
