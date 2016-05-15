@@ -132,9 +132,9 @@ fi
 # source ~/.dotfiles/git-prompt.sh
 
 # Environment variables for golang
-export GOROOT="$HOME/Programming/lang/go"
+export GOROOT="$HOME/dev/lang/go"
 PATH="$PATH:$GOROOT/bin"
-export GOPATH="$HOME/Programming/go"
+export GOPATH="$HOME/dev/go"
 PATH="$PATH:$GOPATH/bin"
 
 ## Add Tomcat servlet api to CLASSPATH
