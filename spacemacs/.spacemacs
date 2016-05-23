@@ -29,6 +29,7 @@ values."
      git
 	 go
 	 java
+	 rust
      erc
      (python :variables python-test-runner 'pytest)
      php
