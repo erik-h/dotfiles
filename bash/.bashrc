@@ -107,26 +107,24 @@ export BROWSER=/usr/bin/qutebrowser
 # Change the default man pager to vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-# Only set my PS1 if I'm in an interactive session
-if [[ $- == *i* ]]; then
-	###############
-	#  START PS1  #
-	###############
+###############
+#  START PS1  #
+###############
 
-	PS1="\u"
-	PS1+="\[$(tput setaf 2)\]@"
-	PS1+="\[$(tput sgr0)\]\H"
-	PS1+="\[$(tput setaf 2)\]\w"
-	PS1+="\[$(tput sgr0)\]"
-	PS1+=' $(parse_git_branch)\n'
-	PS1+="\[$(tput setaf 3)\]\$"
-	PS1+="\[$(tput sgr0)\] "
+PS1="\u"
+PS1+="\[$(tput setaf 2)\]@"
+PS1+="\[$(tput sgr0)\]\H"
+PS1+="\[$(tput setaf 2)\]\w"
+PS1+="\[$(tput sgr0)\]"
+PS1+=' $(parse_git_branch)\n'
+PS1+='$? '
+PS1+="\[$(tput setaf 3)\]\$"
+PS1+="\[$(tput sgr0)\] "
 
-	export PS1
-	#############
-	#  END PS1  #
-	#############
-fi
+export PS1
+#############
+#  END PS1  #
+#############
 
 # This is the git prompt method from github.com/git/git/
 # source ~/.dotfiles/git-prompt.sh
