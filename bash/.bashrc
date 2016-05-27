@@ -107,10 +107,25 @@ export BROWSER=/usr/bin/qutebrowser
 # Change the default man pager to vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-## Shell prompt
+###############
+#  START PS1  #
+###############
+
 # TODO: Put parse_git_branch and the $? status in a seperate script. This is needed
 # if I want $? to be after, because parse_git_branch will set $?.
-export PS1="\u${Green}@${Color_Off}\H${Green}\w${Color_Off} \$(parse_git_branch)\n${Yellow}\$ ${Color_Off}"
+PS1="\u"
+PS1+="\[$(tput setaf 2)\]@"
+PS1+="\[$(tput sgr0)\]\H"
+PS1+="\[$(tput setaf 2)\]\w"
+PS1+="\[$(tput sgr0)\]"
+PS1+=' $(parse_git_branch)\n'
+PS1+="\[$(tput setaf 3)\]\$"
+PS1+="\[$(tput sgr0)\] "
+
+export PS1
+#############
+#  END PS1  #
+#############
 
 # This is the git prompt method from github.com/git/git/
 # source ~/.dotfiles/git-prompt.sh
