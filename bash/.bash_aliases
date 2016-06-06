@@ -15,7 +15,7 @@ function treeless() {
 }
 
 # Useful aliases for summer research
-alias daydir="mkdir $(date +'%b_%d_%Y')"
+alias daydir="mkdir \$(date +'%b_%d_%Y')"
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 alias filecount="find ./* -maxdepth 0 -type f | wc -l"
 
