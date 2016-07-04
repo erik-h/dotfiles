@@ -14,10 +14,13 @@ function treeless() {
 	tree -C $@ | less -r
 }
 
-# Useful aliases for summer research
-alias daydir="mkdir $(date +'%b_%d_%Y')"
+# Useful aliases and functions for summer research
+alias daydir="mkdir \$(date +'%Y-%m-%d')"
 alias dircount="find ./* -maxdepth 0 -type d | wc -l"
 alias filecount="find ./* -maxdepth 0 -type f | wc -l"
+function tardir() {
+	tar --remove-files -czf ${1%/*}.tar.gz $1
+}
 
 # Execute a command in the background then immediately exit the shell
 function ebg() {
