@@ -95,7 +95,9 @@ shopt -s expand_aliases
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
 
 ## Include library paths for locally installed stuff
-export LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
+LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH
 export LIBRARY_PATH="$HOME/.local/lib/:$LIBRARY_PATH"
 
 # Hide commands prefixed with spaces
