@@ -271,7 +271,16 @@ layers configuration. You are free to put any user code."
   ;; Use tabs with width 4
   (setq-default indent-tabs-mode t)
   (setq-default tab-width 4)
+  (setq-default c-basic-offset 4)
+  (defvaralias 'c-basic-offset 'tab-width)
   (setq-default evil-shift-width 4)
+
+  (add-hook 'python-mode-hook
+			(lambda ()
+			  (setq-default indent-tabs-mode t)
+			  (setq-default tab-width 4)
+			  (setq-default py-indent-tabs-mode t)
+			  (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
   ;; Use python3
   (setq python-python-command "/usr/bin/python3")
