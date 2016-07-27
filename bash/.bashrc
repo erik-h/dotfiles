@@ -82,6 +82,8 @@ shopt -s extglob
 # allows aliases over ssh
 shopt -s expand_aliases
 
+## TODO: Here (and everywhere) use `test` instead of `[]` so that
+## I can go `test -f "/foo/bar.sh" && . $_`
 # Source bash aliases and functions
 [ -f "$HOME/.bash_aliases" ] && . $HOME/.bash_aliases
 [ -f "$HOME/.bash_functions" ] && . $HOME/.bash_functions
@@ -93,6 +95,7 @@ shopt -s expand_aliases
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+[ -d "$HOME/.gem/ruby/2.3.0/bin" ] && PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 
 ## Include library paths for locally installed stuff
 LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
@@ -105,7 +108,12 @@ export HISTCONTROL="ignorespace"
 
 # Set some default programs
 export EDITOR="vim"
-export BROWSER=/usr/bin/qutebrowser
+if [[ "$(hostname)" =~ ^[L119|N221].* ]]; then
+	BROWSER="google-chrome"
+else
+	BROWSER="chromium"
+fi
+export BROWSER
 # Change the default man pager to vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
@@ -166,7 +174,7 @@ fi
 
 ## Neovim
 # Fix colors (default $TERM is xterm)
-# [[ $(hostname) =~ ^[L119|N221].* ]] && export TERM=xterm-256color
+# [[ "$(hostname)" =~ ^[L119|N221].* ]] && export TERM=xterm-256color
 # [ -n "$SSH_CONNECTION" ] && export TERM=xterm-256color
 # Use locally installed neovim if exists
 [ -d "$HOME/neovim/bin" ] && PATH="$HOME/neovim/bin:$PATH"
