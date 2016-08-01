@@ -155,6 +155,11 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 call plug#begin("~/.vim/plugged")
 
+" Project specific editor settings (tabs vs. spaces, etc)
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'tpope/vim-vinegar'
+
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
