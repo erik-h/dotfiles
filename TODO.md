@@ -5,6 +5,9 @@
 	- [ ] Add spacemacs to install.sh
 	- [x] Add ~/.emacs.d/private/ to this repo (snippets, custom layers, packages)
 		- [ ] Add it to the install script
+
+### vim ###
+	- [ ] Try out vim-dirvish
     
 ### Misc ###
 	- [ ] Add `st`'s config.h
@@ -24,4 +27,3 @@
 
 ### git ###
 	- [ ] track ~/.gitconfig
-
