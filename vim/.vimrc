@@ -12,6 +12,7 @@ if has('nvim')
 endif
 
 let mapleader = "\<Space>"
+let maplocalleader = ","
 imap jk <Esc>
 command! Ve e ~/.vimrc
 augroup InsertModeTimeout
@@ -370,6 +371,26 @@ function! SearchVisualSelectionWithAg() range
 	execute 'Ag' selection
 endfunction
 " }}}
+
+" speeddating - increment dates, times, and more with CTRL-A/CTRL-X
+Plug 'tpope/vim-speeddating'
+
+" calendar
+Plug 'mattn/calendar-vim'
+
+" tables
+Plug 'dhruvasagar/vim-table-mode'
+augroup TableModeWrap
+	autocmd!
+	" FIXME
+	" Setting textwidth here doesn't actually seem to be working...it's still stuck at 77
+	" I guess it's being overriden by a plugin?
+	autocmd FileType org setlocal tw=0
+augroup END
+
+" vim org-mode
+Plug 'jceb/vim-orgmode'
+let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
 
 " fugitive
 Plug 'tpope/vim-fugitive'
