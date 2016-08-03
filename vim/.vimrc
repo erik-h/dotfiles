@@ -160,6 +160,11 @@ call plug#begin("~/.vim/plugged")
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tpope/vim-vinegar'
+" Use the NERDtree style
+let g:netrw_liststyle=3
+" Hide dotfiles by default
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+nmap <leader>k :Explore<CR>
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
@@ -533,6 +538,7 @@ endfunction
 
 " Bclose()
 " delete buffer without closing window
+" FIXME: Make this work with netrw windows
 function! Bclose()
     let curbufnr = bufnr("%")
     let altbufnr = bufnr("#")
