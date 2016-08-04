@@ -320,9 +320,15 @@ nmap <silent> <F8> :TagbarToggle<CR>
 " Ctrl-P
 Plug 'kien/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
-nnoremap <leader>f :CtrlPBuffer<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+" Go to previous buffer
+nnoremap <leader><Tab> :b#<CR>
 let g:ctrlp_map = ''
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
+if executable("ag")
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
+	" ag is fast enough that CtrlP doesn't need to cache
+	let g:ctrlp_use_caching = 0
+endif
 
 " Rainbow Parentheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -370,6 +376,10 @@ function! SearchVisualSelectionWithAg() range
 	execute 'Ag' selection
 endfunction
 " }}}
+
+" vimagit
+Plug 'jreybert/vimagit'
+let g:magit_default_fold_level=0
 
 " fugitive
 Plug 'tpope/vim-fugitive'
