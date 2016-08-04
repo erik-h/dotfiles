@@ -12,6 +12,7 @@ if has('nvim')
 endif
 
 let mapleader = "\<Space>"
+let maplocalleader = ","
 imap jk <Esc>
 command! Ve e ~/.vimrc
 augroup InsertModeTimeout
@@ -159,6 +160,11 @@ call plug#begin("~/.vim/plugged")
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tpope/vim-vinegar'
+" Use the NERDtree style
+let g:netrw_liststyle=3
+" Hide dotfiles by default
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+nmap <leader>k :Explore<CR>
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
@@ -381,6 +387,26 @@ endfunction
 Plug 'jreybert/vimagit'
 let g:magit_default_fold_level=0
 
+" speeddating - increment dates, times, and more with CTRL-A/CTRL-X
+Plug 'tpope/vim-speeddating'
+
+" calendar
+Plug 'mattn/calendar-vim'
+
+" tables
+Plug 'dhruvasagar/vim-table-mode'
+augroup TableModeWrap
+	autocmd!
+	" FIXME
+	" Setting textwidth here doesn't actually seem to be working...it's still stuck at 77
+	" I guess it's being overriden by a plugin?
+	autocmd FileType org setlocal tw=0
+augroup END
+
+" vim org-mode
+Plug 'jceb/vim-orgmode'
+let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
+
 " fugitive
 Plug 'tpope/vim-fugitive'
 
@@ -522,6 +548,7 @@ endfunction
 
 " Bclose()
 " delete buffer without closing window
+" FIXME: Make this work with netrw windows
 function! Bclose()
     let curbufnr = bufnr("%")
     let altbufnr = bufnr("#")
