@@ -164,7 +164,7 @@ Plug 'tpope/vim-vinegar'
 let g:netrw_liststyle=3
 " Hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-nmap <leader>k :Explore<CR>
+nmap <leader>u :Explore<CR>
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
@@ -579,7 +579,6 @@ function! <SID>StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup WhitespaceStrip
 	autocmd!
 	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
