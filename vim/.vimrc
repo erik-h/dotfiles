@@ -386,6 +386,7 @@ endfunction
 " vimagit
 Plug 'jreybert/vimagit'
 let g:magit_default_fold_level=0
+let g:magit_default_show_all_files=0
 
 " speeddating - increment dates, times, and more with CTRL-A/CTRL-X
 Plug 'tpope/vim-speeddating'
@@ -409,6 +410,9 @@ let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.o
 
 " fugitive
 Plug 'tpope/vim-fugitive'
+
+" Close all buffers but the current one
+Plug 'schickling/vim-bufonly'
 
 " commentary
 Plug 'tpope/vim-commentary'
