@@ -224,7 +224,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
 
 " ag.vim - a front for ag A.K.A. the_silver_searcher
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
+" ack.vim - original project forked by ag.vim
+Plug 'mileszs/ack.vim'
+let g:ackprg = 'ag --vimgrep --smart-case'
 
 " tern_for_vim - javascript omni-completion
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
@@ -357,7 +360,7 @@ nnoremap <silent> <leader>. :Lines<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
 nnoremap <silent> K :call SearchWordWithAg()<CR>
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
@@ -367,7 +370,7 @@ imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
 
 function! SearchWordWithAg()
-	execute 'Ag' expand('<cword>')
+	execute 'Ack!' expand('<cword>')
 endfunction
 
 function! SearchVisualSelectionWithAg() range
@@ -379,7 +382,7 @@ function! SearchVisualSelectionWithAg() range
 	let selection = getreg('"')
 	call setreg('"', old_reg, old_regtype)
 	let &clipboard = old_clipboard
-	execute 'Ag' selection
+	execute 'Ack!' selection
 endfunction
 " }}}
 
@@ -467,12 +470,12 @@ Plug 'Raimondi/delimitMate'
 " NERDTree
 " Plug 'scrooloose/nerdtree'
 " Toggle NERDTree
-nnoremap <C-n> :NERDTreeToggle<CR>
+" nnoremap <C-n> :NERDTreeToggle<CR>
 " Close NERDTree window if it's the only buffer left open
-augroup NERDTreeGroup
-	autocmd!
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-augroup END
+" augroup NERDTreeGroup
+	" autocmd!
+	" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" augroup END
 
 " Ultisnips
 Plug 'SirVer/ultisnips'
@@ -583,10 +586,9 @@ function! <SID>StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup WhitespaceStrip
 	autocmd!
-	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
 
 function! InsertCommand(command)

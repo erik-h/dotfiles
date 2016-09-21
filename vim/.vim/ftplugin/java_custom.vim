@@ -38,11 +38,15 @@ endfunction
 " nnoremap <leader>b :call JavaMakeBuild()<CR>
 " nnoremap <leader>r :call JavaMakeRun()<CR>
 
+" The 'default' for when not using Gradle
+nnoremap <leader>b :Make<CR>
+nnoremap <leader>r :Make run<CR>
+
 " nnoremap gd :JavaDocSearch<CR>
 "
-nnoremap <leader>r :call CallMakeRun()<CR>
-nnoremap <leader>t :call CallMakeTest()<CR>
-nnoremap <leader>m :call CallMake()<CR>
+" nnoremap <leader>r :call CallMakeRun()<CR>
+" nnoremap <leader>t :call CallMakeTest()<CR>
+" nnoremap <leader>m :call CallMake()<CR>
 
 function! CallMake()
 	setl errorformat=""
