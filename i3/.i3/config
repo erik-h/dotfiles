@@ -191,7 +191,7 @@ bar {
 }
 
 # Set desktop background
-exec_always --no-startup-id bash ~/.scripts/randomWallpaper.sh
+exec_always --no-startup-id bash ~/.scripts/wallpaper.sh
 
 # Start dropbox
 exec --no-startup-id dropbox start
