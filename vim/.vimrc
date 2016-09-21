@@ -164,7 +164,7 @@ Plug 'tpope/vim-vinegar'
 let g:netrw_liststyle=3
 " Hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-nmap <leader>k :Explore<CR>
+nmap <leader>E :Explore<CR>
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
