@@ -134,57 +134,5 @@ snippet modeline "Vim modeline"
 vim`!v ':set '. (&expandtab ? printf('et sw=%i ts=%i', &sw, &ts) : printf('noet sts=%i sw=%i ts=%i', &sts, &sw, &ts)) . (&tw ? ' tw='. &tw : '') . ':'`
 endsnippet
 
-snippet makecpp "A default C++ Makefile template" b
-CXX=clang++
-CXXFLAGS=-c -Wall
-LD=clang++
-LDFLAGS=
-LDLIBS=
-INCLUDES=
-SOURCES=${1:main}.cpp ${2:myClass}.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=$2
-
-.PHONY:	all clean
-
-all: $(EXECUTABLE) $(SOURCES)
-
-$(EXECUTABLE): $(OBJECTS) 
-	$(LD) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
-
-$1.o: $1.cpp $2.h
-	$(CXX) $(INCLUDES) $(CXXFLAGS) $< -o $@
-
-$2.o: $2.cpp $2.h
-	$(CXX) $(INCLUDES) $(CXXFLAGS) $< -o $@
-
-clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
-endsnippet
-
-snippet makejava "A default Java Makefile template" b
-JFLAGS = -g
-JC = javac
-.SUFFIXES: .java .class
-.SILENT: run
-.java.class:
-	$(JC) $(JFLAGS) $*.java
-
-CLASSES = \
-	${2:Foo}.java \
-	${3:Blah}.java \
-	${4:Library}.java \
-	${1:Main}.java 
-
-all: classes
-
-classes: $(CLASSES:.java=.class)
-
-run: all
-	java $1
-
-clean:
-	rm *.class
-endsnippet
 
 # vim:ft=snippets:

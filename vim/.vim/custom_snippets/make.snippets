@@ -1,0 +1,57 @@
+snippet java "A default Java Makefile w/ javadoc" b
+JFLAGS =
+JC = javac
+JAVADOCDIR = doc
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $(JFLAGS) $*.java
+
+CLASSES = \
+		  ${1:Main}.java
+		  $0
+MAIN = $1
+
+default: classes
+
+classes: $(CLASSES:.java=.class)
+
+run: classes
+	java $(MAIN)
+
+javadoc: classes
+	javadoc -d $(JAVADOCDIR) $(CLASSES)
+
+clean:
+	$(RM) *.class
+endsnippet
+
+# TODO: Make this less ugly! The object files should be hardcoded with the source
+# names, they should be dynamically set using the (currently unused) $(OBJECTS).
+snippet cpp "A default C++ Makefile template" b
+CXX=clang++
+CXXFLAGS=-c -Wall
+LD=clang++
+LDFLAGS=
+LDLIBS=
+INCLUDES=
+SOURCES=${1:main}.cpp ${2:myClass}.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=$2
+
+.PHONY:	all clean
+
+all: $(EXECUTABLE) $(SOURCES)
+
+$(EXECUTABLE): $(OBJECTS) 
+	$(LD) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
+
+$1.o: $1.cpp $2.h
+	$(CXX) $(INCLUDES) $(CXXFLAGS) $< -o $@
+
+$2.o: $2.cpp $2.h
+	$(CXX) $(INCLUDES) $(CXXFLAGS) $< -o $@
+
+clean:
+	rm -f $(EXECUTABLE) $(OBJECTS)
+endsnippet
+
