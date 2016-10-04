@@ -148,6 +148,12 @@ if !has('nvim')
 endif
 filetype off " required (Vundle)
 
+" Use python syntax highlighting for SageMath files
+augroup SageMath
+	autocmd!
+	autocmd BufRead,BufNewFile *.sage set filetype=python
+augroup end
+
 " START - vim-plug
 " vim-plug - plugin manager
 if empty(glob("~/.vim/autoload/plug.vim"))
