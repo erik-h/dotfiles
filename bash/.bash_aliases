@@ -1,4 +1,5 @@
 alias upgrade="sudo apt-get update && sudo apt-get upgrade"
+alias signal="chromium-browser --app-id=bikioccmkafdpakkkcpdbppfkghcmihk &>/dev/null &"
 
 alias qb="qutebrowser"
 
