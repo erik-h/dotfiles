@@ -180,6 +180,9 @@ nmap ga <Plug>(EasyAlign)
 " Minimal file explorer
 Plug 'justinmk/vim-dirvish'
 
+" Live page reloading
+Plug 'jaxbot/browserlink.vim'
+
 " Fancy start screen
 Plug 'mhinz/vim-startify'
 augroup StartifyGroup
