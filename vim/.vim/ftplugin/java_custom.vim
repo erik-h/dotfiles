@@ -38,9 +38,19 @@ endfunction
 " nnoremap <leader>b :call JavaMakeBuild()<CR>
 " nnoremap <leader>r :call JavaMakeRun()<CR>
 
+function! VimRunCmd()
+	let run_script = "./.vim-run-cmd.sh"
+	if filereadable(run_script)
+		execute "!" . run_script . " " . expand("%:r")
+	else
+		:Make run
+	endif
+endfunction
+
 " The 'default' for when not using Gradle
 nnoremap <leader>b :Make<CR>
-nnoremap <leader>r :Make run<CR>
+" nnoremap <leader>r :Make run<CR>
+nnoremap <leader>r :call VimRunCmd()<CR>
 
 " nnoremap gd :JavaDocSearch<CR>
 "
