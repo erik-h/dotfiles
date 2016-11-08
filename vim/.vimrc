@@ -154,6 +154,12 @@ augroup SageMath
 	autocmd BufRead,BufNewFile *.sage set filetype=python
 augroup end
 
+augroup ASM
+	autocmd!
+	" Use a hash as the comment string for asm files
+	autocmd FileType asm setlocal commentstring=#\ %s
+augroup end
+
 " START - vim-plug
 " vim-plug - plugin manager
 if empty(glob("~/.vim/autoload/plug.vim"))
