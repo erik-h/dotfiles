@@ -93,8 +93,10 @@ shopt -s expand_aliases
 # Add some directories with binaries to my PATH if they exist
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
-[ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+
+[ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/.gem/ruby/2.3.0/bin" ] && PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 
 ## Include library paths for locally installed stuff

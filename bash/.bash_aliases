@@ -9,6 +9,7 @@ function numframes() {
 
 alias vim="vim"
 
+alias exa="exa -s Name" # sort like ls does by default
 
 alias tree="tree -C"
 function treeless() {
