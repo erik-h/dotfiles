@@ -92,13 +92,13 @@ os.environ["CURRENT_FILE"] = snip.fn
 os.environ["CURRENT_FILE_BASENAME"] = snip.basename
 `
 `
+printf "/*"
 egrep "(bool|int|void|char|short|unsigned|long|float|double|${CURRENT_FILE_BASENAME})(\*|\&)?[[:space:]]*(operator)?[[:space:]]*[[:alnum:]|_|+|=|\(\)]*[[:space:]]*\(.*\)" ${CURRENT_FILE} | while read -r line ; do
-    echo -n "// "
-	echo "$line"
-	echo "// Precondition:"
-	echo "// Postcondition:"
+	printf "\t$line\n"
+	printf "\t  TODO: Description\n"
 	echo
 done
+printf "*/"
 `
 endsnippet
 
