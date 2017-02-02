@@ -155,5 +155,39 @@ snippet essay "A template for an essay"
 \end{mla}
 \end{document}
 endsnippet
+snippet assign "A template for a MATH/CMPT assignment" b
+\documentclass[12pt]{extarticle}
+
+\usepackage[margin=3cm, footskip=55pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{enumerate}
+\usepackage{scrextend}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm} 
+\usepackage[thinlines]{easytable}
+\usepackage{mathabx}
+
+\setlength{\droptitle}{-10em}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\lfoot{${1:CMPTXYZ} Assign $2}
+\rfoot{Page: \thepage}
+
+\title{$1 Assign $2}
+\author{Erik H}
+
+\date{$3}
+
+\begin{document}
+\maketitle
+$0
+\end{document}
+endsnippet
 ## END CUSTOM SNIPPETS
 # vim:ft=snippets:
