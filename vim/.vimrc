@@ -160,6 +160,12 @@ augroup ASM
 	autocmd FileType asm setlocal commentstring=#\ %s
 augroup end
 
+augroup R
+	autocmd!
+	" R uses hashes for comments
+	autocmd FileType r setlocal commentstring=#\ %s
+augroup end
+
 " START - vim-plug
 " vim-plug - plugin manager
 if empty(glob("~/.vim/autoload/plug.vim"))
