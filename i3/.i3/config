@@ -29,6 +29,9 @@ bindsym $mod+Shift+q kill
 # program launcher
 bindsym $mod+d exec ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
+# pass (passwordstore.org) dmenu script
+bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -84,8 +87,8 @@ bindsym $mod+a focus parent
 bindsym $mod+q focus child
 
 # switch to workspace
-bindsym $mod+1 workspace number 1 www
-bindsym $mod+2 workspace 2
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace number 2 www
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -96,8 +99,8 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1 www
-bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace number 2 www
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
@@ -108,8 +111,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # force certain windows to certain workspaces
-assign [class="Firefox"] 1 www
-assign [class="qutebrowser"] 1 www
+assign [class="chromium-browser"] 2 www
+assign [class="Firefox"] 2 www
+assign [class="qutebrowser"] 2 www
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -217,4 +221,4 @@ for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 # smart_gaps on
 
 # switch to workspace 1 when i3 loads
-exec --no-startup-id i3-msg workspace number 1 www
+exec --no-startup-id i3-msg workspace 1
