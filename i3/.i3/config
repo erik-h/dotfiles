@@ -20,6 +20,12 @@ font pango:Inconsolata 11
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Add a keypress pass-through mode to disable swallowing all $mod+... combinations from other programs
+mode "pass-through" {
+    bindsym $mod+o mode "default"
+}
+bindsym $mod+o mode "pass-through"
+
 # start a terminal
 bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
 
