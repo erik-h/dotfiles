@@ -32,6 +32,9 @@ bindsym $mod+d exec ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlb
 # pass (passwordstore.org) dmenu script
 bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
 
+# start gpg-agent
+exec --no-startup-id bash -c 'eval "$(gpg-agent --daemon)"'
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
