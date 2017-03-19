@@ -447,7 +447,11 @@ snippet todom "Create a todo marker (a todo with no message)"
 // TODO(`whoami`)$0
 endsnippet
 
-snippet debug "Create a debug comment with the current file name"
+snippet debug "Print a general debug message"
+System.err.println("[DEBUG] $1" + $2);$0
+endsnippet
+
+snippet debugf "Print a debug message with the current file name"
 System.err.println("(`!p snip.rv = snip.basename`): $1" + $0);
 endsnippet
 

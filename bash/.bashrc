@@ -94,6 +94,8 @@ shopt -s expand_aliases
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+# Custom gradle install
+[ -d "$HOME/Downloads/gradle-3.4/bin" ] && PATH="$HOME/Downloads/gradle-3.4/bin:$PATH"
 
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules/.bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
