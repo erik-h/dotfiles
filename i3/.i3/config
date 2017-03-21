@@ -20,11 +20,16 @@ font pango:Inconsolata 11
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+################################################################################
+# I was using this so that ALT+SHIFT+L would work to activate
+# dannyvankooten/browserpass; I realized I can just remap the shortcut in
+# Chrome, so I don't need pass-through mode for now.
+#
 # Add a keypress pass-through mode to disable swallowing all $mod+... combinations from other programs
-mode "pass-through" {
-    bindsym $mod+o mode "default"
-}
-bindsym $mod+o mode "pass-through"
+# mode "pass-through" {
+#     bindsym $mod+o mode "default"
+# }
+# bindsym $mod+o mode "pass-through"
 
 # start a terminal
 bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
