@@ -44,6 +44,11 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Copies what was just pasted (so you can paste the same text repeatedly)
 xnoremap p pgvy
 
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
 if has('nvim')
 	tnoremap <C-[> <C-\><C-n>
 endif
