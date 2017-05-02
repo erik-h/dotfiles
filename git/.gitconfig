@@ -1,0 +1,18 @@
+[credential]
+	helper = cache
+[user]
+	name = Erik H
+	email = youdulayo@gmail.com
+[push]
+	default = simple
+[core]
+	editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = diff
+	dt = difftool
+; [http]
+; 	sslverify = false
