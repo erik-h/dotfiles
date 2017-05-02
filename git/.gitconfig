@@ -1,5 +1,5 @@
 [credential]
-	helper = cache
+	helper = cache --timeout=7200
 [user]
 	name = Erik H
 	email = youdulayo@gmail.com
