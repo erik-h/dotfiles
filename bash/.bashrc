@@ -145,9 +145,6 @@ export PS1
 #  END PS1  #
 #############
 
-# This is the git prompt method from github.com/git/git/
-# source ~/.dotfiles/git-prompt.sh
-
 # Environment variables for golang
 export GOROOT="$HOME/dev/lang/go"
 PATH="$PATH:$GOROOT/bin"
