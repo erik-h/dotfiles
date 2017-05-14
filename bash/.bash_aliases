@@ -13,7 +13,7 @@ alias exa="exa -s Name" # sort like ls does by default
 
 alias tree="tree -C"
 function treeless() {
-	tree -C $@ | less -r
+	\tree -C $@ | less -r
 }
 
 # Useful aliases and functions for summer research
