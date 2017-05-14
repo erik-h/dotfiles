@@ -7,7 +7,7 @@
 		- [ ] Add it to the install script
 
 ### vim ###
-	- [ ] Try out vim-dirvish
+	- [x] Try out vim-dirvish
     
 ### Misc ###
 	- [ ] Add `st`'s config.h
@@ -17,7 +17,7 @@
 	- [x] NOTE: (Current implementation: ~/Dropbox/wallpapers/) Create ~/.wallpapers/ that I use across machines (USE DROPBOX)
 		- [ ] Then update i3_config i3lock command.
 	- [x] Add ~/.pentadactylrc (N221 is most up to date)
-	- [ ] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
+	- [x] Investigate bug where vim/ and fonts/ get a symlink to themselves put inside themselves.
 	- [x] Change <leader>c for LaTex documents so that it compiles and then cleans out the {aux,log} files.
 	- [x] Fix base16 color symlinks
 
@@ -26,4 +26,4 @@
 	- [x] Add its files to the install script
 
 ### git ###
-	- [ ] track ~/.gitconfig
+	- [x] track ~/.gitconfig
