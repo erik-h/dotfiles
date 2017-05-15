@@ -101,6 +101,9 @@ shopt -s expand_aliases
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/.gem/ruby/2.3.0/bin" ] && PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 
+# CUDA
+[ -d "/usr/local/cuda-8.0/bin/" ] && PATH="/usr/local/cuda-8.0/bin/:$PATH"
+
 ## Include library paths for locally installed stuff
 LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
 LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
@@ -115,7 +118,8 @@ export EDITOR="vim"
 if [[ "$(hostname)" =~ ^[L119|N221].* ]]; then
 	BROWSER="google-chrome"
 else
-	BROWSER="chromium"
+	# BROWSER="chromium"
+	BROWSER="google-chrome"
 fi
 export BROWSER
 # Change the default man pager to vim
@@ -140,9 +144,6 @@ export PS1
 #############
 #  END PS1  #
 #############
-
-# This is the git prompt method from github.com/git/git/
-# source ~/.dotfiles/git-prompt.sh
 
 # Environment variables for golang
 export GOROOT="$HOME/dev/lang/go"

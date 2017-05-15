@@ -1,14 +1,19 @@
 " vim:fdm=marker
 
-if !has('nvim')
-	set term=screen-256color
-endif
+" If we set $BROWSER in our .bashrc/.profile/etc then use it, else use Chrome
+let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
 
-if has('nvim')
-	" let g:python_host_skip_check=1
-	" let g:loaded_python3_provider=1
+if !has('nvim')
+	" We're using vim
+	set term=screen-256color
+	set nocompatible " be iMproved, required; set by default in nvim
+else
+	" We're using neovim
 	set ttimeout
 	set ttimeoutlen=0
+	tnoremap <C-[> <C-\><C-n>
+	" let g:python_host_skip_check=1
+	" let g:loaded_python3_provider=1
 endif
 
 let mapleader = "\<Space>"
@@ -44,16 +49,11 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Copies what was just pasted (so you can paste the same text repeatedly)
 xnoremap p pgvy
 
-if has('nvim')
-	tnoremap <C-[> <C-\><C-n>
-endif
-
 " Undo dir settings
 if !isdirectory(expand("~/.vim/undodir"))
 	echom "undodir not found. Creating now..."
 	silent call system("mkdir " . expand("~/.vim/undodir"))
 endif
-
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000
@@ -74,22 +74,6 @@ augroup VimViewsGroup
 	autocmd BufWinEnter .vimrc silent loadview
 augroup END
 
-
-" " Undo dir settings
-" " Put plugins and dictionaries in this dir (also on Windows)
-" let vimDir = '$HOME/.vim'
-" let &runtimepath.=','.vimDir
-
-" " Keep undo history across sessions by storing it in a file
-" if has('persistent_undo')
-"     let myUndoDir = expand(vimDir . '/undodir')
-"     " Create dirs
-"     call system('mkdir ' . vimDir)
-"     call system('mkdir ' . myUndoDir)
-"     let &undodir = myUndoDir
-"     set undofile
-" endif
-
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
 set splitright
@@ -107,7 +91,7 @@ set ignorecase
 set smartcase
 
 " Set the default browser
-let g:netrw_browsex_viewer = "firefox"
+let g:netrw_browsex_viewer = g:browser
 
 " Auto close the scratch window when an autocompletion is found (YouCompleteMe)
 " augroup YCMGroup
@@ -132,6 +116,9 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colorschemes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorscheme monokai
 " colorscheme gruvbox
 let base16colorspace=256  " Access colors present in 256 colorspace
@@ -140,17 +127,12 @@ colorscheme base16-eighties
 " let g:solarized_termcolors=256
 " colorscheme solarized
 
-
-" Vundle BEGIN
-if !has('nvim')
-	set nocompatible " be iMproved, required
-	" Set by default in nvim
-endif
-filetype off " required (Vundle)
-
-" Use python syntax highlighting for SageMath files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Language specific autocommands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup SageMath
 	autocmd!
+	" Use python syntax highlighting for SageMath files
 	autocmd BufRead,BufNewFile *.sage set filetype=python
 augroup end
 
@@ -177,6 +159,7 @@ call plug#begin("~/.vim/plugged")
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
 
+" Minimal file explorer
 Plug 'tpope/vim-vinegar'
 " Use the NERDtree style
 let g:netrw_liststyle=3
@@ -188,9 +171,6 @@ nmap <leader>E :Explore<CR>
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" Minimal file explorer
-Plug 'justinmk/vim-dirvish'
 
 " Live page reloading
 Plug 'jaxbot/browserlink.vim'
@@ -225,16 +205,6 @@ Plug 'digitaltoad/vim-pug', {'for': 'pug'}
 " vim-evanesco - better / searching
 Plug 'pgdouyon/vim-evanesco'
 
-" Sublime style multi-cursors
-" Plug 'terryma/vim-multiple-cursors'
-" let g:multi_cursor_use_default_mapping=0
-" let g:multi_cursor_start_key='g<C-y>'
-" let g:multi_cursor_start_word_key='<C-y>'
-" let g:multi_cursor_next_key='<C-n>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<C-[>'
-
 " gruvbox colorscheme
 Plug 'morhetz/gruvbox'
 
@@ -244,8 +214,6 @@ Plug 'chriskempson/base16-vim'
 " vim-hybrid colorscheme
 Plug 'w0ng/vim-hybrid'
 
-" ag.vim - a front for ag A.K.A. the_silver_searcher
-" Plug 'rking/ag.vim'
 " ack.vim - original project forked by ag.vim
 Plug 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep --smart-case'
@@ -254,6 +222,7 @@ let g:ackprg = 'ag --vimgrep --smart-case'
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 augroup TernGroup
 	autocmd!
+	" Use tern for JavaScript completion
 	autocmd FileType javascript setlocal omnifunc=tern#Complete
 augroup END
 
@@ -279,8 +248,7 @@ Plug 'mhinz/vim-hugefile'
 Plug 'altercation/vim-colors-solarized'
 
 " eclim
-let g:EclimBrowser = 'firefox'
-" let g:EclimFileTypeValidate = 0
+let g:EclimBrowser = g:browser
 " Stop the screen from flashing when choosing completions
 set completeopt-=preview
 
@@ -289,7 +257,9 @@ Plug 'milkypostman/vim-togglelist'
 " Use Copen (from tpope/vim-dispatch)
 let g:toggle_list_no_mappings = 1
 let g:toggle_list_copen_command = "Copen"
+"
 " My ugly hack to get location list toggling working
+"
 let g:location_list_is_toggled = 0
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nmap <script> <silent> <leader>, :call ToggleLocationListFixed()<CR>
@@ -308,13 +278,13 @@ function! ToggleLocationListFixed()
 	endif
 endfunction
 
-" vim-dispatch
+" Async build and test dispatcher
 Plug 'tpope/vim-dispatch'
 
-" vim-gradle
+" Gradle build automation system
 Plug 'tfnico/vim-gradle'
 
-" vim-go
+" Go development plugin for vim
 set rtp+=$GOROOT/misc/vim
 Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_bin_path = expand("$GOROOT/bin")
@@ -343,12 +313,12 @@ augroup VimGoGroup
 	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 augroup END
 
-" tagbar
+" tagbar with info on classes, functions, etc
 Plug 'majutsushi/tagbar'
 nmap <silent> <F8> :TagbarToggle<CR>
 
 " Ctrl-P
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 " Go to previous buffer
@@ -431,6 +401,9 @@ augroup END
 " vim org-mode
 Plug 'jceb/vim-orgmode'
 let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
+
+" Universal Text Linking - needed for vim org-mode links to work
+Plug 'vim-scripts/utl.vim'
 
 " fugitive
 Plug 'tpope/vim-fugitive'

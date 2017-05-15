@@ -1,0 +1,151 @@
+android-tools-adb
+apt-file
+aria2
+asciidoc
+at
+b43-fwcutter
+# bubbleupnpserver
+build-essential
+cheese
+chromium-browser
+clang
+clusterssh
+cmake
+compton
+cpputest
+# cryfs
+# cryptomator
+curl
+davfs2
+devscripts
+dia
+# docker-engine
+dos2unix
+# dropbox
+dtrx
+equivs
+exuberant-ctags
+fail2ban
+feh
+# ffmpeg
+filezilla
+# fing
+# firmware-b43-installer
+freeglut3
+freeglut3-dev
+g++
+gem2deb
+gifsicle
+git
+git-svn
+glew-utils
+gnash
+gnupg2
+gnupg-agent
+gnuplot
+gnutls-bin
+# google-chrome-stable
+gparted
+gradle
+graphicsmagick
+hexer
+htop
+i3
+i3lock
+i3status
+imagemagick
+# keybase
+keychain
+# kodi
+krb5-user
+markdown
+meld
+mercurial
+moreutils
+mplayer
+mpv
+# mpv-build-deps
+mumble
+mupdf
+mutt
+mysql-server
+network-manager-openvpn
+network-manager-openvpn-gnome
+nginx
+nmap
+openssh-server
+# oracle-java8-installer
+pandoc
+pavucontrol
+pcmanfm
+# pepperflashplugin-nonfree
+phantomjs
+php5-cli
+php5-fpm
+php5-mcrypt
+php5-mysql
+postgresql-9.3
+ppa-purge
+python3-dev
+python3-llfuse
+python3-pip
+python3-sip
+python-dateutil
+python-dev
+python-llfuse
+python-pip
+python-tox
+python-virtualenv
+# qtspim
+ranger
+r-base-core
+remind
+rubber
+scrot
+shutter
+silversearcher-ag
+sip-dev
+smartmontools
+software-properties-common
+source-highlight
+spim
+sqlite3
+sshfs
+stow
+suckless-tools
+supervisor
+texlive-full
+# tmate
+transmission-cli
+transmission-daemon
+transmission-remote-cli
+tree
+# ttf-mscorefonts-installer
+unoconv
+vagrant
+valgrind
+vim
+# virtualbox
+w3m
+w3m-img
+weechat-plugins
+whois
+wicd-curses
+wput
+wyrd
+xautolock
+xclip
+xdotool
+xfonts-100dpi
+xfonts-75dpi
+xfonts-terminus
+xfonts-terminus-dos
+xfonts-terminus-oblique
+xorg-dev
+xournal
+xqilla
+xscreensaver
+xsel
+xterm
+xtrlock
+yelp-tools
