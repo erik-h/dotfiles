@@ -31,6 +31,9 @@ floating_modifier $mod
 # }
 # bindsym $mod+o mode "pass-through"
 
+# set up my monitors
+exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
+
 # start a terminal
 bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
 
@@ -44,7 +47,7 @@ bindsym $mod+d exec ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlb
 bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
 
 # start gpg-agent
-exec --no-startup-id bash -c 'eval "$(gpg-agent --daemon)"'
+exec --no-startup-id gpg-agent --daemon
 
 # change focus
 bindsym $mod+h focus left
