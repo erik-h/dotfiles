@@ -1,3 +1,12 @@
+# Allow aliases to be sudo-ed
+alias sudo="sudo "
+
+function cdrand() {
+	shopt -s nullglob
+	dirs=(*/)
+	[[ $dirs ]] && cd -- "${dirs[RANDOM % ${#dirs[@]}]}"
+}
+
 alias htopme="htop -u \$USER"
 alias upgrade="sudo apt update && sudo apt upgrade"
 
