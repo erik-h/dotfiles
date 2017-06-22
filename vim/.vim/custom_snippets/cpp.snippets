@@ -57,6 +57,10 @@ snippet todo "TODO(date, username)"
  */
 endsnippet
 
+snippet debug "Print a debug line to stderr" b
+cerr << "[DEBUG] $1" << $0 << endl;
+endsnippet
+
 snippet cout "cout (w/o std::)"
 cout << $1;
 endsnippet
