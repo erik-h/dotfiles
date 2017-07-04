@@ -38,6 +38,9 @@ bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# kill desktop notifications (`notify-send`)
+bindsym $mod+Shift+n exec kill $(pgrep ^notify-osd$)
+
 # nuke all windows in a workspace
 bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
