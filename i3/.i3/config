@@ -38,6 +38,9 @@ bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# nuke all windows in a workspace
+bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
+
 # program launcher
 bindsym $mod+d exec ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
