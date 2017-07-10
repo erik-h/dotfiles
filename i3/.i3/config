@@ -44,8 +44,11 @@ bindsym $mod+Shift+n exec kill $(pgrep ^notify-osd$)
 # nuke all windows in a workspace
 bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
+# emulate a mouse click
+bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
+
 # program launcher
-bindsym $mod+d exec ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 # pass (passwordstore.org) dmenu script
 bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
