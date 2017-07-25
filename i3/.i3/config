@@ -35,6 +35,9 @@ exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
 # start a terminal
 bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
 
+# start a tmux-less terminal
+bindsym $mod+Shift+Return exec "i3-sensible-terminal"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -111,10 +114,14 @@ bindsym $mod+a focus parent
 bindsym $mod+q focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace number 2 www
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+# Terminal icon: uf120
+bindsym $mod+1 workspace number 1 
+# Chrome icon: uf268
+bindsym $mod+2 workspace number 2 
+# Book icon: uf02d
+bindsym $mod+3 workspace number 3 
+# Mail icon: uf0e0
+bindsym $mod+4 workspace number 4 
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -123,10 +130,13 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace number 2 www
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+# Terminal icon: uf120
+bindsym $mod+Shift+1 move container to workspace number 1 
+# Chrome icon: uf268
+bindsym $mod+Shift+2 move container to workspace number 2 
+bindsym $mod+Shift+3 move container to workspace number 3 
+# Mail icon: uf0e0
+bindsym $mod+Shift+4 move container to workspace number 4 
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -135,9 +145,10 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # force certain windows to certain workspaces
-assign [class="chromium-browser"] 2 www
-assign [class="Firefox"] 2 www
-assign [class="qutebrowser"] 2 www
+assign [class="google-chrome"] 2 
+assign [class="Firefox"] 2 
+assign [class="qutebrowser"] 2 
+assign [class="Thunderbird"] 4 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -216,6 +227,8 @@ new_float 1pixel
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	font pango:DejaVu Sans Mono, FontAwesome 8
+
 	colors {
 		background #27566B
 		statusline #9DA8AD
@@ -249,4 +262,5 @@ for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 # smart_gaps on
 
 # switch to workspace 1 when i3 loads
-exec --no-startup-id i3-msg workspace 1
+# Terminal icon: uf120
+exec --no-startup-id i3-msg workspace number 1 
