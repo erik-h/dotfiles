@@ -12,7 +12,7 @@ import shutil
 import os
 
 # Put any non-dotfile containing directories to ignore in this list.
-EXCLUDE = ["./packages/"]
+EXCLUDE = ["./PACKAGES/"]
 
 # Ensure GNU Stow is installed, as it is the program we use to install our dotfiles
 if shutil.which("stow") is None:
