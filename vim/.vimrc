@@ -430,9 +430,12 @@ Plug 'tpope/vim-repeat'
 Plug 'xolox/vim-misc'
 
 " vim-notes (dependency: vim-misc)
-Plug 'xolox/vim-notes'
-let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_suffix = '.txt'
+"
+" I've replaced this with vim-orgmode
+"
+" Plug 'xolox/vim-notes'
+" let g:notes_directories = ['~/Dropbox/notes']
+" let g:notes_suffix = '.txt'
 
 " Change the todo foreground color to red
 hi notesTodo ctermfg=197
