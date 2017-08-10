@@ -29,6 +29,12 @@ mode "pass-through" {
 }
 bindsym $mod+u mode "pass-through"
 
+# set up mousekeys
+exec --no-startup-id setxkbmap -option keypad:pointerkeys
+exec --no-startup-id xkbset ma 1 1000 1 70 1
+# set up other custom keybindings
+exec --no-startup-id xbindkeys
+
 # set up my monitors
 exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
 
