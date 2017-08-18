@@ -1,7 +1,7 @@
 # TODO: Somehow notify the user if some of the required programs
 # aren't installed (e.g. pulseaudio-ctl for volume control).
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # use ALT as my modifier
 set $mod Mod1
