@@ -158,7 +158,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # force certain windows to certain workspaces
-assign [class="google-chrome"] 2 
+assign [class="(?i)google-chrome"] 2 
 assign [class="Firefox"] 2 
 assign [class="qutebrowser"] 2 
 assign [class="Thunderbird"] 4 
