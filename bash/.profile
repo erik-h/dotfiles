@@ -28,9 +28,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:$HOME/.config/bspwm/panel"
 
 # The named pipe for bspwm
-PANEL_FIFO=/tmp/panel-fifo
-PANEL_HEIGHT=24
-PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
-export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
+export PANEL_FIFO=/tmp/panel-fifo
+export PANEL_HEIGHT=24
+export PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+
 # Use a dmenu password prompt script
 export SUDO_ASKPASS="$HOME/.scripts/dpass"
