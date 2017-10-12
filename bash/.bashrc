@@ -1,8 +1,14 @@
+# TODO:
+# - Move environment variable stuff into .profile; it only needs to be set once,
+#   not every time we spawn a new shell.
+# - Move machine specific PATH modificiations to a `~/.local_profile`, sourced
+#   if it exists in `~/.profile`.
+
 # If not running interactively then do nothing
 [[ $- != *i* ]] && return
 
 BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+[ -s $BASE16_SHELL ] && source $BASE16_SHELL
 
 # Reset
 Color_Off='\e[0m'       # Text Reset
