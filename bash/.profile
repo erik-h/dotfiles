@@ -20,9 +20,12 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
 export XDG_CONFIG_HOME="$HOME/.config"
+
 # Add scripts for bspwm to my PATH; this must be done here instead of my bashrc
-export PATH="$PATH:$HOME/.config/bspwm/panel/"
+# as it needs to apply at login
+export PATH="$PATH:$HOME/.config/bspwm/panel"
 
 # The named pipe for bspwm
 PANEL_FIFO=/tmp/panel-fifo

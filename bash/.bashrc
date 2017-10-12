@@ -161,8 +161,7 @@ PATH="$PATH:$GOPATH/bin"
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
 ## bspwm
-# Add my bspwm directories to my PATH
-[ -d "$HOME/.config/bspwm/panel" ] && PATH="$HOME/.config/bspwm/panel:$PATH"
+# Add my bspwm scripts to my PATH
 [ -d "$HOME/.config/bspwm/scripts" ] && PATH="$HOME/.config/bspwm/panel/scripts:$PATH"
 
 ## ranger
