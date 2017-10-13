@@ -1,0 +1,53 @@
+# If a variable set in our .environ file is already set, we've already sourced
+# this file (probably, unless something else set it...)!
+[ -n "$EDITOR" ] && return
+
+# Set TERM so we don't get weird stuff happening in tmux
+export TERM=screen-256color
+
+## Set some default programs
+export EDITOR="vim"
+export BROWSER="google-chrome"
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+
+# Hide commands prefixed with spaces
+export HISTCONTROL="ignorespace"
+
+# Make sure default config folder is set
+export XDG_CONFIG_HOME="$HOME/.config"
+
+## Language specific environment variables
+# Golang
+export GOROOT="$HOME/dev/lang/go"
+export GOPATH="$HOME/dev/go"
+
+## Program specific environment variables
+# load custom ranger config file, not the default
+export RANGER_LOAD_DEFAULT_RC=false
+
+## PATH
+# General binaries
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
+[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+# Language specific binaries
+# Golang
+[ -d "$GOROOT/bin" ] && PATH="$PATH:$GOROOT/bin"
+[ -d "$GOPATH/bin" ] && PATH="$PATH:$GOPATH/bin"
+# Nodejs
+[ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules:$PATH"
+# Rust
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
+
+## Library paths
+LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
+# Include library paths for locally installed stuff
+[ -d "$HOME/.local/lib/" ] && LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH" LIBRARY_PATH="$HOME/.local/lib/:$LIBRARY_PATH"
+
+export LD_LIBRARY_PATH
+export LIBRARY_PATH
+export PATH
+
+# Use a dmenu password prompt script
+[ -f "$HOME/.scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.scripts/dpass"
