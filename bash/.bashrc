@@ -45,8 +45,8 @@ test -f ~/.dircolors && eval "$(dircolors "$_")"
 test -f ~/.fzf.bash && . "$_"
 
 ## Node version manager setup
-export NVM_DIR="$HOME/.nvm"
-test -s "$NVM_DIR/nvm.sh" && . "$_"  # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# test -s "$NVM_DIR/nvm.sh" && . "$_"  # This loads nvm
 
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . "$HOME/.local_bashrc"
