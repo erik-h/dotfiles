@@ -96,7 +96,7 @@ alias mupdf="mupdf-x11"
 
 # Beautify piped in XML and print it to stdout
 function xmlbeautify() {
-	python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print xml.dom.minidom.parseString(s).toprettyxml()' | sed '/^\s*$/d'
+	python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read().encode("UTF-8");print xml.dom.minidom.parseString(s).toprettyxml()' | sed '/^\s*$/d'
 }
 
 function sprungef() {
