@@ -1,6 +1,5 @@
 # If running bash, source its config files
 if [ -n "$BASH_VERSION" ]; then
-    [ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
     [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 fi
 
