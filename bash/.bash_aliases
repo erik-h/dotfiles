@@ -24,6 +24,7 @@ function numframes() {
 }
 
 alias vim="vim"
+alias vimagit="vim +MagitOnly"
 
 alias exa="exa -s Name" # sort like ls does by default
 
