@@ -42,7 +42,7 @@ function tardir() {
 
 # Execute a command in the background then immediately exit the shell
 function ebg() {
-	($@ &> /dev/null &)
+	("$@" &> /dev/null &)
 	exit 0
 }
 
