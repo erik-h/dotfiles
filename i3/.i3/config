@@ -32,6 +32,10 @@ bindsym $mod+u mode "pass-through"
 # start f.lux
 exec --no-startup-id fluxgui
 
+# set up print screen
+# bindsym --release Print exec "scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/printscreens/'"
+bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
+
 # set up mousekeys
 exec --no-startup-id setxkbmap -option keypad:pointerkeys
 exec --no-startup-id xkbset ma 1 1000 1 70 1
