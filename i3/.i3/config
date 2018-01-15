@@ -50,7 +50,7 @@ exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
 exec --no-startup-id cerebro &
 
 # start a terminal
-bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
+bindsym $mod+Return exec "~/bin/terminal || i3-sensible-terminal"
 
 # start a tmux-less terminal
 bindsym $mod+Shift+Return exec "i3-sensible-terminal"
@@ -68,7 +68,7 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 
 # program launcher
-bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 # pass (passwordstore.org) dmenu script
 bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
@@ -176,9 +176,9 @@ bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
 #### Screen locking
 # using a locking script:
-exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/.local/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
 # bindsym $mod+Control+l exec xautolock -locknow
-bindsym $mod+Control+l exec ~/.local/bin/lock
+bindsym $mod+Control+l exec ~/bin/lock
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 # hacky way to setup dual monitors
