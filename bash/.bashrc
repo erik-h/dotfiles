@@ -53,3 +53,8 @@ test -f ~/.fzf.bash && . "$_"
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . "$HOME/.local_bashrc"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Start X11 if we log in on TTY1
+if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
+	startx
+fi
