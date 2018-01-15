@@ -20,3 +20,5 @@ tempfile
 redshift
 neofetch
 xdg-utils
+imagemagick
+scrot
