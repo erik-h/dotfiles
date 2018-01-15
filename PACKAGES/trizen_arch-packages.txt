@@ -1,6 +1,5 @@
 # These are Arch packages I've installed during my fresh laptop install
 tmux
-st
 python3
 python2
 py3status
@@ -20,3 +19,4 @@ i3status
 tempfile
 redshift
 neofetch
+xdg-utils
