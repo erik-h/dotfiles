@@ -15,7 +15,9 @@ import shutil
 import os
 
 # Put any non-dotfile containing directories to ignore in this list.
-EXCLUDE = ["PACKAGES"]
+# TODO: once I have the install relative to root feature done, remove etc
+# from this exclude list!
+EXCLUDE = ["PACKAGES", "etc"]
 
 # Ensure GNU Stow is installed, as it is the program we use to install our dotfiles
 if shutil.which("stow") is None:
