@@ -17,7 +17,9 @@ import os
 # Put any non-dotfile containing directories to ignore in this list.
 # TODO: once I have the install relative to root feature done, remove etc
 # from this exclude list!
-EXCLUDE = ["PACKAGES", "etc"]
+# TODO: come up with a way to automatically symlink userChrome.css...the trouble
+# is that firefox profile names are different across machines.
+EXCLUDE = ["PACKAGES", "etc", "userChrome.css"]
 
 # Ensure GNU Stow is installed, as it is the program we use to install our dotfiles
 if shutil.which("stow") is None:
