@@ -1,4 +1,6 @@
 # These are Arch packages I've installed during my fresh laptop install
+zip
+the_silver_searcher
 tmux
 python3
 python2
@@ -20,3 +22,9 @@ tempfile
 redshift
 neofetch
 xdg-utils
+imagemagick
+scrot
+qutebrowser
+ranger-git
+pass
+dmenu
