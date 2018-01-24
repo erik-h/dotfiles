@@ -29,8 +29,13 @@ mode "pass-through" {
 }
 bindsym $mod+u mode "pass-through"
 
-# start f.lux
-exec --no-startup-id fluxgui
+# start mopidy music server
+exec --no-startup-id mopidy
+# play/pause music
+bindsym $mod+Shift+p exec mpc toggle
+
+# start f.lux or redshift (screen filter)
+exec --no-startup-id fluxgui || redshift-gtk
 
 # set up print screen
 # bindsym --release Print exec "scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/printscreens/'"
