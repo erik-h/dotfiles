@@ -205,12 +205,12 @@ bindsym $mod+c exec ~/.scripts/menu-calc
 # bindsym $mod+F12 exec --no-startup-id pactl set-sink-volume 1 -- +5% && killall -SIGUSR1 i3status
 # bindsym $mod+F11 exec --no-startup-id pactl set-sink-volume 1 -- -5% && killall -SIGUSR1 i3status
 # bindsym $mod+F10 exec --no-startup-id pactl set-sink-mute 1 toggle && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/pulseaudio-ctl up && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/pulseaudio-ctl down && killall -SIGUSR1 i3status
-bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/pulseaudio-ctl mute && killall -SIGUSR1 i3status
-bindsym $mod+F12 exec --no-startup-id ~/.local/bin/pulseaudio-ctl up && killall -SIGUSR1 i3status
-bindsym $mod+F11 exec --no-startup-id ~/.local/bin/pulseaudio-ctl down && killall -SIGUSR1 i3status
-bindsym $mod+F10 exec --no-startup-id ~/.local/bin/pulseaudio-ctl mute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulseaudio-ctl up && killall -SIGUSR1 py3status
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulseaudio-ctl down && killall -SIGUSR1 py3status
+bindsym XF86AudioMute exec --no-startup-id ~/bin/pulseaudio-ctl mute && killall -SIGUSR1 py3status
+bindsym $mod+F12 exec --no-startup-id ~/bin/pulseaudio-ctl up && killall -SIGUSR1 py3status
+bindsym $mod+F11 exec --no-startup-id ~/bin/pulseaudio-ctl down && killall -SIGUSR1 py3status
+bindsym $mod+F10 exec --no-startup-id ~/bin/pulseaudio-ctl mute && killall -SIGUSR1 py3status
 
 # change brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
