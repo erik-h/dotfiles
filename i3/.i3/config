@@ -193,7 +193,7 @@ exec --no-startup-id ~/.scripts/dual 2
 exec --no-startup-id nm-applet
 
 # screen compositor
-exec --no-startup-id compton -b --backend glx --paint-on-overlay --vsync opengl-swc
+exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # calculate quick math equations with rofi or dmenu
 bindsym $mod+c exec ~/.scripts/menu-calc
