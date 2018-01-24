@@ -1,6 +1,7 @@
 # If a variable set in our .environ file is already set, we've already sourced
 # this file (probably, unless something else set it...)!
-[ -n "$EDITOR" ] && return
+# TODO: this check isn't good, it seems EDITOR is set before I login
+# [ -n "$EDITOR" ] && return
 
 # Set TERM so we don't get weird stuff happening in tmux
 export TERM=screen-256color
@@ -41,6 +42,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
 ## Library paths
+# TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
 LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
 # Include library paths for locally installed stuff
 [ -d "$HOME/.local/lib/" ] && LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH" LIBRARY_PATH="$HOME/.local/lib/:$LIBRARY_PATH"
