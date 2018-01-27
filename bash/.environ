@@ -8,7 +8,7 @@ export TERM=screen-256color
 
 ## Set some default programs
 export EDITOR="vim"
-export BROWSER="google-chrome"
+export BROWSER="firefox"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
 # Hide commands prefixed with spaces
