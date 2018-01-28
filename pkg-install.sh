@@ -19,6 +19,11 @@ function ensure_installed() {
 	return 0
 }
 
+# Remove the commented lines from the packages file (lines that start with '#').
+function remove_comments() {
+	grep -vE "^\s*#" "$1"  | tr '\n' ' '
+}
+
 [[ $# -eq 0 ]] && { usage; exit 1; }
 
 global=false
@@ -60,7 +65,7 @@ case "$pkg_file_base" in
 		# Warn the user that apt packages must be installed globally
 		[[ "$global" == false ]] && echo "[WARN] apt has no local option!"
 
-		apt install $(grep -vE "^\s*#" $1  | tr "\n" " ")
+		apt install $(remove_comments $pkg_file)
 		;;
 	pip3*)
 		echo "[INFO] pip package file detected."
