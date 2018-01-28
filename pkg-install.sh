@@ -77,6 +77,12 @@ case "$pkg_file_base" in
 			pip3 install --user -r "$pkg_file"
 		fi
 		;;
+	trizen*)
+		echo "[INFO] arch (trizen) package file detected."
+		ensure_installed "trizen" || exit 1
+
+		trizen -S $(remove_comments $pkg_file)
+		;;
 	*)
 		# TODO: add other platforms; rpm, yum, pacman, brew, etc
 		>&2 echo "[FATAL] unrecognized package file: $pkg_file_base"
