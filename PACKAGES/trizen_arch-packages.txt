@@ -4,6 +4,7 @@ bash-completion
 dtrx
 zip
 the_silver_searcher
+xdotool
 tmux
 python3
 python2
@@ -54,3 +55,5 @@ go
 xorg-xprop
 rtv
 urlview
+xbindkeys
+xkbset
