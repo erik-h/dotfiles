@@ -29,8 +29,17 @@ mode "pass-through" {
 }
 bindsym $mod+u mode "pass-through"
 
-# start f.lux
-exec --no-startup-id fluxgui
+# start mopidy music server
+exec --no-startup-id mopidy
+# play/pause music
+bindsym $mod+Shift+p exec mpc toggle
+
+# start f.lux or redshift (screen filter)
+exec --no-startup-id fluxgui || redshift-gtk
+
+# set up print screen
+# bindsym --release Print exec "scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/printscreens/'"
+bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
 
 # set up mousekeys
 exec --no-startup-id setxkbmap -option keypad:pointerkeys
@@ -46,7 +55,7 @@ exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
 exec --no-startup-id cerebro &
 
 # start a terminal
-bindsym $mod+Return exec "~/.local/bin/terminal || i3-sensible-terminal"
+bindsym $mod+Return exec "~/bin/terminal || i3-sensible-terminal"
 
 # start a tmux-less terminal
 bindsym $mod+Shift+Return exec "i3-sensible-terminal"
@@ -64,7 +73,7 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 
 # program launcher
-bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" ~/.local/bin/rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 # pass (passwordstore.org) dmenu script
 bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
@@ -172,9 +181,9 @@ bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
 #### Screen locking
 # using a locking script:
-exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/.local/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
 # bindsym $mod+Control+l exec xautolock -locknow
-bindsym $mod+Control+l exec ~/.local/bin/lock
+bindsym $mod+Control+l exec ~/bin/lock
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 # hacky way to setup dual monitors
@@ -184,7 +193,7 @@ exec --no-startup-id ~/.scripts/dual 2
 exec --no-startup-id nm-applet
 
 # screen compositor
-exec --no-startup-id compton -b --backend glx --paint-on-overlay --vsync opengl-swc
+exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # calculate quick math equations with rofi or dmenu
 bindsym $mod+c exec ~/.scripts/menu-calc
@@ -196,12 +205,12 @@ bindsym $mod+c exec ~/.scripts/menu-calc
 # bindsym $mod+F12 exec --no-startup-id pactl set-sink-volume 1 -- +5% && killall -SIGUSR1 i3status
 # bindsym $mod+F11 exec --no-startup-id pactl set-sink-volume 1 -- -5% && killall -SIGUSR1 i3status
 # bindsym $mod+F10 exec --no-startup-id pactl set-sink-mute 1 toggle && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/pulseaudio-ctl up && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/pulseaudio-ctl down && killall -SIGUSR1 i3status
-bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/pulseaudio-ctl mute && killall -SIGUSR1 i3status
-bindsym $mod+F12 exec --no-startup-id ~/.local/bin/pulseaudio-ctl up && killall -SIGUSR1 i3status
-bindsym $mod+F11 exec --no-startup-id ~/.local/bin/pulseaudio-ctl down && killall -SIGUSR1 i3status
-bindsym $mod+F10 exec --no-startup-id ~/.local/bin/pulseaudio-ctl mute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulseaudio-ctl up && killall -SIGUSR1 py3status
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulseaudio-ctl down && killall -SIGUSR1 py3status
+bindsym XF86AudioMute exec --no-startup-id ~/bin/pulseaudio-ctl mute && killall -SIGUSR1 py3status
+bindsym $mod+F12 exec --no-startup-id ~/bin/pulseaudio-ctl up && killall -SIGUSR1 py3status
+bindsym $mod+F11 exec --no-startup-id ~/bin/pulseaudio-ctl down && killall -SIGUSR1 py3status
+bindsym $mod+F10 exec --no-startup-id ~/bin/pulseaudio-ctl mute && killall -SIGUSR1 py3status
 
 # change brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -249,7 +258,8 @@ bar {
 		statusline #9DA8AD
 		separator #58798B
 	}
-	status_command i3status
+	# status_command i3status
+	status_command py3status -c ~/.i3status.conf
 	position top
 }
 

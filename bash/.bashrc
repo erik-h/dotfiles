@@ -23,8 +23,10 @@ export PS1
 #
 
 # Set the shell theme
-BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
-test -s "$BASE16_SHELL" && source "$_"
+# BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
+# test -s "$BASE16_SHELL" && source "$_"
+BASE16_SHELL="$HOME/.config/base16-shell/"
+test -n "$PS1" && test -s $BASE16_SHELL/profile_helper.sh && eval "$($_)"
 
 # extends regexes
 shopt -s extglob
@@ -50,3 +52,9 @@ test -f ~/.fzf.bash && . "$_"
 
 # Source a local bashrc to add or overwrite things
 [ -f "$HOME/.local_bashrc" ] && . "$HOME/.local_bashrc"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Start X11 if we log in on TTY1
+if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
+	exec startx
+fi

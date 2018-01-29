@@ -5,3 +5,5 @@
 
 ### Misc
 - [ ] Add `st`'s config.h
+- [ ] Add mopidy's configs in ~/.config/mopidy
+- [ ] Add ncmpcpp's configs in ~/.ncmpcpp

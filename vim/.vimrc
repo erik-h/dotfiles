@@ -121,8 +121,12 @@ nnoremap <leader>k <C-W><C-K>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorscheme monokai
 " colorscheme gruvbox
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-eighties
+" let base16colorspace=256  " Access colors present in 256 colorspace
+" colorscheme base16-eighties
+if filereadable(expand("~/.vimrc_background"))
+	let base16colorspace=256
+	source ~/.vimrc_background
+endif
 " colorscheme hybrid
 " let g:solarized_termcolors=256
 " colorscheme solarized
