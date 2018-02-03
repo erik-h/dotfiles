@@ -99,8 +99,6 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
 alias nautilus="nautilus --no-desktop" # See: above
 
-alias mupdf="mupdf-x11"
-
 # Beautify piped in XML and print it to stdout
 function xmlbeautify() {
 	python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read().encode("UTF-8");print xml.dom.minidom.parseString(s).toprettyxml()' | sed '/^\s*$/d'
