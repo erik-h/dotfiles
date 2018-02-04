@@ -406,7 +406,7 @@ augroup END
 Plug 'jceb/vim-orgmode'
 let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
 " TODO: maybe have another keyword after WAITING?
-let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING']]
+let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING'], ['ASK', '|', 'ANSWERED'], ['SOMEDAY']]
 
 " Universal Text Linking - needed for vim org-mode links to work
 Plug 'vim-scripts/utl.vim'
