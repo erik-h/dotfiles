@@ -2,6 +2,14 @@ priority -50
 
 extends texmath
 
+snippet cite "Cite the author solely by reference number"
+\cite{$1}$0
+endsnippet
+
+snippet citea "site the author by name and reference number"
+$1~\cite{$2}$0
+endsnippet
+
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:something}}
 	${0:${VISUAL}}
