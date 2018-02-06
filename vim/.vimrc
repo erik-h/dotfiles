@@ -64,12 +64,12 @@ set viewdir=$HOME/.vim_view/
 " Save views for everything
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview
-" Save views for txt files
+" Save views for plaintext files
 augroup VimViewsGroup
 	autocmd!
-	autocmd BufWritePost,BufLeave,WinLeave *.txt mkview
-	autocmd BufWinEnter *.txt silent loadview
-	" Save views for vimrc
+	autocmd BufWinLeave *.txt,*.org mkview
+	autocmd BufWinEnter *.txt,*.org silent loadview
+	" Also save a view for my vimrc
 	autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
 	autocmd BufWinEnter .vimrc silent loadview
 augroup END
