@@ -62,6 +62,7 @@ markdown
 meld
 mercurial
 moreutils
+mopidy
 mplayer
 mpv
 # mpv-build-deps
@@ -69,6 +70,7 @@ mumble
 mupdf
 mutt
 mysql-server
+ncmpcpp
 network-manager-openvpn
 network-manager-openvpn-gnome
 nginx
