@@ -64,12 +64,12 @@ set viewdir=$HOME/.vim_view/
 " Save views for everything
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview
-" Save views for txt files
+" Save views for plaintext files
 augroup VimViewsGroup
 	autocmd!
-	autocmd BufWritePost,BufLeave,WinLeave *.txt mkview
-	autocmd BufWinEnter *.txt silent loadview
-	" Save views for vimrc
+	autocmd BufWinLeave *.txt,*.org mkview
+	autocmd BufWinEnter *.txt,*.org silent loadview
+	" Also save a view for my vimrc
 	autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
 	autocmd BufWinEnter .vimrc silent loadview
 augroup END
@@ -405,6 +405,8 @@ augroup END
 " vim org-mode
 Plug 'jceb/vim-orgmode'
 let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
+" TODO: maybe have another keyword after WAITING?
+let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING'], ['ASK', '|', 'ANSWERED'], ['SOMEDAY']]
 
 " Universal Text Linking - needed for vim org-mode links to work
 Plug 'vim-scripts/utl.vim'

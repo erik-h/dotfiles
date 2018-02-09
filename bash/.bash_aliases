@@ -5,6 +5,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Ping one of Google's DNS servers to check if I have internet connectivity
 alias gping="ping 8.8.8.8"
 
+# Get this machine's network's public IP address
+alias publicip="dig TXT +short o-o.myaddr.1.google.com @ns1.google.com | sed 's/\"//g'"
+
 # Allow aliases to be sudo-ed
 alias sudo="sudo "
 
@@ -95,8 +98,6 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
 alias nemo="nemo --no-desktop" # Stop the Desktop window from opening in i3
 alias nautilus="nautilus --no-desktop" # See: above
-
-alias mupdf="mupdf-x11"
 
 # Beautify piped in XML and print it to stdout
 function xmlbeautify() {
