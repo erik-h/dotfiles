@@ -1,5 +1,6 @@
 # These are Arch packages I've installed during my fresh laptop install
 xf86-input-mouse
+xorg-xinput
 bash-completion
 dtrx
 zip
@@ -8,7 +9,12 @@ xdotool
 tmux
 python3
 python2
+python2-pip
+mysql-python
+mysql-clients
 py3status
+mupdf
+tk
 networkmanager
 network-manager-applet
 gnome-keyring

@@ -1,3 +1,4 @@
 neovim
 youtube-dl
 python-mpd2
+mysqlclient
