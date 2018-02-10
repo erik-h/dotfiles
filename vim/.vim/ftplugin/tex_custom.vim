@@ -17,7 +17,13 @@ endif
 
 " Compiles a LaTex document using rubber, and removes <document name>.{aux,log}
 function! CompileAndCleanLatex()
-	exec "w"
+	silent w
+	" TODO: have this be silent if no errors occur, else spit out any errors
 	exec "!rubber --pdf --warn all %"
+	" TODO: make this more robust, checking if mupdf is installed and/or
+	" adding support for detecting the specific instance of mupdf that has
+	" our document open.
+	silent !pkill -SIGHUP mupdf
 	silent !rm -f %:r.aux %:r.log
+	silent redraw!
 endfunction
