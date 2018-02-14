@@ -5,6 +5,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Ping one of Google's DNS servers to check if I have internet connectivity
 alias gping="ping 8.8.8.8"
 
+alias cdtemp="cd $(mktemp -d)"
+
 # Get this machine's network's public IP address
 alias publicip="dig TXT +short o-o.myaddr.1.google.com @ns1.google.com | sed 's/\"//g'"
 
