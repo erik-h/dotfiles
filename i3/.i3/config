@@ -55,7 +55,7 @@ exec --no-startup-id xbindkeys
 exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
 
 # start Cerebero (cross platform Spotlight clone)
-exec --no-startup-id cerebro &
+# exec --no-startup-id cerebro &
 
 # start a terminal
 bindsym $mod+Return exec "~/bin/terminal || i3-sensible-terminal"
