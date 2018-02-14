@@ -3,6 +3,7 @@ xf86-input-mouse
 xorg-xinput
 bash-completion
 dtrx
+ncdu
 zip
 the_silver_searcher
 xdotool
