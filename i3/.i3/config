@@ -29,6 +29,8 @@ mode "pass-through" {
 }
 bindsym $mod+u mode "pass-through"
 
+bindsym $mod+Shift+backslash exec ~/.scripts/ac.sh
+
 # start mopidy music server
 exec --no-startup-id mopidy
 # play/pause music
