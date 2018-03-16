@@ -10,6 +10,8 @@ xdotool
 tmux
 python3
 python2
+python-xlib
+python2-xlib
 python2-pip
 mysql-python
 mysql-clients
@@ -64,3 +66,8 @@ rtv
 urlview
 xbindkeys
 xkbset
+dos2unix
+jq
+
+ttf-ms-fonts
+ttf-croscore
