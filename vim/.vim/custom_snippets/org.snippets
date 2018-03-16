@@ -4,6 +4,14 @@ snippet plain "A plain document setup" b
 #+options: date:nil
 #+options: ^:nil
 #+latex_header: \usepackage[margin=2.54cm, footskip=55pt]{geometry}
+# Improves typography
+#+latex_header: \usepackage{microtype}
+# Palatino with smallcaps
+#+latex_header: \usepackage[sc]{mathpazo}
+# Avant Garde
+#+latex_header: \usepackage{avant}
+# Monospace font insonsolata
+#+latex_header: \usepackage[varqu]{zi4}
 #+latex_header: \hypersetup{hidelinks}
 #+title: ${1:TITLE}
 #+author: ${2:Erik H}
