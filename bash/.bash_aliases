@@ -2,6 +2,9 @@
 # e.g. `sleep 30; alert`
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# Edit my inbox orgmode file
+alias inbox="vim ~/.org/inbox.org"
+
 # Ping one of Google's DNS servers to check if I have internet connectivity
 alias gping="ping 8.8.8.8"
 
@@ -87,8 +90,6 @@ alias c="tail -n +1"
 alias vvim="vim -n -u NONE" # 'Vanilla' vim - useful for editing VERY large files
 
 alias open="xdg-open"
-
-alias mscrot="mkdir -p ~/Pictures/Screenshots && scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png"
 
 alias cb="xclip -selection clipboard"
 
