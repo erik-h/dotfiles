@@ -71,3 +71,5 @@ jq
 
 ttf-ms-fonts
 ttf-croscore
+
+wireshark-gtk
