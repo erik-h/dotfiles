@@ -58,6 +58,8 @@ function ebg() {
 	exit 0
 }
 
+alias gm="git merge"
+alias gf="git fetch"
 alias gst="git status"
 alias gdt="git dt"
 alias ga="git add"
