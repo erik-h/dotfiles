@@ -3,6 +3,11 @@ xf86-input-mouse
 xorg-xinput
 bash-completion
 dtrx
+
+wget
+
+bind-tools
+
 ncdu
 zip
 the_silver_searcher
@@ -73,3 +78,5 @@ ttf-ms-fonts
 ttf-croscore
 
 wireshark-gtk
+
+ntp
