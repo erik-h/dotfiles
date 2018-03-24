@@ -67,7 +67,7 @@ bindsym $mod+Shift+Return exec "i3-sensible-terminal"
 
 # swap the currently visible workspaces between monitors
 # depends on: https://github.com/ziberna/i3-py
-bindsym $mod+Shift+s exec "~/.i3/switch.py"
+bindsym $mod+Control+s exec "~/.i3/switch.py"
 
 # kill focused window
 bindsym $mod+Shift+q kill
