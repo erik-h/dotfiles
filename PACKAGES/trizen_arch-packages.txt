@@ -4,6 +4,8 @@ xorg-xinput
 bash-completion
 dtrx
 
+clang
+
 wget
 
 bind-tools
