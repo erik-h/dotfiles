@@ -4,7 +4,10 @@ xorg-xinput
 bash-completion
 dtrx
 
+fortune-mod
+
 clang
+boost
 
 wget
 
@@ -64,6 +67,7 @@ youtube-dl
 python2-eyed3
 emacs
 texlive-latexextra
+texlive-fontsextra
 zathura-pdf-poppler
 rubber
 compton
