@@ -7,8 +7,8 @@ JAVADOCDIR = doc
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		  ${1:Main}.java
-		  $0
+		  ${1:Main}.java $0
+
 MAIN = $1
 
 default: classes
