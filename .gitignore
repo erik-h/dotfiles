@@ -12,3 +12,5 @@ vim/.vim/nvim
 
 qutebrowser/.config/qutebrowser/bookmarks/
 qutebrowser/.config/qutebrowser/quickmarks
+
+fonts/.fonts/.uuid
