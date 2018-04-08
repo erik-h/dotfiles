@@ -1,6 +1,7 @@
 # These are Arch packages I've installed during my fresh laptop install
 xf86-input-mouse
 xorg-xinput
+xorg-xev
 bash-completion
 dtrx
 
