@@ -88,3 +88,5 @@ ttf-croscore
 wireshark-gtk
 
 ntp
+
+thunderbird
