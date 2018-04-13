@@ -180,6 +180,8 @@ assign [class="(?i)google-chrome"] 2 
 assign [class="Firefox"] 2 
 assign [class="qutebrowser"] 2 
 assign [class="Thunderbird"] 4 
+assign [class="Riot"] 4 
+assign [class="Signal"] 4 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
