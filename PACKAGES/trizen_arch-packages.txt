@@ -90,3 +90,5 @@ wireshark-gtk
 ntp
 
 thunderbird
+
+swaks
