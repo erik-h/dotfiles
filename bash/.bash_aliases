@@ -26,7 +26,6 @@ alias htopme="htop -u \$USER"
 alias upgrade="sudo apt update && sudo apt upgrade"
 
 alias drawio="google-chrome --app-id=pebppomjfocnoigkeepgbmcifnnlndla &>/dev/null &"
-alias signal="google-chrome --app-id=bikioccmkafdpakkkcpdbppfkghcmihk &>/dev/null &"
 
 alias qb="qutebrowser"
 
