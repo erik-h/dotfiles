@@ -2,6 +2,7 @@
 xf86-input-mouse
 xorg-xinput
 xorg-xev
+xorg-xwininfo
 bash-completion
 dtrx
 
