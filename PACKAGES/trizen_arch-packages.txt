@@ -92,3 +92,5 @@ ntp
 thunderbird
 
 swaks
+
+signal-desktop-bin
