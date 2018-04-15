@@ -2,7 +2,7 @@
 	helper = cache --timeout=7200
 [user]
 	name = Erik H
-	email = youdulayo@gmail.com
+	email = public+git@erikh.me
 [push]
 	default = simple
 [core]
