@@ -17,3 +17,9 @@ snippet plain "A plain document setup" b
 #+author: ${2:Erik H}
 $0
 endsnippet
+
+snippet fig "Insert a figure with a caption and label" b
+#+CAPTION: $1
+#+LABEL: fig:$2
+[[$0]]
+endsnippet
