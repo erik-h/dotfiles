@@ -171,6 +171,9 @@ let g:netrw_liststyle=3
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 nmap <leader>E :Explore<CR>
 
+" Distraction-free writing
+Plug 'junegunn/goyo.vim'
+
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
