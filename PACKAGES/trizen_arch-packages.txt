@@ -95,3 +95,5 @@ thunderbird
 swaks
 
 signal-desktop-bin
+
+pwgen
