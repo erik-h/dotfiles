@@ -89,7 +89,7 @@ alias mvi="mv -i"
 
 alias c="tail -n +1"
 
-alias vvim="vim -n -u NONE" # 'Vanilla' vim - useful for editing VERY large files
+alias vvim="vim -n -u NONE " # 'Vanilla' vim - useful for editing VERY large files
 
 alias open="xdg-open"
 
