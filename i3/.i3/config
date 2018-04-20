@@ -29,7 +29,7 @@ mode "pass-through" {
 }
 bindsym $mod+u mode "pass-through"
 
-bindsym $mod+Shift+backslash exec ~/.scripts/ac.sh
+bindsym $mod+Shift+backslash exec ~/.private-scripts/ac.sh
 
 # start mopidy music server
 exec --no-startup-id mopidy
@@ -54,7 +54,7 @@ exec --no-startup-id xkbset ma 1 1000 1 70 1
 exec --no-startup-id xbindkeys
 
 # set up my monitors
-exec --no-startup-id "bash -c '~/.scripts/monitor-setup'"
+exec --no-startup-id "bash -c '~/.private-scripts/monitor-setup'"
 
 # start Cerebero (cross platform Spotlight clone)
 # exec --no-startup-id cerebro &
@@ -85,7 +85,7 @@ bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 # pass (passwordstore.org) dmenu script
-bindsym $mod+p exec --no-startup-id ~/.scripts/passmenu
+bindsym $mod+p exec --no-startup-id ~/.private-scripts/passmenu
 
 # start gpg-agent
 exec --no-startup-id gpg-agent --daemon
@@ -198,7 +198,7 @@ bindsym $mod+Control+l exec ~/bin/lock
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 # hacky way to setup dual monitors
-exec --no-startup-id ~/.scripts/dual 2
+exec --no-startup-id ~/.private-scripts/dual 2
 
 # start NetworkManager
 exec --no-startup-id nm-applet
@@ -207,7 +207,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # calculate quick math equations with rofi or dmenu
-bindsym $mod+c exec ~/.scripts/menu-calc
+bindsym $mod+c exec ~/.private-scripts/menu-calc
 
 # change audio levels
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +5% && killall -SIGUSR1 i3status
@@ -275,7 +275,7 @@ bar {
 }
 
 # Set desktop background
-exec_always --no-startup-id bash ~/.scripts/wallpaper.sh
+exec_always --no-startup-id bash ~/.private-scripts/wallpaper.sh
 
 # Start dropbox
 exec --no-startup-id dropbox start

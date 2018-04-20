@@ -3,3 +3,4 @@ youtube-dl
 python-mpd2
 mysqlclient
 ntfy
+grip
