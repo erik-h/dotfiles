@@ -31,7 +31,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
-[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+[ -d "$HOME/.private-scripts" ] && PATH="$HOME/.private-scripts:$PATH"
 # Language specific binaries
 # Golang
 [ -d "$GOROOT/bin" ] && PATH="$PATH:$GOROOT/bin"
@@ -52,4 +52,4 @@ export LIBRARY_PATH
 export PATH
 
 # Use a dmenu password prompt script
-[ -f "$HOME/.scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.scripts/dpass"
+[ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"

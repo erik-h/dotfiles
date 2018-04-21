@@ -38,7 +38,7 @@ test -s "$HOME/.bash_aliases" && . "$_"
 test -s "$HOME/.bash_functions" && . "$_"
 test -s "$HOME/.local_bash_aliases" && . "$_"
 test -s "$HOME/.local_bash_functions" && . "$_"
-test -s "$HOME/.scripts/upto.sh" && . "$_"
+test -s "$HOME/.private-scripts/upto.sh" && . "$_"
 
 ## termite color setup
 test -f ~/.dircolors && eval "$(dircolors "$_")"

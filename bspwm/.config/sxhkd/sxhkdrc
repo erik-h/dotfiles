@@ -104,7 +104,7 @@ alt + d
 	# dmenu_run
 
 alt + c
-	~/.scripts/dmenu-calc
+	~/.private-scripts/dmenu-calc
 
 XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
