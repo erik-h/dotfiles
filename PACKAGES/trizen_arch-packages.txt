@@ -99,3 +99,5 @@ signal-desktop-bin
 pwgen
 
 certbot
+
+mysql-workbench
