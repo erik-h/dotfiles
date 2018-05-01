@@ -101,3 +101,5 @@ pwgen
 certbot
 
 mysql-workbench
+
+oath-toolkit
