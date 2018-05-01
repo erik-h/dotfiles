@@ -4,3 +4,4 @@ python-mpd2
 mysqlclient
 ntfy
 grip
+borgbackup[fuse]
