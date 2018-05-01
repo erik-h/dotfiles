@@ -35,7 +35,7 @@ function numframes() {
 
 alias vim="vim"
 alias vimagit="vim +MagitOnly "
-alias goyo="vim +Goyo "
+alias goyo="vim +Goyo +Limelight "
 
 alias exa="exa -s Name" # sort like ls does by default
 

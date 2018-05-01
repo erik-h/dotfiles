@@ -173,6 +173,8 @@ nmap <leader>E :Explore<CR>
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
+" Hyper-focus writing
+Plug 'junegunn/limelight.vim'
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
