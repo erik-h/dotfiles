@@ -103,3 +103,5 @@ certbot
 mysql-workbench
 
 oath-toolkit
+
+cups
