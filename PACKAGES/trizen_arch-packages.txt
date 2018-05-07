@@ -45,7 +45,6 @@ i3-gaps
 i3status
 tempfile
 redshift
-redshift-gtk
 neofetch
 xdg-utils
 imagemagick
@@ -105,3 +104,5 @@ mysql-workbench
 oath-toolkit
 
 cups
+
+python-xdg
