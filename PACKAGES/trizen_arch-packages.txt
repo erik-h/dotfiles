@@ -106,3 +106,6 @@ oath-toolkit
 cups
 
 python-xdg
+
+rclone
+davfs2
