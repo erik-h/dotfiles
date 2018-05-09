@@ -5,3 +5,8 @@ mysqlclient
 ntfy
 grip
 borgbackup[fuse]
+
+# For: https://github.com/asmw/andOTP-decrypt
+pycrypto
+PyQRCode
+pyotp
