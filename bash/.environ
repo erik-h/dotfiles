@@ -1,7 +1,7 @@
 # If a variable set in our .environ file is already set, we've already sourced
 # this file (probably, unless something else set it...)!
-# TODO: this check isn't good, it seems EDITOR is set before I login
-# [ -n "$EDITOR" ] && return
+[ -n "$__ENVIRON_SET__"] && return
+export __ENVIRON_SET__="set"
 
 # Set TERM so we don't get weird stuff happening in tmux
 export TERM=screen-256color
