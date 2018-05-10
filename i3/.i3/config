@@ -86,6 +86,8 @@ bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg 
 
 # pass (passwordstore.org) dmenu script
 bindsym $mod+p exec --no-startup-id ~/.private-scripts/passmenu
+# OTP dmenu script
+bindsym $mod+o exec --no-startup-id env PATH="$HOME/.private-scripts:$PATH" ~/.private-scripts/otpmenu
 
 # start gpg-agent
 exec --no-startup-id gpg-agent --daemon
