@@ -109,3 +109,5 @@ python-xdg
 
 rclone
 davfs2
+
+xorg-xdpyinfo
