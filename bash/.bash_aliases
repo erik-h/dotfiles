@@ -5,6 +5,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Edit my inbox orgmode file
 alias inbox="vim ~/.org/inbox.org"
 
+function x2xattach() {
+	[[ $# -ne 1 ]] && { >&2 echo "Usage: x2xattach <remote host>"; return 1; }
+	ssh -Y "$1" 'x2x -east -to :0'
+}
+
 # Ping one of Google's DNS servers to check if I have internet connectivity
 alias gping="ping 8.8.8.8"
 
