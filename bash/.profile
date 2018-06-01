@@ -1,3 +1,6 @@
+[ -n "$__PROFILE_IS_SET__" ] && { echo ".profile already set!"; return; }
+export __PROFILE_IS_SET__="SET"
+
 # If running bash, source its config files
 if [ -n "$BASH_VERSION" ]; then
     [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
