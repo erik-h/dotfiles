@@ -1,7 +1,7 @@
 # If a variable set in our .environ file is already set, we've already sourced
 # this file (probably, unless something else set it...)!
-[ -n "$__ENVIRON_SET__"] && { echo ".environ already set!"; return; }
-export __ENVIRON_SET__="SET"
+# [ -n "$__ENVIRON_SET__"] && return
+# export __ENVIRON_SET__="SET"
 
 # Set TERM so we don't get weird stuff happening in tmux
 export TERM=screen-256color
