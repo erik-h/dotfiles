@@ -40,6 +40,8 @@ export RANGER_LOAD_DEFAULT_RC=false
 [ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules:$PATH"
 # Rust
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
+# Ruby
+[ -d "$HOME/.rvm/bin" ] && PATH="$HOME/.rvm/bin:$PATH"
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
