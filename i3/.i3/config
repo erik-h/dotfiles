@@ -93,7 +93,7 @@ bindsym $mod+o exec --no-startup-id ~/.private-scripts/otpmenu
 bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
 
 # start gpg-agent
-exec --no-startup-id gpg-agent --daemon
+exec --no-startup-id eval "$(gpg-agent --daemon)"
 
 # change focus
 bindsym $mod+h focus left
