@@ -54,6 +54,9 @@ test -f ~/.fzf.bash && . "$_"
 [ -f "$HOME/.local_bashrc" ] && . "$HOME/.local_bashrc"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Set up Nix env
+test -e "$HOME/.nix-profile/etc/profile.d/nix.sh" &&  . "$_"
+
 # Start X11 if we log in on TTY1
 if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
 	exec startx

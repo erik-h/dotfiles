@@ -13,3 +13,6 @@ test -f "$HOME/.environ" && . "$HOME/.environ"
 test -f "$HOME/.local_profile" && . "$HOME/.local_profile"
 
 test -s "$HOME/.rvm/scripts/rvm" && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Setup Nix env
+test -e "$HOME/.nix-profile/etc/profile.d/nix.sh" &&  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
