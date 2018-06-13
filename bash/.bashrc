@@ -57,6 +57,9 @@ test -s "$NVM_DIR/bash_completion" && . "$_"  # This loads nvm bash_completion
 # Set up Nix env
 test -e "$HOME/.nix-profile/etc/profile.d/nix.sh" &&  . "$_"
 
+# Set up RVM
+test -s "$HOME/.rvm/scripts/rvm" && . "$_" # Load RVM into a shell session *as a function*
+
 # Start X11 if we log in on TTY1
 if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
 	exec startx
