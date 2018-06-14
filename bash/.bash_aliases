@@ -6,8 +6,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias inbox="vim ~/.org/inbox.org"
 
 function x2xattach() {
-	[[ $# -ne 1 ]] && { >&2 echo "Usage: x2xattach <remote host>"; return 1; }
-	ssh -Y "$1" 'x2x -east -to :0'
+	[[ $# -ne 2 ]] && { >&2 echo "Usage: x2xattach <remote host> <compass direction>"; return 1; }
+	ssh -Y "$1" "x2x -$2 -to :0"
 }
 
 # Ping one of Google's DNS servers to check if I have internet connectivity
