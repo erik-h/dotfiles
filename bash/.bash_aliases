@@ -38,7 +38,12 @@ function numframes() {
 	ffprobe -select_streams v -show_streams "$1" 2>/dev/null | grep nb_frames | sed -e 's/nb_frames=//'
 }
 
-alias vim="vim"
+# Use Neovim instead of vim, if it's installed.
+# `command vim` _must_ be used, because `vim` or `\vim` will just
+# recursively call this function!
+function vim() {
+	which nvim &>/dev/null && nvim "$@" || command vim "$@"
+}
 alias vimagit="vim +MagitOnly "
 alias goyo="vim +Goyo +Limelight "
 
