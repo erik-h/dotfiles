@@ -27,6 +27,8 @@ export GOPATH="$HOME/dev/go"
 export RANGER_LOAD_DEFAULT_RC=false
 
 ## PATH
+# Binaries installed with `snap`
+[ -d "/snap/bin" ] && PATH="/snap/bin:$PATH"
 # General binaries
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
