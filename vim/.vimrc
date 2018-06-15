@@ -571,7 +571,13 @@ function! Bclose()
     if buflisted(altbufnr)
         buffer #
     else
-        bnext
+		try
+			bnext
+		catch
+			" We're probably in an :Explore window
+			bdelete
+			return
+		endtry
     endif
 
     if bufnr("%") == curbufnr
