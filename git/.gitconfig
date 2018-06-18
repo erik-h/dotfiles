@@ -3,6 +3,7 @@
 [user]
 	name = Erik H
 	email = public+git@erikh.me
+	signingkey = 2C5A386B8090ADD77D65494CAD5946D4C7ECFF90
 [push]
 	default = simple
 [core]
