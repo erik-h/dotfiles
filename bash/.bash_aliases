@@ -103,6 +103,23 @@ alias vvim="vim -n -u NONE " # 'Vanilla' vim - useful for editing VERY large fil
 
 alias open="xdg-open"
 
+# TODO: make i3exec and i3open work with workspaces that aren't just numbered.
+# I could loop through the current list of workspaces and find the one that
+# starts with the given number.
+function i3exec() {
+	[[ $# -lt 2 ]] && { >&2 echo "Usage: i3exec <workspace number> <command> [args ...]"; return 1; }
+	workspace="$1"
+	shift
+	i3-msg "workspace $workspace; exec $@"
+}
+
+function i3open() {
+	[[ $# -ne 2 ]] && { >&2 echo "Usage: i3exec <workspace number> <file to open>"; return 1; }
+	workspace="$1"
+	shift
+	i3-msg "workspace $workspace; exec xdg-open $@"
+}
+
 alias cb="xclip -selection clipboard"
 
 alias tmux="tmux -2" # Force tmux to 256 colors
