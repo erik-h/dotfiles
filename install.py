@@ -2,7 +2,7 @@
 
 #
 # Install the dotfiles in this directory using GNU Stow.
-# NOTE: This scripts requires Python3.
+# NOTE: This script requires Python3.
 #
 
 # TODO: use `stow -t /etc etc` style and add another mode to this installer
