@@ -51,7 +51,7 @@ alias goyo="vim +Goyo +Limelight "
 alias linkcoverletter="ln -s *.pdf ErikHaugrud-cover-letter.pdf"
 
 # Lazily symlink a compiled PDF of my resume to a standard name
-alias linkcoverletter="ln -s *.pdf ErikHaugrud-resume.pdf"
+alias linkresume="ln -s *.pdf ErikHaugrud-resume.pdf"
 
 alias exa="exa -s Name" # sort like ls does by default
 
