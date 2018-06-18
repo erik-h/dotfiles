@@ -47,6 +47,9 @@ function vim() {
 alias vimagit="vim +MagitOnly "
 alias goyo="vim +Goyo +Limelight "
 
+# Lazily symlink a compiled PDF of one of my cover letters to a standard name
+alias linkcoverletter="ln -s *.pdf ErikHaugrud-cover-letter.pdf"
+
 alias exa="exa -s Name" # sort like ls does by default
 
 alias tree="tree -C"
