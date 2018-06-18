@@ -18,9 +18,9 @@ import os
 # Put any non-dotfile containing directories to ignore in this list.
 # TODO: once I have the install relative to root feature done, remove etc
 # from this exclude list!
-# TODO: come up with a way to automatically symlink userChrome.css...the trouble
+# TODO: come up with a way to automatically symlink user{Chrome,Content}.css...the trouble
 # is that firefox profile names are different across machines.
-EXCLUDE = ["PACKAGES", "etc", "userChrome.css"]
+EXCLUDE = ["PACKAGES", "etc", "userChrome.css", "userContent.css"]
 FIREFOX_DIR = os.path.expanduser("~/.mozilla/firefox")
 FIREFOX_PROFILES_INI = os.path.join(FIREFOX_DIR, "profiles.ini")
 if not os.path.exists(FIREFOX_PROFILES_INI):
@@ -39,7 +39,7 @@ else:
 
     profile_index = -1
     while profile_index not in range(1, len(valid_names)+1):
-        profile_index = int(input("In which Firefox profile would you like to install 'userChrome.css'?: "))
+        profile_index = int(input("In which Firefox profile would you like to install 'userChrome.css' and 'userContent.css'?: "))
 
     chosen_profile = valid_names[profile_index-1]
     print("Chose:", config[chosen_profile]["name"])
