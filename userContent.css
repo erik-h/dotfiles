@@ -1,6 +1,6 @@
 /* Newtab page */
 @-moz-document url("about:newtab") {
 	body {
-		background-color: #000000 !important;
+		background-color: #2A2A2E !important;
 	}
 }
