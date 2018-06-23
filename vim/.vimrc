@@ -37,6 +37,7 @@ set number
 set relativenumber
 set cursorline
 set colorcolumn=80
+set wildmenu
 set wildmode=longest,list
 set lazyredraw
 " Highlight search terms
@@ -45,6 +46,11 @@ set hlsearch
 set incsearch
 " Control-l to unhighlight a search
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Don't offer to open certain files/directories
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=node_modules/*,bower_components/*
 
 " Copies what was just pasted (so you can paste the same text repeatedly)
 xnoremap p pgvy
@@ -58,6 +64,9 @@ set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000
 set undoreload=10000
+
+" Set the working directory to wherever the open file lives
+" set autochdir
 
 set viewdir=$HOME/.vim_view/
 
@@ -165,11 +174,16 @@ Plug 'editorconfig/editorconfig-vim'
 
 " Minimal file explorer
 Plug 'tpope/vim-vinegar'
-" Use the NERDtree style
-let g:netrw_liststyle=3
 " Hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-nmap <leader>E :Explore<CR>
+" Use the NERDtree style
+let g:netrw_liststyle=3
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+nmap <leader>E :Lexplore<CR>
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -225,7 +239,7 @@ Plug 'w0ng/vim-hybrid'
 
 " ack.vim - original project forked by ag.vim
 Plug 'mileszs/ack.vim'
-let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'rg'
 
 " tern_for_vim - javascript omni-completion
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
@@ -328,8 +342,8 @@ nmap <silent> <F8> :TagbarToggle<CR>
 
 " Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'
-nnoremap <leader>o :CtrlPMixed<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>o :CtrlPMixed<CR>
+" nnoremap <leader>b :CtrlPBuffer<CR>
 " Go to previous buffer
 nnoremap <leader><Tab> :b#<CR>
 let g:ctrlp_map = ''
@@ -352,8 +366,8 @@ Plug 'junegunn/fzf.vim'
 " {{{
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-nnoremap <silent> <leader><space> :Files<CR>
-nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader><space> :Buffers<CR>
+nnoremap <silent> <leader>o :call GitFilesElseFiles()<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
 " nnoremap <silent> <leader>o :BTags<CR>
@@ -368,6 +382,20 @@ nnoremap <silent> <leader>ga :BCommits<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
+
+" Source: https://github.com/junegunn/fzf.vim
+function! GetGitRoot()
+	let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+	return v:shell_error ? '' : root
+endfunction
+
+function! GitFilesElseFiles()
+	if empty(GetGitRoot())
+		execute 'Files'
+	else
+		execute 'GitFiles --cached --others --exclude-standard'
+	endif
+endfunction
 
 function! SearchWordWithAg()
 	execute 'Ack!' expand('<cword>')
