@@ -189,9 +189,9 @@ assign [class="Riot"] 4 
 assign [class="Signal"] 4 
 
 # reload the configuration file
-bindsym $mod+Shift+c exec "i3-mkconfig ~/.i3/$(hostname).i3config; i3-msg reload"
+bindsym $mod+Shift+c exec "mkconfig -o ~/.i3/config ~/.i3/$(hostname).i3config; i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec "i3-mkconfig ~/.i3/$(hostname).i3config; i3-msg restart"
+bindsym $mod+Shift+r exec "mkconfig -o ~/.i3/config ~/.i3/$(hostname).i3config; i3-msg restart"
 # custom exit script (includes logout, suspend, reboot, and poweroff)
 bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
