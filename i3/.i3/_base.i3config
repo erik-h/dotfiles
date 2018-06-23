@@ -189,9 +189,9 @@ assign [class="Riot"] 4 
 assign [class="Signal"] 4 
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec "i3-mkconfig ~/.i3/$(hostname).i3config; i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec "i3-mkconfig ~/.i3/$(hostname).i3config; i3-msg restart"
 # custom exit script (includes logout, suspend, reboot, and poweroff)
 bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 
@@ -268,8 +268,7 @@ bar {
 		statusline #9DA8AD
 		separator #58798B
 	}
-	# status_command i3status
-	status_command py3status -c ~/.i3status.conf
+	status_command i3status
 	position top
 }
 
@@ -289,22 +288,6 @@ for_window [class="(?i)xterm"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="I3-exit" instance="i3-exit"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
-
-# i3-gaps
-# for_window [class="^.*"] border pixel 1
-gaps inner 15
-gaps outer 15
-# smart_gaps on
-
-bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
-
-bindsym $mod+s gaps inner current plus 5
-bindsym $mod+Shift+s gaps inner current minus 5
-
-bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
-
-bindsym $mod+z gaps outer current plus 5
-bindsym $mod+Shift+z gaps outer current minus 5
 
 # switch to workspace 1 when i3 loads
 # Terminal icon: uf120
