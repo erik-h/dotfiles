@@ -1,16 +1,16 @@
-vim/.vim/.netrwhist
-vim/.vim/undodir
-vim/.vim/plugged
-vim/.vim/.VimballRecord
-vim/.vim/autoload
-vim/.vim/doc
-vim/.vim/spell
-vim/.vim/swap
-vim/.vim/.netrwhist
-vim/.vim/init.vim
-vim/.vim/nvim
+/vim/.vim/.netrwhist
+/vim/.vim/undodir
+/vim/.vim/plugged
+/vim/.vim/.VimballRecord
+/vim/.vim/autoload
+/vim/.vim/doc
+/vim/.vim/spell
+/vim/.vim/swap
+/vim/.vim/.netrwhist
+/vim/.vim/init.vim
+/vim/.vim/nvim
 
-qutebrowser/.config/qutebrowser/bookmarks/
-qutebrowser/.config/qutebrowser/quickmarks
+/qutebrowser/.config/qutebrowser/bookmarks/
+/qutebrowser/.config/qutebrowser/quickmarks
 
-fonts/.fonts/.uuid
+/fonts/.fonts/.uuid
