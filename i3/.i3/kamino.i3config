@@ -1,2 +1,2 @@
-#include _base.i3config
-#include _i3-gaps.i3config
+#include includes/_base.i3config
+#include includes/_i3-gaps.i3config
