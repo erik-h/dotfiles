@@ -57,3 +57,11 @@ export PATH
 
 # Use a dmenu password prompt script
 [ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"
+
+# If we have a faster searcher than `find` installed, use it for fuzzy
+# file finding
+if command -v rg > /dev/null 2>&1; then
+	export FZF_DEFAULT_COMMAND="rg --files"
+elif command -v ag > /dev/null 2>&1; then
+	export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
+fi
