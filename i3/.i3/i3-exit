@@ -44,7 +44,7 @@ class i3_exit:
         # This assumes you have a "lock" executable in your PATH
         os.system("lock &")
         if self.which("systemctl"):
-            os.system("systemctl suspend &> /home/erik/systemctl.python.log")
+            os.system("systemctl suspend")
         else:
             os.system("dbus-send --system --print-reply \
                     --dest=\"org.freedesktop.UPower\"   \
