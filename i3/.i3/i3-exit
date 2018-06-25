@@ -10,8 +10,18 @@ pygtk.require('2.0')
 import gtk
 import os
 import getpass
+import subprocess
 
 class i3_exit:
+    def which(self, program):
+        try:
+            with open(os.devnull) as devnull:
+                subprocess.Popen([program], stdout=devnull, stderr=devnull).communicate()
+        except OsError, e:
+            if e.errno == os.errno.ENOENT:
+                return False
+        return True
+
     def disable_buttons(self):
         self.cancel.set_sensitive(False)
         self.logout.set_sensitive(False)
@@ -31,28 +41,38 @@ class i3_exit:
     def suspend_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Suspending, please standby...")
-        os.system("lock")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Suspend")
+        # This assumes you have a "lock" executable in your PATH
+        os.system("lock &")
+        if self.which("systemctl"):
+            os.system("systemctl suspend &> /home/erik/systemctl.python.log")
+        else:
+            os.system("dbus-send --system --print-reply \
+                    --dest=\"org.freedesktop.UPower\"   \
+                    /org/freedesktop/UPower             \
+                    org.freedesktop.UPower.Suspend")
         gtk.main_quit()
 
     def reboot_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Rebooting, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Restart")
+        if self.which("systemctl"):
+            os.system("systemctl reboot")
+        else:
+            os.system("dbus-send --system --print-reply   \
+                    --dest=\"org.freedesktop.ConsoleKit\" \
+                    /org/freedesktop/ConsoleKit/Manager   \
+                    org.freedesktop.ConsoleKit.Manager.Restart")
 
     def shutdown_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Shutting down, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Stop")
+        if self.which("systemctl"):
+            os.system("systemctl poweroff")
+        else:
+            os.system("dbus-send --system --print-reply   \
+                    --dest=\"org.freedesktop.ConsoleKit\" \
+                    /org/freedesktop/ConsoleKit/Manager   \
+                    org.freedesktop.ConsoleKit.Manager.Stop")
 
     def create_window(self):
         self.window = gtk.Window()
