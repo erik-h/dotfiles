@@ -77,6 +77,10 @@ function ebg() {
 	exit 0
 }
 
+function ebgo() {
+	ebg xdg-open "$@"
+}
+
 alias gm="git merge"
 alias gf="git fetch"
 alias gst="git status"
