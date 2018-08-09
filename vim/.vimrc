@@ -74,14 +74,14 @@ set viewdir=$HOME/.vim_view/
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview
 " Save views for plaintext files
-augroup VimViewsGroup
-	autocmd!
-	autocmd BufWinLeave *.txt,*.org mkview
-	autocmd BufWinEnter *.txt,*.org silent loadview
+" augroup VimViewsGroup
+	" autocmd!
+	" autocmd BufWinLeave *.txt,*.org mkview
+	" autocmd BufWinEnter *.txt,*.org silent loadview
 	" Also save a view for my vimrc
-	autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
-	autocmd BufWinEnter .vimrc silent loadview
-augroup END
+	" autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
+	" autocmd BufWinEnter .vimrc silent loadview
+" augroup END
 
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
