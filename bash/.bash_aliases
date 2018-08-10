@@ -13,6 +13,8 @@ function x2xattach() {
 alias primarymonitor=$'xrandr | awk \'/ connected [p]/{print $1}\''
 alias secondarymonitor=$'xrandr | awk \'/ connected [^p]/{print $1}\''
 
+alias lsblk="lsblk -o name,mountpoint,label,size,uuid"
+
 # Ping one of Google's DNS servers to check if I have internet connectivity
 alias gping="ping 8.8.8.8"
 
