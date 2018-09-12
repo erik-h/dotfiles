@@ -56,7 +56,7 @@ export LIBRARY_PATH
 export PATH
 
 # Use a dmenu password prompt script
-[ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"
+# [ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"
 
 # If we have a faster searcher than `find` installed, use it for fuzzy
 # file finding
