@@ -304,6 +304,9 @@ endfunction
 " Async build and test dispatcher
 Plug 'tpope/vim-dispatch'
 
+" Groovy syntax
+Plug 'modille/groovy.vim'
+
 " Gradle build automation system
 Plug 'tfnico/vim-gradle'
 
