@@ -703,7 +703,7 @@ endfunction
 " source: https://objectpartners.com/2012/02/21/using-vim-as-your-grails-ide-part-1-navigating-your-project/
 " Open file under cursor
 map <C-i> :call OpenVariableUnderCursor(expand("<cword>"))<CR>
-map <Leader>h :call FindSubClasses(expand("<cword>"))<CR>
+" map <Leader>h :call FindSubClasses(expand("<cword>"))<CR>
 
 function! OpenVariableUnderCursor(varName)
     let filename = substitute(a:varName,'(<w+>)', 'u1', 'g')
