@@ -42,11 +42,11 @@
 "xbindkeys_show" 
   control+shift + q
 
-"xte 'mousedown 1'"
-F5
+# "xte 'mousedown 1'"
+# F5
 
-"xte 'mouseup 1'"
-F5 + Release
+# "xte 'mouseup 1'"
+# F5 + Release
 
 "xte 'mousedown 1'"
 F6
