@@ -374,6 +374,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Go to previous buffer
 nnoremap <leader><Tab> :b#<CR>
 let g:ctrlp_map = ''
+" TODO: use ripgrep here, else SilverSearcher
 if executable("ag")
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
 	" ag is fast enough that CtrlP doesn't need to cache
@@ -653,6 +654,27 @@ function! Bclose()
     if buflisted(curbufnr)
         execute("bdelete! " . curbufnr)
     endif
+endfunction
+
+" Find a file with the current word under the cursor; IDE like stuff oh boy!
+" source: https://objectpartners.com/2012/02/21/using-vim-as-your-grails-ide-part-1-navigating-your-project/
+" Open file under cursor
+map <C-i> :call OpenVariableUnderCursor(expand("<cword>"))<CR>
+map <Leader>h :call FindSubClasses(expand("<cword>"))<CR>
+
+function! OpenVariableUnderCursor(varName)
+    let filename = substitute(a:varName,'(<w+>)', 'u1', 'g')
+    :call OpenFileUnderCursor(filename)
+endfunction
+
+set path+=../**
+function! OpenFileUnderCursor(filename)
+   let ext = fnamemodify(expand("%:p"), ":t:e")
+   execute ":find " . a:filename . "." . ext
+endfunction
+
+function! FindSubClasses(filename)
+    execute ":Grep (implements|extends) " . a:filename
 endfunction
 
 function! <SID>StripTrailingWhitespace()
