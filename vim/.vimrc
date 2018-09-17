@@ -357,6 +357,17 @@ augroup END
 " Awesome automatic ctags handler
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = "~/.cache/tags"
+" TODO: I use a custom .tagmarker file instead of .git do trigger tags because
+" I want to allow for jumping to definitions _across projects_. I accomplish
+" this by placing a .tagmarker file at the root directory where my other
+" projects are located (e.g. ~/dev/projects).
+" A slightly less hacky solution would be to define a custom
+" g:gutentags_project_root_finder function that _first_ checks all the way up
+" the tree for a .tagmarker file and, upon not finding one, falls back to the
+" default root finder implementation.
+let g:gutentags_project_root = [".tagmarker"]
+let g:gutentags_add_default_project_roots = 0
+" let g:gutentags_trace = 1
 set statusline+=%{gutentags#statusline()}
 
 " tagbar with info on classes, functions, etc
