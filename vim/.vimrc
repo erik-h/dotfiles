@@ -244,8 +244,9 @@ Plug 'w0ng/vim-hybrid'
 Plug 'mileszs/ack.vim'
 let g:ackprg = 'rg'
 
+
 " tern_for_vim - javascript omni-completion
-Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 augroup TernGroup
 	autocmd!
 	" Use tern for JavaScript completion
