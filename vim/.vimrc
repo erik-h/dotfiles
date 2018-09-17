@@ -1,5 +1,16 @@
 " vim:fdm=marker
 
+" Source: https://github.com/junegunn/fzf.vim
+" TODO: this works, but should be improved to not require the try/catch
+function! GetGitRoot()
+	try
+	let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+	catch //
+		return ''
+	endtry
+	return v:shell_error ? '' : root
+endfunction
+
 " If we set $BROWSER in our .bashrc/.profile/etc then use it, else use Chrome
 let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
 
@@ -408,7 +419,17 @@ augroup END
 " EasyGrep - easily search for text in multiple files
 Plug 'dkprice/vim-easygrep'
 " Use custom grepprg for searches
-let g:EasyGrepCommand=1
+let g:EasyGrepCommand = 1
+" Hack-ily set the default easygrep root to be the current repository if we're
+" in one, otherwise use the cwd.
+if empty(GetGitRoot())
+	let g:EasyGrepRoot = "cwd"
+else
+	let g:EasyGrepRoot = "search:.git,.hg,.svn"
+endif
+
+" Allow code to be changed _within_ the quickfix window (for use mainly with :cfdo)
+Plug 'stefandtw/quickfix-reflector.vim'
 
 " TODO: use ripgrep here, else SilverSearcher
 if executable("rg")
@@ -438,12 +459,6 @@ nnoremap <silent> <leader>ga :BCommits<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
-
-" Source: https://github.com/junegunn/fzf.vim
-function! GetGitRoot()
-	let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
-	return v:shell_error ? '' : root
-endfunction
 
 function! GitFilesElseFiles()
 	if empty(GetGitRoot())
