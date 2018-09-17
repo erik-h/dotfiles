@@ -349,6 +349,9 @@ Plug 'majutsushi/tagbar'
 nmap <silent> <F8> :TagbarToggle<CR>
 
 Plug 'roxma/nvim-yarp'
+" neovim RPC compatability layer for vim8
+Plug 'roxma/vim-hug-neovim-rpc'
+
 " Language Client for IDE-like functionality through use of language servers
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 let g:LanguageClient_autoStart = 1
