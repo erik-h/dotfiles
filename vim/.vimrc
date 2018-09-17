@@ -196,7 +196,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Live page reloading
-Plug 'jaxbot/browserlink.vim'
+" Plug 'jaxbot/browserlink.vim'
 
 " Fancy start screen
 Plug 'mhinz/vim-startify'
