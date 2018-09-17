@@ -351,6 +351,19 @@ set statusline+=%{gutentags#statusline()}
 " tagbar with info on classes, functions, etc
 Plug 'majutsushi/tagbar'
 nmap <silent> <F8> :TagbarToggle<CR>
+" Add support for Groovy (some stuff is also required to be added to ~/.ctags)
+let g:tagbar_type_groovy = {
+    \ 'ctagstype' : 'groovy',
+    \ 'kinds'     : [
+        \ 'p:package:1',
+        \ 'c:classes',
+        \ 'i:interfaces',
+        \ 't:traits',
+        \ 'e:enums',
+        \ 'm:methods',
+        \ 'f:fields:1'
+    \ ]
+\ }
 
 Plug 'roxma/nvim-yarp'
 " neovim RPC compatability layer for vim8
