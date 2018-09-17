@@ -341,6 +341,7 @@ augroup END
 
 " Awesome automatic ctags handler
 Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_cache_dir = "~/.cache/tags"
 set statusline+=%{gutentags#statusline()}
 
 " tagbar with info on classes, functions, etc
