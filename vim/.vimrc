@@ -376,24 +376,24 @@ let g:tagbar_type_groovy = {
     \ ]
 \ }
 
-Plug 'roxma/nvim-yarp'
+" Plug 'roxma/nvim-yarp'
 " neovim RPC compatability layer for vim8
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'roxma/vim-hug-neovim-rpc'
 
 " Language Client for IDE-like functionality through use of language servers
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-let g:LanguageClient_autoStart = 1
-" Necessary for operations modifying multiple buffers like rename
-set hidden
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" let g:LanguageClient_autoStart = 1
+" " Necessary for operations modifying multiple buffers like rename
+" set hidden
 
-" LSP configuration for Groovy
-let g:LanguageClient_serverCommands = {}
-let g:groovy_lang_server_jar = '~/opt/groovy-language-server-0.5.5-all.jar'
-if filereadable(glob(g:groovy_lang_server_jar))
-	let g:LanguageClient_serverCommands.groovy = ['java', '-jar', g:groovy_lang_server_jar]
-	" Use LanguageServer for omnifunc completion
-	autocmd FileType groovy setlocal omnifunc=LanguageClient#complete
-endif
+" " LSP configuration for Groovy
+" let g:LanguageClient_serverCommands = {}
+" let g:groovy_lang_server_jar = '~/opt/groovy-language-server-0.5.5-all.jar'
+" if filereadable(glob(g:groovy_lang_server_jar))
+" 	let g:LanguageClient_serverCommands.groovy = ['java', '-jar', g:groovy_lang_server_jar]
+" 	" Use LanguageServer for omnifunc completion
+" 	autocmd FileType groovy setlocal omnifunc=LanguageClient#complete
+" endif
 
 " Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'
