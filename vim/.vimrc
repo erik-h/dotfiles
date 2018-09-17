@@ -172,18 +172,21 @@ call plug#begin("~/.vim/plugged")
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
 
+" Not-as-minimal file explorer
+Plug 'scrooloose/nerdtree'
+nmap <leader>e :NERDTreeToggle<CR>
 " Minimal file explorer
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 " Hide dotfiles by default
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " Use the NERDtree style
-let g:netrw_liststyle=3
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 15
-nmap <leader>E :Lexplore<CR>
+" let g:netrw_liststyle=3
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 15
+" nmap <leader>E :Lexplore<CR>
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
