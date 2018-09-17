@@ -387,6 +387,17 @@ augroup RainbowParentheses
 	autocmd FileType java,cpp,javascript,python RainbowParentheses
 augroup END
 
+" EasyGrep - easily search for text in multiple files
+Plug 'dkprice/vim-easygrep'
+" Use custom grepprg for searches
+let g:EasyGrepCommand=1
+
+" TODO: use ripgrep here, else SilverSearcher
+if executable("rg")
+	set grepprg=rg\ --vimgrep\ --no-heading
+	set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
