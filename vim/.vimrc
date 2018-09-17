@@ -304,6 +304,9 @@ endfunction
 " Async build and test dispatcher
 Plug 'tpope/vim-dispatch'
 
+" Groovy syntax
+Plug 'modille/groovy.vim'
+
 " Gradle build automation system
 Plug 'tfnico/vim-gradle'
 
@@ -336,9 +339,33 @@ augroup VimGoGroup
 	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 augroup END
 
+" Awesome automatic ctags handler
+Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_cache_dir = "~/.cache/tags"
+set statusline+=%{gutentags#statusline()}
+
 " tagbar with info on classes, functions, etc
 Plug 'majutsushi/tagbar'
 nmap <silent> <F8> :TagbarToggle<CR>
+
+Plug 'roxma/nvim-yarp'
+" neovim RPC compatability layer for vim8
+Plug 'roxma/vim-hug-neovim-rpc'
+
+" Language Client for IDE-like functionality through use of language servers
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+let g:LanguageClient_autoStart = 1
+" Necessary for operations modifying multiple buffers like rename
+set hidden
+
+" LSP configuration for Groovy
+let g:LanguageClient_serverCommands = {}
+let g:groovy_lang_server_jar = '~/opt/groovy-language-server-0.5.5-all.jar'
+if filereadable(glob(g:groovy_lang_server_jar))
+	let g:LanguageClient_serverCommands.groovy = ['java', '-jar', g:groovy_lang_server_jar]
+	" Use LanguageServer for omnifunc completion
+	autocmd FileType groovy setlocal omnifunc=LanguageClient#complete
+endif
 
 " Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'

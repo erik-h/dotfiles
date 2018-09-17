@@ -1,0 +1,89 @@
+# TODO: spread some DRY love here - the Java and Groovy gradle templates are
+# almost the same; the similar bits could be inserted using Python
+# interpolation
+snippet gradleJava "A typical build.gradle for a Java project" b
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+	/*
+	flatDir {
+		dirs 'lib'
+	}
+	mavenCentral()
+	*/
+}
+
+mainClassName = '${1:some.main.className}'
+
+dependencies {
+	/*
+	// For local JARs
+	compile name: 'someLocalJar'
+	// For Maven dependencies
+	compile 'org.jdom:jdom2:2.0.6'
+	// Testing deps from Maven
+	testCompile 'junit:junit:4.12'
+	*/
+}
+
+run {
+	if (project.hasProperty('appArgs')) {
+		args Eval.me(appArgs)
+	}
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': '$1'
+	}
+	doFirst {
+		from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+endsnippet
+
+snippet gradleGroovy "A typical build.gradle for a Groovy project" b
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+repositories {
+	/*
+	flatDir {
+		dirs 'lib'
+	}
+	*/
+	mavenCentral()
+}
+
+mainClassName = '${1:some.main.className}'
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy-all:2.4.15'
+	/*
+	// For local JARs
+	compile name: 'someLocalJar'
+	// For Maven dependencies
+	compile 'org.jdom:jdom2:2.0.6'
+	// Testing deps from Maven
+	testCompile 'junit:junit:4.12'
+	*/
+}
+
+run {
+	if (project.hasProperty('appArgs')) {
+		args Eval.me(appArgs)
+	}
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': '$1'
+	}
+	doFirst {
+		from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+endsnippet

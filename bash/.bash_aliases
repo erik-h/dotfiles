@@ -3,7 +3,7 @@
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit my inbox orgmode file
-alias inbox="vim ~/.org/inbox.org"
+alias inbox="vim '+normal G' ~/.org/inbox.org"
 
 function x2xattach() {
 	[[ $# -ne 2 ]] && { >&2 echo "Usage: x2xattach <remote host> <compass direction>"; return 1; }
