@@ -22,10 +22,11 @@ else
 	" We're using neovim
 	set ttimeout
 	set ttimeoutlen=0
-	tnoremap <C-[> <C-\><C-n>
 	" let g:python_host_skip_check=1
 	" let g:loaded_python3_provider=1
 endif
+" TODO: wrap this in a 'vim8 or neovim' check
+tnoremap <C-[> <C-\><C-n>
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
