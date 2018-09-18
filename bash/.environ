@@ -25,6 +25,8 @@ export GOPATH="$HOME/dev/go"
 ## Program specific environment variables
 # load custom ranger config file, not the default
 export RANGER_LOAD_DEFAULT_RC=false
+# set location for ripgrep config file
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 
 ## PATH
 # Binaries installed with `snap`
