@@ -288,6 +288,8 @@ Plug 'mhinz/vim-hugefile'
 Plug 'altercation/vim-colors-solarized'
 
 " eclim
+" TODO: install eclim using vim-plug and an install script, as it's done
+" here: https://github.com/dansomething/vim-eclim.
 let g:EclimBrowser = g:browser
 " Stop the screen from flashing when choosing completions
 set completeopt-=preview
