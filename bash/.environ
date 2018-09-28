@@ -63,7 +63,7 @@ export PATH
 # If we have a faster searcher than `find` installed, use it for fuzzy
 # file finding
 if command -v rg > /dev/null 2>&1; then
-	export FZF_DEFAULT_COMMAND="rg --files"
+	export FZF_DEFAULT_COMMAND="rg --hidden --files"
 elif command -v ag > /dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
 fi
