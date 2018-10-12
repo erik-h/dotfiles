@@ -3,10 +3,23 @@
 # [ -n "$__ENVIRON_SET__"] && return
 # export __ENVIRON_SET__="SET"
 
+first_installed() {
+	for cmd in "$@"; do
+		if command -v "$cmd" > /dev/null 2>&1; then
+			echo "$cmd"
+			return 0
+		fi
+	done
+
+	echo ""
+	return 1
+}
+
 # Set TERM so we don't get weird stuff happening in tmux
 export TERM=screen-256color
 
 ## Set some default programs
+export TERMINAL="$(first_installed "termite" "gnome-terminal" "xterm")"
 export EDITOR="vim"
 export BROWSER="firefox"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
