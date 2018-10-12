@@ -22,6 +22,8 @@ function x2xattach() {
 	ssh -Y "$1" "x2x -$2 -to :0"
 }
 
+alias dbe="mkdir -p ~/dropbox-encrypted && rclone mount dropbox-encrypted: ~/dropbox-encrypted/"
+
 alias primarymonitor=$'xrandr | awk \'/ connected [p]/{print $1}\''
 alias secondarymonitor=$'xrandr | awk \'/ connected [^p]/{print $1}\''
 
