@@ -107,6 +107,7 @@ alias gco="git checkout"
 alias gc="[ -e ./.git-commit-template ] && git commit -t ./.git-commit-template || git commit"
 alias gp="git push"
 alias gl="git pull"
+alias gr="git remote"
 alias glog="git log"
 alias glogp='git log --pretty=format:"%h %s" --graph'
 # "Fuzzy git checkout" - use fzf to fuzzy match a branch to checkout
