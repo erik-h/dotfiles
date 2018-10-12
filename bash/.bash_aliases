@@ -107,6 +107,12 @@ alias gp="git push"
 alias gl="git pull"
 alias glog="git log"
 alias glogp='git log --pretty=format:"%h %s" --graph'
+# "Fuzzy git branch" - use fzf to fuzzy match a branch to checkout
+function fgb() {
+	local branch="$(git branch | sed -e "s/^[ \t]*//" -e "s/^\* //" | fzf)"
+	[[ -z "$branch" ]] && return 1
+	git checkout "$branch"
+}
 
 # alias ec="emacsclient -n"
 ## "Emacs edit"
