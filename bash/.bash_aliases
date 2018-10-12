@@ -2,6 +2,18 @@
 # e.g. `sleep 30; alert`
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+function checktodo() {
+	local search_string="TODO|FIXME|DEBUG"
+	if command -v rg &> /dev/null; then
+		rg "$search_string" | less
+	elif command -v ag &> /dev/null; then
+		ag "$search_string" | less
+	else
+		>&2 echo "ERROR: neither ag nor rg are installed."
+		return 1
+	fi
+}
+
 # Edit my inbox orgmode file
 alias inbox="vim '+normal G' ~/.org/inbox.org"
 
