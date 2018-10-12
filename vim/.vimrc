@@ -326,6 +326,12 @@ Plug 'tpope/vim-dispatch'
 " Groovy syntax
 Plug 'modille/groovy.vim'
 
+" Setup proper comment string for GSP
+augroup GrailsGroup
+	autocmd!
+	autocmd FileType gsp setlocal commentstring=<%--\ %s\ --%>
+augroup end
+
 " Gradle build automation system
 Plug 'tfnico/vim-gradle'
 
