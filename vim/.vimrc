@@ -259,12 +259,12 @@ let g:ackprg = 'rg'
 
 
 " tern_for_vim - javascript omni-completion
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-augroup TernGroup
-	autocmd!
-	" Use tern for JavaScript completion
-	autocmd FileType javascript setlocal omnifunc=tern#Complete
-augroup END
+" Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+" augroup TernGroup
+" 	autocmd!
+" 	" Use tern for JavaScript completion
+" 	autocmd FileType javascript setlocal omnifunc=tern#Complete
+" augroup END
 
 " Vimball
 Plug 'vim-scripts/Vimball'
