@@ -111,10 +111,32 @@ alias gr="git remote"
 alias glog="git log"
 alias glogp='git log --pretty=format:"%h %s" --graph'
 # "Fuzzy git checkout" - use fzf to fuzzy match a branch to checkout
+function _fuzzy_git_branch() {
+	git branch --all | sed -e "s/^[ \t]*//" -e "s/^\* //" -e 's/^remotes\///' -e '/ -> /d' | fzf --query="$1"
+}
 function fgco() {
-	local branch="$(git branch | sed -e "s/^[ \t]*//" -e "s/^\* //" | fzf)"
+	local branch="$(_fuzzy_git_branch "$1")"
 	[[ -z "$branch" ]] && return 1
 	git checkout "$branch"
+}
+# "Fuzzy git merge" - use fzf to fuzzy match a branch to merge
+function fgm() {
+	local branch="$(_fuzzy_git_branch "$1")"
+	[[ -z "$branch" ]] && return 1
+	git merge "$branch"
+}
+function fgn() {
+	# If we don't have the right number of arguments (as of writing this
+	# comment...) then let `git nuke` spit out a usage message.
+	# We need at least one argument (the remote; we don't fuzzy match it
+	# because you _probably_ don't have more than two, reasonably shortly named
+	# remotes).
+	[[ $# -lt 1 ]] && { git nuke; return 1; }
+
+	local remote="$1"
+	local branch="$(_fuzzy_git_branch "$2")"
+	[[ -z "$branch" ]] && return 1
+	git nuke "$remote" "$branch"
 }
 
 # alias ec="emacsclient -n"
