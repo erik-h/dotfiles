@@ -642,6 +642,8 @@ filetype plugin indent on
 " map <F7> :tabn<CR>
 
 nnoremap ; :
+" View the current file's full path instead of just the basename by default
+nnoremap <C-g> 1<C-g>
 
 " Auto inserts a newline and closing } after an opening { and enter are
 " pressed.
