@@ -104,7 +104,10 @@ set splitright
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" Tabs as tabs
 set noexpandtab
+" Tabs as spaces
+" set expandtab
 
 set smartindent
 syntax on
