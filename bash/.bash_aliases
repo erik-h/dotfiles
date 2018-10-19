@@ -125,6 +125,11 @@ function fgm() {
 	[[ -z "$branch" ]] && return 1
 	git merge "$branch"
 }
+function fgbd() {
+	local branch="$(_fuzzy_git_branch "$1")"
+	[[ -z "$branch" ]] && return 1
+	git branch -d "$branch"
+}
 function fgn() {
 	# If we don't have the right number of arguments (as of writing this
 	# comment...) then let `git nuke` spit out a usage message.
