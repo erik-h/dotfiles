@@ -46,6 +46,9 @@ test -f ~/.dircolors && eval "$(dircolors "$_")"
 ## fzf: https://github.com/junegunn/fzf
 test -f ~/.fzf.bash && . "$_"
 
+## password-store
+test -r "/usr/share/bash-completion/completions/pass" && . "$_"
+
 ## Node version manager setup
 # export NVM_DIR="$HOME/.nvm"
 # test -s "$NVM_DIR/nvm.sh" && . "$_"  # This loads nvm
