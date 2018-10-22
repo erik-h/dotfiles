@@ -17,6 +17,10 @@ function checktodo() {
 # Edit my inbox orgmode file
 alias inbox="vim '+normal G' ~/.org/inbox.org"
 
+function prettypath() {
+	tr ':' '\n' <<< "$PATH" | sort
+}
+
 function x2xattach() {
 	[[ $# -ne 2 ]] && { >&2 echo "Usage: x2xattach <remote host> <compass direction>"; return 1; }
 	ssh -Y "$1" "x2x -$2 -to :0"
