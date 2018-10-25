@@ -27,7 +27,7 @@ else
 endif
 " TODO: wrap this in a 'vim8 or neovim' check
 tnoremap <C-[> <C-\><C-n>
-command Vterm vsplit | terminal ++curwin
+command! Vterm vsplit | terminal ++curwin
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
