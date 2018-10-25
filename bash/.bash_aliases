@@ -18,7 +18,7 @@ function checktodo() {
 alias inbox="vim '+normal G' ~/.org/inbox.org"
 
 function prettypath() {
-	tr ':' '\n' <<< "$PATH" | sort
+	tr ':' '\n' <<< "$PATH" | sort | uniq
 }
 
 function x2xattach() {
