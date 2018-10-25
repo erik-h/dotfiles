@@ -539,6 +539,14 @@ let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.o
 " TODO: maybe have another keyword after WAITING?
 let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING'], ['ASK', '|', 'ANSWERED'], ['SOMEDAY']]
 
+" Set up custom ToDo and related word highlighting
+augroup CustomTodo
+    au!
+    au Syntax * syn match MyTodo /\v<(FIXME|DEBUG|NOTE|TODO|OPTIMIZE|XXX)/
+          \ containedin=.*Comment,vimCommentTitle
+augroup END
+hi def link MyTodo Todo
+
 " Universal Text Linking - needed for vim org-mode links to work
 Plug 'vim-scripts/utl.vim'
 
