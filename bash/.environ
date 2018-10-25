@@ -80,3 +80,5 @@ if command -v rg > /dev/null 2>&1; then
 elif command -v ag > /dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
 fi
+
+[ -f "$HOME/.local_environ" ] && . "$HOME/.local_environ"
