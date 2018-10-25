@@ -191,6 +191,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Not-as-minimal file explorer
 Plug 'scrooloose/nerdtree'
 nmap <leader>e :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=60
 " Minimal file explorer
 " Plug 'tpope/vim-vinegar'
 " Hide dotfiles by default
