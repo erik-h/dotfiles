@@ -54,7 +54,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 [ -d "$GOROOT/bin" ] && PATH="$PATH:$GOROOT/bin"
 [ -d "$GOPATH/bin" ] && PATH="$PATH:$GOPATH/bin"
 # Nodejs
-[ -d "$HOME/node_modules" ] && PATH="$HOME/node_modules:$PATH"
+[ -d "$HOME/node_modules/.bin" ] && PATH="$HOME/node_modules/.bin:$PATH"
 # Rust
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 # Ruby
