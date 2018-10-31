@@ -2,6 +2,38 @@
 # e.g. `sleep 30; alert`
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+#
+# TODO: for _git_status_each_do and _git_status_each_do_list, it would be 
+# awesome if there was an option to perform the search in vim, with the
+# quickfix menu being populated with the results. It would then be really easy
+# to quickly check out and modify each TODO item if necessary, without
+# having to manually open vim and re-search for TODO|FIXME|DEBUG.
+#
+function _git_status_each_do_list() {
+	[[ $# -lt 1 ]] && { >&2 echo "Usage: _git_status_each_do_list <command> [ arg ... ]"; return 1; }
+	git status --porcelain | awk '{print $2}' | xargs "$@" | cut -d ':' -f1 | uniq
+}
+function _git_status_each_do() {
+	[[ $# -lt 1 ]] && { >&2 echo "Usage: _git_status_each_do <command> [ arg ... ]"; return 1; }
+
+	git status --porcelain | awk '{print $2}' | sed "/.*.swp/d" | xargs "$@"
+}
+
+# Show lines that contain TODO|DEBUG|FIXME that are unstaged in the current Git
+# repo. If no files are unstaged, all files are searched.
+function todos() {
+	# TODO: should ensure `rg` is installed, otherwise use `ag`, otherwise `grep`
+	search_cmd="rg"
+	search_cmd_args="TODO|FIXME|DEBUG"
+	if [[ "$1" == "-f" ]] || [[ "$1" == "--files" ]]; then
+		_git_status_each_do_list "$search_cmd" -H --no-heading "$search_cmd_args"
+	elif [[ "$1" == "-a" ]] || [[ "$1" == "--all" ]]; then
+		"$search_cmd" "$search_cmd_args"
+	else
+		_git_status_each_do "$search_cmd" "$search_cmd_args"
+	fi
+}
+
 function checktodo() {
 	local search_string="TODO|FIXME|DEBUG"
 	if command -v rg &> /dev/null; then
