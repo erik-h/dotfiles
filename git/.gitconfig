@@ -15,5 +15,6 @@
 [alias]
 	d = diff
 	dt = difftool
+	today = log --since=midnight
 ; [http]
 ; 	sslverify = false
