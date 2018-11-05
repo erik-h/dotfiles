@@ -26,6 +26,8 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 
 # Hide commands prefixed with spaces
 export HISTCONTROL="ignorespace"
+# Include execution time in command history
+export HISTTIMEFORMAT='%F %T '
 
 # Make sure default config folder is set
 export XDG_CONFIG_HOME="$HOME/.config"
