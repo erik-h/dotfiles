@@ -299,6 +299,7 @@ if [ -f ~/.fzf.bash ]; then
 		local file
 		file=$(fzf-tmux --query="$1" --select-1 --exit-0)
 		[ -n "$file" ] && ${EDITOR:-vim} "$file"
+		>&2 printf "$file\n"
 	}
 
 	# Modified version where you can press
