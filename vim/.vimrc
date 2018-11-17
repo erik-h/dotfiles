@@ -761,7 +761,7 @@ endfunction
 
 augroup WhitespaceStrip
 	autocmd!
-	autocmd FileType c,cpp,java,php,ruby,python,javascript,css,git,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+	autocmd FileType c,cpp,java,groovy,php,ruby,python,javascript,css,git,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
 
 function! InsertCommand(command)
