@@ -631,6 +631,8 @@ Plug 'honza/vim-snippets'
 " let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
 " nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+Plug 'zxqfl/tabnine-vim'
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
