@@ -85,9 +85,9 @@ bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 # pass (passwordstore.org) dmenu script
-bindsym $mod+p exec --no-startup-id ~/.private-scripts/passmenu
+bindsym $mod+p exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu
 # OTP dmenu script
-bindsym $mod+o exec --no-startup-id ~/.private-scripts/otpmenu
+bindsym $mod+o exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/otpmenu
 
 # record GIF screencasts
 bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
