@@ -2,6 +2,8 @@
 # e.g. `sleep 30; alert`
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+alias psa="pass-ssh-add \$(hostname)"
+
 #
 # TODO: for _git_status_each_do and _git_status_each_do_list, it would be 
 # awesome if there was an option to perform the search in vim, with the
