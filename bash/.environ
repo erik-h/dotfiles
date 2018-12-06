@@ -15,6 +15,9 @@ first_installed() {
 	return 1
 }
 
+# Make sure gpg pinentry will work from a tty
+export GPG_TTY="$(tty)"
+
 # Set TERM so we don't get weird stuff happening in tmux
 export TERM=screen-256color
 
