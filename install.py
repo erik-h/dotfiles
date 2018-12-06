@@ -12,6 +12,10 @@
 # TODO: use `stow -t /etc etc` style and add another mode to this installer
 # that works with system-wide files stowed relative to root.
 
+# TODO: add some auto-generation of some dynamic configs such as:
+# - ~/.gnupg/gpg-agent.conf -> as of now this would just be:
+# `mkdir -p ~/.gnupg && echo "pinentry-program $HOME/bin/smart-pinentry" >> ~/.gnupg/gpg-agent.conf`
+
 import configparser
 from glob import glob
 import subprocess
