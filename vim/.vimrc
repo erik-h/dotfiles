@@ -180,8 +180,7 @@ augroup end
 " START - vim-plug
 " vim-plug - plugin manager
 if empty(glob("~/.vim/autoload/plug.vim"))
-	silent !mkdir -p ~/.vim/autoload
-	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 call plug#begin("~/.vim/plugged")
 
