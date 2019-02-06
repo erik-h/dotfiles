@@ -184,6 +184,9 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 call plug#begin("~/.vim/plugged")
 
+" Edit text for the browser in vim!
+Plug 'pandysong/ghost-text.vim'
+
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
 
