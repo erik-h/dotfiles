@@ -39,6 +39,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Golang
 export GOROOT="$HOME/dev/lang/go"
 export GOPATH="$HOME/dev/go"
+# Android
+export ANDROID_HOME="$HOME/opt/Android/sdk"
 
 ## Program specific environment variables
 # load custom ranger config file, not the default
