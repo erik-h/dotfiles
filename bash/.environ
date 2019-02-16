@@ -48,6 +48,9 @@ export RANGER_LOAD_DEFAULT_RC=false
 # set location for ripgrep config file
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 
+# password-store
+export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
+
 ## PATH
 # Binaries installed with `snap`
 [ -d "/snap/bin" ] && PATH="/snap/bin:$PATH"
