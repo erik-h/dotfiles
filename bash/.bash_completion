@@ -1,8 +1,6 @@
 # Ignore bash completion on files with these extensions
 # FIGNORE=".class:.o"
 
-# Filename completion for emacs_edit.py
-complete -f ee
-
-# Binary completion for execute-in-background function
-complete -o filenames -F _command ebg
+for complete_file in "$HOME"/.bash_completion.d/*; do
+	[[ -f "$complete_file" ]] && . "$complete_file"
+done
