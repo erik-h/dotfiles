@@ -8,6 +8,7 @@
 	default = simple
 [core]
 	editor = vim
+	attributesfile = ~/.gitattributes
 [diff]
 	tool = vimdiff
 [difftool]
@@ -18,3 +19,5 @@
 	today = log --since=midnight
 ; [http]
 ; 	sslverify = false
+[diff "gpg"]
+	textconv = gpg --no-tty --decrypt
