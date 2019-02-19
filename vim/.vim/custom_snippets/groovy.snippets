@@ -2,6 +2,10 @@ snippet le "Log at the error level" b
 log.error(${1:"${2:value}"})$0
 endsnippet
 
+snippet lw "Log at the warn level" b
+log.warn(${1:"${2:value}"})$0
+endsnippet
+
 # TODO: spread some DRY love here - the Java and Groovy gradle templates are
 # almost the same; the similar bits could be inserted using Python
 # interpolation
