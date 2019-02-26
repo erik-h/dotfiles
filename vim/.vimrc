@@ -59,6 +59,8 @@ set hlsearch
 set incsearch
 " Control-l to unhighlight a search
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+" Copy contents of the current buffer to the system clipboard (requires xclip)
+nnoremap <silent> <leader>c :exec '!cat '.shellescape('%').'\|xclip -selection clipboard'<CR>
 
 " Don't offer to open certain files/directories
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
