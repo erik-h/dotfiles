@@ -39,12 +39,17 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Golang
 export GOROOT="$HOME/dev/lang/go"
 export GOPATH="$HOME/dev/go"
+# Android
+export ANDROID_HOME="$HOME/opt/Android/sdk"
 
 ## Program specific environment variables
 # load custom ranger config file, not the default
 export RANGER_LOAD_DEFAULT_RC=false
 # set location for ripgrep config file
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
+
+# password-store
+export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 
 ## PATH
 # Binaries installed with `snap`

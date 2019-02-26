@@ -334,6 +334,9 @@ Plug 'tpope/vim-dispatch'
 " Groovy syntax
 Plug 'modille/groovy.vim'
 
+" Dart syntax and helpful commands
+Plug 'dart-lang/dart-vim-plugin'
+
 " Setup proper comment string for GSP
 augroup GrailsGroup
 	autocmd!
