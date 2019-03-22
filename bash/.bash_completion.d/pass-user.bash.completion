@@ -1,0 +1,5 @@
+PASSWORD_STORE_EXTENSION_COMMANDS+=(user)
+
+__password_store_extension_complete_user() {
+    _pass_complete_entries 1
+}
