@@ -25,8 +25,8 @@ export PS1
 # Set the shell theme
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
 # test -s "$BASE16_SHELL" && source "$_"
-BASE16_SHELL="$HOME/.config/base16-shell/"
-test -n "$PS1" && test -s $BASE16_SHELL/profile_helper.sh && eval "$($_)"
+# BASE16_SHELL="$HOME/.config/base16-shell/"
+# test -n "$PS1" && test -s $BASE16_SHELL/profile_helper.sh && eval "$($_)"
 
 # extends regexes
 shopt -s extglob

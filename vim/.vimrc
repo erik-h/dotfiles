@@ -150,10 +150,10 @@ nnoremap <leader>k <C-W><C-K>
 " colorscheme gruvbox
 " let base16colorspace=256  " Access colors present in 256 colorspace
 " colorscheme base16-eighties
-if filereadable(expand("~/.vimrc_background"))
-	let base16colorspace=256
-	source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+" 	let base16colorspace=256
+" 	source ~/.vimrc_background
+" endif
 " colorscheme hybrid
 " let g:solarized_termcolors=256
 " colorscheme solarized
@@ -187,7 +187,9 @@ endif
 call plug#begin("~/.vim/plugged")
 
 " Edit text for the browser in vim!
-Plug 'pandysong/ghost-text.vim'
+" TODO: use 'raghur/vim-ghost' instead; it supports neovim _and_ vim
+" whereas ghost-text.vim only supports vim.
+" Plug 'pandysong/ghost-text.vim'
 
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
@@ -251,6 +253,9 @@ Plug 'digitaltoad/vim-pug', {'for': 'pug'}
 
 " vim-evanesco - better / searching
 Plug 'pgdouyon/vim-evanesco'
+
+" nord colorscheme
+Plug 'arcticicestudio/nord-vim'
 
 " gruvbox colorscheme
 Plug 'morhetz/gruvbox'
@@ -655,6 +660,8 @@ let g:UltiSnipsEditSplit="vertical"
 call plug#end()
 filetype plugin indent on
 " END - vim-plug
+
+colorscheme nord
 
 " map <F6> :tabp<CR>
 " map <F7> :tabn<CR>
