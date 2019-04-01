@@ -355,7 +355,6 @@ Plug 'tfnico/vim-gradle'
 " Go development plugin for vim
 set rtp+=$GOROOT/misc/vim
 Plug 'fatih/vim-go', {'for': 'go'}
-let g:go_bin_path = expand("$GOROOT/bin")
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 augroup VimGoGroup
