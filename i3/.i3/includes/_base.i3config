@@ -84,8 +84,11 @@ bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 # program launcher
 bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
-# pass (passwordstore.org) dmenu script
-bindsym $mod+p exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu
+## pass (passwordstore.org) dmenu scripts
+# Try to use a machine-specific ~/bin/passmenu script if it exists, otherwise fallback to the "normal" script.
+# The machine-specific script is likely a symlink to one of ~/.private-scripts/passmenu{,-work}
+bindsym $mod+p exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/bin/passmenu || env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu
+bindsym $mod+w exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu-work
 # OTP dmenu script
 bindsym $mod+o exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/otpmenu
 
