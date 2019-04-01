@@ -255,7 +255,8 @@ Plug 'digitaltoad/vim-pug', {'for': 'pug'}
 Plug 'pgdouyon/vim-evanesco'
 
 " nord colorscheme
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', {'as': 'dracula'}
 
 " gruvbox colorscheme
 Plug 'morhetz/gruvbox'
@@ -661,7 +662,7 @@ call plug#end()
 filetype plugin indent on
 " END - vim-plug
 
-colorscheme nord
+colorscheme dracula
 
 " map <F6> :tabp<CR>
 " map <F7> :tabn<CR>
