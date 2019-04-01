@@ -31,6 +31,10 @@ bindsym $mod+u mode "pass-through"
 
 bindsym $mod+Shift+backslash exec ~/.private-scripts/ac.sh
 
+for_window[title="term-scratchpad"] move to scratchpad
+bindsym $mod+s scratchpad show
+exec --no-startup-id ~/bin/scratchpad
+
 # start mopidy music server
 exec --no-startup-id mopidy
 # play/pause music
