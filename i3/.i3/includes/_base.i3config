@@ -97,7 +97,7 @@ bindsym $mod+w exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scri
 bindsym $mod+o exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/otpmenu
 
 # record GIF screencasts
-bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
+# bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
 
 # start gpg-agent
 exec --no-startup-id gpg-agent --daemon
