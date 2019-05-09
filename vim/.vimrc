@@ -216,6 +216,9 @@ Plug 'junegunn/goyo.vim'
 " Hyper-focus writing
 Plug 'junegunn/limelight.vim'
 
+" Fish shell support
+Plug 'dag/vim-fish'
+
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
