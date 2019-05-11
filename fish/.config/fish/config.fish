@@ -30,3 +30,15 @@ function fish_user_key_bindings
 
 	bind \cr reverse_history_search
 end
+
+# Disable the greeting
+set fish_greeting
+
+# TODO: move all of this stuff to specific files, similar to how I currently
+# set environment variables in ~/.environ for bash, etc.
+if [ -d ~/.fzf ]
+	set PATH ~/.fzf/bin $PATH
+end
+set SHELL /usr/bin/fish
+# Make sure gpg pinentry will work from a tty
+set GPG_TTY (tty)
