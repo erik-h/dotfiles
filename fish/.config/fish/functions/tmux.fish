@@ -1,3 +1,3 @@
 function tmux
-	tmux -2 $argv
+	command tmux -2 $argv
 end
