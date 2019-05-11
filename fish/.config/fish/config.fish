@@ -39,6 +39,7 @@ set fish_greeting
 if [ -d ~/.fzf ]
 	set PATH ~/.fzf/bin $PATH
 end
+set PATH /snap/bin $PATH
 set SHELL /usr/bin/fish
 # Make sure gpg pinentry will work from a tty
 set GPG_TTY (tty)
