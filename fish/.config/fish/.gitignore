@@ -1,6 +1,8 @@
 # Ignore machine-specific universal variables files for fish versions < 3.0.0.
 # As of version 3.0.0, universal variables are stored in ~/.config/fish/fish_variables.
 fishd.*
+# Also just ignore all universal variables for now
+fish_variables
 
 # Fish functions located in the conf dir are intended to be _machine specific_,
 # so we shouldn't track them.
