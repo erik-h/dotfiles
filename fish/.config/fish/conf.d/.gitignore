@@ -1,0 +1,3 @@
+# The following conf scripts are installed via `fisher`
+fisher.fish
+sdk.fish
