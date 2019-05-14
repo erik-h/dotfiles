@@ -22,10 +22,6 @@ set -x TERM screen-256color
 # Make sure gpg pinentry will work from a tty
 set -x GPG_TTY (tty)
 
-if [ -d ~/.fzf ]
-	set -x PATH ~/.fzf/bin $PATH
-end
-set -x PATH /snap/bin $PATH
 
 ## Set some default programs
 set -x TERMINAL (first_installed "termite" "gnome-terminal" "xterm")
@@ -58,7 +54,8 @@ set -x RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 
 ## PATH
-# TODO: double check if I can keep the colons in PATH.
+# FZF
+[ -d "$HOME/.fzf" ]; and set -x PATH ~/.fzf/bin $PATH
 # Binaries installed with `snap`
 [ -d "/snap/bin" ]; and set -x PATH "/snap/bin" $PATH
 # General binaries
