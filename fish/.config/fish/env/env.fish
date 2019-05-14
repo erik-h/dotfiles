@@ -60,28 +60,28 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 ## PATH
 # TODO: double check if I can keep the colons in PATH.
 # Binaries installed with `snap`
-[ -d "/snap/bin" ]; and set -x PATH "/snap/bin:$PATH"
+[ -d "/snap/bin" ]; and set -x PATH "/snap/bin" $PATH
 # General binaries
-[ -d "$HOME/bin" ]; and set -x PATH "$HOME/bin:$PATH"
-[ -d "$HOME/.local/bin" ]; and set -x PATH "$HOME/.local/bin:$PATH"
-[ -d "$HOME/.local/sbin" ]; and set -x PATH "$HOME/.local/sbin:$PATH"
-[ -d "$HOME/.private-scripts" ]; and set -x PATH "$HOME/.private-scripts:$PATH"
+[ -d "$HOME/bin" ]; and set -x PATH "$HOME/bin" $PATH
+[ -d "$HOME/.local/bin" ]; and set -x PATH "$HOME/.local/bin" $PATH
+[ -d "$HOME/.local/sbin" ]; and set -x PATH "$HOME/.local/sbin" $PATH
+[ -d "$HOME/.private-scripts" ]; and set -x PATH "$HOME/.private-scripts" $PATH
 # Language specific binaries
 # Golang
-[ -d "$GOROOT/bin" ]; and set -x PATH "$PATH:$GOROOT/bin"
-[ -d "$GOPATH/bin" ]; and set -x PATH "$PATH:$GOPATH/bin"
+[ -d "$GOROOT/bin" ]; and set -x PATH $PATH "$GOROOT/bin"
+[ -d "$GOPATH/bin" ]; and set -x PATH $PATH "$GOPATH/bin"
 # Nodejs
-[ -d "$HOME/node_modules/.bin" ]; and set -x PATH "$HOME/node_modules/.bin:$PATH"
+[ -d "$HOME/node_modules/.bin" ]; and set -x PATH "$HOME/node_modules/.bin" $PATH
 # Rust
-[ -d "$HOME/.cargo/bin" ]; and set -x PATH "$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ]; and set -x PATH "$HOME/.cargo/bin" $PATH
 # Ruby
-[ -d "$HOME/.rvm/bin" ]; and set -x PATH "$HOME/.rvm/bin:$PATH"
+[ -d "$HOME/.rvm/bin" ]; and set -x PATH "$HOME/.rvm/bin" $PATH
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
-set -x LD_LIBRARY_PATH "/usr/local/lib:$LD_LIBRARY_PATH" # Apparently this directory isn't always included by default
+set -x LD_LIBRARY_PATH "/usr/local/lib" $LD_LIBRARY_PATH # Apparently this directory isn't always included by default
 # Include library paths for locally installed stuff
-[ -d "$HOME/.local/lib/" ]; and set -x LD_LIBRARY_PATH "$HOME/.local/lib/:$LD_LIBRARY_PATH"; and set -x LIBRARY_PATH "$HOME/.local/lib/:$LIBRARY_PATH"
+[ -d "$HOME/.local/lib/" ]; and set -x LD_LIBRARY_PATH "$HOME/.local/lib/" $LD_LIBRARY_PATH; and set -x LIBRARY_PATH "$HOME/.local/lib/" $LIBRARY_PATH
 
 # Use a dmenu password prompt script
 # [ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"
