@@ -6,7 +6,10 @@ function fe
 	end
 
 	set file (eval $fzf_tmux --query=$argv[1] --select-1 --exit-0)
-	set editor $EDITOR; or set editor "vim"
+
+	set editor $EDITOR
+	test -z "$editor"; and set editor "vim"
+
 	if [ -n "$file" ]
 		eval $editor $file
 		printf "$file\n" >&2 

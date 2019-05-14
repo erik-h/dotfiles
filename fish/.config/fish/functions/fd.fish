@@ -5,7 +5,9 @@ function fd
 		return 1
 	end
 
-	set root_dir $argv[1]; or set root_dir "*"
+	set root_dir $argv[1]
+	test -z "$root_dir"; and set root_dir "*"
+
 	set dir (find $root_dir -path '*/\.*' -prune \
 				   -o -type d -print 2> /dev/null | eval $fzf_tmux +m)
 	if [ -n "$dir" ]
