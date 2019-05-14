@@ -2,6 +2,16 @@
 # In this script we set up global environment variables
 #
 
+if [ -n "$_FISH_ENV_SOURCED" ]
+	# We've already sourced this environment script, so let's exit!
+	exit 0
+else
+	# We haven't sourced this environment script yet; we will set an
+	# environment variable flag to ensure we don't source it again and we
+	# will ... source it now!
+	set -x _FISH_ENV_SOURCED "true"
+end
+
 function first_installed -d "Return the first 'installed' (i.e. in \$PATH) command of the given args."
 	for cmd in $argv
 		if command -v $cmd > /dev/null 2>&1
