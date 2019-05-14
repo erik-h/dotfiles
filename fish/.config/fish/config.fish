@@ -34,4 +34,10 @@ end
 # Disable the greeting
 set fish_greeting
 
+# Set up our general environment variables
 source ~/.config/fish/env/env.fish
+
+# Start X11 if we log in on TTY1
+if [ -z "$DISPLAY" ]; and [ (tty) = "/dev/tty1" ]
+	exec startx
+end
