@@ -15,6 +15,9 @@
 # TODO: add some auto-generation of some dynamic configs such as:
 # - ~/.gnupg/gpg-agent.conf -> as of now this would just be:
 # `mkdir -p ~/.gnupg && echo "pinentry-program $HOME/bin/smart-pinentry" >> ~/.gnupg/gpg-agent.conf`
+# `echo "use-standard-socket" >> ~/.gnupg/gpg-agent.conf`
+# NOTE: the "use-standard-socket" option is deprecated BUT without it, fish
+# shell doesn't play nice with the curses pinentry program.
 
 import configparser
 from glob import glob

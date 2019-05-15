@@ -2,6 +2,11 @@
 # In this script we set up global environment variables
 #
 
+# Make sure gpg pinentry will work from a tty
+# We _always_ want to set this when we start a new fish session so GPG
+# knows to prompt us in the currently-being-used tty.
+set -x GPG_TTY (tty)
+
 if [ -n "$_FISH_ENV_SOURCED" ]
 	# We've already sourced this environment script, so let's exit!
 	exit 0
@@ -28,10 +33,6 @@ set -x SHELL /usr/bin/fish
 
 # Set TERM so we don't get weird stuff happening in tmux
 set -x TERM screen-256color
-
-# Make sure gpg pinentry will work from a tty
-set -x GPG_TTY (tty)
-
 
 ## Set some default programs
 set -x TERMINAL (first_installed "termite" "gnome-terminal" "xterm")
