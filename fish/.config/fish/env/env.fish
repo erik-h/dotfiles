@@ -2,19 +2,40 @@
 # In this script we set up global environment variables
 #
 
-# Make sure gpg pinentry will work from a tty
-# We _always_ want to set this when we start a new fish session so GPG
-# knows to prompt us in the currently-being-used tty.
-set -x GPG_TTY (tty)
+function _path_munge -d "Add the given directory to \$PATH if it isn't already in there."
+	set -l candidate $argv[1]
+	set -l modifier $argv[2]
 
-if [ -n "$_FISH_ENV_SOURCED" ]
-	# We've already sourced this environment script, so let's exit!
-	exit 0
-else
-	# We haven't sourced this environment script yet; we will set an
-	# environment variable flag to ensure we don't source it again and we
-	# will ... source it now!
-	set -x _FISH_ENV_SOURCED "true"
+	switch "$PATH"
+	case "*$candidate*"
+		return 1
+	case '*'
+		if [ "$modifier" = "after" ]
+			# TODO
+			set -gx PATH $PATH $candidate
+		else
+			set -gx PATH $candidate $PATH
+		end
+		return 0
+	end
+end
+
+function _ld_library_path_munge -d "Add the given directory to \$LD_LIBRARY_PATH if it isn't already in there."
+	set -l candidate $argv[1]
+	set -l modifier $argv[2]
+
+	switch "$LD_LIBRARY_PATH"
+	case "*$candidate*"
+		return 1
+	case '*'
+		if [ "$modifier" = "after" ]
+			# TODO
+			set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH $candidate
+		else
+			set -gx LD_LIBRARY_PATH $candidate $LD_LIBRARY_PATH
+		end
+		return 0
+	end
 end
 
 function first_installed -d "Return the first 'installed' (i.e. in \$PATH) command of the given args."
@@ -30,6 +51,9 @@ function first_installed -d "Return the first 'installed' (i.e. in \$PATH) comma
 end
 
 set -x SHELL /usr/bin/fish
+
+# Make sure gpg pinentry will work from a tty
+set -x GPG_TTY (tty)
 
 # Set TERM so we don't get weird stuff happening in tmux
 set -x TERM screen-256color
@@ -66,30 +90,31 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 
 ## PATH
 # FZF
-[ -d "$HOME/.fzf" ]; and set -x PATH ~/.fzf/bin $PATH
+# [ -d "$HOME/.fzf" ]; and set -x PATH ~/.fzf/bin $PATH
+[ -d "$HOME/.fzf" ]; and _path_munge ~/.fzf/bin
 # Binaries installed with `snap`
-[ -d "/snap/bin" ]; and set -x PATH "/snap/bin" $PATH
+[ -d "/snap/bin" ]; and _path_munge "/snap/bin"
 # General binaries
-[ -d "$HOME/bin" ]; and set -x PATH "$HOME/bin" $PATH
-[ -d "$HOME/.local/bin" ]; and set -x PATH "$HOME/.local/bin" $PATH
-[ -d "$HOME/.local/sbin" ]; and set -x PATH "$HOME/.local/sbin" $PATH
-[ -d "$HOME/.private-scripts" ]; and set -x PATH "$HOME/.private-scripts" $PATH
+[ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
+[ -d "$HOME/.local/bin" ]; and _path_munge "$HOME/.local/bin"
+[ -d "$HOME/.local/sbin" ]; and _path_munge "$HOME/.local/sbin"
+[ -d "$HOME/.private-scripts" ]; and _path_munge "$HOME/.private-scripts"
 # Language specific binaries
 # Golang
-[ -d "$GOROOT/bin" ]; and set -x PATH $PATH "$GOROOT/bin"
-[ -d "$GOPATH/bin" ]; and set -x PATH $PATH "$GOPATH/bin"
+[ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
+[ -d "$GOPATH/bin" ]; and _path_munge "$GOPATH/bin"
 # Nodejs
-[ -d "$HOME/node_modules/.bin" ]; and set -x PATH "$HOME/node_modules/.bin" $PATH
+[ -d "$HOME/node_modules/.bin" ]; and _path_munge "$HOME/node_modules/.bin"
 # Rust
-[ -d "$HOME/.cargo/bin" ]; and set -x PATH "$HOME/.cargo/bin" $PATH
+[ -d "$HOME/.cargo/bin" ]; and _path_munge "$HOME/.cargo/bin"
 # Ruby
-[ -d "$HOME/.rvm/bin" ]; and set -x PATH "$HOME/.rvm/bin" $PATH
+[ -d "$HOME/.rvm/bin" ]; and _path_munge "$HOME/.rvm/bin"
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
-set -x LD_LIBRARY_PATH "/usr/local/lib" $LD_LIBRARY_PATH # Apparently this directory isn't always included by default
+_ld_library_path_munge "/usr/local/lib" # Apparently this directory isn't always included by default
 # Include library paths for locally installed stuff
-[ -d "$HOME/.local/lib/" ]; and set -x LD_LIBRARY_PATH "$HOME/.local/lib/" $LD_LIBRARY_PATH; and set -x LIBRARY_PATH "$HOME/.local/lib/" $LIBRARY_PATH
+[ -d "$HOME/.local/lib/" ]; and _ld_library_path_munge "$HOME/.local/lib/"; and _ld_library_path_munge "$HOME/.local/lib/"
 
 # Use a dmenu password prompt script
 # [ -f "$HOME/.private-scripts/dpass" ] && export SUDO_ASKPASS="$HOME/.private-scripts/dpass"
@@ -101,5 +126,8 @@ if command -v rg > /dev/null 2>&1
 else if command -v ag > /dev/null 2>&1
 	set -x FZF_DEFAULT_COMMAND "ag --hidden --ignore .git -g ''"
 end
+
+functions -e _path_munge
+functions -e _ld_library_path_munge
 
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
