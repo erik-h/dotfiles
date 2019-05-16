@@ -34,6 +34,9 @@ end
 # Disable the greeting
 set fish_greeting
 
+# Show the _full path_ in `fish_prompt`
+set fish_prompt_pwd_dir_length 0
+
 # Set up our general environment variables
 source ~/.config/fish/env/env.fish
 
