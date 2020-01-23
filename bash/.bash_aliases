@@ -10,28 +10,20 @@ function followredirect() {
 }
 
 #
-# Emulate The Silver Searcher's `ag -g <regex> [path]` filename search
-# functionality using ripgrep.
-# TODO: allow for more flags to be passed to rg; I'm not sure how/if I should
-# pass the flags differently between the two `rg` executions. This is mostly
-# important for searching hidden files - right now this function has no ability
-# to do so, aside from setting --hidden in the ripgreprc.
+# imps -> "import search"
 #
-function rgg() {
+# Search for a Java/Groovy/<other JVM language> style import containing the
+# given search term.
+#
+function imps() {
 	if ! command -v rg &> /dev/null; then
 		>&2 echo "ERROR: ripgrep must be installed!"
 		return 1
 	fi
-	[[ $# -lt 1 ]] && { >&2 echo "Usage: rgg <regex> [path to search]"; return 1; }
+	[[ $# -lt 1 ]] && { >&2 echo "Usage: imps <import search term>"; return 1; }
 
-	regex="$1"
-	path=""
-	[[ $# -gt 1 ]] && path="$2"
-	# Default to searching recursively down from the current working directory,
-	# as `ag` does.
-	[[ -z "$path" ]] && path="."
-
-	rg --files "$path" | rg "$regex"
+	term="$1"
+	rg --smart-case "^import .*$term"
 }
 
 #
