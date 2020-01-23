@@ -160,6 +160,28 @@ function ebgo() {
 	ebg xdg-open "$@"
 }
 
+# Check first if there were any commits done
+#   by author yesterday. If there were, return those. If
+#   there weren't, look for all commits since last Friday
+#   at midnight as it may have been a weekend.
+#
+# Original source: https://gist.github.com/tinifni/3756796
+
+# TODO: right now this is broken using the "put the command in a string" method
+function gitstandup() {
+	base_log_cmd="git log --all --pretty=format:'* %s' --no-merges --reverse --author=\"$(git config --get user.name)\""
+	echo "base_log_cmd: $base_log_cmd"
+	echo "BEFORE IF"
+	if [ -z "$($base_log_cmd --since=yesterday.midnight)" ]; then
+		$base_log_cmd --since=last.friday.midnight;
+		echo "after friday"
+	else
+		$base_log_cmd --since=yesterday.midnight;
+		echo "after yesterday"
+	fi
+}
+alias gsu='gitstandup'
+
 alias gm="git merge"
 alias gf="git fetch"
 alias gst="git status"
