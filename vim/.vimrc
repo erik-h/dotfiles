@@ -161,6 +161,11 @@ nnoremap <leader>k <C-W><C-K>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific autocommands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup YAML
+	autocmd!
+	" Use 2 spaces for tabs
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup end
 augroup SageMath
 	autocmd!
 	" Use python syntax highlighting for SageMath files
