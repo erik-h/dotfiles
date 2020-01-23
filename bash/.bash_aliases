@@ -4,6 +4,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias psa="pass-ssh-add \$(hostname)"
 
+function followredirect() {
+	[[ $# -ne 1 ]] && { >&2 echo -e "Usage: followredirect <host>\ne.g. followredirect http://google.ca"; return 1; }
+	curl -v -L "$1" 2>&1 | egrep "^> (Host:|GET)"
+}
+
 #
 # Emulate The Silver Searcher's `ag -g <regex> [path]` filename search
 # functionality using ripgrep.
