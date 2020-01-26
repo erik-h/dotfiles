@@ -14,6 +14,8 @@
 /vim/.vim/eclim
 /vim/.vim/plugin
 
+/fish/.config/fish/env/local_env.fish
+
 /qutebrowser/.config/qutebrowser/bookmarks/
 /qutebrowser/.config/qutebrowser/quickmarks
 
