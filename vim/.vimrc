@@ -786,6 +786,9 @@ augroup WhitespaceStrip
 	autocmd FileType c,cpp,java,groovy,php,ruby,python,javascript,css,git,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
 
+command! Js setlocal ft=javascript
+command! Gsp setlocal ft=gsp
+
 function! InsertCommand(command)
 	redir => output
 	silent execute a:command
