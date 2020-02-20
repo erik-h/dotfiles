@@ -4,6 +4,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias psa="pass-ssh-add \$(hostname)"
 
+alias steam="steam -nochatui -nofriendsui"
+
 #
 # Emulate The Silver Searcher's `ag -g <regex> [path]` filename search
 # functionality using ripgrep.
