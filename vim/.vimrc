@@ -161,6 +161,11 @@ nnoremap <leader>k <C-W><C-K>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific autocommands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup YAML
+	autocmd!
+	" Use 2 spaces for tabs
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup end
 augroup SageMath
 	autocmd!
 	" Use python syntax highlighting for SageMath files
@@ -646,7 +651,11 @@ Plug 'honza/vim-snippets'
 " let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
 " nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-Plug 'zxqfl/tabnine-vim'
+Plug 'zxqfl/tabnine-vim', { 'for': []}
+augroup plug_tabnine
+	" Load TabNine for everything EXCEPT plain text files
+	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
+augroup END
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"

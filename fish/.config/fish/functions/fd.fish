@@ -6,12 +6,11 @@ function fd
 	end
 
 	set root_dir $argv[1]
-	test -z "$root_dir"; and set root_dir "*"
+	test -z "$root_dir"; and set root_dir *
 
 	set dir (find $root_dir -path '*/\.*' -prune \
 				   -o -type d -print 2> /dev/null | eval $fzf_tmux +m)
 	if [ -n "$dir" ]
 		cd $dir
 	end
-
 end
