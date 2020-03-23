@@ -4,6 +4,8 @@ function jira --description "Open the given Jira issue(s) in \$BROWSER. \$BROWSE
 		return 1
 	end
 	for issue in $argv
-		eval $BROWSER "https://"$JIRA_BASE_URL"/browse/"$issue
+		set -l browser "$JIRA_BROWSER"
+		test -z "$browser"; and set -l browser "$BROWSER"
+		eval $browser "https://"$JIRA_BASE_URL"/browse/"$issue
 	end
 end
