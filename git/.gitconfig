@@ -21,3 +21,5 @@
 ; 	sslverify = false
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
+[pull]
+	rebase = false
