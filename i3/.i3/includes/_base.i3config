@@ -95,6 +95,8 @@ bindsym $mod+p exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/bin/passmenu 
 bindsym $mod+w exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu-work
 # OTP dmenu script
 bindsym $mod+o exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/otpmenu
+# passmenu-like script for copying the username to the clipboard instead of the password
+bindsym $mod+i exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/bin/passusermenu || env PINENTRY_USER_DATA="X11" ~/.private-scripts/passusermenu
 
 # record GIF screencasts
 # bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
