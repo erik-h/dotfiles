@@ -40,6 +40,13 @@ set fish_prompt_pwd_dir_length 0
 # Set up our general environment variables
 source ~/.config/fish/env/env.fish
 
+# Install fisher for fish package management
+if not functions -q fisher
+	set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+	curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+	fish -c fisher
+end
+
 # Start X11 if we log in on TTY1
 if [ -z "$DISPLAY" ]; and [ (tty) = "/dev/tty1" ]
 	exec startx

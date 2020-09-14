@@ -86,7 +86,7 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 
 # program launcher
-bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec fuzzy_win fuzzy_cmd || rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 ## pass (passwordstore.org) dmenu scripts
 # Try to use a machine-specific ~/bin/passmenu script if it exists, otherwise fallback to the "normal" script.
@@ -95,6 +95,8 @@ bindsym $mod+p exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/bin/passmenu 
 bindsym $mod+w exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/passmenu-work
 # OTP dmenu script
 bindsym $mod+o exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/.private-scripts/otpmenu
+# passmenu-like script for copying the username to the clipboard instead of the password
+bindsym $mod+i exec --no-startup-id env PINENTRY_USER_DATA="X11" ~/bin/passusermenu || env PINENTRY_USER_DATA="X11" ~/.private-scripts/passusermenu
 
 # record GIF screencasts
 # bindsym $mod+g exec --no-startup-id ~/.private-scripts/gifcast
@@ -225,6 +227,9 @@ bindsym $mod+c exec ~/.private-scripts/menu-calc
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
 bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && killall -SIGUSR1 py3status
+bindsym XF86AudioNext exec --no-startup-id playerctl next && killall -SIGUSR1 py3status
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous && killall -SIGUSR1 py3status
 bindsym $mod+F12 exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
 bindsym $mod+F11 exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
 bindsym $mod+F10 exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
@@ -291,6 +296,7 @@ exec --no-startup-id syndaemon -i 0.3 -K -R -d
 # open certain windows in floating mode
 # e.g: for_window [class="(?i)sfml-app"] floating enable 
 for_window [class="(?i)cssh"] floating enable
+for_window [instance="termitefuzzy"] floating enable; sticky enable
 for_window [class="(?i)xterm"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="I3-exit" instance="i3-exit"] floating enable
