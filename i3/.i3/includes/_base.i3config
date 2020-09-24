@@ -48,7 +48,8 @@ exec --no-startup-id tmux new-session -d -s syncthing "syncthing -no-browser"
 
 # set up print screen
 # bindsym --release Print exec "scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/printscreens/'"
-bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
+# bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
+bindsym --release Print exec mscrot
 
 # set up mousekeys
 exec --no-startup-id setxkbmap -option keypad:pointerkeys
