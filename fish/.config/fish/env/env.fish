@@ -78,7 +78,7 @@ set -x XDG_CONFIG_HOME "$HOME/.config"
 
 ## Language specific environment variables
 # Golang
-set -x GOROOT "$HOME/dev/lang/go"
+# set -x GOROOT "$HOME/dev/lang/go"
 set -x GOPATH "$HOME/dev/go"
 # Android
 set -x ANDROID_HOME "$HOME/opt/Android/sdk"
@@ -105,7 +105,7 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/.private-scripts" ]; and _path_munge "$HOME/.private-scripts"
 # Language specific binaries
 # Golang
-[ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
+# [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
 [ -d "$GOPATH/bin" ]; and _path_munge "$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ]; and _path_munge "$HOME/node_modules/.bin"
