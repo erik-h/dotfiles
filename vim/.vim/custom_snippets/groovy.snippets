@@ -14,7 +14,7 @@ endsnippet
 
 snippet logparams "Log Grails controller parameters at the INFO level" b
 log.info("Executing \"${params.action}\" action.")
-params.each { log.info("Param ${it.key} = ${it.value}")}
+params.each { log.info("Param ${it.key} = ${it.value}") }
 $0
 endsnippet
 
