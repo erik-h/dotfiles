@@ -48,7 +48,8 @@ exec --no-startup-id tmux new-session -d -s syncthing "syncthing -no-browser"
 
 # set up print screen
 # bindsym --release Print exec "scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/printscreens/'"
-bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
+# bindsym --release Print exec "scrot -s 'screenshot.png' -e 'mv $f ~/screenshot.png'
+bindsym --release Print exec mscrot
 
 # set up mousekeys
 exec --no-startup-id setxkbmap -option keypad:pointerkeys
@@ -86,7 +87,9 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 
 # program launcher
-bindsym $mod+d exec fuzzy_win fuzzy_cmd || rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+# TODO: WIP, fuzzy_win fuzzy_cmd isn't currently working for some reason
+# bindsym $mod+d exec fuzzy_win fuzzy_cmd || rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 ## pass (passwordstore.org) dmenu scripts
 # Try to use a machine-specific ~/bin/passmenu script if it exists, otherwise fallback to the "normal" script.
@@ -167,7 +170,7 @@ bindsym $mod+2 workspace number 2 
 bindsym $mod+3 workspace number 3 
 # Mail icon: uf0e0
 bindsym $mod+4 workspace number 4 
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace number 5 
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -182,7 +185,8 @@ bindsym $mod+Shift+2 move container to workspace number 2 
 bindsym $mod+Shift+3 move container to workspace number 3 
 # Mail icon: uf0e0
 bindsym $mod+Shift+4 move container to workspace number 4 
-bindsym $mod+Shift+5 move container to workspace 5
+# Music icon: uf001
+bindsym $mod+Shift+5 move container to workspace number 5 
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -196,6 +200,8 @@ assign [class="qutebrowser"] 2 
 assign [class="Thunderbird"] 4 
 assign [class="Riot"] 4 
 assign [class="Signal"] 4 
+# FIXME: this assignment of Spotify to the music workspace isn't working for some reason
+assign [class="Spotify"] 5 
 
 # reload the configuration file
 bindsym $mod+Shift+c exec "mkconfig -o ~/.i3/config ~/.i3/$(hostname).i3config; i3-msg reload"

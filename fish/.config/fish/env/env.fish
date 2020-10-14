@@ -50,7 +50,11 @@ function first_installed -d "Return the first 'installed' (i.e. in \$PATH) comma
 	return 1
 end
 
-set -x SHELL /usr/bin/fish
+# Hacky hopefully-temporary fix to a vim issue I encountered using fish:
+# https://github.com/Addisonbean/Vim-Xcode-Theme/issues/1#issuecomment-510547754
+# (I wasn't using the XCode theme, for me it happened whenever I opened vim within
+# a Go project)
+set -x SHELL /bin/bash
 
 # Make sure gpg pinentry will work from a tty
 set -x GPG_TTY (tty)
@@ -74,7 +78,7 @@ set -x XDG_CONFIG_HOME "$HOME/.config"
 
 ## Language specific environment variables
 # Golang
-set -x GOROOT "$HOME/dev/lang/go"
+# set -x GOROOT "$HOME/dev/lang/go"
 set -x GOPATH "$HOME/dev/go"
 # Android
 set -x ANDROID_HOME "$HOME/opt/Android/sdk"
@@ -101,7 +105,7 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/.private-scripts" ]; and _path_munge "$HOME/.private-scripts"
 # Language specific binaries
 # Golang
-[ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
+# [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
 [ -d "$GOPATH/bin" ]; and _path_munge "$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ]; and _path_munge "$HOME/node_modules/.bin"

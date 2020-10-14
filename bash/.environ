@@ -36,9 +36,6 @@ export HISTTIMEFORMAT='%F %T '
 export XDG_CONFIG_HOME="$HOME/.config"
 
 ## Language specific environment variables
-# Golang
-export GOROOT="$HOME/dev/lang/go"
-export GOPATH="$HOME/dev/go"
 # Android
 export ANDROID_HOME="$HOME/opt/Android/sdk"
 
@@ -60,9 +57,6 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/.private-scripts" ] && PATH="$HOME/.private-scripts:$PATH"
 # Language specific binaries
-# Golang
-[ -d "$GOROOT/bin" ] && PATH="$PATH:$GOROOT/bin"
-[ -d "$GOPATH/bin" ] && PATH="$PATH:$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ] && PATH="$HOME/node_modules/.bin:$PATH"
 # Rust

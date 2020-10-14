@@ -3,4 +3,8 @@
 	body {
 		background-color: #2A2A2E !important;
 	}
+
+	div.wordmark {
+		filter: invert(100%);
+	}
 }
