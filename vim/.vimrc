@@ -11,6 +11,8 @@ function! GetGitRoot()
 	return v:shell_error ? '' : root
 endfunction
 
+set backspace=indent,eol,start
+
 " If we set $BROWSER in our .bashrc/.profile/etc then use it, else use Chrome
 let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
 
