@@ -198,6 +198,11 @@ call plug#begin("~/.vim/plugged")
 " whereas ghost-text.vim only supports vim.
 " Plug 'pandysong/ghost-text.vim'
 
+" TODO: use floaterm once I figure out why :FloatermNew throws an error
+" (seemingly related to tabnine?)
+" Plug 'voldikss/vim-floaterm'
+" let g:floaterm_shell = "/usr/bin/fish"
+
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
 
