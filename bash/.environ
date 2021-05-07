@@ -36,9 +36,6 @@ export HISTTIMEFORMAT='%F %T '
 export XDG_CONFIG_HOME="$HOME/.config"
 
 ## Language specific environment variables
-# Golang
-export GOROOT="$HOME/dev/lang/go"
-export GOPATH="$HOME/dev/go"
 # Android
 export ANDROID_HOME="$HOME/opt/Android/sdk"
 
@@ -60,15 +57,15 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/.private-scripts" ] && PATH="$HOME/.private-scripts:$PATH"
 # Language specific binaries
-# Golang
-[ -d "$GOROOT/bin" ] && PATH="$PATH:$GOROOT/bin"
-[ -d "$GOPATH/bin" ] && PATH="$PATH:$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ] && PATH="$HOME/node_modules/.bin:$PATH"
+# Python
+[ -d "$HOME/.poetry/bin" ] && PATH="$HOME/.poetry/bin:$PATH"
 # Rust
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 # Ruby
 [ -d "$HOME/.rvm/bin" ] && PATH="$HOME/.rvm/bin:$PATH"
+[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
