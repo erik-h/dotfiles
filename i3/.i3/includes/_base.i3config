@@ -300,6 +300,7 @@ for_window [instance="termitefuzzy"] floating enable; sticky enable
 for_window [class="(?i)xterm"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="I3-exit" instance="i3-exit"] floating enable
+for_window [instance="insomnia"] floating enable
 # for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
 # switch to workspace 1 when i3 loads
