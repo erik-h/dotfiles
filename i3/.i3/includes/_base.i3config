@@ -287,7 +287,7 @@ bar {
 		statusline #9DA8AD
 		separator #58798B
 	}
-	status_command i3status
+	status_command command -v i3pystatus && i3pystatus -c ~/.config/i3pystatus/config.py || i3status
 	position top
 }
 
