@@ -316,7 +316,11 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Java Debugger
 Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 " Plug 'https://gitlab.com/Dica-Developer/vim-jdb'
-Plug 'https://gitlab.com/erik-h/vim-jdb'
+
+" NOTE: vim-jdb complains about vim not being compiled with job support when
+" I use it with neovim - I'll just exclude it for now.
+"
+" Plug 'https://gitlab.com/erik-h/vim-jdb'
 
 " Dart syntax and helpful commands
 Plug 'dart-lang/dart-vim-plugin'
