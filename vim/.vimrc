@@ -531,15 +531,26 @@ set noshowmode
 " Automatic closing of quotes, parentheses, brackets, etc
 Plug 'Raimondi/delimitMate'
 
+Plug 'SirVer/ultisnips', { 'commit': '38b60d8e149fb38776854fa0f497093b21272884'}
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=["custom_snippets"]
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
 " snipMate and Ultisnips snippets
 Plug 'honza/vim-snippets'
 
 " Completion plugin with full LSP support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-json', 'coc-css', 'coc-snippets']
-let g:coc_disable_startup_warning = 1
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" let g:coc_global_extensions = ['coc-json', 'coc-css', 'coc-snippets']
+" let g:coc_disable_startup_warning = 1
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " AWESOME AI based autocomplete for all progrmaming languages
 Plug 'zxqfl/tabnine-vim', { 'for': []}
