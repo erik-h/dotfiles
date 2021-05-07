@@ -11,6 +11,7 @@ function! GetGitRoot()
 	return v:shell_error ? '' : root
 endfunction
 
+" Allow backspace in insert mode
 set backspace=indent,eol,start
 
 " If we set $BROWSER in our .bashrc/.profile/etc then use it, else use Chrome
@@ -174,7 +175,7 @@ augroup end
 augroup GrailsGroup
 	autocmd!
 	" Setup proper comment string for GSP
-	autocmd FileType gsp setlocal commentstring=<%--\ %s\ --%>
+	autocmd FileType gsp setlocal commentstring=%{--\ %s\ --}%
 augroup end
 augroup R
 	autocmd!
