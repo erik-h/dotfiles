@@ -348,6 +348,17 @@ Plug 'tpope/vim-dispatch'
 " Groovy syntax
 Plug 'modille/groovy.vim'
 
+" JSX Syntax and other features
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Vim process runner (required for vim-vebugger)
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Java Debugger
+Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
+" Plug 'https://gitlab.com/Dica-Developer/vim-jdb'
+Plug 'https://gitlab.com/erik-h/vim-jdb'
+
 " Dart syntax and helpful commands
 Plug 'dart-lang/dart-vim-plugin'
 
@@ -359,6 +370,10 @@ augroup end
 
 " Gradle build automation system
 Plug 'tfnico/vim-gradle'
+
+" Auto import Java and Groovy classes
+Plug 'sjurgemeyer/vimport'
+let g:vimport_lookup_gradle_classpath = 1
 
 " Go development plugin for vim
 set rtp+=$GOROOT/misc/vim
@@ -458,8 +473,19 @@ endif
 Plug 'junegunn/rainbow_parentheses.vim'
 augroup RainbowParentheses
 	autocmd!
-	autocmd FileType java,cpp,javascript,python RainbowParentheses
+	autocmd FileType groovy,java,cpp,javascript,python RainbowParentheses
 augroup END
+"
+" I'm getting:
+" Error detected while processing function <SNR>114_Highlight_Matching_Pair:
+" line 97:
+" E475: Invalid argument: 0
+" ... if I don't set "g:loaded_matchparen". I think it stops the
+" default plugin/matchparen.vim from being loaded, which is apparently causing
+" issues. I think this issue only showed up when I compiled vim8 from source
+" to get clipboard support...
+"
+let g:loaded_matchparen=1
 
 " EasyGrep - easily search for text in multiple files
 Plug 'dkprice/vim-easygrep'
@@ -566,6 +592,9 @@ augroup CustomTodo
           \ containedin=.*Comment,vimCommentTitle
 augroup END
 hi def link MyTodo Todo
+
+" Line diffing
+Plug 'AndrewRadev/linediff.vim'
 
 " Universal Text Linking - needed for vim org-mode links to work
 Plug 'vim-scripts/utl.vim'
