@@ -527,6 +527,31 @@ Plug 'xolox/vim-misc'
 Plug 'itchyny/lightline.vim'
 set laststatus=2
 set noshowmode
+" Show open buffer names
+Plug 'mengelbrecht/lightline-bufferline'
+" Configure lightline view
+" let g:lightline#bufferline#show_number  = 1
+" let g:lightline#bufferline#shorten_path = 0
+" let g:lightline#bufferline#unnamed      = '[No Name]'
+
+" Always show the tabine
+set showtabline=2
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ [] ]
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
 
 " Automatic closing of quotes, parentheses, brackets, etc
 Plug 'Raimondi/delimitMate'
