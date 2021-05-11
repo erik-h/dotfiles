@@ -237,14 +237,30 @@ augroup StartifyGroup
 	" Startify colors
 	autocmd FileType startify hi StartifyHeader ctermfg=39
 augroup END
-let g:startify_custom_header = [
-			\ ' ██╗   ██╗██╗███╗   ███╗',
- 			\ ' ██║   ██║██║████╗ ████║',
- 			\ ' ██║   ██║██║██╔████╔██║',
- 			\ ' ╚██╗ ██╔╝██║██║╚██╔╝██║',
- 			\ '  ╚████╔╝ ██║██║ ╚═╝ ██║',
- 			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
-			\ ]
+
+" To get these headers: `toilet -f smmono12 {NEOVIM,VIM}`
+if has('nvim')
+	let g:startify_custom_header = [
+				\ '▗▄ ▗▖▗▄▄▄▖ ▗▄▖ ▗▖ ▗▖ ▄▄▄ ▗▄ ▄▖',
+				\ '▐█ ▐▌▐▛▀▀▘ █▀█ ▝█ █▘ ▀█▀ ▐█ █▌',
+				\ '▐▛▌▐▌▐▌   ▐▌ ▐▌ █ █   █  ▐███▌',
+				\ '▐▌█▐▌▐███ ▐▌ ▐▌ █ █   █  ▐▌█▐▌',
+				\ '▐▌▐▟▌▐▌   ▐▌ ▐▌ ▐█▌   █  ▐▌▀▐▌',
+				\ '▐▌ █▌▐▙▄▄▖ █▄█  ▐█▌  ▄█▄ ▐▌ ▐▌',
+				\ '▝▘ ▀▘▝▀▀▀▘ ▝▀▘  ▝▀▘  ▀▀▀ ▝▘ ▝▘',
+				\ ]
+else
+	let g:startify_custom_header = [
+				\ '▗▖ ▗▖ ▄▄▄ ▗▄ ▄▖',
+				\ '▝█ █▘ ▀█▀ ▐█ █▌',
+				\ ' █ █   █  ▐███▌',
+				\ ' █ █   █  ▐▌█▐▌',
+				\ ' ▐█▌   █  ▐▌▀▐▌',
+				\ ' ▐█▌  ▄█▄ ▐▌ ▐▌',
+				\ ' ▝▀▘  ▀▀▀ ▝▘ ▝▘',
+				\ ]
+endif
+
 
 " Jade syntax highlighting
 Plug 'digitaltoad/vim-pug', {'for': 'pug'}
