@@ -4,7 +4,7 @@
 " TODO: this works, but should be improved to not require the try/catch
 function! GetGitRoot()
 	try
-	let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+		let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
 	catch //
 		return ''
 	endtry
