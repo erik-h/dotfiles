@@ -213,17 +213,17 @@ call plug#begin("~/.vim/plugged")
 Plug 'editorconfig/editorconfig-vim'
 
 " Not-as-minimal file explorer
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 nmap <leader>e :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
 
 " Distraction-free writing
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 " Hyper-focus writing
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
 " Fish shell support
-Plug 'dag/vim-fish'
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
@@ -263,7 +263,7 @@ endif
 
 
 " Jade syntax highlighting
-Plug 'digitaltoad/vim-pug', {'for': 'pug'}
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 
 " vim-evanesco - better / searching
 Plug 'pgdouyon/vim-evanesco'
@@ -276,19 +276,19 @@ Plug 'mileszs/ack.vim'
 let g:ackprg = 'rg'
 
 " vim-sparkup - html templating
-Plug 'rstacruz/sparkup'
+Plug 'rstacruz/sparkup', { 'for': ['html', 'gsp'] }
 
 " Markdown plugins
 " tabular must come BEFORE vim-markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'} " TODO: Switch back to this once it has github flavoured syntax
+Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'}
 
 " vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
 Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = 500 " some size in MiB
 
 " eclim
-Plug 'dansomething/vim-eclim'
+Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
 let g:EclimBrowser = g:browser
 
 " vim-togglelist - toggle the quickfix and location list windows
@@ -339,18 +339,18 @@ Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 " Plug 'https://gitlab.com/erik-h/vim-jdb'
 
 " Dart syntax and helpful commands
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 
 " Gradle syntax and compiler support
 Plug 'tfnico/vim-gradle'
 
 " Auto import Java and Groovy classes
-Plug 'sjurgemeyer/vimport'
+Plug 'sjurgemeyer/vimport', { 'for': ['groovy', 'java'] }
 let g:vimport_lookup_gradle_classpath = 1
 
 " Go development plugin for vim
 set rtp+=$GOROOT/misc/vim
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', { 'for': 'go' }
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 augroup VimGoGroup
@@ -393,7 +393,7 @@ let g:gutentags_add_default_project_roots = 0
 set statusline+=%{gutentags#statusline()}
 
 " tagbar with info on classes, functions, etc
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'for': ['groovy', 'java'] }
 nmap <silent> <F8> :TagbarToggle<CR>
 " Add support for Groovy (some stuff is also required to be added to ~/.ctags)
 let g:tagbar_type_groovy = {
@@ -490,7 +490,7 @@ endfunction
 " }}}
 
 " vimagit
-Plug 'jreybert/vimagit'
+Plug 'jreybert/vimagit', { 'on': ['Magit', 'MagitOnly'] }
 let g:magit_default_fold_level=0
 let g:magit_default_show_all_files=0
 
@@ -498,7 +498,7 @@ let g:magit_default_show_all_files=0
 Plug 'tpope/vim-speeddating'
 
 " calendar
-Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim', { 'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR'] }
 
 " tables
 Plug 'dhruvasagar/vim-table-mode'
@@ -511,7 +511,7 @@ augroup TableModeWrap
 augroup END
 
 " vim org-mode
-Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
 let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
 " TODO: maybe have another keyword after WAITING?
 let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING'], ['ASK', '|', 'ANSWERED'], ['SOMEDAY']]
@@ -528,7 +528,7 @@ hi def link MyTodo Todo
 Plug 'AndrewRadev/linediff.vim'
 
 " Universal Text Linking - needed for vim org-mode links to work
-Plug 'vim-scripts/utl.vim'
+Plug 'vim-scripts/utl.vim', { 'for': 'org' }
 
 
 " Close all buffers but the current one
@@ -541,6 +541,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 
+" Some useful Vimscript functions for use in other scripts
 Plug 'xolox/vim-misc'
 
 " lightline.vim
@@ -576,6 +577,7 @@ let g:lightline = {
 " Automatic closing of quotes, parentheses, brackets, etc
 Plug 'Raimondi/delimitMate'
 
+" I have to use this particular commit, otherwise Ultisnips explodes...
 Plug 'SirVer/ultisnips', { 'commit': '38b60d8e149fb38776854fa0f497093b21272884'}
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -598,14 +600,14 @@ Plug 'honza/vim-snippets'
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " AWESOME AI based autocomplete for all progrmaming languages
-Plug 'zxqfl/tabnine-vim', { 'for': []}
+Plug 'zxqfl/tabnine-vim', { 'for': [] }
 augroup plug_tabnine
 	" Load TabNine for everything EXCEPT plain text files
 	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
 augroup END
 
 " Render a nice TUI-like view for CSV files
-Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
