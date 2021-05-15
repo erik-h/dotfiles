@@ -34,12 +34,6 @@ ${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 
 endsnippet
 
-# snippet for "for (...) {...} (counting up)" b
-# for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
-# 	${VISUAL}$0
-# }
-# endsnippet
-
 snippet for "for (...) {...} (counting up)" b
 for (var ${1:i} = 0; $1 < $2; $1++) {
 	${VISUAL}$0
@@ -82,6 +76,43 @@ for (${1:prop} in ${2:obj}){
 		${VISUAL}$0
 	}
 }
+endsnippet
+
+snippet if "if (condition) { ... }"
+if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet ife "if (condition) { ... } else { ... }"
+if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+	${VISUAL}$0
+}`!p snip.rv = keyword_spacing(snip)`else`!p snip.rv = keyword_spacing(snip)`{
+	${2}
+}
+endsnippet
+
+snippet switch
+switch`!p snip.rv = keyword_spacing(snip)`(${VISUAL}${1:expression}) {
+	case '${VISUAL}${3:case}':
+		${4}
+		break`!p snip.rv = semi(snip)`
+	${0}
+	default:
+		${2}
+}
+endsnippet
+
+snippet case "case 'xyz': ... break"
+case`!p snip.rv = keyword_spacing(snip)`'${VISUAL}${1:case}':
+	${VISUAL}$0
+	break`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet do "do { ... } while (condition)"
+do`!p snip.rv = keyword_spacing(snip)`{
+	${VISUAL}$0
+}`!p snip.rv = keyword_spacing(snip)`while`!p snip.rv = keyword_spacing(snip)`(${1:/* condition */})`!p snip.rv = semi(snip)`
 endsnippet
 
 # Snippets for Console Debug Output
