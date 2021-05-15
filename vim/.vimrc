@@ -78,6 +78,11 @@ set wildignore+=node_modules/*,bower_components/*
 " Copies what was just pasted (so you can paste the same text repeatedly)
 xnoremap p pgvy
 
+" Jump to the last position when reopening a file
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " Undo dir settings
 set undodir=~/.vim/undodir
 if !isdirectory(&undodir)
