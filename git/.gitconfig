@@ -17,6 +17,7 @@
 	d = diff
 	dt = difftool
 	today = log --since=midnight
+	sync = !git pull && git push
 ; [http]
 ; 	sslverify = false
 [diff "gpg"]
