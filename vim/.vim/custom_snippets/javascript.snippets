@@ -79,21 +79,21 @@ for (${1:prop} in ${2:obj}){
 endsnippet
 
 snippet if "if (condition) { ... }"
-if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+if (${1:true}) {
 	${VISUAL}$0
 }
 endsnippet
 
 snippet ife "if (condition) { ... } else { ... }"
-if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+if (${1:true}) {
 	${VISUAL}$0
-}`!p snip.rv = keyword_spacing(snip)`else`!p snip.rv = keyword_spacing(snip)`{
+} else {
 	${2}
 }
 endsnippet
 
 snippet switch
-switch`!p snip.rv = keyword_spacing(snip)`(${VISUAL}${1:expression}) {
+switch (${VISUAL}${1:expression}) {
 	case '${VISUAL}${3:case}':
 		${4}
 		break`!p snip.rv = semi(snip)`
@@ -104,15 +104,15 @@ switch`!p snip.rv = keyword_spacing(snip)`(${VISUAL}${1:expression}) {
 endsnippet
 
 snippet case "case 'xyz': ... break"
-case`!p snip.rv = keyword_spacing(snip)`'${VISUAL}${1:case}':
+case '${VISUAL}${1:case}':
 	${VISUAL}$0
 	break`!p snip.rv = semi(snip)`
 endsnippet
 
 snippet do "do { ... } while (condition)"
-do`!p snip.rv = keyword_spacing(snip)`{
+do {
 	${VISUAL}$0
-}`!p snip.rv = keyword_spacing(snip)`while`!p snip.rv = keyword_spacing(snip)`(${1:/* condition */})`!p snip.rv = semi(snip)`
+} while (${1:/* condition */})`!p snip.rv = semi(snip)`
 endsnippet
 
 # Snippets for Console Debug Output
