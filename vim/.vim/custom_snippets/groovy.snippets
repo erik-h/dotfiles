@@ -18,6 +18,18 @@ params.each { log.info("Param ${it.key} = ${it.value}") }
 $0
 endsnippet
 
+snippet m "Public Groovy method" b
+${1:void} ${2:method}(${3:params}) {
+	$0
+}
+endsnippet
+
+snippet pm "Public Groovy method" b
+private ${1:void} ${2:method}(${3:params}) {
+	$0
+}
+endsnippet
+
 # TODO: spread some DRY love here - the Java and Groovy gradle templates are
 # almost the same; the similar bits could be inserted using Python
 # interpolation
