@@ -40,6 +40,10 @@ set fish_prompt_pwd_dir_length 0
 # Set up our general environment variables
 source ~/.config/fish/env/env.fish
 
+# Initialize pyenv
+# TODO: only run this if pyenv is installed...
+#pyenv init - | source
+
 # Install fisher for fish package management
 if not functions -q fisher
 	set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
