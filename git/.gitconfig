@@ -17,9 +17,19 @@
 	d = diff
 	dt = difftool
 	today = log --since=midnight
+	sync = !git pull && git push
 ; [http]
 ; 	sslverify = false
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
 [pull]
 	rebase = false
+
+; Override settings (e.g. email) when working on work-related projects
+; on a personal machine.
+[includeIf "gitdir:~/dev/work/**"]
+	path = ~/.work.gitconfig
+
+; Override machine-specific settings.
+[include]
+	path = ~/.local_gitconfig

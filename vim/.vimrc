@@ -4,12 +4,15 @@
 " TODO: this works, but should be improved to not require the try/catch
 function! GetGitRoot()
 	try
-	let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+		let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
 	catch //
 		return ''
 	endtry
 	return v:shell_error ? '' : root
 endfunction
+
+" Allow backspace in insert mode
+set backspace=indent,eol,start
 
 " If we set $BROWSER in our .bashrc/.profile/etc then use it, else use Chrome
 let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
@@ -25,13 +28,14 @@ else
 	" let g:python_host_skip_check=1
 	" let g:loaded_python3_provider=1
 endif
-" TODO: wrap this in a 'vim8 or neovim' check
+
 tnoremap <C-[> <C-\><C-n>
 command! Vterm vsplit | terminal ++curwin
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
 imap jk <Esc>
+" Quickly edit my vimrc
 command! Ve e ~/.vimrc
 augroup InsertModeTimeout
 	autocmd!
@@ -61,6 +65,10 @@ set incsearch
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Copy contents of the current buffer to the system clipboard (requires xclip)
 nnoremap <silent> <leader>c :exec '!cat '.shellescape('%').'\|xclip -selection clipboard'<CR>
+" Save a few million shift presses over the course of my vim lifetime
+nnoremap ; :
+" View the current file's full path instead of just the basename by default
+nnoremap <C-g> 1<C-g>
 
 " Don't offer to open certain files/directories
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
@@ -70,33 +78,22 @@ set wildignore+=node_modules/*,bower_components/*
 " Copies what was just pasted (so you can paste the same text repeatedly)
 xnoremap p pgvy
 
-" Undo dir settings
-if !isdirectory(expand("~/.vim/undodir"))
-	echom "undodir not found. Creating now..."
-	silent call system("mkdir " . expand("~/.vim/undodir"))
+" Jump to the last position when reopening a file
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Undo dir settings
 set undodir=~/.vim/undodir
+if !isdirectory(&undodir)
+	echom "undodir not found. Creating now..."
+	silent call system("mkdir " . &undodir)
+endif
 set undofile
 set undolevels=1000
 set undoreload=10000
 
-" Set the working directory to wherever the open file lives
-" set autochdir
-
-set viewdir=$HOME/.vim_view/
-
-" Save views for everything
-" au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
-" au BufWinEnter ?* silent loadview
-" Save views for plaintext files
-" augroup VimViewsGroup
-	" autocmd!
-	" autocmd BufWinLeave *.txt,*.org mkview
-	" autocmd BufWinEnter *.txt,*.org silent loadview
-	" Also save a view for my vimrc
-	" autocmd BufWritePost,BufLeave,WinLeave .vimrc mkview
-	" autocmd BufWinEnter .vimrc silent loadview
-" augroup END
+set viewdir=~/.vim_view/
 
 " Make splits open to the right/below (more natural to most people)
 set splitbelow
@@ -108,23 +105,17 @@ set softtabstop=4
 set shiftwidth=4
 " Tabs as tabs
 set noexpandtab
-" Tabs as spaces
-" set expandtab
 
 set smartindent
-syntax on
 
 set ignorecase
 set smartcase
 
+" Stop the screen from flashing when choosing completions
+set completeopt-=preview
+
 " Set the default browser
 let g:netrw_browsex_viewer = g:browser
-
-" Auto close the scratch window when an autocompletion is found (YouCompleteMe)
-" augroup YCMGroup
-"	autocmd!
-"	autocmd CompleteDone * pclose
-" augroup END
 
 " Code folding
 set foldmethod=indent " fold based on indentation
@@ -132,10 +123,45 @@ set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " disable fold by default
 set foldlevel=1
 
+" Faster and cleaner grep setup
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+if executable("rg")
+	set grepprg=rg\ --vimgrep\ --no-heading
+elseif executable("ag")
+	set grepprg=ag\ --vimgrep\ --noheading
+endif
+
 " Switch buffers with leader mappings
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :call Bclose()<CR>
+
+" Delete buffer without closing window
+function! Bclose()
+    let curbufnr = bufnr("%")
+    let altbufnr = bufnr("#")
+
+    if buflisted(altbufnr)
+        buffer #
+    else
+		try
+			bnext
+		catch
+			" We're probably in an :Explore window
+			bdelete
+			return
+		endtry
+    endif
+
+    if bufnr("%") == curbufnr
+        new
+    endif
+
+    if buflisted(curbufnr)
+        execute("bdelete! " . curbufnr)
+    endif
+endfunction
+
 
 " Switch between splits with leader mappings
 nnoremap <leader>h <C-W><C-H>
@@ -144,93 +170,70 @@ nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colorschemes
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" colorscheme monokai
-" colorscheme gruvbox
-" let base16colorspace=256  " Access colors present in 256 colorspace
-" colorscheme base16-eighties
-" if filereadable(expand("~/.vimrc_background"))
-" 	let base16colorspace=256
-" 	source ~/.vimrc_background
-" endif
-" colorscheme hybrid
-" let g:solarized_termcolors=256
-" colorscheme solarized
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific autocommands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup YAML
+augroup ASM
 	autocmd!
-	" Use 2 spaces for tabs
-	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+	" Use a hash as the comment string for asm files
+	autocmd FileType asm setlocal commentstring=#\ %s
+augroup end
+augroup GrailsGroup
+	autocmd!
+	" Setup proper comment string for GSP
+	autocmd FileType gsp setlocal commentstring=%{--\ %s\ --}%
+augroup end
+augroup R
+	autocmd!
+	" R uses hashes for comments
+	autocmd FileType r setlocal commentstring=#\ %s
 augroup end
 augroup SageMath
 	autocmd!
 	" Use python syntax highlighting for SageMath files
 	autocmd BufRead,BufNewFile *.sage set filetype=python
 augroup end
-
-augroup ASM
+" For WS research
+augroup SuiteFileGroup
 	autocmd!
-	" Use a hash as the comment string for asm files
-	autocmd FileType asm setlocal commentstring=#\ %s
+	autocmd BufRead,BufNewFile *.suite set filetype=xml
+augroup END
+augroup YAML
+	autocmd!
+	" Use 2 spaces for tabs
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup end
 
-augroup R
-	autocmd!
-	" R uses hashes for comments
-	autocmd FileType r setlocal commentstring=#\ %s
-augroup end
-
-" START - vim-plug
 " vim-plug - plugin manager
 if empty(glob("~/.vim/autoload/plug.vim"))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 call plug#begin("~/.vim/plugged")
 
-" Edit text for the browser in vim!
-" TODO: use 'raghur/vim-ghost' instead; it supports neovim _and_ vim
-" whereas ghost-text.vim only supports vim.
-" Plug 'pandysong/ghost-text.vim'
+" TODO: use floaterm once I figure out why :FloatermNew throws an error
+" (seemingly related to tabnine?)
+" Plug 'voldikss/vim-floaterm'
+" let g:floaterm_shell = "/usr/bin/fish"
 
 " Project specific editor settings (tabs vs. spaces, etc)
 Plug 'editorconfig/editorconfig-vim'
 
 " Not-as-minimal file explorer
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 nmap <leader>e :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
-" Minimal file explorer
-" Plug 'tpope/vim-vinegar'
-" Hide dotfiles by default
-" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-" Use the NERDtree style
-" let g:netrw_liststyle=3
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 15
-" nmap <leader>E :Lexplore<CR>
 
 " Distraction-free writing
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 " Hyper-focus writing
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
 " Fish shell support
-Plug 'dag/vim-fish'
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 " Align stuff!
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" Live page reloading
-" Plug 'jaxbot/browserlink.vim'
 
 " Fancy start screen
 Plug 'mhinz/vim-startify'
@@ -239,82 +242,59 @@ augroup StartifyGroup
 	" Startify colors
 	autocmd FileType startify hi StartifyHeader ctermfg=39
 augroup END
-" let g:startify_custom_header = [
-" 			\ '   ┏━┓╻ ╻┏━╸   ┏━┓╻ ╻┏━╸',
-" 			\ '   ┃ ┃┗┳┛┣╸    ┃ ┃┗┳┛┣╸ ',
-" 			\ '   ┗━┛ ╹ ┗━╸   ┗━┛ ╹ ┗━╸',
-" 			\ ]
-let g:startify_custom_header = [
-			\ ' ██╗   ██╗██╗███╗   ███╗',
- 			\ ' ██║   ██║██║████╗ ████║',
- 			\ ' ██║   ██║██║██╔████╔██║',
- 			\ ' ╚██╗ ██╔╝██║██║╚██╔╝██║',
- 			\ '  ╚████╔╝ ██║██║ ╚═╝ ██║',
- 			\ '   ╚═══╝  ╚═╝╚═╝     ╚═╝',
-			\ ]
+
+" To get these headers: `toilet -f smmono12 {NEOVIM,VIM}`
+if has('nvim')
+	let g:startify_custom_header = [
+				\ '▗▄ ▗▖▗▄▄▄▖ ▗▄▖ ▗▖ ▗▖ ▄▄▄ ▗▄ ▄▖',
+				\ '▐█ ▐▌▐▛▀▀▘ █▀█ ▝█ █▘ ▀█▀ ▐█ █▌',
+				\ '▐▛▌▐▌▐▌   ▐▌ ▐▌ █ █   █  ▐███▌',
+				\ '▐▌█▐▌▐███ ▐▌ ▐▌ █ █   █  ▐▌█▐▌',
+				\ '▐▌▐▟▌▐▌   ▐▌ ▐▌ ▐█▌   █  ▐▌▀▐▌',
+				\ '▐▌ █▌▐▙▄▄▖ █▄█  ▐█▌  ▄█▄ ▐▌ ▐▌',
+				\ '▝▘ ▀▘▝▀▀▀▘ ▝▀▘  ▝▀▘  ▀▀▀ ▝▘ ▝▘',
+				\ ]
+else
+	let g:startify_custom_header = [
+				\ '▗▖ ▗▖ ▄▄▄ ▗▄ ▄▖',
+				\ '▝█ █▘ ▀█▀ ▐█ █▌',
+				\ ' █ █   █  ▐███▌',
+				\ ' █ █   █  ▐▌█▐▌',
+				\ ' ▐█▌   █  ▐▌▀▐▌',
+				\ ' ▐█▌  ▄█▄ ▐▌ ▐▌',
+				\ ' ▝▀▘  ▀▀▀ ▝▘ ▝▘',
+				\ ]
+endif
+
 
 " Jade syntax highlighting
-Plug 'digitaltoad/vim-pug', {'for': 'pug'}
-
-" vim-tmux-navigator
-" Plug 'christoomey/vim-tmux-navigator'
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 
 " vim-evanesco - better / searching
 Plug 'pgdouyon/vim-evanesco'
 
-" nord colorscheme
-" Plug 'arcticicestudio/nord-vim'
+" Dracula colorscheme
 Plug 'dracula/vim', {'as': 'dracula'}
-
-" gruvbox colorscheme
-Plug 'morhetz/gruvbox'
-
-" base16 colorscheme
-Plug 'chriskempson/base16-vim'
-
-" vim-hybrid colorscheme
-Plug 'w0ng/vim-hybrid'
 
 " ack.vim - original project forked by ag.vim
 Plug 'mileszs/ack.vim'
 let g:ackprg = 'rg'
 
-
-" tern_for_vim - javascript omni-completion
-" Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-" augroup TernGroup
-" 	autocmd!
-" 	" Use tern for JavaScript completion
-" 	autocmd FileType javascript setlocal omnifunc=tern#Complete
-" augroup END
-
-" Vimball
-Plug 'vim-scripts/Vimball'
-
 " vim-sparkup - html templating
-Plug 'rstacruz/sparkup'
+Plug 'rstacruz/sparkup', { 'for': ['html', 'gsp'] }
 
 " Markdown plugins
 " tabular must come BEFORE vim-markdown
 Plug 'godlygeek/tabular'
-" Plug 'gabrielelana/vim-markdown'
-Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'} " TODO: Switch back to this once it has github flavoured syntax
-Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'mkd.markdown'}
-map <buffer> <C-p> :call Vim_Markdown_Preview_Local()<CR>
+Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'}
 
 " vim-hugefile - :HugeFileToggle = on/off, or set huge_file_trigger_size
 Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = 500 " some size in MiB
 
-" solarized
-Plug 'altercation/vim-colors-solarized'
-
 " eclim
-" TODO: install eclim using vim-plug and an install script, as it's done
-" here: https://github.com/dansomething/vim-eclim.
+Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
 let g:EclimBrowser = g:browser
-" Stop the screen from flashing when choosing completions
-set completeopt-=preview
 
 " vim-togglelist - toggle the quickfix and location list windows
 Plug 'milkypostman/vim-togglelist'
@@ -348,21 +328,34 @@ Plug 'tpope/vim-dispatch'
 " Groovy syntax
 Plug 'modille/groovy.vim'
 
+" JSX Syntax and other features
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Vim process runner (required for vim-vebugger)
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Java Debugger
+Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
+" Plug 'https://gitlab.com/Dica-Developer/vim-jdb'
+
+" NOTE: vim-jdb complains about vim not being compiled with job support when
+" I use it with neovim - I'll just exclude it for now.
+"
+" Plug 'https://gitlab.com/erik-h/vim-jdb'
+
 " Dart syntax and helpful commands
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 
-" Setup proper comment string for GSP
-augroup GrailsGroup
-	autocmd!
-	autocmd FileType gsp setlocal commentstring=<%--\ %s\ --%>
-augroup end
-
-" Gradle build automation system
+" Gradle syntax and compiler support
 Plug 'tfnico/vim-gradle'
+
+" Auto import Java and Groovy classes
+Plug 'sjurgemeyer/vimport', { 'for': ['groovy', 'java'] }
+let g:vimport_lookup_gradle_classpath = 1
 
 " Go development plugin for vim
 set rtp+=$GOROOT/misc/vim
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', { 'for': 'go' }
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 augroup VimGoGroup
@@ -405,7 +398,7 @@ let g:gutentags_add_default_project_roots = 0
 set statusline+=%{gutentags#statusline()}
 
 " tagbar with info on classes, functions, etc
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'for': ['groovy', 'java'] }
 nmap <silent> <F8> :TagbarToggle<CR>
 " Add support for Groovy (some stuff is also required to be added to ~/.ctags)
 let g:tagbar_type_groovy = {
@@ -421,45 +414,26 @@ let g:tagbar_type_groovy = {
     \ ]
 \ }
 
-" Plug 'roxma/nvim-yarp'
-" neovim RPC compatability layer for vim8
-" Plug 'roxma/vim-hug-neovim-rpc'
-
-" Language Client for IDE-like functionality through use of language servers
-" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-" let g:LanguageClient_autoStart = 1
-" " Necessary for operations modifying multiple buffers like rename
-" set hidden
-
-" " LSP configuration for Groovy
-" let g:LanguageClient_serverCommands = {}
-" let g:groovy_lang_server_jar = '~/opt/groovy-language-server-0.5.5-all.jar'
-" if filereadable(glob(g:groovy_lang_server_jar))
-" 	let g:LanguageClient_serverCommands.groovy = ['java', '-jar', g:groovy_lang_server_jar]
-" 	" Use LanguageServer for omnifunc completion
-" 	autocmd FileType groovy setlocal omnifunc=LanguageClient#complete
-" endif
-
-" Ctrl-P
-Plug 'ctrlpvim/ctrlp.vim'
-" nnoremap <leader>o :CtrlPMixed<CR>
-" nnoremap <leader>b :CtrlPBuffer<CR>
 " Go to previous buffer
 nnoremap <leader><Tab> :b#<CR>
-let g:ctrlp_map = ''
-" TODO: use ripgrep here, else SilverSearcher
-if executable("ag")
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --smart-case'
-	" ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
-endif
 
 " Rainbow Parentheses
 Plug 'junegunn/rainbow_parentheses.vim'
 augroup RainbowParentheses
 	autocmd!
-	autocmd FileType java,cpp,javascript,python RainbowParentheses
+	autocmd FileType groovy,java,cpp,javascript,python RainbowParentheses
 augroup END
+"
+" I'm getting:
+" Error detected while processing function <SNR>114_Highlight_Matching_Pair:
+" line 97:
+" E475: Invalid argument: 0
+" ... if I don't set "g:loaded_matchparen". I think it stops the
+" default plugin/matchparen.vim from being loaded, which is apparently causing
+" issues. I think this issue only showed up when I compiled vim8 from source
+" to get clipboard support...
+"
+let g:loaded_matchparen=1
 
 " EasyGrep - easily search for text in multiple files
 Plug 'dkprice/vim-easygrep'
@@ -476,14 +450,6 @@ endif
 " Allow code to be changed _within_ the quickfix window (for use mainly with :cfdo)
 Plug 'stefandtw/quickfix-reflector.vim'
 
-" TODO: use ripgrep here, else SilverSearcher
-set grepformat=%f:%l:%c:%m,%f:%l:%m
-if executable("rg")
-	set grepprg=rg\ --vimgrep\ --no-heading
-elseif executable("ag")
-	set grepprg=ag\ --vimgrep\ --noheading
-endif
-
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -494,12 +460,12 @@ nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>o :call GitFilesElseFiles()<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
-" nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>t :BTags<CR>
+nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
-nnoremap <silent> K :call SearchWordWithAg()<CR>
+nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
@@ -513,10 +479,6 @@ function! GitFilesElseFiles()
 	else
 		execute 'GitFiles --cached --others --exclude-standard'
 	endif
-endfunction
-
-function! SearchWordWithAg()
-	execute 'Ack!' expand('<cword>')
 endfunction
 
 function! SearchVisualSelectionWithAg() range
@@ -533,7 +495,7 @@ endfunction
 " }}}
 
 " vimagit
-Plug 'jreybert/vimagit'
+Plug 'jreybert/vimagit', { 'on': ['Magit', 'MagitOnly'] }
 let g:magit_default_fold_level=0
 let g:magit_default_show_all_files=0
 
@@ -541,7 +503,7 @@ let g:magit_default_show_all_files=0
 Plug 'tpope/vim-speeddating'
 
 " calendar
-Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim', { 'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR'] }
 
 " tables
 Plug 'dhruvasagar/vim-table-mode'
@@ -554,7 +516,7 @@ augroup TableModeWrap
 augroup END
 
 " vim org-mode
-Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
 let g:org_agenda_files=['~/.org/hobby.org', '~/.org/notes.org', '~/.org/school.org', '~/.org/work.org']
 " TODO: maybe have another keyword after WAITING?
 let g:org_todo_keywords = [['TODO', 'NEXT', '|', 'DONE'], ['WAITING'], ['ASK', '|', 'ANSWERED'], ['SOMEDAY']]
@@ -567,191 +529,100 @@ augroup CustomTodo
 augroup END
 hi def link MyTodo Todo
 
-" Universal Text Linking - needed for vim org-mode links to work
-Plug 'vim-scripts/utl.vim'
+" Line diffing
+Plug 'AndrewRadev/linediff.vim'
 
-" fugitive
-Plug 'tpope/vim-fugitive'
+" Universal Text Linking - needed for vim org-mode links to work
+Plug 'vim-scripts/utl.vim', { 'for': 'org' }
+
 
 " Close all buffers but the current one
 Plug 'schickling/vim-bufonly'
 
-" commentary
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-
-" surround
 Plug 'tpope/vim-surround'
-
-" eunuch
 Plug 'tpope/vim-eunuch'
-
-" unimpaired
 Plug 'tpope/vim-unimpaired'
-
-" repeat
 Plug 'tpope/vim-repeat'
 
-" vim-misc
+" Some useful Vimscript functions for use in other scripts
 Plug 'xolox/vim-misc'
 
-" vim-notes (dependency: vim-misc)
-"
-" I've replaced this with vim-orgmode
-"
-" Plug 'xolox/vim-notes'
-" let g:notes_directories = ['~/Dropbox/notes']
-" let g:notes_suffix = '.txt'
-
-" Change the todo foreground color to red
-hi notesTodo ctermfg=197
-
-" Change the bullet point foreground color to purple
-hi notesListBullet term=bold ctermfg=141
-
-" syntastic
-Plug 'scrooloose/syntastic'
-let g:syntastic_mode_map = {"mode": "passive"}
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Preserve CLASS_PATH settings in a file
-let g:syntastic_java_javac_config_file_enabled = 1
-
-" vim-airline
-Plug 'bling/vim-airline'
+" lightline.vim
+Plug 'itchyny/lightline.vim'
 set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'raven'
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-Plug 'vim-airline/vim-airline-themes'
+set noshowmode
+" Show open buffer names
+Plug 'mengelbrecht/lightline-bufferline'
+" Configure lightline view
+" let g:lightline#bufferline#show_number  = 1
+" let g:lightline#bufferline#shorten_path = 0
+" let g:lightline#bufferline#unnamed      = '[No Name]'
 
-" delimitMate
+" Always show the tabine
+set showtabline=2
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ [] ]
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
+
+" Automatic closing of quotes, parentheses, brackets, etc
 Plug 'Raimondi/delimitMate'
 
-" NERDTree
-" Plug 'scrooloose/nerdtree'
-" Toggle NERDTree
-" nnoremap <C-n> :NERDTreeToggle<CR>
-" Close NERDTree window if it's the only buffer left open
-" augroup NERDTreeGroup
-	" autocmd!
-	" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" augroup END
-
-" Ultisnips
-Plug 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-
-" Auto completion
-" Plug 'Valloric/YouCompleteMe'
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1 }
-" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-Plug 'zxqfl/tabnine-vim', { 'for': []}
-augroup plug_tabnine
-	" Load TabNine for everything EXCEPT plain text files
-	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
-augroup END
-
+" I have to use this particular commit, otherwise Ultisnips explodes...
+Plug 'SirVer/ultisnips', { 'commit': '38b60d8e149fb38776854fa0f497093b21272884'}
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-"let g:UltiSnipsSnippetsDir = "~/.vim/bundle/"
 let g:UltiSnipsSnippetDirectories=["custom_snippets"]
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 
-" All of your Plugins must be added before the following line
-call plug#end()
-filetype plugin indent on
-" END - vim-plug
+" snipMate and Ultisnips snippets
+Plug 'honza/vim-snippets'
 
-colorscheme dracula
+" Completion plugin with full LSP support
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" let g:coc_global_extensions = ['coc-json', 'coc-css', 'coc-snippets']
+" let g:coc_disable_startup_warning = 1
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" map <F6> :tabp<CR>
-" map <F7> :tabn<CR>
-
-nnoremap ; :
-" View the current file's full path instead of just the basename by default
-nnoremap <C-g> 1<C-g>
-
-" Auto inserts a newline and closing } after an opening { and enter are
-" pressed.
-inoremap {<CR> {<CR>}<C-o>O
-
-" For WS research
-augroup SuiteFileGroup
-	autocmd!
-	autocmd BufRead,BufNewFile *.suite set filetype=xml
+" AWESOME AI based autocomplete for all progrmaming languages
+Plug 'zxqfl/tabnine-vim', { 'for': [] }
+augroup plug_tabnine
+	" Load TabNine for everything EXCEPT plain text files
+	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
 augroup END
 
-" The below autocmds are supposed to toggle relativenumber on/off when
-" entering/leaving a buffer. It doesn't work very well in i3.
-" if has('autocmd')
-" 	augroup vimrc_linenumbering
-" 		autocmd!
-" 		autocmd WinLeave *
-" 					\ if &number |
-" 					\   set norelativenumber |
-" 					\ endif
-" 		autocmd BufWinEnter *
-" 					\ if &number |
-" 					\   set relativenumber |
-" 					\ endif
-" 		autocmd VimEnter *
-" 					\ if &number |
-" 					\   set relativenumber |
-" 					\ endif
-" 	augroup END
-" endif
+" Render a nice TUI-like view for CSV files
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
-" autocmd FileType go setlocal commentstring=/*\ %s\ */
+" All of your Plugins must be added before the following line
+call plug#end()
 
-" TODO: Use this to close empty buffers that appear after running :Make run
-" and closing the quickfix window with <leader>q AFTER maximizing the quickfix
-" window with ZoomWin (Ctrl-w o)
-function! BufferIsEmpty()
-	if line('$') == 1 && getline(1) == ''
-		return 1
-	else
-		return 0
-	endif
-endfunction
+filetype plugin indent on
+" NOTE: this syntax command must come AFTER the filetype command in order for
+" csv.vim to be happy.
+syntax on
 
-" Bclose()
-" delete buffer without closing window
-" FIXME: Make this work with netrw windows
-function! Bclose()
-    let curbufnr = bufnr("%")
-    let altbufnr = bufnr("#")
-
-    if buflisted(altbufnr)
-        buffer #
-    else
-		try
-			bnext
-		catch
-			" We're probably in an :Explore window
-			bdelete
-			return
-		endtry
-    endif
-
-    if bufnr("%") == curbufnr
-        new
-    endif
-
-    if buflisted(curbufnr)
-        execute("bdelete! " . curbufnr)
-    endif
-endfunction
+colorscheme dracula
 
 " Transparent editing of gpg encrypted files.
 " By Wouter Hanegraaff (Note: I copied this from sircmpwn's dotfiles)
@@ -773,7 +644,6 @@ augroup END
 " source: https://objectpartners.com/2012/02/21/using-vim-as-your-grails-ide-part-1-navigating-your-project/
 " Open file under cursor
 map <C-i> :call OpenVariableUnderCursor(expand("<cword>"))<CR>
-" map <Leader>h :call FindSubClasses(expand("<cword>"))<CR>
 
 function! OpenVariableUnderCursor(varName)
     let filename = substitute(a:varName,'(<w+>)', 'u1', 'g')
@@ -784,10 +654,6 @@ set path+=../**
 function! OpenFileUnderCursor(filename)
    let ext = fnamemodify(expand("%:p"), ":t:e")
    execute ":find " . a:filename . "." . ext
-endfunction
-
-function! FindSubClasses(filename)
-    execute ":Grep (implements|extends) " . a:filename
 endfunction
 
 function! <SID>StripTrailingWhitespace()
@@ -806,16 +672,7 @@ augroup WhitespaceStrip
 	autocmd FileType c,cpp,java,groovy,php,ruby,python,javascript,css,git,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
 augroup END
 
+" Quickly switch between JavaScript and GSP syntax.
+" This is useful when working on inline JavaScript within a GSP file.
 command! Js setlocal ft=javascript
 command! Gsp setlocal ft=gsp
-
-function! InsertCommand(command)
-	redir => output
-	silent execute a:command
-	redir END
-	call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
-endfunction
-
-if !exists(":I")
-	command -nargs=+ I call InsertCommand(<q-args>)
-endif
