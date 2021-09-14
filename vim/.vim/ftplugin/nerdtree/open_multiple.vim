@@ -1,3 +1,9 @@
+"
+" Allow multiple files to be simultaneously opened in NERDTree.
+" Highlight a bunch of files with 'V' and hit 'o' to open them all in
+" horizontal splits.
+"
+
 if exists("g:loaded_nerdtree_open_multiple")
     finish
 endif
