@@ -24,6 +24,9 @@
 	textconv = gpg --no-tty --decrypt
 [pull]
 	rebase = false
+[tag]
+	# Sort tags using SemVer ordering
+	sort = version:refname
 
 ; Override settings (e.g. email) when working on work-related projects
 ; on a personal machine.
