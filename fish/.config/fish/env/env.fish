@@ -115,6 +115,8 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/.rvm/bin" ]; and _path_munge "$HOME/.rvm/bin"
 # Python
 [ -d "$HOME/.poetry/bin" ]; and _path_munge "$HOME/.poetry/bin"
+# Flyctl (fly.io)
+[ -d "$HOME/.fly/bin" ]; and _path_munge "$HOME/.fly/bin"
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
