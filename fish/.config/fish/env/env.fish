@@ -99,10 +99,10 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 # Binaries installed with `snap`
 [ -d "/snap/bin" ]; and _path_munge "/snap/bin"
 # General binaries
-[ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 [ -d "$HOME/.local/bin" ]; and _path_munge "$HOME/.local/bin"
 [ -d "$HOME/.local/sbin" ]; and _path_munge "$HOME/.local/sbin"
 [ -d "$HOME/.private-scripts" ]; and _path_munge "$HOME/.private-scripts"
+[ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 # Language specific binaries
 # Golang
 # [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
