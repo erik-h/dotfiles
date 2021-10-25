@@ -138,4 +138,7 @@ end
 functions -e _path_munge
 functions -e _ld_library_path_munge
 
+# SSH agent socket
+set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
+
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"

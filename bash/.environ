@@ -88,4 +88,7 @@ elif command -v ag > /dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
 fi
 
+# SSH agent socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
+
 [ -f "$HOME/.local_environ" ] && . "$HOME/.local_environ"
