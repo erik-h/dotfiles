@@ -99,10 +99,10 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 # Binaries installed with `snap`
 [ -d "/snap/bin" ]; and _path_munge "/snap/bin"
 # General binaries
-[ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 [ -d "$HOME/.local/bin" ]; and _path_munge "$HOME/.local/bin"
 [ -d "$HOME/.local/sbin" ]; and _path_munge "$HOME/.local/sbin"
 [ -d "$HOME/.private-scripts" ]; and _path_munge "$HOME/.private-scripts"
+[ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 # Language specific binaries
 # Golang
 # [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
@@ -115,6 +115,8 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/.rvm/bin" ]; and _path_munge "$HOME/.rvm/bin"
 # Python
 [ -d "$HOME/.poetry/bin" ]; and _path_munge "$HOME/.poetry/bin"
+# Flyctl (fly.io)
+[ -d "$HOME/.fly/bin" ]; and _path_munge "$HOME/.fly/bin"
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry
@@ -132,5 +134,12 @@ if command -v rg > /dev/null 2>&1
 else if command -v ag > /dev/null 2>&1
 	set -x FZF_DEFAULT_COMMAND "ag --hidden --ignore .git -g ''"
 end
+
+# SSH agent socket
+set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
+
+# Sway socket. I've been having issues where sway ends up using the wrong socket.
+# I got this fix from: https://github.com/swaywm/sway/issues/3769
+set -gx SWAYSOCK (ls /run/user/1000/sway-ipc.* | head -n 1)
 
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"

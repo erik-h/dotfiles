@@ -52,10 +52,10 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 # Binaries installed with `snap`
 [ -d "/snap/bin" ] && PATH="/snap/bin:$PATH"
 # General binaries
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/sbin" ] && PATH="$HOME/.local/sbin:$PATH"
 [ -d "$HOME/.private-scripts" ] && PATH="$HOME/.private-scripts:$PATH"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 # Language specific binaries
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ] && PATH="$HOME/node_modules/.bin:$PATH"
@@ -87,5 +87,12 @@ if command -v rg > /dev/null 2>&1; then
 elif command -v ag > /dev/null 2>&1; then
 	export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
 fi
+
+# SSH agent socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
+
+# Sway socket. I've been having issues where sway ends up using the wrong socket.
+# I got this fix from: https://github.com/swaywm/sway/issues/3769
+export SWAYSOCK="$(ls /run/user/1000/sway-ipc.* | head -n 1)"
 
 [ -f "$HOME/.local_environ" ] && . "$HOME/.local_environ"
