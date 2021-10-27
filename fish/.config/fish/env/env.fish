@@ -133,7 +133,4 @@ else if command -v ag > /dev/null 2>&1
 	set -x FZF_DEFAULT_COMMAND "ag --hidden --ignore .git -g ''"
 end
 
-functions -e _path_munge
-functions -e _ld_library_path_munge
-
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
