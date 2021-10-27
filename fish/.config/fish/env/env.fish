@@ -141,4 +141,8 @@ functions -e _ld_library_path_munge
 # SSH agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
 
+# Sway socket. I've been having issues where sway ends up using the wrong socket.
+# I got this fix from: https://github.com/swaywm/sway/issues/3769
+set -gx SWAYSOCK (ls /run/user/1000/sway-ipc.* | head -n 1)
+
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
