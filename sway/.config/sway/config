@@ -335,3 +335,5 @@ exec --no-startup-id swayidle -w \
 	resume 'swaymsg "output * dpms on"' \
 	before-sleep '~/bin/lock' \
 	lock '~/bin/lock'
+# TODO: pop this into a script like my old wallpaper.sh script, but for sway
+output '*' background ~/Dropbox/wallpapers/arch-blue-logo.png fill
