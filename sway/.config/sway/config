@@ -328,3 +328,10 @@ input type:touchpad {
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
+
+exec --no-startup-id swayidle -w \
+	timeout 600 '~/bin/lock' \
+	timeout 900 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep '~/bin/lock' \
+	lock '~/bin/lock'
