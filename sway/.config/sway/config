@@ -319,7 +319,6 @@ exec --no-startup-id i3-msg workspace number 1 
 
 # SWAY ONLY STUFF BELOW, PROB SEPARATE IT OUT INTO ITS OWN "include"
 
-output eDP-1 scale 1.33
 input type:touchpad {
 	tap enabled
 	natural_scroll enabled
@@ -335,5 +334,11 @@ exec --no-startup-id swayidle -w \
 	resume 'swaymsg "output * dpms on"' \
 	before-sleep '~/bin/lock' \
 	lock '~/bin/lock'
+
+output eDP-1 scale 1.33
+output eDP-1 pos 0 0
+output DP-5 pos 1698 0
+output DP-7 pos 3618 0
+
 # TODO: pop this into a script like my old wallpaper.sh script, but for sway
 output '*' background ~/Dropbox/wallpapers/arch-blue-logo.png fill
