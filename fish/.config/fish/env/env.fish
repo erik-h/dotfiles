@@ -142,4 +142,11 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
 # I got this fix from: https://github.com/swaywm/sway/issues/3769
 set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>/dev/null | head -n 1)
 
+# Set up pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
+set -x PATH $PYENV_ROOT/shims $PATH
+status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source
+
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
