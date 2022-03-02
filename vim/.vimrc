@@ -583,6 +583,8 @@ let g:lightline = {
 Plug 'Raimondi/delimitMate'
 
 " I have to use this particular commit, otherwise Ultisnips explodes...
+" NOTE: it explodes (every character I type in insert mode throws an exception
+" from UltiSnips) using vanilla vim but NOT using neovim...
 Plug 'SirVer/ultisnips', { 'commit': '38b60d8e149fb38776854fa0f497093b21272884'}
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
