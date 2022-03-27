@@ -216,6 +216,8 @@ bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
 # bindsym $mod+Control+l exec xautolock -locknow
 bindsym $mod+Control+l exec ~/bin/lock
+# Keep the screen awake when media is playing
+exec --no-startup-id caffeine
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 # hacky way to setup dual monitors
