@@ -89,7 +89,7 @@ bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 # program launcher
 # TODO: WIP, fuzzy_win fuzzy_cmd isn't currently working for some reason
 # bindsym $mod+d exec fuzzy_win fuzzy_cmd || rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
-bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 ## pass (passwordstore.org) dmenu scripts
 # Try to use a machine-specific ~/bin/passmenu script if it exists, otherwise fallback to the "normal" script.
