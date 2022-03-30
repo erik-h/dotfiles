@@ -282,19 +282,8 @@ bindsym $mod+r mode "resize"
 new_window pixel 3
 new_float pixel 3
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	font pango:DejaVu Sans Mono, FontAwesome 8
-
-	colors {
-		background #27566B
-		statusline #9DA8AD
-		separator #58798B
-	}
-	status_command command -v i3pystatus && i3pystatus -c ~/.config/i3pystatus/config.py || i3status
-	position top
-}
+# Polybar!
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Set desktop background
 exec_always --no-startup-id bash ~/.private-scripts/wallpaper.sh
