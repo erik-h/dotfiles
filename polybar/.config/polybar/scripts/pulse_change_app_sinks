@@ -5,4 +5,10 @@ do
 	pacmd move-sink-input $source_index $1
 done
 
+> /tmp/polybar-sink-1-color
+> /tmp/polybar-sink-2-color
+
+echo "#FFFFFF" > /tmp/polybar-sink-${1}-color
+
 pacmd set-default-sink $1
+polybar-msg cmd restart
