@@ -69,7 +69,7 @@ def addArguments():
     parser.add_argument('--biggestgainer', help='Prints the stock with the biggest gain in a given day.', action='store_true')
     parser.add_argument('--mostactive', help='Prints the most active stock in a given day.', action='store_true')
     parser.add_argument('--topcrypto', help='Prints the top cryptocurrency by market cap in a given day.', action='store_true')
-    parser.add_argument('--customticker', help='Display the price of a custom ticker.', type=str)
+    parser.add_argument('--customticker', help='Display the price of a custom ticker.', type=str, action='append', nargs='+')
 
     args = parser.parse_args()
 
@@ -86,7 +86,11 @@ def addArguments():
         if args.topcrypto:
             stocks += " " + topcrypto() + " "
         if args.customticker:
-            stocks += " " + customticker(args.customticker) + " "
+            for tickers in args.customticker:
+                # Each argument can itself have multiple values; we have to
+                # loop one level deeper to get the actual ticker.
+                for ticker in tickers:
+                    stocks += " " + customticker(ticker) + " "
     except:
         stocks = " "
 
