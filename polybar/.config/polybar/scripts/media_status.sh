@@ -6,7 +6,9 @@ MEDIA_STATUS_MAX_LEN=40
 
 metadata="$(playerctl metadata 2>&1)"
 if [[ "$metadata" == "No players found" ]]; then
-	# We've got no media playing
+	# We've got no media playing.
+	# Spit out an empty line so that any old media status is cleared out.
+	echo ""
 	exit 0
 fi
 
