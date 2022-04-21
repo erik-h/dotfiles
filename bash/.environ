@@ -19,7 +19,7 @@ first_installed() {
 export GPG_TTY="$(tty)"
 
 # Set TERM so we don't get weird stuff happening in tmux
-export TERM=screen-256color
+export TERM=xterm-256color
 
 ## Set some default programs
 export TERMINAL="$(first_installed "termite" "gnome-terminal" "xterm")"

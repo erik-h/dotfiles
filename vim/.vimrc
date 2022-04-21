@@ -19,7 +19,6 @@ let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
 
 if !has('nvim')
 	" We're using vim
-	set term=screen-256color
 	set nocompatible " be iMproved, required; set by default in nvim
 else
 	" We're using neovim
