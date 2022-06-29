@@ -199,6 +199,7 @@ assign [class="Firefox"] 2 
 assign [class="qutebrowser"] 2 
 assign [class="Thunderbird"] 4 
 assign [class="Element"] 4 
+assign [class="Beeper"] 4 
 assign [class="Signal"] 4 
 assign [class="discord"] 4 
 # FIXME: this assignment of Spotify to the music workspace isn't working for some reason
