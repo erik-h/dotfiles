@@ -381,8 +381,8 @@ augroup VimGoGroup
 	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 augroup END
 
-" Awesome automatic ctags handler
-Plug 'ludovicchabant/vim-gutentags'
+" Awesome automatic ctags handler (my fork of it)
+Plug 'erik-h/vim-gutentags'
 let g:gutentags_cache_dir = "~/.cache/tags"
 " TODO: I use a custom .tagmarker file instead of .git do trigger tags because
 " I want to allow for jumping to definitions _across projects_. I accomplish
