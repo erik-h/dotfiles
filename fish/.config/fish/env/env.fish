@@ -105,7 +105,7 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 # Language specific binaries
 # Golang
-# [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
+[ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
 [ -d "$GOPATH/bin" ]; and _path_munge "$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ]; and _path_munge "$HOME/node_modules/.bin"
