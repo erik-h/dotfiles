@@ -296,6 +296,13 @@ Plug 'mhinz/vim-hugefile'
 Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
 let g:EclimBrowser = g:browser
 
+" Load project-specific environment variables
+Plug 'tpope/vim-dotenv'
+
+" dadbod - interact with databases
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 " vim-togglelist - toggle the quickfix and location list windows
 Plug 'milkypostman/vim-togglelist'
 " Use Copen (from tpope/vim-dispatch)
