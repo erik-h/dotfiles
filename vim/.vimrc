@@ -612,7 +612,7 @@ Plug 'honza/vim-snippets'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" AWESOME AI based autocomplete for all progrmaming languages
+" AWESOME AI based autocomplete for all programming languages
 Plug 'zxqfl/tabnine-vim', { 'for': [] }
 augroup plug_tabnine
 	" Load TabNine for everything EXCEPT plain text files
