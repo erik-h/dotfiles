@@ -60,7 +60,7 @@ set -x SHELL /bin/bash
 set -x GPG_TTY (tty)
 
 # Set TERM so we don't get weird stuff happening in tmux
-set -x TERM screen-256color
+set -x TERM xterm-256color
 
 ## Set some default programs
 set -x TERMINAL (first_installed "termite" "gnome-terminal" "xterm")

@@ -89,7 +89,7 @@ bindsym --release $mod+Super_R exec --no-startup-id xdotool click 1
 # program launcher
 # TODO: WIP, fuzzy_win fuzzy_cmd isn't currently working for some reason
 # bindsym $mod+d exec fuzzy_win fuzzy_cmd || rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
-bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
+bindsym $mod+d exec env PATH="$HOME/bin:$PATH" rofi -show run -bg "#222222" -fg "#888888" -hlbg "#285577" -hlfg "#ffffff" || dmenu_run -nb "#27566B" -nf "#DCDCDC" -sf white -sb "#27566B"
 
 ## pass (passwordstore.org) dmenu scripts
 # Try to use a machine-specific ~/bin/passmenu script if it exists, otherwise fallback to the "normal" script.
@@ -199,6 +199,7 @@ assign [class="Firefox"] 2 
 assign [class="qutebrowser"] 2 
 assign [class="Thunderbird"] 4 
 assign [class="Element"] 4 
+assign [class="Beeper"] 4 
 assign [class="Signal"] 4 
 assign [class="discord"] 4 
 # FIXME: this assignment of Spotify to the music workspace isn't working for some reason
@@ -216,6 +217,8 @@ bindsym $mod+Shift+e exec "~/.i3/i3-exit"
 exec --no-startup-id xautolock -detectsleep -time 5 -locker "~/bin/lock" -notify 10 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'" &
 # bindsym $mod+Control+l exec xautolock -locknow
 bindsym $mod+Control+l exec ~/bin/lock
+# Keep the screen awake when media is playing
+exec --no-startup-id caffeine
 # exec --no-startup-id xset dpms 0 0 60 # Turn the screen off after one minute
 
 # hacky way to setup dual monitors
@@ -231,15 +234,18 @@ exec --no-startup-id compton -b --config ~/.config/compton.conf
 bindsym $mod+c exec ~/.private-scripts/menu-calc
 
 # change audio levels
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
-bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 && killall -SIGUSR1 py3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 && killall -SIGUSR1 py3status
+bindsym XF86AudioMute exec --no-startup-id pulsemixer --toggle-mute && killall -SIGUSR1 py3status
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && killall -SIGUSR1 py3status
 bindsym XF86AudioNext exec --no-startup-id playerctl next && killall -SIGUSR1 py3status
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous && killall -SIGUSR1 py3status
-bindsym $mod+F12 exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
-bindsym $mod+F11 exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
-bindsym $mod+F10 exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
+bindsym $mod+F12 exec --no-startup-id pulsemixer --change-volume +5 && killall -SIGUSR1 py3status
+bindsym $mod+F11 exec --no-startup-id pulsemixer --change-volume -5 && killall -SIGUSR1 py3status
+bindsym $mod+F10 exec --no-startup-id pulsemixer --toggle-mute && killall -SIGUSR1 py3status
+# bindsym $mod+F12 exec --no-startup-id pulseaudio-ctl up && killall -SIGUSR1 py3status
+# bindsym $mod+F11 exec --no-startup-id pulseaudio-ctl down && killall -SIGUSR1 py3status
+# bindsym $mod+F10 exec --no-startup-id pulseaudio-ctl mute && killall -SIGUSR1 py3status
 
 # change brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -277,19 +283,8 @@ bindsym $mod+r mode "resize"
 new_window pixel 3
 new_float pixel 3
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	font pango:DejaVu Sans Mono, FontAwesome 8
-
-	colors {
-		background #27566B
-		statusline #9DA8AD
-		separator #58798B
-	}
-	status_command command -v i3pystatus && i3pystatus -c ~/.config/i3pystatus/config.py || i3status
-	position top
-}
+# Polybar!
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Set desktop background
 exec_always --no-startup-id bash ~/.private-scripts/wallpaper.sh
@@ -308,6 +303,8 @@ for_window [class="(?i)xterm"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="I3-exit" instance="i3-exit"] floating enable
 for_window [instance="insomnia"] floating enable
+for_window [class="scrcpy"] floating enable
+for_window [class="Yad" title="yad-calendar"] floating enable
 # for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
 # switch to workspace 1 when i3 loads

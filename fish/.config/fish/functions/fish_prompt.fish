@@ -2,7 +2,6 @@
 function fish_prompt --description 'Write out the prompt'
 	set -l color_cwd
     set -l suffix
-	set -l git_branch "("(git rev-parse --abbrev-ref HEAD 2> /dev/null)")"
     switch "$USER"
         case root toor
             if set -q fish_color_cwd_root
@@ -16,5 +15,5 @@ function fish_prompt --description 'Write out the prompt'
             set suffix (set_color yellow)'$'(set_color normal)
     end
 
-    echo -ens "$USER" (set_color green)@(set_color normal) (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color normal) " $git_branch" "\n$suffix "
+    echo -ens "$USER" (set_color green)@(set_color normal) (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color normal) (fish_vcs_prompt) "\n$suffix "
 end
