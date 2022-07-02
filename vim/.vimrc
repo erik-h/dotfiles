@@ -471,8 +471,8 @@ nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
-nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+" nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
+" vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
@@ -612,6 +612,18 @@ Plug 'honza/vim-snippets'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" neovim LSP
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'williamboman/nvim-lsp-installer'
+	Plug 'puremourning/vimspector'
+	" TODO: try getting jc.nvim working... so far no luck
+	Plug 'artur-shaik/jc.nvim'
+endif
+
 " AWESOME AI based autocomplete for all programming languages
 Plug 'zxqfl/tabnine-vim', { 'for': [] }
 augroup plug_tabnine
@@ -624,6 +636,36 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+" neovim LSP setup
+if has('nvim')
+lua << EOF
+	local on_attach = function(client, bufr)
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap=true, silent=true, buffer=bufnr })
+	end
+
+	require('nvim-lsp-installer').setup{}
+
+	require('lspconfig').solargraph.setup{
+		on_attach = on_attach,
+	}
+
+	require('lspconfig').groovyls.setup{
+		on_attach = on_attach,
+		root_dir = function() return vim.fn.getcwd() end,
+	}
+
+	require('lspconfig').pyright.setup{
+		on_attach = on_attach,
+	}
+
+	-- For some reason gopls isn't working for me... hmm. The :LspLog shows no
+	-- output aside from the initial connection message.
+	require('lspconfig').gopls.setup{
+		on_attach = on_attach,
+	}
+EOF
+endif
 
 filetype plugin indent on
 " NOTE: this syntax command must come AFTER the filetype command in order for
