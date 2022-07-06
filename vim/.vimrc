@@ -291,10 +291,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'}
 Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = 500 " some size in MiB
 
-" eclim
-Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
-let g:EclimBrowser = g:browser
-
 " Load project-specific environment variables
 Plug 'tpope/vim-dotenv'
 
@@ -621,7 +617,8 @@ if has('nvim')
 	Plug 'williamboman/nvim-lsp-installer'
 	Plug 'puremourning/vimspector'
 	" TODO: try getting jc.nvim working... so far no luck
-	Plug 'artur-shaik/jc.nvim'
+	" Plug 'artur-shaik/jc.nvim'
+	Plug 'mfussenegger/nvim-jdtls'
 endif
 
 " AWESOME AI based autocomplete for all programming languages
@@ -641,7 +638,10 @@ call plug#end()
 if has('nvim')
 lua << EOF
 	local on_attach = function(client, bufr)
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap=true, silent=true, buffer=bufnr })
+		local bufopts = { noremap=true, silent=true, buffer=bufnr }
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 	end
 
 	require('nvim-lsp-installer').setup{}
@@ -650,10 +650,11 @@ lua << EOF
 		on_attach = on_attach,
 	}
 
-	require('lspconfig').groovyls.setup{
-		on_attach = on_attach,
-		root_dir = function() return vim.fn.getcwd() end,
-	}
+	-- require('lspconfig').groovyls.setup{
+	-- 	on_attach = on_attach,
+	-- 	-- root_dir = function() return vim.fn.getcwd() end,
+	-- 	root_dir = function() return vim.fn.getcwd() .. '/build/classes/main' end,
+	-- }
 
 	require('lspconfig').pyright.setup{
 		on_attach = on_attach,
