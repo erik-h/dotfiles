@@ -291,10 +291,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'}
 Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = 500 " some size in MiB
 
-" eclim
-Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
-let g:EclimBrowser = g:browser
-
 " Load project-specific environment variables
 Plug 'tpope/vim-dotenv'
 
@@ -471,8 +467,8 @@ nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
-nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+" nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
+" vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
@@ -612,7 +608,20 @@ Plug 'honza/vim-snippets'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" AWESOME AI based autocomplete for all progrmaming languages
+" neovim LSP
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'williamboman/nvim-lsp-installer'
+	Plug 'puremourning/vimspector'
+	" TODO: try getting jc.nvim working... so far no luck
+	" Plug 'artur-shaik/jc.nvim'
+	Plug 'mfussenegger/nvim-jdtls'
+endif
+
+" AWESOME AI based autocomplete for all programming languages
 Plug 'zxqfl/tabnine-vim', { 'for': [] }
 augroup plug_tabnine
 	" Load TabNine for everything EXCEPT plain text files
@@ -624,6 +633,40 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+" neovim LSP setup
+if has('nvim')
+lua << EOF
+	local on_attach = function(client, bufr)
+		local bufopts = { noremap=true, silent=true, buffer=bufnr }
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+	end
+
+	require('nvim-lsp-installer').setup{}
+
+	require('lspconfig').solargraph.setup{
+		on_attach = on_attach,
+	}
+
+	-- require('lspconfig').groovyls.setup{
+	-- 	on_attach = on_attach,
+	-- 	-- root_dir = function() return vim.fn.getcwd() end,
+	-- 	root_dir = function() return vim.fn.getcwd() .. '/build/classes/main' end,
+	-- }
+
+	require('lspconfig').pyright.setup{
+		on_attach = on_attach,
+	}
+
+	-- For some reason gopls isn't working for me... hmm. The :LspLog shows no
+	-- output aside from the initial connection message.
+	require('lspconfig').gopls.setup{
+		on_attach = on_attach,
+	}
+EOF
+endif
 
 filetype plugin indent on
 " NOTE: this syntax command must come AFTER the filetype command in order for
