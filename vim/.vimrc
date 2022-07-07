@@ -610,6 +610,8 @@ Plug 'honza/vim-snippets'
 
 " neovim LSP
 if has('nvim')
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 	Plug 'neovim/nvim-lspconfig'
 
 	Plug 'hrsh7th/nvim-cmp'
@@ -633,6 +635,21 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+if has('nvim')
+	" neovim-treesitter setup
+lua << EOF
+require('nvim-treesitter.configs').setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "rust", "javascript", "java", "python" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+  },
+}
+EOF
+endif
 
 " neovim LSP setup
 if has('nvim')
