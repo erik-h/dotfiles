@@ -43,7 +43,7 @@ exec --no-startup-id mopidy
 bindsym $mod+Shift+p exec mpc toggle
 
 # start f.lux or redshift (screen filter)
-exec --no-startup-id fluxgui || redshift-gtk
+#exec --no-startup-id fluxgui || redshift-gtk -l $(cat ~/.config/sway/latlng)
 
 # syncthing
 exec --no-startup-id tmux new-session -d -s syncthing "syncthing -no-browser"
