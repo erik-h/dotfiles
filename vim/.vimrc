@@ -647,7 +647,11 @@ if has('nvim')
 lua << EOF
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "javascript", "java", "python" },
+  ensure_installed = {
+	  "bash", "c", "css", "dart", "dockerfile", "fish", "html", "java",
+	  "javascript", "json", "jsonc", "lua", "make", "python", "rust",
+	  "typescript",
+  },
 
   highlight = {
     -- `false` will disable the whole extension
