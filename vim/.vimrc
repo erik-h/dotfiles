@@ -347,6 +347,12 @@ Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 
 " Dart syntax and helpful commands
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+" Flutter
+" TODO: prob move this somewhere else b/c vim-lsc itself isn't Flutter specific
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
+" let g:lsc_server_commands = {'dart': 'dart_language_server'}
+" let g:lsc_auto_map = v:true
 
 " Gradle syntax and compiler support
 Plug 'tfnico/vim-gradle'
