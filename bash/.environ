@@ -66,6 +66,8 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 # Ruby
 [ -d "$HOME/.rvm/bin" ] && PATH="$HOME/.rvm/bin:$PATH"
 [ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Flutter
+[ -d "$HOME/snap/flutter/common/flutter/.pub-cache/bin" ] && PATH="$HOME/snap/flutter/common/flutter/.pub-cache/bin:$PATH"
 
 ## Library paths
 # TODO: grep for /usr/local/lib before trying to add it so I don't get a double entry

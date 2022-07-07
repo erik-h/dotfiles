@@ -115,6 +115,8 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/.rvm/bin" ]; and _path_munge "$HOME/.rvm/bin"
 # Python
 [ -d "$HOME/.poetry/bin" ]; and _path_munge "$HOME/.poetry/bin"
+# Flutter
+[ -d "$HOME/snap/flutter/common/flutter/.pub-cache/bin" ]; and _path_munge "$HOME/snap/flutter/common/flutter/.pub-cache/bin"
 # Flyctl (fly.io)
 [ -d "$HOME/.fly/bin" ]; and _path_munge "$HOME/.fly/bin"
 
