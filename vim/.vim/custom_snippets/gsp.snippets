@@ -5,3 +5,23 @@ snippet ajaxCompletingSelect "Description" b
 	class="form-control"
 />
 endsnippet
+
+snippet msg "<g:message /> tag" i
+<g:message code="$1" />$0
+endsnippet
+
+snippet f:with "Grails fields <f:with> tag"
+<f:with bean="$1">
+$0
+</f:with>
+endsnippet
+
+snippet f:field "Grails fields <f:field> tag"
+<f:field property="$1" />
+endsnippet
+
+snippet g:if "If statement" b
+<g:if test="${$1}">
+	$0
+</g:if>
+endsnippet

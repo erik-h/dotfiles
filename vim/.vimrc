@@ -19,7 +19,6 @@ let g:browser = empty($BROWSER) ? "google-chrome" : $BROWSER
 
 if !has('nvim')
 	" We're using vim
-	set term=screen-256color
 	set nocompatible " be iMproved, required; set by default in nvim
 else
 	" We're using neovim
@@ -292,9 +291,12 @@ Plug 'plasticboy/vim-markdown', { 'for': 'mkd.markdown'}
 Plug 'mhinz/vim-hugefile'
 " let g:hugefile_trigger_size = 500 " some size in MiB
 
-" eclim
-Plug 'dansomething/vim-eclim', { 'for': ['groovy', 'java'] }
-let g:EclimBrowser = g:browser
+" Load project-specific environment variables
+Plug 'tpope/vim-dotenv'
+
+" dadbod - interact with databases
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " vim-togglelist - toggle the quickfix and location list windows
 Plug 'milkypostman/vim-togglelist'
@@ -387,8 +389,8 @@ augroup VimGoGroup
 	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 augroup END
 
-" Awesome automatic ctags handler
-Plug 'ludovicchabant/vim-gutentags'
+" Awesome automatic ctags handler (my fork of it)
+Plug 'erik-h/vim-gutentags'
 let g:gutentags_cache_dir = "~/.cache/tags"
 " TODO: I use a custom .tagmarker file instead of .git do trigger tags because
 " I want to allow for jumping to definitions _across projects_. I accomplish
@@ -471,8 +473,8 @@ nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
-nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+" nnoremap <silent> K :execute 'Ack!' expand('<cword>')<CR>
+" vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
@@ -589,6 +591,8 @@ let g:lightline = {
 Plug 'Raimondi/delimitMate'
 
 " I have to use this particular commit, otherwise Ultisnips explodes...
+" NOTE: it explodes (every character I type in insert mode throws an exception
+" from UltiSnips) using vanilla vim but NOT using neovim...
 Plug 'SirVer/ultisnips', { 'commit': '38b60d8e149fb38776854fa0f497093b21272884'}
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -610,7 +614,20 @@ Plug 'honza/vim-snippets'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" AWESOME AI based autocomplete for all progrmaming languages
+" neovim LSP
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'williamboman/nvim-lsp-installer'
+	Plug 'puremourning/vimspector'
+	" TODO: try getting jc.nvim working... so far no luck
+	" Plug 'artur-shaik/jc.nvim'
+	Plug 'mfussenegger/nvim-jdtls'
+endif
+
+" AWESOME AI based autocomplete for all programming languages
 Plug 'zxqfl/tabnine-vim', { 'for': [] }
 augroup plug_tabnine
 	" Load TabNine for everything EXCEPT plain text files
@@ -622,6 +639,40 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+" neovim LSP setup
+if has('nvim')
+lua << EOF
+	local on_attach = function(client, bufr)
+		local bufopts = { noremap=true, silent=true, buffer=bufnr }
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+	end
+
+	require('nvim-lsp-installer').setup{}
+
+	require('lspconfig').solargraph.setup{
+		on_attach = on_attach,
+	}
+
+	-- require('lspconfig').groovyls.setup{
+	-- 	on_attach = on_attach,
+	-- 	-- root_dir = function() return vim.fn.getcwd() end,
+	-- 	root_dir = function() return vim.fn.getcwd() .. '/build/classes/main' end,
+	-- }
+
+	require('lspconfig').pyright.setup{
+		on_attach = on_attach,
+	}
+
+	-- For some reason gopls isn't working for me... hmm. The :LspLog shows no
+	-- output aside from the initial connection message.
+	require('lspconfig').gopls.setup{
+		on_attach = on_attach,
+	}
+EOF
+endif
 
 filetype plugin indent on
 " NOTE: this syntax command must come AFTER the filetype command in order for

@@ -1,0 +1,11 @@
+[general]
+base_currency = CAD
+display = both
+
+[bitcoin]
+; icon = 
+icon = 
+
+[ethereum]
+; icon = 
+icon = 

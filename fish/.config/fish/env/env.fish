@@ -60,7 +60,7 @@ set -x SHELL /bin/bash
 set -x GPG_TTY (tty)
 
 # Set TERM so we don't get weird stuff happening in tmux
-set -x TERM screen-256color
+set -x TERM xterm-256color
 
 ## Set some default programs
 set -x TERMINAL (first_installed "termite" "gnome-terminal" "xterm")
@@ -105,7 +105,7 @@ set -x PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 [ -d "$HOME/bin" ]; and _path_munge "$HOME/bin"
 # Language specific binaries
 # Golang
-# [ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
+[ -d "$GOROOT/bin" ]; and _path_munge "$GOROOT/bin"
 [ -d "$GOPATH/bin" ]; and _path_munge "$GOPATH/bin"
 # Nodejs
 [ -d "$HOME/node_modules/.bin" ]; and _path_munge "$HOME/node_modules/.bin"
@@ -143,5 +143,12 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
 # Sway socket. I've been having issues where sway ends up using the wrong socket.
 # I got this fix from: https://github.com/swaywm/sway/issues/3769
 set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>/dev/null | head -n 1)
+
+# Set up pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
+set -x PATH $PYENV_ROOT/shims $PATH
+status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source
 
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
