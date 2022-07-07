@@ -276,6 +276,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# gaps
+gaps inner 15
+gaps outer 15
+# smart_gaps on
+
+bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
+
+bindsym $mod+g gaps inner current plus 5
+bindsym $mod+Shift+g gaps inner current minus 5
+
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+z gaps outer current plus 5
+bindsym $mod+Shift+z gaps outer current minus 5
+
 # new window default border (overriden if using i3-gaps)
 default_border pixel 3
 default_floating_border pixel 3
