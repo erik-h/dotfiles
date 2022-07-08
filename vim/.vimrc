@@ -614,6 +614,9 @@ Plug 'honza/vim-snippets'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" vimux - spawn a little tmux command runner pane
+Plug 'preservim/vimux'
+
 " neovim LSP
 if has('nvim')
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
