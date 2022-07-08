@@ -687,6 +687,12 @@ lua << EOF
 	-- 	root_dir = function() return vim.fn.getcwd() .. '/build/classes/main' end,
 	-- }
 
+	-- TODO: maybe switch to jedi_language_server. I like that Jedi's "rename"
+	-- rename's *across files*; pyright's isn't doing that for me. Maybe I'm
+	-- just missing a config option... The only thing I don't like about Jedi
+	--  so far is that it doesn't warn me about not return the proper type,
+	-- unused function arguments, and a few other things that pyright does well.
+	--  Again though, maybe I'm just missing config options lol.
 	require('lspconfig').pyright.setup{
 		on_attach = on_attach,
 	}
