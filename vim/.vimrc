@@ -347,6 +347,12 @@ Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 
 " Dart syntax and helpful commands
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+" Flutter
+" TODO: prob move this somewhere else b/c vim-lsc itself isn't Flutter specific
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
+" let g:lsc_server_commands = {'dart': 'dart_language_server'}
+" let g:lsc_auto_map = v:true
 
 " Gradle syntax and compiler support
 Plug 'tfnico/vim-gradle'
@@ -610,6 +616,8 @@ Plug 'honza/vim-snippets'
 
 " neovim LSP
 if has('nvim')
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 	Plug 'neovim/nvim-lspconfig'
 
 	Plug 'hrsh7th/nvim-cmp'
@@ -634,6 +642,25 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " All of your Plugins must be added before the following line
 call plug#end()
 
+if has('nvim')
+	" neovim-treesitter setup
+lua << EOF
+require('nvim-treesitter.configs').setup {
+  -- A list of parser names, or "all"
+  ensure_installed = {
+	  "bash", "c", "css", "dart", "dockerfile", "fish", "html", "java",
+	  "javascript", "json", "jsonc", "lua", "make", "python", "rust",
+	  "typescript",
+  },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+  },
+}
+EOF
+endif
+
 " neovim LSP setup
 if has('nvim')
 lua << EOF
@@ -641,7 +668,7 @@ lua << EOF
 		local bufopts = { noremap=true, silent=true, buffer=bufnr }
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+		vim.keymap.set('n', 'gr', vim.lsp.buf.rename, bufopts)
 	end
 
 	require('nvim-lsp-installer').setup{}
