@@ -86,6 +86,7 @@ endif
 set undodir=~/.vim/undodir
 if !isdirectory(&undodir)
 	echom "undodir not found. Creating now..."
+	" TODO: call mkdir(&undodir, "p", 0700) directly here instead of system()
 	silent call system("mkdir " . &undodir)
 endif
 set undofile
