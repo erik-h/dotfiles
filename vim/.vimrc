@@ -468,8 +468,8 @@ nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>o :call GitFilesElseFiles()<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>t :BTags<CR>
-nnoremap <silent> <leader>T :Tags<CR>
+" nnoremap <silent> <leader>t :BTags<CR>
+" nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ack! ' . input('Ag/')<CR>
@@ -514,14 +514,14 @@ Plug 'tpope/vim-speeddating'
 Plug 'mattn/calendar-vim', { 'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR'] }
 
 " tables
-Plug 'dhruvasagar/vim-table-mode'
-augroup TableModeWrap
-	autocmd!
-	" FIXME
-	" Setting textwidth here doesn't actually seem to be working...it's still stuck at 77
-	" I guess it's being overriden by a plugin?
-	autocmd FileType org setlocal tw=0
-augroup END
+" Plug 'dhruvasagar/vim-table-mode'
+" augroup TableModeWrap
+" 	autocmd!
+" 	" FIXME
+" 	" Setting textwidth here doesn't actually seem to be working...it's still stuck at 77
+" 	" I guess it's being overriden by a plugin?
+" 	autocmd FileType org setlocal tw=0
+" augroup END
 
 " vim org-mode
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
@@ -616,6 +616,7 @@ Plug 'honza/vim-snippets'
 
 " vimux - spawn a little tmux command runner pane
 Plug 'preservim/vimux'
+nnoremap <leader>t :VimuxOpenRunner<CR>
 
 " neovim LSP
 if has('nvim')
