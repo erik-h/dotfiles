@@ -28,7 +28,7 @@ else
 	" let g:loaded_python3_provider=1
 endif
 
-tnoremap <C-[> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 command! Vterm vsplit | terminal ++curwin
 
 let mapleader = "\<Space>"
