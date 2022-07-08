@@ -547,6 +547,9 @@ Plug 'vim-scripts/utl.vim', { 'for': 'org' }
 " Close all buffers but the current one
 Plug 'schickling/vim-bufonly'
 
+" Undo history
+Plug 'mbbill/undotree'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
