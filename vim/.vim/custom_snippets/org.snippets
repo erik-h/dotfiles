@@ -23,3 +23,13 @@ snippet fig "Insert a figure with a caption and label" b
 #+LABEL: fig:$2
 [[$0]]
 endsnippet
+
+# TODO: insert a Python snippet to get the current date in the proper format
+# and plop it as the default value into "SCHEDULED" and "DEADLINE".
+# TODO: the space before ${2} isn't working within the "* blah" formatting
+# that orgmode is doing. Outside of the "*" list item it does work - hmm...
+snippet todo "Add a new TODO item"
+TODO [#${1:A}] ${2}
+SCHEDULED: <2022-07-06 Wed 00:00> DEADLINE: <2022-07-06 Wed 00:00>
+$0
+endsnippet
