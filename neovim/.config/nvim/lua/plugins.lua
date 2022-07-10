@@ -29,6 +29,10 @@ return require("packer").startup(function(use)
 			require("plugins/nerdtree")
 		end,
 	}
+	-- NOTE: I need this mapping to be *outside* of plugins/nerdtree.lua
+	-- because of the lazy loading.
+	-- TODO: move this into some other "mappings for plugins that are using lazy loading" file.
+	vim.keymap.set("n", "<leader>e", ":NERDTreeToggle<cr>")
 
 	-- Distraction-free writing
 	use {
