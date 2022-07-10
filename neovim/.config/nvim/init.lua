@@ -1,12 +1,11 @@
 --
---  TODO CURRENT SPOT: porting over the "Language specific autocommands" section of `.vimrc`.
+--  TODO CURRENT SPOT: porting over the "Set up custom ToDo and related word highlighting" section of `.vimrc`.
 --
 
--- 
+--
 -- Global variables
 --
-local browser = os.getenv("BROWSER")
-vim.g.browser = browser and browser or "firefox"
+vim.g.browser = vim.env.BROWSER and vim.env.BROWSER or "firefox"
 vim.g.netrw_browsex_viewer = vim.g.browser
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -15,28 +14,30 @@ vim.g.maplocalleader = ","
 -- QOL mappings
 --
 vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("n", ";", ":", { noremap = true })
+vim.keymap.set("n", ";", ":")
 -- Ctrl-l to unhighlight a search
-vim.keymap.set("n", "<C-l>", ":nohl<cr><C-l>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", ":nohl<cr><C-l>", { silent = true })
 -- View the current file's full path instead of just the basename by default
-vim.keymap.set("n", "<C-g>", "1<C-g>", { noremap = true })
+vim.keymap.set("n", "<C-g>", "1<C-g>")
 -- Copies what was just pasted (so you can paste the same text repeatedly)
-vim.keymap.set("x", "p", "pgvy", { noremap = true })
+vim.keymap.set("x", "p", "pgvy")
+-- Copy text to the system clipboard
+vim.keymap.set({"n", "i", "x"}, "<leader>y", '"+y')
 -- Switch between buffers
-vim.keymap.set("n", "<leader>n", ":bn<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>p", ":bp<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>n", ":bn<cr>")
+vim.keymap.set("n", "<leader>p", ":bp<cr>")
 -- TODO: I think I might want to customize this to get something similar
 -- to my vimscript Bclose() function. I tried porting it over quickly
 -- but ran into some issues with it not behaving how I was expecting...
 -- I'll check it out more closely later.
-vim.keymap.set("n", "<leader>d", ":b#|bd#<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>d", ":b#|bd#<cr>")
 -- Switch between splits
-vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { noremap = true })
-vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { noremap = true })
-vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { noremap = true })
-vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { noremap = true })
+vim.keymap.set("n", "<leader>h", "<C-w><C-h>")
+vim.keymap.set("n", "<leader>l", "<C-w><C-l>")
+vim.keymap.set("n", "<leader>j", "<C-w><C-j>")
+vim.keymap.set("n", "<leader>k", "<C-w><C-k>")
 
--- 
+--
 -- User commands
 --
 vim.api.nvim_create_user_command("Ve", "e " .. vim.fn.stdpath('config') .. "/init.lua", {})
@@ -77,10 +78,28 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end
 })
+--
+-- Language specific autocommands
+--
+-- TODO/NOTE: I think I want to slap these filetype commentstring ones into
+-- ftplugin files instead of defining them in auto commands:
+-- ft = asm -> vim.opt_local.commentstring = "# %s"
+-- ft = gsp -> vim.opt_local.commentstring = "%{-- %s --}%"
+-- ft = r -> vim.opt_local.commentstring = "# %s"
+-- also add this YAML crap maybe?: autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+--
+vim.api.nvim_create_augroup("SageMath", {})
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+	group = "SageMath",
+	pattern = {"*.sage", "*.spyx", "*.pyx"},
+	callback = function()
+		vim.bo.filetype = "python"
+	end
+})
 
--- 
+--
 -- Options
--- 
+--
 table.insert(vim.opt.complete, "kspell")
 
 vim.opt.colorcolumn = "80"
@@ -123,8 +142,10 @@ table.insert(vim.opt.wildignore, "*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico")
 table.insert(vim.opt.wildignore, "*.pdf,*.psd")
 table.insert(vim.opt.wildignore, "*/node_modules/*")
 
--- 
+--
 -- Terminal
 --
 vim.opt.ttimeoutlen = 0
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap=true })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
+require("plugins")
