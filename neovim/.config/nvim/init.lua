@@ -148,4 +148,11 @@ table.insert(vim.opt.wildignore, "*/node_modules/*")
 vim.opt.ttimeoutlen = 0
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
+--
+-- Colorscheme
+--
+-- TODO: not sure if I need a dedicated section/file for this... maybe
+-- ageneric "colors.lua"?
+vim.cmd("colorscheme dracula")
+
 require("plugins")
