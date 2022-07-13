@@ -12,4 +12,6 @@ vim.g.gutentags_project_root = {".tagmarker", ".git"}
 vim.g.gutentags_add_default_project_roots = 0
 -- Enable trace logging for debugging
 -- vim.g.gutentags_trace = 1
+-- TODO FIXME: I'm using lualine now, so I think I have to swap this out for something else?
+-- See: the lualine README on using Lua functions as a lualine component.
 vim.opt.statusline:append("%{gutentags#statusline()}")

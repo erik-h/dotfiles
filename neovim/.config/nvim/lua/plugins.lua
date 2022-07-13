@@ -72,7 +72,7 @@ return require("packer").startup(function(use)
 	-- TODO: maybe use stuff from here along with my original ToggleLocationListFixed() stuff:
 	-- https://rafaelleru.github.io/blog/quickfix-autocomands/
 	-- Enhance the quickfix window
-	use { "kevinhwang91/nvim-bqf", ft = "qf" }
+	-- use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
 	-- Async build and test dispatcher
 	use "tpope/vim-dispatch"
@@ -186,6 +186,58 @@ return require("packer").startup(function(use)
 		"mattn/calendar-vim",
 		cmd = {"Calendar", "CalendarH", "CalendarT", "CalendarVR"}
 	}
+
+	-- Fancy "TODO" word syntax highlighting
+	use {
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("plugins/todo-comments")
+		end,
+	}
+	-- Close all buffers but the current one
+	use "schickling/vim-bufonly"
+
+	-- Undo history
+	use "mbbill/undotree"
+
+	-- Amazing tpope plugins!
+	use "tpope/vim-fugitive"
+	-- use "tpope/vim-commentary"
+	use "tpope/vim-surround"
+	use "tpope/vim-eunuch"
+	use "tpope/vim-unimpaired"
+	use "tpope/vim-repeat"
+
+	-- Commenting (with support for treesitter)
+	use {
+		"numToStr/Comment.nvim",
+		config = function()
+			require("plugins/Comment")
+		end,
+	}
+
+	-- Status line
+	use {
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("plugins/lualine")
+		end,
+	}
+
+	-- Buffer line
+	use {
+		'akinsho/bufferline.nvim',
+		tag = "v2.*",
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function()
+			require("plugins/bufferline")
+		end
+	}
+
+	-- Automatic closing of quotes, parentheses, brackets, etc
+	use "Raimondi/delimitMate"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

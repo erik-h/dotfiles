@@ -1,5 +1,6 @@
 --
---  TODO CURRENT SPOT: porting over the "Set up custom ToDo and related word highlighting" section of `.vimrc`.
+--  TODO CURRENT SPOT: porting over the UltiSnips part; I'll probably use a different
+--  snippets plugin that's compatible with UltiSnippets-format snippet files.
 --
 
 --
@@ -76,6 +77,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				vim.cmd('normal! g`"')
 			end
 		end
+	end
+})
+vim.api.nvim_create_autocmd("Syntax", {
+	group = "Misc",
+	pattern = "*",
+	callback = function()
+		-- Add custom "TODO" words to syntax highlight.
+		-- TODO FIXME: I think this might not be working?
+		vim.cmd([[
+		syn match MyTodo /\v<(FIXME|DEBUG|NOTE|TODO|OPTIMIZE|XXX)/ containedin=.*Comment,vimCommentTitle
+		]])
+		vim.cmd("hi def link MyTodo Todo")
 	end
 })
 --
