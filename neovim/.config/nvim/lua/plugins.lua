@@ -10,6 +10,15 @@ return require("packer").startup(function(use)
 	-- Have packer manage itself!
 	use "wbthomason/packer.nvim"
 
+	-- Edit text in the browser using an embedded neovim instance!
+	use {
+		'glacambre/firenvim',
+		run = function() vim.fn['firenvim#install'](0) end,
+		config = function()
+			require("plugins/firenvim")
+		end,
+	}
+
 	-- Better syntax highlighting backend
 	use {
 		"nvim-treesitter/nvim-treesitter",
