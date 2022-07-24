@@ -170,6 +170,7 @@ bindsym $mod+2 workspace number 2 
 bindsym $mod+3 workspace number 3 
 # Mail icon: uf0e0
 bindsym $mod+4 workspace number 4 
+# Music icon
 bindsym $mod+5 workspace number 5 
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -182,7 +183,7 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace number 1 
 # Chrome icon: uf268
 bindsym $mod+Shift+2 move container to workspace number 2 
-bindsym $mod+Shift+3 move container to workspace number 3 
+bindsym $mod+Shift+3 move container to workspace number 3 
 # Mail icon: uf0e0
 bindsym $mod+Shift+4 move container to workspace number 4 
 # Music icon: uf001
