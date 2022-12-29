@@ -10,6 +10,13 @@ return require("packer").startup(function(use)
 	-- Have packer manage itself!
 	use "wbthomason/packer.nvim"
 
+	use {
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("plugins/nvim-lspconfig")
+		end,
+	}
+
 	-- Edit text in the browser using an embedded neovim instance!
 	use {
 		'glacambre/firenvim',
