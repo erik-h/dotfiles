@@ -17,4 +17,3 @@ vim.cmd([[
     \ }
 \ }
 ]])
-print('LOADED FIRENVIM CONFIG')
