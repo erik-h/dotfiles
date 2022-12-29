@@ -307,6 +307,10 @@ for_window [instance="insomnia"] floating enable
 for_window [class="scrcpy"] floating enable
 for_window [class="Yad" title="yad-calendar"] floating enable
 # for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+# Float the little popup modal thing when someone shares their screen, etc.
+for_window [class="zoom" title="zoom"] floating enable
+# Float the annoying "your profile cannot be read" error I get on Google Chrome on mustafar...
+for_window [title="Profile error occurred"] floating enable
 
 # switch to workspace 1 when i3 loads
 # Terminal icon: uf120
