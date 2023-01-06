@@ -464,6 +464,16 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+" TODO: port this over to my nvim config
+" TODO: maybe use: --preview 'bat --style=numbers --line-range :300 {}'
+let $FZF_DEFAULT_OPTS="--preview-window 'right:57%'
+	\ --bind ctrl-y:preview-up,ctrl-e:preview-down,
+	\ctrl-b:preview-page-up,ctrl-f:preview-page-down,
+	\ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down,
+	\shift-up:preview-top,shift-down:preview-bottom,
+	\alt-up:half-page-up,alt-down:half-page-down"
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>o :call GitFilesElseFiles()<CR>
