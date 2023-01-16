@@ -20,8 +20,26 @@ snippet f:field "Grails fields <f:field> tag"
 <f:field property="$1" />
 endsnippet
 
+snippet f:display "Grails fields <f:display> tag"
+<f:display property="$1" />
+endsnippet
+
 snippet g:if "If statement" b
 <g:if test="${$1}">
 	$0
 </g:if>
+endsnippet
+
+snippet g:else "Else statement" b
+<g:else>
+	$0
+</g:else>
+endsnippet
+
+snippet g:setbean "Grails <g:set var='foo' bean='foo'> tag" b
+<g:set var="$1" bean="$1" />
+endsnippet
+
+snippet g:set "Grails <g:set var='foo' value='bar'> tag" b
+<g:set var="$1" value="$2" />$0
 endsnippet
