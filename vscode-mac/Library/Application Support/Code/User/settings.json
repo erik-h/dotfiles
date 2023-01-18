@@ -1,0 +1,138 @@
+{
+    //
+    // TODO: perhaps add a nnoremap for "o" to function as "A<cr>".  The issue
+    // I'm facing right now is: "o" doesn't trigger the "continue comment" thing
+    // (specifically in C# so far, but I assume across all languages) but <cr>
+    // while on the previous line does.
+    //
+    "vim.hlsearch": true,
+    "vim.smartRelativeLine": true,
+    "vim.leader": "<space>",
+    "vim.useCtrlKeys": true,
+    "vim.handleKeys": {
+        "<C-f>": true,
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+    "vim.insertModeKeyBindings": [{
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+    }],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            // VSCodeVim doesn't currently support "gw" - I'll map it to do what
+            // "gq" does for now, since it's basically doing what "gw" should.
+            "before": ["g", "w"],
+            "after": ["g", "q"]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+        {
+            // TODO: hopefully eventually I can remove this mapping and the one
+            // below... I'm adding them so that when I press "o"/"O" inside of a
+            // comment, it'll trigger the "automatically continue the comment"
+            // functionality.
+            "before": ["o"],
+            "after": ["A", "<cr>"]
+        },
+        {
+            // TODO
+            "before": ["O"],
+            "after": ["k", "A", "<cr>"]
+        },
+        {
+            // VSCodeVim doesn't currently support "gw" - I'll map it to do what
+            // "gq" does for now, since it's basically doing what "gw" should.
+            "before": ["g", "w"],
+            "after": ["g", "q"]
+        },
+        {
+            // VSCodeVim also doesn't support "gwgw" (or "gqgq"...). I'll create the "gwgw" effect by creating this mapping for now.
+            "before": ["g", "w", "g", "w"],
+            "after": ["g", "q", "q"]
+        },
+        {
+            "before": ["<C-l>"],
+            "commands": [":nohl"],
+        },
+        {
+            "before": ["<leader>", "n"],
+            "commands": [":bn"],
+        },
+        {
+            "before": ["<leader>", "p"],
+            "commands": [":bp"],
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": [":bd"],
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": ["<C-w>", "<C-h>"]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": ["<C-w>", "<C-l>"]
+        },
+        {
+            "before": ["<leader>", "j"],
+            "after": ["<C-w>", "<C-j>"]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "after": ["<C-w>", "<C-k>"]
+        },
+    ],
+    "workbench.startupEditor": "none",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "actions.find"
+    ],
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "tmux",
+    "omnisharp.enableImportCompletion": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true,
+    "git.confirmSync": false,
+    "remote.SSH.connectTimeout": 60,
+    "remote.SSH.useLocalServer": false,
+    "remote.SSH.remotePlatform": {
+        "groot": "linux"
+    },
+    "Vsnips.SnipsDir": [
+        "/home/erik/.vim/custom_snippets"
+    ],
+    // "editor.rulers": [
+    //     80
+    // ]
+}
