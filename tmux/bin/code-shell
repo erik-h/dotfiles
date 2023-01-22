@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Adapted from: https://medium.com/@joaomoreno/persistent-terminal-sessions-in-vs-code-8fc469ed6b41
+
+SESSION="vscode$(pwd | md5sum | awk '{print $1}')"
+tmux attach-session -d -t "$SESSION" || tmux new-session -s "$SESSION"
