@@ -648,11 +648,11 @@ if has('nvim')
 endif
 
 " AWESOME AI based autocomplete for all programming languages
-Plug 'zxqfl/tabnine-vim', { 'for': [] }
-augroup plug_tabnine
-	" Load TabNine for everything EXCEPT plain text files
-	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
-augroup END
+" Plug 'zxqfl/tabnine-vim', { 'for': [] }
+" augroup plug_tabnine
+" 	" Load TabNine for everything EXCEPT plain text files
+" 	autocmd FileType * if expand('<amatch>') != 'text' | call plug#load('tabnine-vim') | execute 'autocmd! plug_tabnine' | endif
+" augroup END
 
 " Render a nice TUI-like view for CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
