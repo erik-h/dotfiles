@@ -473,7 +473,7 @@ let $FZF_DEFAULT_OPTS="--preview-window 'right:57%'
 	\shift-up:preview-top,shift-down:preview-bottom,
 	\alt-up:half-page-up,alt-down:half-page-down"
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>o :call GitFilesElseFiles()<CR>
