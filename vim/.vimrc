@@ -134,7 +134,11 @@ endif
 " Switch buffers with leader mappings
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :call Bclose()<CR>
+if has('ide')
+	nnoremap <leader>d :bd<CR>
+else
+	nnoremap <leader>d :call Bclose()<CR>
+endif
 
 " Delete buffer without closing window
 function! Bclose()
