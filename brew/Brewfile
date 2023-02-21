@@ -2,27 +2,22 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-
 brew "azure-cli"
 brew "cocoapods"
 brew "fish"
-brew "mysql", restart_service: true
-brew "openjdk@11"
-brew "pyenv-virtualenv"
-
 brew "htop"
 brew "jq"
-brew "ripgrep"
-
+brew "mysql", restart_service: true
 brew "neovim"
-brew "vim"
-
+brew "openjdk@11"
+brew "pyenv-virtualenv"
+brew "ripgrep"
 brew "stow"
 brew "tmux"
 brew "tree"
 brew "universal-ctags"
 brew "vhs"
-
+brew "vim"
+cask "dbeaver-community"
 cask "mos"
 cask "rectangle"
-cask "dbeaver-community"
