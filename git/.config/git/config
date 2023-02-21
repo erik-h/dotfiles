@@ -23,6 +23,7 @@
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
 [pull]
+	ff = true
 	rebase = false
 [tag]
 	# Sort tags using SemVer ordering
@@ -31,8 +32,8 @@
 ; Override settings (e.g. email) when working on work-related projects
 ; on a personal machine.
 [includeIf "gitdir:~/dev/work/**"]
-	path = ~/.work.gitconfig
+	path = ~/.config/git/work.config
 
 ; Override machine-specific settings.
 [include]
-	path = ~/.local_gitconfig
+	path = ~/.config/git/local.config
