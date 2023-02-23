@@ -5,6 +5,7 @@ tap "homebrew/services"
 brew "azure-cli"
 brew "cocoapods"
 brew "fish"
+brew "gh"
 brew "htop"
 brew "jq"
 brew "mysql", restart_service: true
