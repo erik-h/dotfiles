@@ -18,6 +18,7 @@
 	dt = difftool
 	today = log --since=midnight
 	sync = !git pull && git push
+	luniq = "!git log ${1:-origin/main}..HEAD"
 ; [http]
 ; 	sslverify = false
 [diff "gpg"]
