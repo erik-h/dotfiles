@@ -168,5 +168,5 @@ require("plugins")
 -- Colorscheme
 --
 -- TODO: not sure if I need a dedicated section/file for this... maybe
--- ageneric "colors.lua"?
+-- a generic "colors.lua"?
 vim.cmd("colorscheme dracula")
