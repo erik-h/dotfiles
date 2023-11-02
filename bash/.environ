@@ -24,7 +24,7 @@ export TERM=xterm-256color
 ## Set some default programs
 export TERMINAL="$(first_installed "termite" "gnome-terminal" "xterm")"
 export EDITOR="vim"
-export BROWSER="firefox"
+export BROWSER="brave-browser"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
 # Hide commands prefixed with spaces

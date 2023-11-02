@@ -65,7 +65,7 @@ set -x TERM xterm-256color
 ## Set some default programs
 set -x TERMINAL (first_installed "termite" "gnome-terminal" "xterm")
 set -x EDITOR "vim"
-set -x BROWSER "firefox"
+set -x BROWSER "brave-browser"
 set -x MANPAGER "/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
 # Hide commands prefixed with spaces
