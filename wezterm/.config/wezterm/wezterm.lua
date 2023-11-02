@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+config.color_scheme = 'Dracula'
+
 -- Use fish and tmux
 config.default_prog = { '/usr/bin/fish', '-l', '-c', 'tmux' }
 
