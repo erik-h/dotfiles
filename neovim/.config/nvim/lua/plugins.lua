@@ -1,3 +1,5 @@
+-- TODO: switch from packer to lazy because apparently packer is now unmaintained
+
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local packer_bootstrap
@@ -151,6 +153,29 @@ return require("packer").startup(function(use)
 		config = function()
 			require("plugins/orgmode")
 		end,
+	}
+
+	-- neorg - possible replacement for Orgmode above
+	use {
+		"nvim-neorg/neorg",
+		config = function()
+			require('neorg').setup {
+				load = {
+					["core.defaults"] = {}, -- Loads default behaviour
+					["core.concealer"] = {}, -- Adds pretty icons to your documents
+					["core.dirman"] = { -- Manages Neorg workspaces
+						config = {
+							workspaces = {
+								personal = "~/Dropbox/documents/notes/personal",
+								work = "~/Documents/notes/work",
+							},
+						},
+				},
+			},
+		}
+		end,
+		run = ":Neorg sync-parsers",
+		requires = "nvim-lua/plenary.nvim",
 	}
 
 	-- Rainbow Parentheses
