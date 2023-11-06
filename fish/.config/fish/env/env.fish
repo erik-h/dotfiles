@@ -148,4 +148,8 @@ set -x PATH $PYENV_ROOT/shims $PATH
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source
 
+# Direnv
+# TODO: only do this if direnv is in PATH
+direnv hook fish | source
+
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
