@@ -1,1 +1,6 @@
 /.config/fish/functions/fzf_key_bindings.fish
+
+# Installed by the nifoc/ssh-agent-macos.fish plugin
+/.config/fish/functions/__ssh_agent_source.fish
+/.config/fish/functions/__ssh_agent_start.fish
+/.config/fish/conf.d/ssh-agent-macos.fish
