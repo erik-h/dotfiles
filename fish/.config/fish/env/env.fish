@@ -142,6 +142,7 @@ end
 set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>/dev/null | head -n 1)
 
 # Set up pyenv
+# TODO: only do this if pyenv is in PATH
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH $PYENV_ROOT/bin $PATH
 set -x PATH $PYENV_ROOT/shims $PATH
