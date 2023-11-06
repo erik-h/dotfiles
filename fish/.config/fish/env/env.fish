@@ -137,9 +137,6 @@ else if command -v ag > /dev/null 2>&1
 	set -x FZF_DEFAULT_COMMAND "ag --hidden --ignore .git -g ''"
 end
 
-# SSH agent socket
-set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/openssh_agent"
-
 # Sway socket. I've been having issues where sway ends up using the wrong socket.
 # I got this fix from: https://github.com/swaywm/sway/issues/3769
 set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>/dev/null | head -n 1)
