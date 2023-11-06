@@ -250,6 +250,14 @@ return require("packer").startup(function(use)
 	use "tpope/vim-unimpaired"
 	use "tpope/vim-repeat"
 
+	-- Automatically set indent when entering a buffer
+	use {
+		'nmac427/guess-indent.nvim',
+		config = function()
+			require('guess-indent').setup {}
+		end,
+	}
+
 	-- Commenting (with support for treesitter)
 	use {
 		"numToStr/Comment.nvim",
