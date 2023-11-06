@@ -1,5 +1,4 @@
 # The following functions are installed via `fisher`
 fisher.fish
-sdk.fish
 nvm.fish
 _nvm_*.fish
