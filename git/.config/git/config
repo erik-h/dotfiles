@@ -9,6 +9,8 @@
 [core]
 	editor = nvim
 	attributesfile = ~/.gitattributes
+	autocrlf = false
+	filemode = false
 [diff]
 	tool = vimdiff
 [difftool]
