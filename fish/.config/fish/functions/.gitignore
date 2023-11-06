@@ -1,4 +1,13 @@
 # The following functions are installed via `fisher`
 fisher.fish
+
+nvm_*.fish
+__nvm*.fish
+node.fish
+npm.fish
+npx.fish
 nvm.fish
-_nvm_*.fish
+yarn.fish
+
+__bass.py
+bass.fish
