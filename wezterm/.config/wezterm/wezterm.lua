@@ -5,6 +5,8 @@ function file_exists(name)
 	return next(wezterm.glob(name)) ~= nil
 end
 
+config.audible_bell = "Disabled"
+
 config.color_scheme = 'Dracula'
 
 if file_exists('/opt/homebrew/bin/fish') then
