@@ -50,3 +50,14 @@ require('lspconfig')['omnisharp'].setup{
 	on_attach = on_attach,
 	cmd = { "dotnet", vim.fn.expand("~") .. "/opt/omnisharp/OmniSharp.dll" },
 }
+
+require('lspconfig')['terraformls'].setup{
+  on_attach = on_attach
+}
+
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
