@@ -33,22 +33,22 @@ local on_attach = function(client, bufnr)
 end
 
 require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
+  on_attach = on_attach,
 }
 require('lspconfig')['tsserver'].setup{
-    on_attach = on_attach,
+  on_attach = on_attach,
 }
 require('lspconfig')['rust_analyzer'].setup{
-    on_attach = on_attach,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
-    }
+  on_attach = on_attach,
+  -- Server-specific settings...
+  settings = {
+    ["rust-analyzer"] = {}
+  }
 }
 
 require('lspconfig')['omnisharp'].setup{
-	on_attach = on_attach,
-	cmd = { "dotnet", vim.fn.expand("~") .. "/opt/omnisharp/OmniSharp.dll" },
+  on_attach = on_attach,
+  cmd = { "dotnet", vim.fn.expand("~") .. "/opt/omnisharp/OmniSharp.dll" },
 }
 
 require('lspconfig')['terraformls'].setup{
