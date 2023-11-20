@@ -51,6 +51,12 @@ return require("packer").startup(function(use)
 	-- because of the lazy loading.
 	-- TODO: move this into some other "mappings for plugins that are using lazy loading" file.
 	vim.keymap.set("n", "<leader>e", ":NERDTreeToggle<cr>")
+	use {
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end
+	}
 
 	-- Distraction-free writing
 	use {
