@@ -164,13 +164,7 @@ return require("packer").startup(function(use)
 	use { "thosakwe/vim-flutter", ft = "dart" }
 
 	-- Auto import Java and Groovy classes
-	use {
-		"sjurgemeyer/vimport",
-		ft = {"groovy", "java"},
-		config = function()
-			require("plugins/vimport")
-		end,
-	}
+	use "mfussenegger/nvim-jdtls"
 
 	-- Golang
 	use {
