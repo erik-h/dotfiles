@@ -22,8 +22,6 @@ vim.keymap.set("n", "<C-l>", ":nohl<cr><C-l>", { silent = true })
 vim.keymap.set("n", "<C-g>", "1<C-g>")
 -- Copies what was just pasted (so you can paste the same text repeatedly)
 vim.keymap.set("x", "p", "pgvy")
--- Copy text to the system clipboard
-vim.keymap.set({"n", "i", "x"}, "<leader>y", '"+y')
 -- Switch between buffers
 vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
@@ -128,6 +126,8 @@ if vim.fn.executable("rg") == 1 then
 elseif vim.fn.executable("ag") then
 	vim.opt.grepprg = "ag --vimgrep --noheading"
 end
+
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
