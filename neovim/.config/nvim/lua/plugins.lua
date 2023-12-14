@@ -201,6 +201,7 @@ return require("packer").startup(function(use)
 			-- that I'll probably be adding a fair bit more sources eventually)
 			require("cmp").setup {
 				sources = {
+					{ name = "nvim_lsp" },
 					{ name = "orgmode" },
 					{ name = "tags" },
 				}
