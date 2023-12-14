@@ -11,3 +11,6 @@ yarn.fish
 
 __bass.py
 bass.fish
+
+__sdkman*
+sdk.fish
