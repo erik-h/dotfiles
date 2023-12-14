@@ -19,6 +19,15 @@ return require("packer").startup(function(use)
 		end,
 	}
 
+	-- though I'm not using the lsp integration with prettier.nvim, null-ls is still required for now:
+	-- https://github.com/MunifTanjim/prettier.nvim/issues/29
+	use "jose-elias-alvarez/null-ls.nvim"
+	use {
+		"MunifTanjim/prettier.nvim",
+		config = function()
+			require("plugins/prettier")
+		end
+	}
 	use {
 		"rest-nvim/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
