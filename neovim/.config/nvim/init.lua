@@ -161,6 +161,14 @@ table.insert(vim.opt.wildignore, "*/node_modules/*")
 vim.opt.ttimeoutlen = 0
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
+-- Source: https://sbulav.github.io/vim/neovim-opening-urls/
+if vim.fn.has("mac") then
+	vim.keymap.set("n", "gx", '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>')
+elseif vim.fn.has("unix") then
+	vim.keymap.set("n", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>')
+else
+	vim.keymap.set("n", "gx", '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>')
+end
 
 require("plugins")
 
