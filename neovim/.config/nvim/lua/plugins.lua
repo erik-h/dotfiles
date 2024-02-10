@@ -166,6 +166,23 @@ return require("packer").startup(function(use)
 	-- Auto import Java and Groovy classes
 	use "mfussenegger/nvim-jdtls"
 
+	-- Debugger integration
+	use "mfussenegger/nvim-dap"
+	use {
+		"theHamsta/nvim-dap-virtual-text",
+		config = function()
+			require("plugins/nvim-dap-virtual-text")
+		end
+	}
+	use "folke/neodev.nvim"
+	use {
+		"rcarriga/nvim-dap-ui",
+		requires = { "mfussenegger/nvim-dap" },
+		config = function()
+			require("plugins/nvim-dap-ui")
+		end
+	}
+
 	-- Golang
 	use {
 		"fatih/vim-go",

@@ -21,6 +21,21 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   vim.keymap.set('n', '<space>i', function() require('jdtls').organize_imports() end, bufopts)
+
+  vim.keymap.set('n', '<space>b', function() require('dap').toggle_breakpoint() end)
+  vim.keymap.set('n', '<space>cb', function() require('dap').clear_breakpoints() end)
+  vim.keymap.set('n', '<space>dc', function() require('dap').continue() end)
+  vim.keymap.set('n', '<space>dr', function() require('dap').repl.toggle() end)
+  vim.keymap.set('n', '<space>du', function() require("dapui").toggle({reset = true}) end)
+  -- if client.name == "jdt.ls" then
+  --   require("jdtls").setup_dap { hotcodereplace = "auto" }
+  --   require("jdtls.dap").setup_dap_main_class_configs()
+  --   vim.lsp.codelens.refresh()
+  --
+  --   vim.keymap.set('n', '<space>b', function() require('dap').toggle_breakpoint() end)
+  --   vim.keymap.set('n', '<space>cb', function() require('dap').clear_breakpoints() end)
+  --   vim.keymap.set('n', '<space>dr', function() require('dap').repl.toggle() end)
+  -- end
 end
 
 local project_root = vim.fs.dirname(vim.fs.find({'build.gradle'}, { upward = true })[1])
@@ -32,6 +47,24 @@ local config = {
       '-data', workspace_dir
     },
     root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    init_options = {
+      bundles = {
+        vim.fn.glob(os.getenv("HOME") .. "/dev/github/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
+      }
+    },
     on_attach = on_attach,
 }
+
+local dap = require('dap')
+dap.configurations.java = {
+  {
+    type = 'java',
+    request = 'attach',
+    name = "Debug (Attach) - Remote",
+    hostName = "127.0.0.1",
+    projectName = project_name,
+    port = 5005,
+  },
+}
+
 require('jdtls').start_or_attach(config)
