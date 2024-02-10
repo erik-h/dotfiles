@@ -36,7 +36,10 @@ require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
 }
 require('lspconfig')['tsserver'].setup{
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    vim.keymap.set('n', "<space>i", function() vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) }}) end, { noremap=true, silent=true, buffer=bufnr })
+  end,
 }
 require('lspconfig')['rust_analyzer'].setup{
   on_attach = on_attach,

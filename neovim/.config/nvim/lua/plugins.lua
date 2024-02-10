@@ -24,10 +24,18 @@ return require("packer").startup(function(use)
 	use "jose-elias-alvarez/null-ls.nvim"
 	use {
 		"MunifTanjim/prettier.nvim",
+		ft = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
 		config = function()
 			require("plugins/prettier")
 		end
 	}
+	use {
+		"MunifTanjim/eslint.nvim",
+		config = function()
+			require("plugins/eslint-nvim")
+		end
+	}
+
 	use {
 		"rest-nvim/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
