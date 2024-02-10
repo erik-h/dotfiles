@@ -50,12 +50,6 @@ function first_installed -d "Return the first 'installed' (i.e. in \$PATH) comma
 	return 1
 end
 
-# Hacky hopefully-temporary fix to a vim issue I encountered using fish:
-# https://github.com/Addisonbean/Vim-Xcode-Theme/issues/1#issuecomment-510547754
-# (I wasn't using the XCode theme, for me it happened whenever I opened vim within
-# a Go project)
-set -x SHELL /bin/bash
-
 # Make sure gpg pinentry will work from a tty
 set -x GPG_TTY (tty)
 
