@@ -1,7 +1,7 @@
 Dotfiles
 ========
 
-These are some of the files that I use to configure my Linux environment.
+These are some of the files that I use to configure my *nix environments.
 
 ## Installation
 [GNU Stow](https://www.gnu.org/software/stow/) is used to manage these dotfiles.
