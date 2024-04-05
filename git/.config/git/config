@@ -12,9 +12,14 @@
 	autocrlf = false
 	filemode = false
 [diff]
-	tool = vimdiff
+	tool = difftastic
+	external = difft
 [difftool]
 	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
 [alias]
 	d = diff
 	dt = difftool
