@@ -11,9 +11,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<leader>t", "<Plug>(go-test)")
 		vim.keymap.set("n", "<leader>c", "<Plug>(go-coverage)")
 
-		vim.keymap.set("n", "<Leader>ds", "<Plug>(go-def-split)")
-		vim.keymap.set("n", "<Leader>dv", "<Plug>(go-def-vertical)")
-		vim.keymap.set("n", "<Leader>dt", "<Plug>(go-def-tab)")
+		vim.keymap.set("n", "gd", "<Plug>(go-def)")
+		vim.keymap.set("n", "gr", "<Plug>(go-referrers)")
 
 		vim.keymap.set("n", "<Leader>gd", "<Plug>(go-doc)")
 		vim.keymap.set("n", "<Leader>gv", "<Plug>(go-doc-vertical)")
@@ -22,7 +21,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		vim.keymap.set("n", "<Leader>s", "<Plug>(go-implements)")
 
-		vim.keymap.set("n", "<Leader>i", "<Plug>(go-info)")
+		vim.keymap.set("n", "K", "<Plug>(go-info)")
+		vim.keymap.set("n", "<Leader>i", "<Plug>(go-imports)")
 
 		vim.keymap.set("n", "<Leader>e", "<Plug>(go-rename)")
 	end,
