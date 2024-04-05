@@ -34,6 +34,11 @@ end
 
 require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
+  settings = {
+    pyright = {
+      autoImportCompletion = true
+    }
+  }
 }
 require('lspconfig')['tsserver'].setup{
   on_attach = function(client, bufnr)
