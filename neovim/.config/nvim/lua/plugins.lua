@@ -327,6 +327,12 @@ return require("packer").startup(function(use)
 
 	-- Amazing tpope plugins!
 	use "tpope/vim-fugitive"
+	use {
+		"tpope/vim-rhubarb",
+		config = function()
+			require("plugins/vim-rhubarb")
+		end
+	}
 	-- use "tpope/vim-commentary"
 	use "tpope/vim-surround"
 	use "tpope/vim-eunuch"
