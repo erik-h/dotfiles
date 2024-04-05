@@ -38,7 +38,12 @@ local on_attach = function(client, bufnr)
   -- end
 end
 
-local project_root = vim.fs.dirname(vim.fs.find({'build.gradle'}, { upward = true })[1])
+local project_root = vim.fs.dirname(
+  vim.fs.find({'build.gradle'},
+  {
+    upward = true,
+    path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+  })[1])
 local project_name = vim.fn.fnamemodify(project_root, ':p:h:t')
 local workspace_dir = os.getenv("HOME") .. "/.cache/jdtls/workspace/" .. project_name
 local config = {
