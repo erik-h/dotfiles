@@ -24,9 +24,9 @@ local on_attach = function(client, bufnr)
 
   vim.keymap.set('n', '<space>b', function() require('dap').toggle_breakpoint() end)
   vim.keymap.set('n', '<space>cb', function() require('dap').clear_breakpoints() end)
-  vim.keymap.set('n', '<space>dc', function() require('dap').continue() end)
-  vim.keymap.set('n', '<space>dr', function() require('dap').repl.toggle() end)
-  vim.keymap.set('n', '<space>du', function() require("dapui").toggle({reset = true}) end)
+  vim.keymap.set('n', '<LocalLeader>dc', function() require('dap').continue() end)
+  vim.keymap.set('n', '<LocalLeader>dr', function() require('dap').repl.toggle() end)
+  vim.keymap.set('n', '<LocalLeader>du', function() require("dapui").toggle({reset = true}) end)
   -- if client.name == "jdt.ls" then
   --   require("jdtls").setup_dap { hotcodereplace = "auto" }
   --   require("jdtls.dap").setup_dap_main_class_configs()
