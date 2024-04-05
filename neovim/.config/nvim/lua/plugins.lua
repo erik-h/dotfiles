@@ -123,6 +123,14 @@ return require("packer").startup(function(use)
 		end
 	}
 
+	-- Preview markdown files in a floating window
+	use {
+		"ellisonleao/glow.nvim",
+		config = function()
+			require("glow").setup()
+		end
+	}
+
 	-- Distraction-free writing
 	use {
 		"junegunn/goyo.vim",
