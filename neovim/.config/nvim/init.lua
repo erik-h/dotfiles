@@ -146,8 +146,6 @@ vim.opt.smartcase = true
 
 vim.opt.undofile = true
 
-vim.opt.pastetoggle = "<F2>"
-
 vim.opt.wildmode = "longest,list"
 
 -- Don't offer to open certain files/directories
