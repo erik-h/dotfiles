@@ -8,7 +8,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 end
 
-return require("packer").startup(function(use)
+local packer = require("packer")
+packer.init({
+	luarocks = {
+		python_cmd = "python3"
+	}
+})
+return packer.startup(function(use)
 	-- Have packer manage itself!
 	use "wbthomason/packer.nvim"
 
