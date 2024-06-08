@@ -63,6 +63,8 @@ require('lspconfig')['terraformls'].setup{
   on_attach = on_attach
 }
 
+require('lspconfig')['gopls'].setup {}
+
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
   callback = function()
