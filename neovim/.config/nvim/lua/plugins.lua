@@ -404,7 +404,6 @@ return packer.startup(function(use)
 			require("plugins/vim-rhubarb")
 		end
 	}
-	-- use "tpope/vim-commentary"
 	use "tpope/vim-surround"
 	use "tpope/vim-eunuch"
 	use "tpope/vim-unimpaired"
@@ -415,14 +414,6 @@ return packer.startup(function(use)
 		'nmac427/guess-indent.nvim',
 		config = function()
 			require('guess-indent').setup {}
-		end,
-	}
-
-	-- Commenting (with support for treesitter)
-	use {
-		"numToStr/Comment.nvim",
-		config = function()
-			require("plugins/Comment")
 		end,
 	}
 
