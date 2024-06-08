@@ -255,6 +255,8 @@ return packer.startup(function(use)
 	-- neorg - possible replacement for Orgmode above
 	use {
 		"nvim-neorg/neorg",
+		tag = "*",
+		rocks = { "lua-utils.nvim", "nvim-nio", "nui.nvim", "plenary.nvim", "pathlib.nvim" },
 		config = function()
 			require('neorg').setup {
 				load = {
@@ -272,7 +274,6 @@ return packer.startup(function(use)
 		}
 		end,
 		run = ":Neorg sync-parsers",
-		requires = "nvim-lua/plenary.nvim",
 	}
 
 	-- Rainbow Parentheses
