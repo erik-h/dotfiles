@@ -55,7 +55,7 @@ return packer.startup(function(use)
 				-- Skip SSL verification, useful for unknown certificates
 				skip_ssl_verification = false,
 				-- Encode URL before making request
-				encode_url = true,
+				encode_url = false,
 				-- Highlight request on run
 				highlight = {
 					enabled = true,
