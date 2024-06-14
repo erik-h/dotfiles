@@ -18,6 +18,14 @@ end
 -- Don't use the tab bar; I'll use tmux windows
 config.enable_tab_bar = false
 
-config.font_size = 13.0
+config.font_size = 14.0
+
+config.keys = {
+	{
+		mods = 'CTRL',
+		key = '0',
+		action = wezterm.action.ResetFontSize
+	}
+}
 
 return config
