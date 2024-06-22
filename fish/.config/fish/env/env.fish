@@ -150,4 +150,9 @@ status --is-interactive; and pyenv virtualenv-init - | source
 # TODO: only do this if direnv is in PATH
 direnv hook fish | source
 
+# Homebrew
+if test -x /home/linuxbrew/.linuxbrew/bin/brew
+	eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end
+
 [ -f "$HOME/.config/fish/env/local_env.fish" ]; and source "$HOME/.config/fish/env/local_env.fish"
