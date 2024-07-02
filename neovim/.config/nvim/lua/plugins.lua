@@ -163,6 +163,13 @@ return packer.startup(function(use)
 	-- Markdown
 	use "godlygeek/tabular"
 	use { "preservim/vim-markdown", ft = "markdown"}
+	use {
+		"OXY2DEV/markview.nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("markview").setup()
+		end
+	}
 
 	-- Load project-specific environment variables
 	use "tpope/vim-dotenv"
