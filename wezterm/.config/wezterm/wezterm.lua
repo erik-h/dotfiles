@@ -28,4 +28,12 @@ config.keys = {
 	}
 }
 
+-- Use machine-specific local config overrides if they exist
+local local_config_exists, local_config = pcall(require, "local")
+if (local_config_exists) then
+	for k, v in pairs(local_config) do
+		config[k] = v
+	end
+end
+
 return config
