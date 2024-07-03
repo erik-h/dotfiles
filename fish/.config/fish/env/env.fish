@@ -139,16 +139,19 @@ set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>
 type -q starship; and starship init fish | source
 
 # Set up pyenv
-# TODO: only do this if pyenv is in PATH
-set -x PYENV_ROOT $HOME/.pyenv
-set -x PATH $PYENV_ROOT/bin $PATH
-set -x PATH $PYENV_ROOT/shims $PATH
-status --is-interactive; and pyenv init - | source
-status --is-interactive; and pyenv virtualenv-init - | source
+if command -qv pyenv
+	set -x PYENV_ROOT $HOME/.pyenv
+	set -x PATH $PYENV_ROOT/bin $PATH
+	set -x PATH $PYENV_ROOT/shims $PATH
+	status --is-interactive; and pyenv init - | source
+	status --is-interactive; and pyenv virtualenv-init - | source
+end
 
 # Direnv
 # TODO: only do this if direnv is in PATH
-direnv hook fish | source
+if command -qv direnv
+	direnv hook fish | source
+end
 
 # Homebrew
 if test -x /home/linuxbrew/.linuxbrew/bin/brew
