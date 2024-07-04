@@ -153,6 +153,10 @@ if command -qv direnv
 	direnv hook fish | source
 end
 
+if command -qv kubectl
+	kubectl completion fish | source
+end
+
 # Homebrew
 if test -x /home/linuxbrew/.linuxbrew/bin/brew
 	eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
