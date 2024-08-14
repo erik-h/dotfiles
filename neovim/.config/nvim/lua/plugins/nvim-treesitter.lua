@@ -2,7 +2,7 @@ require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"c", "c_sharp", "lua", "rust", "go", "http", "python", "java",
 		"kotlin", "javascript", "bash", "org", "json", "ruby", "hcl",
-		"terraform", "tsx", "vim", "yaml",
+		"terraform", "tsx", "vim", "yaml", "html", "xml"
 	},
 	highlight = {
 		enable = true,
