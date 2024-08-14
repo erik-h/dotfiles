@@ -23,6 +23,8 @@
 [alias]
 	d = diff
 	dt = difftool
+	; Fix up and autosquash changes to a file for a given commit
+	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 	today = log --since=midnight
 	sync = !git pull && git push
 	luniq = "!git log ${1:-origin/main}..HEAD"
