@@ -31,6 +31,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+require('lspconfig')['bashls'].setup{}
+
 require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
   settings = {
@@ -63,6 +65,8 @@ require('lspconfig')['terraformls'].setup{
 }
 
 require('lspconfig')['gopls'].setup {}
+
+require('lspconfig')['kotlin_language_server'].setup {}
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
