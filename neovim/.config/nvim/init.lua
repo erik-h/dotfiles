@@ -110,6 +110,15 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 	end
 })
 
+---
+--- Filetypes
+---
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
+
 --
 -- Options
 --
