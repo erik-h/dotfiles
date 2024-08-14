@@ -10,6 +10,8 @@ vim.g.browser = vim.env.BROWSER and vim.env.BROWSER or "firefox"
 vim.g.netrw_browsex_viewer = vim.g.browser
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+-- TODO: only use fish if it's actually installed, else fallback to bash (or just leave it unset and use sh or whatever the default is)
+vim.opt.shell = "fish"
 
 --
 -- QOL mappings
