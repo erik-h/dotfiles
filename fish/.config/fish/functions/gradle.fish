@@ -6,6 +6,12 @@ function gradle
 		return 1
 	end
 
+	if isatty stdin
+		set -l pipe_input ""
+	else
+		read -l pipe_input
+	end
+
 	echo "Using gradlew: $gradlew"
-	eval $gradlew $argv
+	eval "echo $pipe_input | $gradlew $argv"
 end
