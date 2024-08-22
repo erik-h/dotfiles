@@ -2,6 +2,8 @@
 # In this script we set up global environment variables
 #
 
+# TODO: use `set -U fish_user_paths <path to add> $fish_user_paths` to add to
+# PATH because apparently that's the more fish-y way to do it.
 function _path_munge -d "Add the given directory to \$PATH if it isn't already in there."
 	set -l candidate $argv[1]
 	set -l modifier $argv[2]
