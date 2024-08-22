@@ -8,6 +8,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  -- TODO: probably override vim.lsp.workspace_symbol directly somewhere else instead of doing this here
+  -- see here for an example (I'm using fzf-lua now but I think it should be a
+  -- good starting point): https://github.com/gfanto/fzf-lsp.nvim?tab=readme-ov-file#handlers
+  vim.keymap.set('n', '<space>s', require('fzf-lua').lsp_live_workspace_symbols, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)

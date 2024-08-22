@@ -371,6 +371,17 @@ return packer.startup(function(use)
 		end,
 	}
 
+	use {
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		requires = { "nvim-tree/nvim-web-devicons" },
+		-- or if using mini.icons/mini.nvim
+		-- requires = { "echasnovski/mini.icons" }
+		config = function()
+			require("fzf-lua").setup({})
+		end
+	}
+
 	-- Awesome interactive git plugin
 	-- TODO: try out neogit
 	use {
