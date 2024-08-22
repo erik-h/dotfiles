@@ -1,3 +1,6 @@
+-- TODO TODO TODO: source the on_attach stuff from nvim-lspconfig here; right
+-- now it's very grossly duplicated here and there with some additions
+-- performed here.
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
