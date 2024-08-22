@@ -38,7 +38,7 @@ local on_attach = function(client, bufnr)
 end
 
 local project_root = vim.fs.dirname(
-  vim.fs.find({'build.gradle'},
+  vim.fs.find({'build.gradle.kts', 'build.gradle'},
   {
     upward = true,
     path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
