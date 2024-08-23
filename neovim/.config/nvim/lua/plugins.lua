@@ -364,6 +364,7 @@ return packer.startup(function(use)
 		package_root = "~/.fzf",
 		run = "./install --all"
 	}
+	-- TODO: remove this in favour of fzf-lua
 	use {
 		"junegunn/fzf.vim",
 		config = function()
