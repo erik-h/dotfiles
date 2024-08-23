@@ -25,6 +25,12 @@ return packer.startup(function(use)
 		end,
 	}
 
+	use {
+		"mhartington/formatter.nvim",
+		config = function()
+			require("formatter")
+		end
+	}
 	-- though I'm not using the lsp integration with prettier.nvim, null-ls is still required for now:
 	-- https://github.com/MunifTanjim/prettier.nvim/issues/29
 	use "jose-elias-alvarez/null-ls.nvim"
