@@ -36,6 +36,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  -- TODO: I think the below works maybe, just filter so only applies to *.java files
+  -- autocmd("BufWritePost", {
+  --   group = "__formatter__",
+  --   buffer = bufnr,
+  --   callback = function()
+  --     -- local buf_content = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n")
+  --     print("Formatting file: "..vim.fn.expand("#"..bufnr..":p"))
+  --     os.execute(os.getenv("HOME").."/bin/gradlew --quiet :DataWorksServer:spotlessApply -PspotlessIdeHook="..vim.fn.expand("#"..bufnr..":p"))
+  --   end
+  -- })
 end
 
 require('lspconfig')['bashls'].setup{
