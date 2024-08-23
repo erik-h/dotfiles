@@ -190,24 +190,24 @@ _fzf_git_files() {
 _fzf_git_branches() {
   _fzf_git_check || return
   # bash "$__fzf_git" branches |
+  # NOTE: this was 2 in the original GitHub source. With --header-lines 2 set I was getting
+  # the behaviour where my "last" branch was being shown in the header,
+  # meaning I couldn't switch back to that branch since the fzf scroll excluded it...
+  # That's why I changed this to 1. Maybe I'm missing something about why it
+  # was 2 originally lol. It's probably due to my other edits to this file.
   git branch "$@" --sort=-committerdate --sort=-HEAD --format=$'%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))\t%(color:blue)%(subject)%(color:reset)' --color=$(__fzf_git_color) | column -ts$'\t' |
   _fzf_git_fzf --ansi \
     --border-label '🌲 Branches' \
-    # NOTE: this was 2 in the original GitHub source. With 2 set I was getting
-      # the behaviour where my "last" branch was being shown in the header,
-      # meaning I couldn't switch back to that branch since the fzf scroll excluded it...
-      # That's why I changed this to 1. Maybe I'm missing something about why it
-      # was 2 originally lol. It's probably due to my other edits to this file.
     --header-lines 1 \
     --tiebreak begin \
     --preview-window down,border-top,40% \
     --color hl:underline,hl+:underline \
     --no-hscroll \
     --bind 'ctrl-/:change-preview-window(down,70%|hidden|)' \
-    # --bind "ctrl-o:execute-silent:bash $__fzf_git branch {}" \
     --bind "alt-a:change-border-label(🌳 All branches)+reload:bash \"$__fzf_git\" all-branches" \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' \$(sed s/^..// <<< {} | cut -d' ' -f1) --" "$@" |
   sed 's/^..//' | cut -d' ' -f1
+    # --bind "ctrl-o:execute-silent:bash $__fzf_git branch {}" \
 }
 
 _fzf_git_tags() {
