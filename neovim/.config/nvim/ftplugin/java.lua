@@ -15,6 +15,7 @@ local on_attach = function(client, bufnr)
   -- see here for an example (I'm using fzf-lua now but I think it should be a
   -- good starting point): https://github.com/gfanto/fzf-lsp.nvim?tab=readme-ov-file#handlers
   vim.keymap.set('n', '<space>s', require('fzf-lua').lsp_live_workspace_symbols, bufopts)
+  vim.keymap.set('n', '<space>f', require('fzf-lua').lsp_document_symbols, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -24,8 +25,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references, bufopts)
+  -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   vim.keymap.set('n', '<space>i', function() require('jdtls').organize_imports() end, bufopts)
 
   vim.keymap.set('n', '<space>b', function() require('dap').toggle_breakpoint() end)
