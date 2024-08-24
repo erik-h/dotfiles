@@ -1,7 +1,10 @@
 -- TODO TODO TODO: source the on_attach stuff from nvim-lspconfig here; right
 -- now it's very grossly duplicated here and there with some additions
 -- performed here.
+require('lsp-format').setup {}
 local on_attach = function(client, bufnr)
+  -- Async auto format on save
+  require('lsp-format').on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -59,13 +62,52 @@ local config = {
       '-data', workspace_dir
     },
     root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
-    init_options = {
-      bundles = {
-        vim.fn.glob(os.getenv("HOME") .. "/dev/github/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
-      }
+    settings = {
+      java = {
+        saveActions = {
+          organizeImports = true
+        },
+        completion = {
+          importOrder = {
+            'java',
+            'javax',
+            'javolution',
+            'sun',
+            'gnu',
+            'net',
+            'org',
+            'oracle',
+            'ch',
+            'cz',
+            'com',
+            'com.actenum',
+            'com.actenum.dw5',
+            'unittest.com.actenum',
+            'unittests.com.actenum',
+            ''
+          }
+        }
+      },
     },
     on_attach = on_attach,
 }
+local javaDebugJarGlob = os.getenv("HOME") .. "/dev/github/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+if vim.fn.glob(javaDebugJarGlob, 1)  ~= "" then
+    config.init_options = {
+      bundles = {
+        vim.fn.glob(javaDebugJarGlob, 1)
+      }
+    }
+end
+
+local javaFormatStyle = os.getenv("HOME") .. "/dev/work/actenumdso/DataWorksBuild/formatting/eclipse-java-formatter-15-actenum-style-with-modifications.xml"
+if vim.fn.glob(javaFormatStyle, 1)  ~= "" then
+  config.settings.java.format = {
+    settings = {
+      url = javaFormatStyle
+    },
+  }
+end
 
 local dap = require('dap')
 dap.configurations.java = {

@@ -10,7 +10,15 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+require('lsp-format').setup {}
 local on_attach = function(client, bufnr)
+  local clientsToAutoFormat = {'tsserver', 'terraformls'}
+  for _, c in ipairs(clientsToAutoFormat) do
+    if client.name == c then
+      -- Async auto format on save
+      require('lsp-format').on_attach(client, bufnr)
+    end
+  end
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -35,17 +43,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references, bufopts)
-
-  -- TODO: I think the below works maybe, just filter so only applies to *.java files
-  -- autocmd("BufWritePost", {
-  --   group = "__formatter__",
-  --   buffer = bufnr,
-  --   callback = function()
-  --     -- local buf_content = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n")
-  --     print("Formatting file: "..vim.fn.expand("#"..bufnr..":p"))
-  --     os.execute(os.getenv("HOME").."/bin/gradlew --quiet :DataWorksServer:spotlessApply -PspotlessIdeHook="..vim.fn.expand("#"..bufnr..":p"))
-  --   end
-  -- })
 end
 
 require('lspconfig')['bashls'].setup{
@@ -90,10 +87,3 @@ require('lspconfig')['gopls'].setup {
 require('lspconfig')['kotlin_language_server'].setup {
   on_attach = on_attach
 }
-
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
