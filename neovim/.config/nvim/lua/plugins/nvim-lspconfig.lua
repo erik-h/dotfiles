@@ -12,7 +12,8 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 require('lsp-format').setup {}
 local on_attach = function(client, bufnr)
-  local clientsToAutoFormat = {'tsserver', 'terraformls'}
+  -- NOTE: tsserver is handled by prettier.nvim using null-ls
+  local clientsToAutoFormat = {'terraformls'}
   for _, c in ipairs(clientsToAutoFormat) do
     if client.name == c then
       -- Async auto format on save

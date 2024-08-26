@@ -1,3 +1,5 @@
+-- NOTE: Format on save is configured with "null-ls.nvim"
+
 local prettier = require("prettier")
 
 prettier.setup({
@@ -21,6 +23,3 @@ prettier.setup({
     "yaml",
   }
 })
-
-vim.keymap.set("n", "<leader>f", "<Plug>(prettier-format)")
-vim.keymap.set("x", "<leader>f", "<Plug>(prettier-format)")

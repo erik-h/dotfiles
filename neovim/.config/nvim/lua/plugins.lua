@@ -27,9 +27,14 @@ return packer.startup(function(use)
 
 	use "lukas-reineke/lsp-format.nvim"
 
-	-- Though I'm not using the lsp integration with prettier.nvim, null-ls is still required for now:
+	-- Hopefully I can eventually get rid of null-ls:
 	-- https://github.com/MunifTanjim/prettier.nvim/issues/29
-	use "jose-elias-alvarez/null-ls.nvim"
+	use {
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("plugins/null-ls")
+		end
+	}
 	use {
 		"MunifTanjim/prettier.nvim",
 		ft = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
