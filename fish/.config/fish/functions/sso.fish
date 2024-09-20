@@ -1,3 +1,7 @@
-function sso --description 'Log in to the AWS cli dev profile using SSO'
-	aws sso login --profile dev
+function sso -a 'profile' -d 'Log in to an AWS cli profile using SSO (dev by default)'
+	if test -z "$profile"
+		aws sso login --profile dev
+	else
+		aws sso login --profile $profile
+	end
 end
