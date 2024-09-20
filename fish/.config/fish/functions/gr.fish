@@ -1,3 +1,3 @@
 function gr
-	git remote $argv
+	git rebase $argv
 end
