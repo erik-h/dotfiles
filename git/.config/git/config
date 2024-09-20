@@ -29,6 +29,7 @@
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 	# List local branches whose remote has been deleted
 	gone = "!f() { git branch -vv | awk '{print $1,$4}' | grep 'gone]' | grep -v '\\*' | awk '{print $1}'; }; f"
+	parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\([^\\^~]*\\).*\\].*/\\1/' #"
 	# Quote/unquote an sh command, converting it to/from a git alias string
 	# Source: https://stackoverflow.com/a/39616600
 	quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
