@@ -14,14 +14,14 @@ function fe
 		# TODO: use the fancier pop-up fzf window that's being used for the
 		# above _fzf_git_files call for this "search for file while not in
 		# a git repo" case too.
-		set file (eval $fzf_tmux --query=$argv[1] --select-1 --exit-0)
+		set file (eval $fzf_tmux --query=$argv[1] --select-1 --exit-0 -- -m --bind 'ctrl-t:toggle-all')
 	end
 
 	set editor $EDITOR
 	test -z "$editor"; and set editor "vim"
 
 	if [ -n "$file" ]
-		eval $editor $file
+		eval $editor '$file'
 		printf "$file\n" >&2 
 	end
 end
