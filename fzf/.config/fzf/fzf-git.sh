@@ -181,6 +181,7 @@ _fzf_git_files() {
   (git -c color.status=$(__fzf_git_color) status --short --no-branch
    git ls-files "$root" | grep -vxFf <(git status -s | grep '^[^?]' | cut -c4-; echo :) | sed 's/^/   /') |
   _fzf_git_fzf -m --ansi --nth 2..,.. \
+    --bind 'ctrl-t:toggle-all' \
     --border-label '📁 Files' \
     --query "$query" \
     --preview "git diff --no-ext-diff --color=$(__fzf_git_color .) -- {-1} | $(__fzf_git_pager); $(__fzf_git_cat) {-1}" "$@" |
