@@ -355,12 +355,13 @@ return packer.startup(function(use)
 	}
 
 	-- Easily search for text in multiple files
-	use {
-		"dkprice/vim-easygrep",
-		config = function()
-			require("plugins/vim-easygrep")
-		end,
-	}
+	-- NOTE: this started BALLOONING my neovim startup time (i.e. adding TEN SECONDS LOL); I should find a modern alternative
+	-- use {
+	-- 	"dkprice/vim-easygrep",
+	-- 	config = function()
+	-- 		require("plugins/vim-easygrep")
+	-- 	end,
+	-- }
 
 	-- Allow code to be changed _within_ the quickfix window (for use mainly with :cfdo)
 	use "stefandtw/quickfix-reflector.vim"
