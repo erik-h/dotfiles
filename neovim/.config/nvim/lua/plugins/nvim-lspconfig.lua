@@ -12,7 +12,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 require('lsp-format').setup {}
 local on_attach = function(client, bufnr)
-  -- NOTE: tsserver is handled by prettier.nvim using null-ls
+  -- NOTE: ts_ls is handled by prettier.nvim using null-ls
   local clientsToAutoFormat = {'terraformls'}
   for _, c in ipairs(clientsToAutoFormat) do
     if client.name == c then
@@ -58,7 +58,7 @@ require('lspconfig')['pyright'].setup{
     }
   }
 }
-require('lspconfig')['tsserver'].setup{
+require('lspconfig')['ts_ls'].setup{
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     vim.keymap.set('n', "<space>i", function() vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) }}) end, { noremap=true, silent=true, buffer=bufnr })
