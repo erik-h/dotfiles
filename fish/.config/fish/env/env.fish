@@ -139,6 +139,8 @@ set -gx SWAYSOCK (find /run/user/1000/ -maxdepth 1 -type s -name 'sway-ipc.*' 2>
 
 # Starship prompt
 type -q starship; and starship init fish | source
+# television fuzzy finder
+type -q tv; and tv init fish | source
 
 # Set up pyenv
 if command -qv pyenv
