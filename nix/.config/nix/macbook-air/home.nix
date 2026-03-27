@@ -33,6 +33,8 @@
 		gc = "git commit";
 		gco = "git checkout";
 		gs = "git switch";
+		gp = "git push";
+		gl = "git pull";
 		ga = "git add";
 		glog = "git log";
 		gr = "git rebase";
