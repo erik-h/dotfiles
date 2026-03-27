@@ -2,7 +2,14 @@
   description = "Erik's nix-darwin system flake";
 
   inputs = {
-    mac-app-util.url = "github:hraban/mac-app-util";
+    claude-code-nix = {
+    	url = "github:sadjow/claude-code-nix";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util = {
+    	url = "github:hraban/mac-app-util";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,12 +29,15 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, home-manager, mac-app-util, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, claude-code-nix, homebrew-core, homebrew-cask, home-manager, mac-app-util, ... }:
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Eriks-MacBook-Air
     darwinConfigurations."Eriks-MacBook-Air" = nix-darwin.lib.darwinSystem {
       modules = [
+      	{
+		nixpkgs.config.allowUnfree = true;
+	}
 	mac-app-util.darwinModules.default
         ./darwin.nix
 	nix-homebrew.darwinModules.nix-homebrew
@@ -62,6 +72,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+	  home-manager.extraSpecialArgs = {
+	  	claude-code = claude-code-nix.packages.aarch64-darwin.claude-code;
+	  };
           home-manager.users.erik = ./home.nix;
           home-manager.sharedModules = [
 		mac-app-util.homeManagerModules.default
