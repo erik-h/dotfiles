@@ -6,10 +6,7 @@
     	url = "github:sadjow/claude-code-nix";
 	inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util = {
-    	url = "github:hraban/mac-app-util";
-	inputs.nixpkgs.follows = "nixpkgs";
-    };
+    mac-app-util.url = "github:hraban/mac-app-util";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
