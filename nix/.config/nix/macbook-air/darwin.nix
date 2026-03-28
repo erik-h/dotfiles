@@ -42,6 +42,37 @@
       '';
 
       services.tailscale.enable = true;
+      services.aerospace = {
+      	enable = true;
+	settings = {
+	    gaps = {
+	      outer.left = 8;
+	      outer.bottom = 8;
+	      outer.top = 8;
+	      outer.right = 8;
+	      inner.horizontal = 8;
+	      inner.vertical = 8;
+	    };
+	    mode.main.binding = {
+	      "cmd-h" = "focus left";
+	      "cmd-j" = "focus down";
+	      "cmd-k" = "focus up";
+	      "cmd-l" = "focus right";
+	      "cmd-shift-h" = "move left";
+	      "cmd-shift-j" = "move down";
+	      "cmd-shift-k" = "move up";
+	      "cmd-shift-l" = "move right";
+	      "cmd-shift-f" = "fullscreen";
+	      # workspaces
+	      "cmd-1" = "workspace 1";
+	      "cmd-2" = "workspace 2";
+	      "cmd-3" = "workspace 3";
+	      "cmd-shift-1" = "move-node-to-workspace 1";
+	      "cmd-shift-2" = "move-node-to-workspace 2";
+	      "cmd-shift-3" = "move-node-to-workspace 3";
+	    };
+	  };
+      };
       
       # Set Git commit hash for darwin-version.
       # system.configurationRevision = self.rev or self.dirtyRev or null;
