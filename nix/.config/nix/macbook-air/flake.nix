@@ -21,12 +21,16 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-deskflow = {
+      url = "github:deskflow/homebrew-tap";
+      flake = false;
+    };
     
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, claude-code-nix, homebrew-core, homebrew-cask, home-manager, mac-app-util, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, claude-code-nix, homebrew-core, homebrew-cask, homebrew-deskflow, home-manager, mac-app-util, ... }:
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Eriks-MacBook-Air
@@ -53,6 +57,7 @@
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;
+              "deskflow/homebrew-tap" = homebrew-deskflow;
             };
 
             # Optional: Enable fully-declarative tap management

@@ -25,6 +25,7 @@
       homebrew = {
       	enable = true;
 	casks = [
+		"deskflow"
 		"jagex"
 		"mos"
 		"proton-pass"

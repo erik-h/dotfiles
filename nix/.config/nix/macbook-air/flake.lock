@@ -184,6 +184,22 @@
         "type": "github"
       }
     },
+    "homebrew-deskflow": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774523642,
+        "narHash": "sha256-LTw74Kms+7hVcVH31lKf9/pGuQXWkx12bFZaHqfjcYI=",
+        "owner": "deskflow",
+        "repo": "homebrew-tap",
+        "rev": "e6fe3747b2afe7d38602a74ba86726c28b9410f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "deskflow",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "mac-app-util": {
       "inputs": {
         "cl-nix-lite": "cl-nix-lite",
@@ -347,6 +363,7 @@
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-deskflow": "homebrew-deskflow",
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
