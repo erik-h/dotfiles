@@ -40,6 +40,8 @@
 	  auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
 	  auth       sufficient     pam_tid.so
       '';
+
+      services.tailscale.enable = true;
       
       # Set Git commit hash for darwin-version.
       # system.configurationRevision = self.rev or self.dirtyRev or null;
