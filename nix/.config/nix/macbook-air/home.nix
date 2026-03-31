@@ -101,6 +101,12 @@
 		# source: http://unix.stackexchange.com/a/58616
 		bind-key X confirm-before -p "Kill #S (y/n)?" "run-shell 'tmux switch-client -n \\\; kill-session -t \"\$(tmux display-message -p \"#S\")\"'"
 
+		# pane navigation
+		bind h select-pane -L
+		bind j select-pane -D
+		bind k select-pane -U
+		bind l select-pane -R
+
 		# swap panes
 		bind-key -r J swap-pane -D
 		bind-key -r K swap-pane -U
