@@ -195,6 +195,14 @@
 	'';
   };
 
+  launchd.agents.raycast = {
+	  enable = true;
+	  config = {
+		  ProgramArguments = [ "${pkgs.raycast}/Applications/Raycast.app/Contents/MacOS/Raycast" ];
+		  RunAtLoad = true;
+	  };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
