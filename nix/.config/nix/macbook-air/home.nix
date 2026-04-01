@@ -45,6 +45,64 @@
   	};
   };
 
+  programs.git = {
+	  enable = true;
+	  userName = "Erik Haugrud";
+	  userEmail = "public+git@erikh.me";
+
+	  signing = {
+		  key = "2C5A386B8090ADD77D65494CAD5946D4C7ECFF90";
+		  signByDefault = false; # set to true if you want auto-signing
+	  };
+
+	  difftastic.enable = true;
+
+	  aliases = {
+		  d = "diff";
+		  dt = "difftool";
+		  fixup = "!f() { TARGET=$(git rev-parse \"$1\"); git commit --fixup=$TARGET \${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f";
+		  gone = "!f() { git branch -vv | awk '{print $1,$4}' | grep 'gone]' | grep -v '\\\\*' | awk '{print $1}'; }; f";
+		  parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\\\[\\\\([^\\\\^~]*\\\\).*\\\\].*/\\\\1/' #";
+		  quote-string = "!read -r l; printf \\\\\"!; printf %s \"$l\" | sed 's/\\\\([\\\\\\\\\\\"]\\\\)/\\\\\\\\\\\\1/g'; printf \" #\\\\\"\\n\" #";
+		  quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\\\\\\\([\\\\\\\\\\\"]\\\\)/\\\\1/g'; printf \"\\n\" #";
+		  today = "log --since=midnight";
+		  sync = "!git pull && git push";
+		  luniq = "!git log \${1:-origin/main}..HEAD";
+	  };
+
+	  extraConfig = {
+		  init.defaultBranch = "main";
+		  credential.helper = "cache --timeout=7200";
+		  push.default = "simple";
+		  core = {
+			  editor = "nvim";
+			  attributesfile = "~/.gitattributes";
+			  autocrlf = false;
+			  filemode = false;
+		  };
+		  pull = {
+			  ff = true;
+			  rebase = false;
+		  };
+		  rebase = {
+			  autosquash = true;
+			  updateRefs = true;
+		  };
+		  tag.sort = "-version:refname";
+	  };
+
+	  includes = [
+	  {
+		  condition = "gitdir:~/dev/work/**";
+		  path = "~/.config/git/work.config";
+	  }
+	  {
+		  path = "~/.config/git/local.config";
+	  }
+	  ];
+  };
+
+
   programs.ghostty = {
   	enable = true;
 	package = pkgs.ghostty-bin;
