@@ -46,45 +46,45 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references, bufopts)
 end
 
-require('lspconfig')['bashls'].setup{
+vim.lsp.config('bashls', {
   on_attach = on_attach
-}
+})
 
-require('lspconfig')['pyright'].setup{
+vim.lsp.config('pyright', {
   on_attach = on_attach,
   settings = {
     pyright = {
       autoImportCompletion = true
     }
   }
-}
-require('lspconfig')['ts_ls'].setup{
+})
+vim.lsp.config('ts_ls', {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     vim.keymap.set('n', "<space>i", function() vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) }}) end, { noremap=true, silent=true, buffer=bufnr })
   end,
-}
-require('lspconfig')['rust_analyzer'].setup{
+})
+vim.lsp.config('rust_analyzer', {
   on_attach = on_attach,
   -- Server-specific settings...
   settings = {
     ["rust-analyzer"] = {}
   }
-}
+})
 
-require('lspconfig')['omnisharp'].setup{
+vim.lsp.config('omnisharp', {
   on_attach = on_attach,
   cmd = { "dotnet", vim.fn.expand("~") .. "/opt/omnisharp/OmniSharp.dll" },
-}
+})
 
-require('lspconfig')['terraformls'].setup{
+vim.lsp.config('terraformls', {
   on_attach = on_attach
-}
+})
 
-require('lspconfig')['gopls'].setup {
+vim.lsp.config('gopls', {
   on_attach = on_attach
-}
+})
 
-require('lspconfig')['kotlin_language_server'].setup {
+vim.lsp.config('kotlin_language_server', {
   on_attach = on_attach
-}
+})
