@@ -267,6 +267,7 @@
     bat
     btop
     claude-code
+    docker-client
     fd
     nvd
     proton-pass-cli
