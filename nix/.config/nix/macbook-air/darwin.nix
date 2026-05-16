@@ -26,7 +26,9 @@
       	enable = true;
 	casks = [
 		"deskflow"
+		"google-chrome"
 		"jagex"
+		"jellyfin-media-player"
 		"mos"
 		"proton-pass"
 		"runelite"
