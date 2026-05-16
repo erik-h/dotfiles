@@ -19,6 +19,91 @@
   	enable = true;
 	functions = {
 		fish_greeting = "";
+		ndiff = {
+		    description = "Diff two recent system generations with nvd, annotated with git state";
+		    body = ''
+		      set -l offset 0
+		      if test (count $argv) -ge 1
+			  set offset $argv[1]
+		      end
+
+		      set -l take (math "2 + $offset")
+		      set -l dir $HOME/.local/state/darwin-gens
+
+		      set -l pair (
+			  for p in /nix/var/nix/profiles/system-*-link
+			      set -l num (string match -rg 'system-(\d+)-link$' (path basename $p))
+			      echo $num $p
+			  end | sort -n | tail -n $take | head -n 2 | awk '{print $2}'
+		      )
+
+		      if test (count $pair) -lt 2
+			  echo "ndiff: not enough generations for offset $offset." >&2
+			  return 1
+		      end
+
+		      for path in $pair
+			  set -l gen (string match -rg 'system-(\d+)-link$' (path basename $path))
+			  set -l when (date -r (stat -f %m $path) "+%Y-%m-%d %H:%M:%S")
+			  echo "=== $path"
+			  echo "    switched: $when"
+
+			  set -l rec (awk -F'\t' -v g=$gen '$1==g {print; exit}' $dir/log.tsv 2>/dev/null)
+			  if test -n "$rec"
+			      set -l fields (string split \t -- $rec)
+			      set -l sha $fields[2]
+			      set -l tag $fields[3]
+			      set -l subject $fields[4]
+			      set -l short (string sub -l 7 -- $sha)
+			      echo "    commit:   $short $subject [$tag]"
+			      if test "$tag" = dirty -a -f $dir/$gen.patch
+				  echo "    patch:    $dir/$gen.patch"
+				  cat $dir/$gen.patch
+			      end
+			  else
+			      echo "    commit:   (no record)"
+			  end
+		      end
+		      echo
+
+		      nvd diff $pair
+		    '';
+		};
+		nrs = {
+		    description = "darwin-rebuild switch, recording git SHA and dirty patch per generation";
+		    body = ''
+		      set -l dir $HOME/.local/state/darwin-gens
+		      mkdir -p $dir
+
+		      set -l sha (git -C $FLAKE_DIR rev-parse HEAD 2>/dev/null)
+		      set -l subject ""
+		      set -l tag unknown
+		      if test -n "$sha"
+			  set subject (git -C $FLAKE_DIR log -1 --format='%s' HEAD 2>/dev/null)
+			  set tag clean
+			  if not git -C $FLAKE_DIR diff --quiet HEAD -- 2>/dev/null
+			      set tag dirty
+			  end
+		      else
+			  set sha unknown
+		      end
+
+		      sudo darwin-rebuild switch --flake $FLAKE_DIR $argv
+		      set -l rc $status
+		      if test $rc -ne 0
+			  return $rc
+		      end
+
+		      set -l gen (readlink /nix/var/nix/profiles/system | string match -rg 'system-(\d+)-link$')
+
+		      if test "$tag" = dirty
+			  git -C $FLAKE_DIR -c diff.external="difft --color=always" diff HEAD -- > $dir/$gen.patch
+			  echo "nrs: dirty patch saved to $dir/$gen.patch"
+		      end
+		      printf '%s\t%s\t%s\t%s\n' $gen $sha $tag $subject >> $dir/log.tsv
+		      echo "nrs: recorded gen $gen @ "(string sub -l 7 -- $sha)" [$tag]"
+		    '';
+		};
 	};
 	interactiveShellInit = ''
 	    set -gx EDITOR nvim
@@ -38,8 +123,7 @@
 		ga = "git add";
 		glog = "git log";
 		gr = "git rebase";
-		
-  		nrs = "sudo darwin-rebuild switch --flake $FLAKE_DIR";
+
   		sudo = "sudo ";
   		vim = "nvim";
   	};
