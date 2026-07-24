@@ -30,6 +30,7 @@
 		"jagex"
 		"jellyfin-media-player"
 		"mos"
+		"proton-meet"
 		"proton-pass"
 		"runelite"
 		"zen-browser"
